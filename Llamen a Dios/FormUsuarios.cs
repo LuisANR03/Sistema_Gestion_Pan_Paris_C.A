@@ -16,6 +16,7 @@ namespace Llamen_a_Dios
     public partial class FormUsuarios : Form
     {
         private int idUsuarioSeleccionado = 0;
+        private List<Usuario> listaOriginalUsuarios;
         public FormUsuarios()
         {
             InitializeComponent();
@@ -24,64 +25,63 @@ namespace Llamen_a_Dios
 
         private void FormUsuarios_Load(object sender, EventArgs e)
         {
-          CbEstado.Items.Add(new Opcombo() { Texto = "Activo", Valor = 1 });
-          CbEstado.Items.Add(new Opcombo() { Texto = "No Activo", Valor = 0 });
-          CbEstado.DisplayMember = "Texto";
-          CbEstado.ValueMember = "Valor";
-          CbEstado.SelectedIndex = 0;
+            CbEstado.Items.Add(new Opcombo() { Texto = "Activo", Valor = 1 });
+            CbEstado.Items.Add(new Opcombo() { Texto = "No Activo", Valor = 0 });
+            CbEstado.DisplayMember = "Texto";
+            CbEstado.ValueMember = "Valor";
+            CbEstado.SelectedIndex = 0;
 
-          List<Rol> listaRoles = new CN_rol().Listar();
+            // --- 2. LLENA EL COMBO DE ROL (Tu código estaba bien) ---
+            // (Solo moví las propiedades fuera del bucle para que sea más eficiente)
+            List<Rol> listaRoles = new CN_rol().Listar();
             foreach (Rol item in listaRoles)
             {
                 CBRol.Items.Add(new Opcombo() { Texto = item.Descripcion, Valor = item.IdRol });
-                CBRol.DisplayMember = "Texto";
-                CBRol.ValueMember = "Valor";
-                CBRol.SelectedIndex = 0;
-
             }
-
+            CBRol.DisplayMember = "Texto";
+            CBRol.ValueMember = "Valor";
+            if (CBRol.Items.Count > 0)
+                CBRol.SelectedIndex = 0;
+            CargarUsuarios();
             foreach (DataGridViewColumn columna in DGVUs.Columns)
             {
-                
                 if (columna.Visible == true && columna.Name != "BtnSelect")
                 {
                     CBFiltro.Items.Add(new Opcombo() { Texto = columna.HeaderText, Valor = columna.Name });
                 }
             }
-
             CBFiltro.DisplayMember = "Texto";
             CBFiltro.ValueMember = "Valor";
-
-            
             if (CBFiltro.Items.Count > 0)
             {
-                CBFiltro.SelectedIndex = 0; 
-            }
-            
-            //Mostrar usuarios
-            List<Usuario> listausuario = new CN_Usuario().Listar();
-            foreach (Usuario item in listausuario)
-            {
-            DGVUs.Rows.Add(new object[] {"", item.IdUsuario, item.Cedula, item.Nombre, item.Correo,item.Clave,
-            item.oRol.IdRol,
-            item.oRol.Descripcion,
-            item.Estado == true ?1 : 0,
-            item.Estado == true ?"Activo" : "No Activo"
-
-            });
-
+                CBFiltro.SelectedIndex = 0;
             }
         }
 
         private void CargarUsuarios()
         {
-            // Limpia la lista antes de cargar
-            // (Esto es importante si tu DGV no se limpia solo)
-            DGVUs.DataSource = null;
+            DGVUs.Rows.Clear();
 
-            CN_Usuario obj_cn_usuario = new CN_Usuario();
-            List<Usuario> listaUsuarios = obj_cn_usuario.Listar();
-            DGVUs.DataSource = listaUsuarios;
+           
+            List<Usuario> listausuario = new CN_Usuario().Listar();
+
+            
+            foreach (Usuario item in listausuario)
+            {
+                DGVUs.Rows.Add(new object[] {
+            "", // Para el botón de seleccionar
+            item.IdUsuario,
+            item.Cedula,
+            item.Nombre,
+            item.Correo,
+            item.Clave, 
+            item.oRol.IdRol,
+            item.oRol.Descripcion,
+            item.Estado == true ? 1 : 0,
+            item.Estado == true ? "Activo" : "No Activo" 
+        });
+
+            }
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace Llamen_a_Dios
             string mensaje = string.Empty;
             bool claveCambiada = false;
 
-            // 1. Crea el objeto Usuario
+            // 1. Crea el objeto Usuario (tu código está perfecto)
             Usuario obj_usuario = new Usuario()
             {
                 IdUsuario = Convert.ToInt32(txtid.Text),
@@ -99,8 +99,6 @@ namespace Llamen_a_Dios
                 oRol = new Rol() { IdRol = Convert.ToInt32(((Opcombo)CBRol.SelectedItem).Valor) },
                 Estado = Convert.ToInt32(((Opcombo)CbEstado.SelectedItem).Valor) == 1
             };
-
-            // Asignamos la clave SOLO si estamos creando un usuario nuevo
             if (obj_usuario.IdUsuario == 0)
             {
                 obj_usuario.Clave = tbContraseña.Text;
@@ -108,19 +106,20 @@ namespace Llamen_a_Dios
 
             CN_Usuario obj_cn_usuario = new CN_Usuario();
 
-            // ----------------------------------------------------
-            // INICIO DE LA LÓGICA DE DECISIÓN
-            // ----------------------------------------------------
-
             // MODO CREAR (El ID es 0)
             if (obj_usuario.IdUsuario == 0)
             {
-                // YA NO SE VALIDA LA CLAVE REPETIDA
-
-                // Llama al procedimiento de REGISTRAR
                 int idGenerado = obj_cn_usuario.Registrar(obj_usuario, out mensaje);
 
-                if (idGenerado == 0) // Si hubo un error
+                // --- CORRECCIÓN AQUÍ ---
+                // Comprueba si se generó un ID (éxito)
+                if (idGenerado != 0)
+                {
+                    MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarUsuarios();
+                    LimpiarCampos();
+                }
+                else // Si el ID es 0, fue un error
                 {
                     MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -128,54 +127,35 @@ namespace Llamen_a_Dios
             // MODO EDITAR (El ID NO es 0)
             else
             {
-                // 1. Llama al procedimiento de EDITAR (que no cambia la clave)
                 bool resultadoDatos = obj_cn_usuario.Editar(obj_usuario, out mensaje);
+                bool resultadoClave = true; // Asumimos éxito hasta que se demuestre lo contrario
+                string mensajeClave = string.Empty;
 
-                // 2. Comprueba si los datos se editaron Y si se escribió una nueva clave
+                // Comprueba si se escribió una nueva clave
                 if (resultadoDatos && !string.IsNullOrEmpty(tbContraseña.Text))
                 {
-                    // YA NO SE VALIDA LA CLAVE REPETIDA
-
-                    // 2b. Llama al procedimiento para CAMBIAR CLAVE
-                    string mensajeClave;
                     claveCambiada = obj_cn_usuario.CambiarClave(obj_usuario.IdUsuario, tbContraseña.Text, out mensajeClave);
-
-                    if (!claveCambiada)
-                        mensaje = mensajeClave; // Actualiza el mensaje si falló la clave
+                    resultadoClave = claveCambiada; // Actualiza el resultado
                 }
 
-                // 3. Muestra el mensaje de éxito (si no hubo errores)
-                if (string.IsNullOrEmpty(mensaje))
+                // --- CORRECCIÓN AQUÍ ---
+                // Comprueba si AMBOS resultados fueron exitosos
+                if (resultadoDatos && resultadoClave)
                 {
-                    if (resultadoDatos && !claveCambiada && string.IsNullOrEmpty(tbContraseña.Text))
-                    {
-                        MessageBox.Show("Usuario actualizado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else if (resultadoDatos && claveCambiada)
-                    {
-                        MessageBox.Show("Usuario y contraseña actualizados con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    // Define el mensaje de éxito correcto
+                    string msgExito = claveCambiada ? "Usuario y contraseña actualizados con éxito." : "Usuario actualizado con éxito.";
+
+                    MessageBox.Show(msgExito, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarUsuarios();
+                    LimpiarCampos();
                 }
-                else // Muestra el error que vino de la capa de negocios
+                else // Si CUALQUIERA de los dos falló, es un error
                 {
-                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Muestra el mensaje de error (el de Editar o el de Cambiar Clave)
+                    string msgError = !resultadoDatos ? mensaje : mensajeClave;
+                    MessageBox.Show(msgError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            // 4. Si NO hubo mensaje de error, recarga y limpia todo
-            if (string.IsNullOrEmpty(mensaje))
-            {
-                CargarUsuarios(); // Recarga el DataGridView
-                LimpiarCampos();  // Limpia los campos
-            }
-
-            //    DGVUs.Rows.Add(new object[] {"", txtid.Text, tvCedula.Text, tbnombre.Text, tbcorreo.Text,tbContraseña.Text,
-            //    ((Opcombo)CBRol.SelectedItem).Texto.ToString(),
-            //    ((Opcombo)CBRol.SelectedItem).Texto.ToString(),
-            //    ((Opcombo)CbEstado.SelectedItem).Valor.ToString(),
-            //    ((Opcombo)CbEstado.SelectedItem).Texto.ToString()
-            //});
-            //    LimpiarCampos();
         }
         private void LimpiarCampos()
         {
@@ -189,14 +169,10 @@ namespace Llamen_a_Dios
             CbEstado.SelectedIndex = 0;
         }
 
-        private void BtnBuscar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            TBBuscar.Clear();
+            CBFiltro.SelectedIndex = 0; 
         }
 
         private void DGVUs_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -218,10 +194,7 @@ namespace Llamen_a_Dios
 
                 e.Handled = true; 
             
-
         }
-
-
         }
 
         private void DGVUs_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -287,9 +260,10 @@ namespace Llamen_a_Dios
             tvCedula.Clear();
             tbnombre.Clear();
             tbcorreo.Clear();
-            
+            tbContraseña.Clear();
 
-            
+
+
             if (CBRol.Items.Count > 0)
                 CBRol.SelectedIndex = 0;
 
@@ -309,6 +283,87 @@ namespace Llamen_a_Dios
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            // 1. Verifica que haya un usuario seleccionado (que el ID no sea 0)
+            if (Convert.ToInt32(txtid.Text) != 0)
+            {
+                // 2. MUESTRA UNA CONFIRMACIÓN ANTES DE BORRAR
+                if (MessageBox.Show("¿Está seguro de que desea desactivar este usuario?",
+                                   "Confirmación",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    // Si el usuario hace clic en "Sí"
+                    string mensaje = string.Empty;
+                    int idUsuario = Convert.ToInt32(txtid.Text);
+
+                    CN_Usuario obj_cn_usuario = new CN_Usuario();
+
+                    // 3. Llama al procedimiento de ELIMINAR (Desactivar)
+                    bool resultado = obj_cn_usuario.Eliminar(idUsuario, out mensaje);
+
+                    if (resultado)
+                    {
+                        MessageBox.Show("Usuario desactivado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // 4. Recarga el DGV y limpia los campos
+                        CargarUsuarios();
+                        LimpiarCampos();
+                    }
+                    else
+                    {
+                        // Muestra el error que vino de la Capa de Negocios
+                        MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un usuario de la lista primero.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void TBBuscar_TextChanged(object sender, EventArgs e)
+        {
+            // 1. Asegúrate de que haya una columna seleccionada en el ComboBox
+            if (CBFiltro.SelectedItem == null)
+            {
+                // Si no hay nada seleccionado, no hagas nada
+                return;
+            }
+
+            // 2. Obtiene el NOMBRE de la columna por la cual se va a filtrar
+            //    (Ej: "Cedula", "Nombre", "Correo")
+            string columnaFiltro = ((Opcombo)CBFiltro.SelectedItem).Valor.ToString();
+
+            // 3. Obtiene el texto que el usuario está escribiendo (en minúsculas)
+            string textoBusqueda = TBBuscar.Text.Trim().ToLower();
+
+            // 4. Recorre CADA fila del DataGridView
+            foreach (DataGridViewRow row in DGVUs.Rows)
+            {
+                // (Nos saltamos la fila "nueva" al final, si es que existe)
+                if (row.IsNewRow) continue;
+
+                // 5. Obtiene el valor de la celda de esa fila
+                //    (Usa ?.ToString() ?? "" para evitar errores si la celda es nula)
+                string valorCelda = row.Cells[columnaFiltro].Value?.ToString() ?? "";
+
+                // 6. Compara el valor de la celda (en minúsculas) con el texto de búsqueda
+                if (valorCelda.ToLower().Contains(textoBusqueda))
+                {
+                    // Si el texto SÍ está, muestra la fila
+                    row.Visible = true;
+                }
+                else
+                {
+                    // Si el texto NO está, oculta la fila
+                    row.Visible = false;
+                }
+            }
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
 
         }

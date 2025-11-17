@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Boton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.NFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cajero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Piezas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,14 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbllistausu = new System.Windows.Forms.Label();
-            this.Boton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.NFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cajero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Piezas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +68,47 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(858, 338);
             this.dataGridView1.TabIndex = 36;
+            // 
+            // Boton
+            // 
+            this.Boton.HeaderText = "";
+            this.Boton.Name = "Boton";
+            this.Boton.Width = 25;
+            // 
+            // NFactura
+            // 
+            this.NFactura.HeaderText = "N#Factura";
+            this.NFactura.Name = "NFactura";
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            // 
+            // Cliente
+            // 
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.Name = "Cliente";
+            // 
+            // Cajero
+            // 
+            this.Cajero.HeaderText = "Cajero";
+            this.Cajero.Name = "Cajero";
+            // 
+            // Vendedor
+            // 
+            this.Vendedor.HeaderText = "Vendedor";
+            this.Vendedor.Name = "Vendedor";
+            // 
+            // Piezas
+            // 
+            this.Piezas.HeaderText = "Piezas";
+            this.Piezas.Name = "Piezas";
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
             // 
             // iconButton1
             // 
@@ -192,51 +233,10 @@
             this.lbllistausu.TabIndex = 31;
             this.lbllistausu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Boton
-            // 
-            this.Boton.HeaderText = "";
-            this.Boton.Name = "Boton";
-            this.Boton.Width = 25;
-            // 
-            // NFactura
-            // 
-            this.NFactura.HeaderText = "N#Factura";
-            this.NFactura.Name = "NFactura";
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            // 
-            // Cliente
-            // 
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.Name = "Cliente";
-            // 
-            // Cajero
-            // 
-            this.Cajero.HeaderText = "Cajero";
-            this.Cajero.Name = "Cajero";
-            // 
-            // Vendedor
-            // 
-            this.Vendedor.HeaderText = "Vendedor";
-            this.Vendedor.Name = "Vendedor";
-            // 
-            // Piezas
-            // 
-            this.Piezas.HeaderText = "Piezas";
-            this.Piezas.Name = "Piezas";
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            // 
             // Frmdetalleventa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1037, 488);
             this.Controls.Add(this.dataGridView1);

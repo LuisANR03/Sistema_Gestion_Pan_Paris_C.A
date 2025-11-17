@@ -54,7 +54,7 @@ namespace CapaNegocios
                 return 0;
             }
 
-            // Usa tu variable aquí
+            
             return objetoCD_Usuario.Registrar(obj, out Mensaje);
         }
 
@@ -77,7 +77,7 @@ namespace CapaNegocios
                 return false;
             }
 
-            // Usa tu variable aquí
+           
             return objetoCD_Usuario.Editar(obj, out Mensaje);
         }
 
@@ -90,8 +90,22 @@ namespace CapaNegocios
                 return false;
             }
 
-            // Usa tu variable aquí
+            
             return objetoCD_Usuario.CambiarClave(idusuario, nuevaclave, out Mensaje);
+        }
+        public bool Eliminar(int idusuario, out string Mensaje)
+        {
+            Mensaje = string.Empty;
+
+            //No se puede eliminar un ID inválido
+            if (idusuario == 0)
+            {
+                Mensaje = "No se ha seleccionado ningún usuario.";
+                return false;
+            }
+
+            
+            return objetoCD_Usuario.Eliminar(idusuario, out Mensaje);
         }
     }
 }

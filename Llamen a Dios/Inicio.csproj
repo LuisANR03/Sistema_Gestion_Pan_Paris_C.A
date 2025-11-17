@@ -56,13 +56,16 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D91E41BB06B31E078CE202B2C5A88C8EAC6F8BE3</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>36E609FC64E1BA4936BAA35E6A3204A931363960</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Inicio_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Inicio_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>GD Icono.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
@@ -134,6 +137,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BotonModerno.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FormUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,12 @@
     </Compile>
     <Compile Include="FrmAcercade.Designer.cs">
       <DependentUpon>FrmAcercade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCategoria.Designer.cs">
+      <DependentUpon>FrmCategoria.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmClientes.cs">
       <SubType>Form</SubType>
@@ -196,12 +208,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextBoxModerno.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Utiles\Opcombo.cs" />
     <EmbeddedResource Include="FormUsuarios.resx">
       <DependentUpon>FormUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAcercade.resx">
       <DependentUpon>FrmAcercade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCategoria.resx">
+      <DependentUpon>FrmCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmClientes.resx">
       <DependentUpon>FrmClientes.cs</DependentUpon>
@@ -238,6 +256,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Inicio_1_TemporaryKey.pfx" />
+    <None Include="Inicio_2_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -283,6 +302,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\trash-can.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GD Icono.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

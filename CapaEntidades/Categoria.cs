@@ -12,5 +12,9 @@ namespace Entidades
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
         public DateTime FechaRegistro { get; set; }
+        public string EstadoValor
+        {
+            get { return Estado ? "Activo" : "Inactivo"; }
+        }
     }
 }

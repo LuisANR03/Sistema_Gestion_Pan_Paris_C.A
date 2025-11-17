@@ -2,287 +2,439 @@
 {
     partial class Inicio
     {
-        /// <summary>
-        /// Variable del diseñador necesaria.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Limpiar los recursos que se estén usando.
-        /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
-
-        /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.MenuTitulo = new System.Windows.Forms.MenuStrip();
-            this.MenuUs = new FontAwesome.Sharp.IconMenuItem();
-            this.MenuVentas = new FontAwesome.Sharp.IconMenuItem();
-            this.submenuregistrarventa = new FontAwesome.Sharp.IconMenuItem();
-            this.submenudetalleventa = new FontAwesome.Sharp.IconMenuItem();
-            this.MenuClient = new FontAwesome.Sharp.IconMenuItem();
-            this.MenuInformes = new FontAwesome.Sharp.IconMenuItem();
-            this.MenuStock = new FontAwesome.Sharp.IconMenuItem();
-            this.MenuAcerca = new FontAwesome.Sharp.IconMenuItem();
-            this.Menu = new System.Windows.Forms.MenuStrip();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
+            this.PanelSidebar = new System.Windows.Forms.Panel();
+            this.btnAcerca = new FontAwesome.Sharp.IconButton();
+            this.PanelSubmenuStock = new System.Windows.Forms.Panel();
+            this.submenucategorias = new System.Windows.Forms.Button();
+            this.submenuinv = new System.Windows.Forms.Button();
+            this.btnStock = new FontAwesome.Sharp.IconButton();
+            this.btnInformes = new FontAwesome.Sharp.IconButton();
+            this.btnClientes = new FontAwesome.Sharp.IconButton();
+            this.PanelSubmenuVentas = new System.Windows.Forms.Panel();
+            this.submenudetalleventa = new System.Windows.Forms.Button();
+            this.submenuregistrarventa = new System.Windows.Forms.Button();
+            this.btnVentas = new FontAwesome.Sharp.IconButton();
+            this.btnUsuarios = new FontAwesome.Sharp.IconButton();
+            this.PanelLogo = new System.Windows.Forms.Panel();
             this.Textotitulo = new System.Windows.Forms.Label();
-            this.Contenedor = new System.Windows.Forms.Panel();
-            this.labeluser = new System.Windows.Forms.Label();
+            this.btnCerrarSesion = new FontAwesome.Sharp.IconButton();
+            this.PanelHeader = new System.Windows.Forms.Panel();
             this.lblnombreuser = new System.Windows.Forms.Label();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.MenuTitulo.SuspendLayout();
+            this.labeluser = new System.Windows.Forms.Label();
+            this.Contenedor = new System.Windows.Forms.Panel();
+            this.PanelSidebar.SuspendLayout();
+            this.PanelSubmenuStock.SuspendLayout();
+            this.PanelSubmenuVentas.SuspendLayout();
+            this.PanelLogo.SuspendLayout();
+            this.PanelHeader.SuspendLayout();
             this.SuspendLayout();
             // 
-            // MenuTitulo
+            // PanelSidebar
             // 
-            this.MenuTitulo.BackColor = System.Drawing.Color.White;
-            this.MenuTitulo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuUs,
-            this.MenuVentas,
-            this.MenuClient,
-            this.MenuInformes,
-            this.MenuStock,
-            this.MenuAcerca});
-            this.MenuTitulo.Location = new System.Drawing.Point(0, 60);
-            this.MenuTitulo.Name = "MenuTitulo";
-            this.MenuTitulo.Size = new System.Drawing.Size(1064, 73);
-            this.MenuTitulo.TabIndex = 0;
-            this.MenuTitulo.Text = "menuStrip1";
+            this.PanelSidebar.AutoScroll = true;
+            this.PanelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(78)))), ((int)(((byte)(216)))));
+            this.PanelSidebar.Controls.Add(this.btnAcerca);
+            this.PanelSidebar.Controls.Add(this.PanelSubmenuStock);
+            this.PanelSidebar.Controls.Add(this.btnStock);
+            this.PanelSidebar.Controls.Add(this.btnInformes);
+            this.PanelSidebar.Controls.Add(this.btnClientes);
+            this.PanelSidebar.Controls.Add(this.PanelSubmenuVentas);
+            this.PanelSidebar.Controls.Add(this.btnVentas);
+            this.PanelSidebar.Controls.Add(this.btnUsuarios);
+            this.PanelSidebar.Controls.Add(this.PanelLogo);
+            this.PanelSidebar.Controls.Add(this.btnCerrarSesion);
+            this.PanelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PanelSidebar.Location = new System.Drawing.Point(0, 0);
+            this.PanelSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelSidebar.Name = "PanelSidebar";
+            this.PanelSidebar.Size = new System.Drawing.Size(307, 1200);
+            this.PanelSidebar.TabIndex = 0;
             // 
-            // MenuUs
+            // btnAcerca
             // 
-            this.MenuUs.AutoSize = false;
-            this.MenuUs.IconChar = FontAwesome.Sharp.IconChar.UsersGear;
-            this.MenuUs.IconColor = System.Drawing.Color.Black;
-            this.MenuUs.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuUs.IconSize = 50;
-            this.MenuUs.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MenuUs.Name = "MenuUs";
-            this.MenuUs.Size = new System.Drawing.Size(80, 69);
-            this.MenuUs.Text = "Usuarios";
-            this.MenuUs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.MenuUs.Click += new System.EventHandler(this.MenuUs_Click);
+            this.btnAcerca.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAcerca.FlatAppearance.BorderSize = 0;
+            this.btnAcerca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAcerca.ForeColor = System.Drawing.Color.White;
+            this.btnAcerca.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
+            this.btnAcerca.IconColor = System.Drawing.Color.White;
+            this.btnAcerca.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAcerca.IconSize = 32;
+            this.btnAcerca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAcerca.Location = new System.Drawing.Point(0, 629);
+            this.btnAcerca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAcerca.Name = "btnAcerca";
+            this.btnAcerca.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnAcerca.Size = new System.Drawing.Size(307, 62);
+            this.btnAcerca.TabIndex = 0;
+            this.btnAcerca.Text = "  Acerca de";
+            this.btnAcerca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAcerca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAcerca.UseVisualStyleBackColor = true;
+            this.btnAcerca.Click += new System.EventHandler(this.MenuAcerca_Click);
             // 
-            // MenuVentas
+            // PanelSubmenuStock
             // 
-            this.MenuVentas.AutoSize = false;
-            this.MenuVentas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.submenuregistrarventa,
-            this.submenudetalleventa});
-            this.MenuVentas.IconChar = FontAwesome.Sharp.IconChar.Tag;
-            this.MenuVentas.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.MenuVentas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuVentas.IconSize = 50;
-            this.MenuVentas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MenuVentas.Name = "MenuVentas";
-            this.MenuVentas.Size = new System.Drawing.Size(80, 69);
-            this.MenuVentas.Text = "Ventas";
-            this.MenuVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.PanelSubmenuStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.PanelSubmenuStock.Controls.Add(this.submenucategorias);
+            this.PanelSubmenuStock.Controls.Add(this.submenuinv);
+            this.PanelSubmenuStock.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelSubmenuStock.Location = new System.Drawing.Point(0, 531);
+            this.PanelSubmenuStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelSubmenuStock.Name = "PanelSubmenuStock";
+            this.PanelSubmenuStock.Size = new System.Drawing.Size(307, 98);
+            this.PanelSubmenuStock.TabIndex = 8;
+            this.PanelSubmenuStock.Visible = false;
             // 
-            // submenuregistrarventa
+            // submenucategorias
             // 
-            this.submenuregistrarventa.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.submenuregistrarventa.IconColor = System.Drawing.Color.Black;
-            this.submenuregistrarventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.submenuregistrarventa.Name = "submenuregistrarventa";
-            this.submenuregistrarventa.Size = new System.Drawing.Size(134, 22);
-            this.submenuregistrarventa.Text = "Registrar";
-            this.submenuregistrarventa.Click += new System.EventHandler(this.submenuregistrarventa_Click);
+            this.submenucategorias.Dock = System.Windows.Forms.DockStyle.Top;
+            this.submenucategorias.FlatAppearance.BorderSize = 0;
+            this.submenucategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submenucategorias.ForeColor = System.Drawing.Color.LightGray;
+            this.submenucategorias.Location = new System.Drawing.Point(0, 49);
+            this.submenucategorias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.submenucategorias.Name = "submenucategorias";
+            this.submenucategorias.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.submenucategorias.Size = new System.Drawing.Size(307, 49);
+            this.submenucategorias.TabIndex = 0;
+            this.submenucategorias.Text = "Categorías";
+            this.submenucategorias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submenucategorias.UseVisualStyleBackColor = true;
+            this.submenucategorias.Click += new System.EventHandler(this.submenucategorias_Click);
+            // 
+            // submenuinv
+            // 
+            this.submenuinv.Dock = System.Windows.Forms.DockStyle.Top;
+            this.submenuinv.FlatAppearance.BorderSize = 0;
+            this.submenuinv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submenuinv.ForeColor = System.Drawing.Color.LightGray;
+            this.submenuinv.Location = new System.Drawing.Point(0, 0);
+            this.submenuinv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.submenuinv.Name = "submenuinv";
+            this.submenuinv.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.submenuinv.Size = new System.Drawing.Size(307, 49);
+            this.submenuinv.TabIndex = 1;
+            this.submenuinv.Text = "Inventario";
+            this.submenuinv.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submenuinv.UseVisualStyleBackColor = true;
+            this.submenuinv.Click += new System.EventHandler(this.submenuinv_Click);
+            // 
+            // btnStock
+            // 
+            this.btnStock.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStock.FlatAppearance.BorderSize = 0;
+            this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStock.ForeColor = System.Drawing.Color.White;
+            this.btnStock.IconChar = FontAwesome.Sharp.IconChar.BoxOpen;
+            this.btnStock.IconColor = System.Drawing.Color.White;
+            this.btnStock.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnStock.IconSize = 32;
+            this.btnStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStock.Location = new System.Drawing.Point(0, 469);
+            this.btnStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStock.Name = "btnStock";
+            this.btnStock.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnStock.Size = new System.Drawing.Size(307, 62);
+            this.btnStock.TabIndex = 9;
+            this.btnStock.Text = "  Stock";
+            this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStock.UseVisualStyleBackColor = true;
+            this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
+            // 
+            // btnInformes
+            // 
+            this.btnInformes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnInformes.FlatAppearance.BorderSize = 0;
+            this.btnInformes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInformes.ForeColor = System.Drawing.Color.White;
+            this.btnInformes.IconChar = FontAwesome.Sharp.IconChar.ChartBar;
+            this.btnInformes.IconColor = System.Drawing.Color.White;
+            this.btnInformes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInformes.IconSize = 32;
+            this.btnInformes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInformes.Location = new System.Drawing.Point(0, 407);
+            this.btnInformes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnInformes.Name = "btnInformes";
+            this.btnInformes.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnInformes.Size = new System.Drawing.Size(307, 62);
+            this.btnInformes.TabIndex = 10;
+            this.btnInformes.Text = "  Informes";
+            this.btnInformes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInformes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInformes.UseVisualStyleBackColor = true;
+            this.btnInformes.Click += new System.EventHandler(this.MenuInformes_Click);
+            // 
+            // btnClientes
+            // 
+            this.btnClientes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnClientes.FlatAppearance.BorderSize = 0;
+            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClientes.ForeColor = System.Drawing.Color.White;
+            this.btnClientes.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
+            this.btnClientes.IconColor = System.Drawing.Color.White;
+            this.btnClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClientes.IconSize = 32;
+            this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClientes.Location = new System.Drawing.Point(0, 345);
+            this.btnClientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnClientes.Size = new System.Drawing.Size(307, 62);
+            this.btnClientes.TabIndex = 11;
+            this.btnClientes.Text = "  Clientes";
+            this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.Click += new System.EventHandler(this.MenuClient_Click);
+            // 
+            // PanelSubmenuVentas
+            // 
+            this.PanelSubmenuVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.PanelSubmenuVentas.Controls.Add(this.submenudetalleventa);
+            this.PanelSubmenuVentas.Controls.Add(this.submenuregistrarventa);
+            this.PanelSubmenuVentas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelSubmenuVentas.Location = new System.Drawing.Point(0, 247);
+            this.PanelSubmenuVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelSubmenuVentas.Name = "PanelSubmenuVentas";
+            this.PanelSubmenuVentas.Size = new System.Drawing.Size(307, 98);
+            this.PanelSubmenuVentas.TabIndex = 7;
+            this.PanelSubmenuVentas.Visible = false;
             // 
             // submenudetalleventa
             // 
-            this.submenudetalleventa.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.submenudetalleventa.IconColor = System.Drawing.Color.Black;
-            this.submenudetalleventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.submenudetalleventa.Dock = System.Windows.Forms.DockStyle.Top;
+            this.submenudetalleventa.FlatAppearance.BorderSize = 0;
+            this.submenudetalleventa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submenudetalleventa.ForeColor = System.Drawing.Color.LightGray;
+            this.submenudetalleventa.Location = new System.Drawing.Point(0, 49);
+            this.submenudetalleventa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.submenudetalleventa.Name = "submenudetalleventa";
-            this.submenudetalleventa.Size = new System.Drawing.Size(134, 22);
+            this.submenudetalleventa.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.submenudetalleventa.Size = new System.Drawing.Size(307, 49);
+            this.submenudetalleventa.TabIndex = 0;
             this.submenudetalleventa.Text = "Ver Detalles";
+            this.submenudetalleventa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submenudetalleventa.UseVisualStyleBackColor = true;
             this.submenudetalleventa.Click += new System.EventHandler(this.submenudetalleventa_Click);
             // 
-            // MenuClient
+            // submenuregistrarventa
             // 
-            this.MenuClient.AutoSize = false;
-            this.MenuClient.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
-            this.MenuClient.IconColor = System.Drawing.Color.Black;
-            this.MenuClient.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuClient.IconSize = 50;
-            this.MenuClient.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MenuClient.Name = "MenuClient";
-            this.MenuClient.Size = new System.Drawing.Size(80, 69);
-            this.MenuClient.Text = "Clientes";
-            this.MenuClient.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.MenuClient.Click += new System.EventHandler(this.MenuClient_Click);
+            this.submenuregistrarventa.Dock = System.Windows.Forms.DockStyle.Top;
+            this.submenuregistrarventa.FlatAppearance.BorderSize = 0;
+            this.submenuregistrarventa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submenuregistrarventa.ForeColor = System.Drawing.Color.LightGray;
+            this.submenuregistrarventa.Location = new System.Drawing.Point(0, 0);
+            this.submenuregistrarventa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.submenuregistrarventa.Name = "submenuregistrarventa";
+            this.submenuregistrarventa.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.submenuregistrarventa.Size = new System.Drawing.Size(307, 49);
+            this.submenuregistrarventa.TabIndex = 1;
+            this.submenuregistrarventa.Text = "Registrar Venta";
+            this.submenuregistrarventa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submenuregistrarventa.UseVisualStyleBackColor = true;
+            this.submenuregistrarventa.Click += new System.EventHandler(this.submenuregistrarventa_Click);
             // 
-            // MenuInformes
+            // btnVentas
             // 
-            this.MenuInformes.AutoSize = false;
-            this.MenuInformes.IconChar = FontAwesome.Sharp.IconChar.ChartBar;
-            this.MenuInformes.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.MenuInformes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuInformes.IconSize = 50;
-            this.MenuInformes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MenuInformes.Name = "MenuInformes";
-            this.MenuInformes.Size = new System.Drawing.Size(80, 69);
-            this.MenuInformes.Text = "Informes";
-            this.MenuInformes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.MenuInformes.Click += new System.EventHandler(this.MenuInformes_Click);
+            this.btnVentas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnVentas.FlatAppearance.BorderSize = 0;
+            this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVentas.ForeColor = System.Drawing.Color.White;
+            this.btnVentas.IconChar = FontAwesome.Sharp.IconChar.Tag;
+            this.btnVentas.IconColor = System.Drawing.Color.White;
+            this.btnVentas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVentas.IconSize = 32;
+            this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVentas.Location = new System.Drawing.Point(0, 185);
+            this.btnVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnVentas.Size = new System.Drawing.Size(307, 62);
+            this.btnVentas.TabIndex = 12;
+            this.btnVentas.Text = "  Ventas";
+            this.btnVentas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVentas.UseVisualStyleBackColor = true;
+            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
             // 
-            // MenuStock
+            // btnUsuarios
             // 
-            this.MenuStock.AutoSize = false;
-            this.MenuStock.IconChar = FontAwesome.Sharp.IconChar.BoxOpen;
-            this.MenuStock.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.MenuStock.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuStock.IconSize = 50;
-            this.MenuStock.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MenuStock.Name = "MenuStock";
-            this.MenuStock.Size = new System.Drawing.Size(80, 69);
-            this.MenuStock.Text = "Stock";
-            this.MenuStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.MenuStock.Click += new System.EventHandler(this.MenuStock_Click);
+            this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUsuarios.FlatAppearance.BorderSize = 0;
+            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarios.ForeColor = System.Drawing.Color.White;
+            this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.UsersGear;
+            this.btnUsuarios.IconColor = System.Drawing.Color.White;
+            this.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnUsuarios.IconSize = 32;
+            this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 123);
+            this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnUsuarios.Size = new System.Drawing.Size(307, 62);
+            this.btnUsuarios.TabIndex = 13;
+            this.btnUsuarios.Text = "  Usuarios";
+            this.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.MenuUs_Click);
             // 
-            // MenuAcerca
+            // PanelLogo
             // 
-            this.MenuAcerca.AutoSize = false;
-            this.MenuAcerca.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
-            this.MenuAcerca.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.MenuAcerca.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuAcerca.IconSize = 50;
-            this.MenuAcerca.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MenuAcerca.Name = "MenuAcerca";
-            this.MenuAcerca.Size = new System.Drawing.Size(80, 69);
-            this.MenuAcerca.Text = "Acerca de";
-            this.MenuAcerca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.MenuAcerca.Click += new System.EventHandler(this.MenuAcerca_Click);
-            // 
-            // Menu
-            // 
-            this.Menu.AutoSize = false;
-            this.Menu.BackColor = System.Drawing.Color.SteelBlue;
-            this.Menu.Location = new System.Drawing.Point(0, 0);
-            this.Menu.Name = "Menu";
-            this.Menu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Menu.Size = new System.Drawing.Size(1064, 60);
-            this.Menu.TabIndex = 1;
-            this.Menu.Text = "menuStrip2";
+            this.PanelLogo.Controls.Add(this.Textotitulo);
+            this.PanelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelLogo.Location = new System.Drawing.Point(0, 0);
+            this.PanelLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelLogo.Name = "PanelLogo";
+            this.PanelLogo.Size = new System.Drawing.Size(307, 123);
+            this.PanelLogo.TabIndex = 0;
             // 
             // Textotitulo
             // 
             this.Textotitulo.AutoSize = true;
-            this.Textotitulo.BackColor = System.Drawing.Color.SteelBlue;
-            this.Textotitulo.Font = new System.Drawing.Font("Roboto", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Textotitulo.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Textotitulo.Location = new System.Drawing.Point(12, 9);
+            this.Textotitulo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Textotitulo.ForeColor = System.Drawing.Color.White;
+            this.Textotitulo.Location = new System.Drawing.Point(33, 43);
+            this.Textotitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Textotitulo.Name = "Textotitulo";
-            this.Textotitulo.Size = new System.Drawing.Size(103, 33);
+            this.Textotitulo.Size = new System.Drawing.Size(165, 41);
             this.Textotitulo.TabIndex = 2;
-            this.Textotitulo.Text = "Tienda";
+            this.Textotitulo.Text = "GD Tienda";
             // 
-            // Contenedor
+            // btnCerrarSesion
             // 
-            this.Contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Contenedor.Location = new System.Drawing.Point(0, 133);
-            this.Contenedor.Name = "Contenedor";
-            this.Contenedor.Size = new System.Drawing.Size(1064, 528);
-            this.Contenedor.TabIndex = 3;
+            this.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
+            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSesion.ForeColor = System.Drawing.Color.White;
+            this.btnCerrarSesion.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            this.btnCerrarSesion.IconColor = System.Drawing.Color.White;
+            this.btnCerrarSesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCerrarSesion.IconSize = 32;
+            this.btnCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 1126);
+            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnCerrarSesion.Size = new System.Drawing.Size(307, 74);
+            this.btnCerrarSesion.TabIndex = 14;
+            this.btnCerrarSesion.Text = "  Cerrar Sesión";
+            this.btnCerrarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.iconButton1_Click);
             // 
-            // labeluser
+            // PanelHeader
             // 
-            this.labeluser.AutoSize = true;
-            this.labeluser.BackColor = System.Drawing.Color.SteelBlue;
-            this.labeluser.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labeluser.ForeColor = System.Drawing.SystemColors.Control;
-            this.labeluser.Location = new System.Drawing.Point(945, 19);
-            this.labeluser.Name = "labeluser";
-            this.labeluser.Size = new System.Drawing.Size(48, 13);
-            this.labeluser.TabIndex = 4;
-            this.labeluser.Text = "Usuario:";
-            this.labeluser.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.PanelHeader.BackColor = System.Drawing.Color.White;
+            this.PanelHeader.Controls.Add(this.lblnombreuser);
+            this.PanelHeader.Controls.Add(this.labeluser);
+            this.PanelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelHeader.Location = new System.Drawing.Point(307, 0);
+            this.PanelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelHeader.Name = "PanelHeader";
+            this.PanelHeader.Size = new System.Drawing.Size(1613, 74);
+            this.PanelHeader.TabIndex = 1;
             // 
             // lblnombreuser
             // 
+            this.lblnombreuser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblnombreuser.AutoSize = true;
-            this.lblnombreuser.BackColor = System.Drawing.Color.SteelBlue;
-            this.lblnombreuser.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblnombreuser.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblnombreuser.Location = new System.Drawing.Point(992, 19);
+            this.lblnombreuser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblnombreuser.ForeColor = System.Drawing.Color.Black;
+            this.lblnombreuser.Location = new System.Drawing.Point(1429, 27);
+            this.lblnombreuser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblnombreuser.Name = "lblnombreuser";
-            this.lblnombreuser.Size = new System.Drawing.Size(66, 13);
-            this.lblnombreuser.TabIndex = 5;
+            this.lblnombreuser.Size = new System.Drawing.Size(92, 20);
+            this.lblnombreuser.TabIndex = 0;
             this.lblnombreuser.Text = "Cargando ...";
-            this.lblnombreuser.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // iconButton1
+            // labeluser
             // 
-            this.iconButton1.BackColor = System.Drawing.Color.White;
-            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 21;
-            this.iconButton1.Location = new System.Drawing.Point(1030, 84);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(28, 27);
-            this.iconButton1.TabIndex = 6;
-            this.iconButton1.UseVisualStyleBackColor = false;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            this.labeluser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labeluser.AutoSize = true;
+            this.labeluser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labeluser.ForeColor = System.Drawing.Color.Gray;
+            this.labeluser.Location = new System.Drawing.Point(1354, 27);
+            this.labeluser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labeluser.Name = "labeluser";
+            this.labeluser.Size = new System.Drawing.Size(62, 20);
+            this.labeluser.TabIndex = 1;
+            this.labeluser.Text = "Usuario:";
+            // 
+            // Contenedor
+            // 
+            this.Contenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.Contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Contenedor.Location = new System.Drawing.Point(307, 74);
+            this.Contenedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Contenedor.Name = "Contenedor";
+            this.Contenedor.Size = new System.Drawing.Size(1613, 1126);
+            this.Contenedor.TabIndex = 2;
             // 
             // Inicio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 661);
-            this.Controls.Add(this.iconButton1);
-            this.Controls.Add(this.lblnombreuser);
-            this.Controls.Add(this.labeluser);
+            this.ClientSize = new System.Drawing.Size(1920, 1200);
             this.Controls.Add(this.Contenedor);
-            this.Controls.Add(this.Textotitulo);
-            this.Controls.Add(this.MenuTitulo);
-            this.Controls.Add(this.Menu);
+            this.Controls.Add(this.PanelHeader);
+            this.Controls.Add(this.PanelSidebar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MainMenuStrip = this.MenuTitulo;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Inicio_Load);
-            this.MenuTitulo.ResumeLayout(false);
-            this.MenuTitulo.PerformLayout();
+            this.PanelSidebar.ResumeLayout(false);
+            this.PanelSubmenuStock.ResumeLayout(false);
+            this.PanelSubmenuVentas.ResumeLayout(false);
+            this.PanelLogo.ResumeLayout(false);
+            this.PanelLogo.PerformLayout();
+            this.PanelHeader.ResumeLayout(false);
+            this.PanelHeader.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
-        #endregion
-
-        private System.Windows.Forms.MenuStrip MenuTitulo;
-        private System.Windows.Forms.MenuStrip Menu;
-        private System.Windows.Forms.Label Textotitulo;
-        private FontAwesome.Sharp.IconMenuItem MenuUs;
-        private FontAwesome.Sharp.IconMenuItem MenuVentas;
-        private FontAwesome.Sharp.IconMenuItem MenuClient;
-        private FontAwesome.Sharp.IconMenuItem MenuInformes;
-        private FontAwesome.Sharp.IconMenuItem MenuStock;
-        private FontAwesome.Sharp.IconMenuItem MenuAcerca;
+        private System.Windows.Forms.Panel PanelSidebar;
+        private System.Windows.Forms.Panel PanelLogo;
+        private System.Windows.Forms.Panel PanelHeader;
         private System.Windows.Forms.Panel Contenedor;
+        private System.Windows.Forms.Label Textotitulo;
         private System.Windows.Forms.Label labeluser;
         private System.Windows.Forms.Label lblnombreuser;
-        private FontAwesome.Sharp.IconMenuItem submenuregistrarventa;
-        private FontAwesome.Sharp.IconMenuItem submenudetalleventa;
-        private FontAwesome.Sharp.IconButton iconButton1;
+
+        // Botones Principales
+        private FontAwesome.Sharp.IconButton btnUsuarios;
+        private FontAwesome.Sharp.IconButton btnVentas;
+        private FontAwesome.Sharp.IconButton btnClientes;
+        private FontAwesome.Sharp.IconButton btnInformes;
+        private FontAwesome.Sharp.IconButton btnStock;
+        private FontAwesome.Sharp.IconButton btnAcerca;
+        private FontAwesome.Sharp.IconButton btnCerrarSesion;
+
+        // Nuevos Paneles y Botones para el Menú Acordeón
+        private System.Windows.Forms.Panel PanelSubmenuVentas;
+        private System.Windows.Forms.Button submenudetalleventa;
+        private System.Windows.Forms.Button submenuregistrarventa;
+        private System.Windows.Forms.Panel PanelSubmenuStock;
+        private System.Windows.Forms.Button submenucategorias;
+        private System.Windows.Forms.Button submenuinv;
     }
 }
-

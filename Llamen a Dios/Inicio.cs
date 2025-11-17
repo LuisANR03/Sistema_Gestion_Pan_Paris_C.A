@@ -1,13 +1,7 @@
 ﻿using Dato;
 using FontAwesome.Sharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaNegocios;
 using Entidades;
@@ -16,110 +10,154 @@ namespace Llamen_a_Dios
 {
     public partial class Inicio : Form
     {
-        private static Usuario usuarioActual =null;
-        private static IconMenuItem menuActivo = null;
+        private static Usuario usuarioActual = null;
+        private IconButton menuActivo = null;
         private static Form formularioActivo = null;
+
         public Inicio(Usuario obj_usuario)
         {
-            if (obj_usuario == null) usuarioActual = new Usuario() { Nombre = "Predefinido", IdUsuario = 1};
+            if (obj_usuario == null) usuarioActual = new Usuario() { Nombre = "Predefinido", IdUsuario = 1 };
             else usuarioActual = obj_usuario;
 
-
             InitializeComponent();
-            // Guarda el usuario que se recibió del login en la variable.
             usuarioActual = obj_usuario;
         }
+
         public Inicio()
         {
             InitializeComponent();
-             
         }
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-
-            List<Permisos> lista_permisos = new CN_permisos().Listar(usuarioActual.IdUsuario);
-            foreach (IconMenuItem menu in MenuTitulo.Items)
-            {
-                // Verificamos si el menú actual está en la lista de permisos del usuario.
-                bool tienePermiso = lista_permisos.Any(p => p.NombreMenu == menu.Name);
-                // Si no tiene permiso, ocultamos el menú.
-                if (!tienePermiso)
-                {
-                    menu.Visible = false;
-                }
-            }
-
-            // Hacemos una comprobación de seguridad para asegurarnos de que el usuario no sea nulo.
+            // Código de permisos y usuario (comentado si aún no lo necesitas)
+            
             if (usuarioActual != null)
             {
-                // Asignamos el nombre y el rol del usuario al texto del Label.
                 lblnombreuser.Text = usuarioActual.Nombre;
             }
-            
-
-
-
+          /* */
         }
-        private void AbrirFrm(IconMenuItem menu, Form formulario)
-        {
-            if (menuActivo != null) {
-                menuActivo.BackColor = Color.White;
-            }
-            menu.BackColor = Color.LightGray;   
-            menuActivo = menu;
 
-            if (formularioActivo != null) {
+        // --- LÓGICA DEL MENÚ ACORDEÓN ---
+        private void OcultarSubmenus()
+        {
+            if (PanelSubmenuVentas.Visible) PanelSubmenuVentas.Visible = false;
+            if (PanelSubmenuStock.Visible) PanelSubmenuStock.Visible = false;
+        }
+
+        private void MostrarSubmenu(Panel submenu)
+        {
+            if (submenu.Visible == false)
+            {
+                OcultarSubmenus(); // Cierra los otros paneles que estén abiertos
+                submenu.Visible = true;
+            }
+            else
+            {
+                submenu.Visible = false; // Lo esconde si le vuelves a dar clic
+            }
+        }
+
+        // --- ABRIR FORMULARIO EN EL CONTENEDOR ---
+        private void AbrirFrm(object senderMenu, Form formulario)
+        {
+            if (menuActivo != null)
+            {
+                menuActivo.BackColor = Color.FromArgb(28, 78, 216); // Azul de tu sidebar
+            }
+
+            // Identificamos si se hizo clic en un botón principal
+            if (senderMenu is IconButton)
+            {
+                menuActivo = (IconButton)senderMenu;
+                menuActivo.BackColor = Color.FromArgb(45, 96, 238);
+            }
+            // Identificamos si se hizo clic en un submenú (que ahora son botones normales)
+            else if (senderMenu is Button)
+            {
+                Button btn = (Button)senderMenu;
+                if (btn.Parent == PanelSubmenuVentas) menuActivo = btnVentas;
+                if (btn.Parent == PanelSubmenuStock) menuActivo = btnStock;
+
+                if (menuActivo != null)
+                    menuActivo.BackColor = Color.FromArgb(45, 96, 238);
+            }
+
+            if (formularioActivo != null)
+            {
                 formularioActivo.Close();
             }
+
             formularioActivo = formulario;
             formulario.TopLevel = false;
             formulario.FormBorderStyle = FormBorderStyle.None;
             formulario.Dock = DockStyle.Fill;
-            
+
             Contenedor.Controls.Add(formulario);
             formulario.Show();
-
-
         }
 
+        // --- EVENTOS DE BOTONES PRINCIPALES ---
         private void MenuUs_Click(object sender, EventArgs e)
         {
-            AbrirFrm((IconMenuItem)sender, new FormUsuarios());
+            OcultarSubmenus();
+            AbrirFrm(sender, new FormUsuarios());
         }
 
-        private void submenuregistrarventa_Click(object sender, EventArgs e)
-        {
-            AbrirFrm((IconMenuItem)sender, new Frmregistrarventa());
-        }
-
-        private void submenudetalleventa_Click(object sender, EventArgs e)
-        {
-            AbrirFrm((IconMenuItem)sender, new Frmdetalleventa());
-        }
         private void MenuClient_Click(object sender, EventArgs e)
         {
-            AbrirFrm((IconMenuItem)sender, new FrmClientes());
+            OcultarSubmenus();
+            AbrirFrm(sender, new FrmClientes());
         }
 
         private void MenuInformes_Click(object sender, EventArgs e)
         {
-            AbrirFrm((IconMenuItem)sender, new Frminformes());
-        }
-
-        private void MenuStock_Click(object sender, EventArgs e)
-        {
-            AbrirFrm((IconMenuItem)sender, new FrmStock());
+            OcultarSubmenus();
+            AbrirFrm(sender, new Frminformes());
         }
 
         private void MenuAcerca_Click(object sender, EventArgs e)
         {
-            AbrirFrm((IconMenuItem)sender, new FrmAcercade());
+            OcultarSubmenus();
+            AbrirFrm(sender, new FrmAcercade());
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
+        private void iconButton1_Click(object sender, EventArgs e) // Cerrar Sesión
         {
             this.Close();
+        }
+
+        // --- EVENTOS QUE DESPLIEGAN EL ACORDEÓN ---
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+            MostrarSubmenu(PanelSubmenuVentas);
+        }
+
+        private void btnStock_Click(object sender, EventArgs e)
+        {
+            MostrarSubmenu(PanelSubmenuStock);
+        }
+
+        // --- EVENTOS DE LOS SUBMENÚS ---
+        private void submenuregistrarventa_Click(object sender, EventArgs e)
+        {
+            AbrirFrm(sender, new Frmregistrarventa());
+        }
+
+        private void submenudetalleventa_Click(object sender, EventArgs e)
+        {
+            AbrirFrm(sender, new Frmdetalleventa());
+        }
+
+        private void submenuinv_Click(object sender, EventArgs e)
+        {
+            AbrirFrm(sender, new FrmStock());
+        }
+
+        private void submenucategorias_Click(object sender, EventArgs e)
+        {
+            AbrirFrm(sender, new FrmCategoria());
         }
     }
 }

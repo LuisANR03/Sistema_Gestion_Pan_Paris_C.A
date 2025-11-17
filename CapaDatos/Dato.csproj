@@ -91,7 +91,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_Categoria.cs" />
+    <Compile Include="CD_cliente.cs" />
     <Compile Include="CD_permisos.cs" />
+    <Compile Include="CD_Producto.cs" />
     <Compile Include="CD_rol.cs" />
     <Compile Include="CD_Usuario.cs" />
     <Compile Include="Conexion.cs" />
