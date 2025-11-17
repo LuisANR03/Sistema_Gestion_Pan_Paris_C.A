@@ -12,14 +12,23 @@ namespace Entidades
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public int IdCategoria { get; set; }
+
+        
+        public Categoria oCategoria { get; set; }
+
         public int Stock { get; set; }
-        public decimal PrecioCompra { get; set; }
         public decimal PrecioVenta { get; set; }
+
+        public decimal? PrecioPromocion { get; set; }
+
         public bool Estado { get; set; }
+
+        public string EstadoValor
+        {
+            get { return Estado ? "Activo" : "Inactivo"; }
+        }
         public DateTime FechaRegistro { get; set; }
 
-        // Propiedad de navegación
-        public Categoria Categoria { get; set; }
+
     }
 }

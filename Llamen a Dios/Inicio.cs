@@ -47,6 +47,7 @@ namespace Llamen_a_Dios
                 if (!tienePermiso)
                 {
                     menu.Visible = false;
+                    submenucategorias.Visible = false;
                 }
             }
 
@@ -107,11 +108,6 @@ namespace Llamen_a_Dios
             AbrirFrm((IconMenuItem)sender, new Frminformes());
         }
 
-        private void MenuStock_Click(object sender, EventArgs e)
-        {
-            AbrirFrm((IconMenuItem)sender, new FrmStock());
-        }
-
         private void MenuAcerca_Click(object sender, EventArgs e)
         {
             AbrirFrm((IconMenuItem)sender, new FrmAcercade());
@@ -120,6 +116,16 @@ namespace Llamen_a_Dios
         private void iconButton1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void submenuinv_Click(object sender, EventArgs e)
+        {
+            AbrirFrm((IconMenuItem)sender, new FrmStock());
+        }
+
+        private void submenucategorias_Click(object sender, EventArgs e)
+        {
+            AbrirFrm((IconMenuItem)sender, new FrmCategoria());
         }
     }
 }

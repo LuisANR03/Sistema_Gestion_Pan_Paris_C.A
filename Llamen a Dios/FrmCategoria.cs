@@ -1,6 +1,4 @@
-﻿using CapaDatos;
-using CapaNegocios;
-using Dato;
+﻿using CapaNegocios;
 using Entidades;
 using Llamen_a_Dios.Utiles;
 using System;
@@ -15,69 +13,63 @@ using System.Windows.Forms;
 
 namespace Llamen_a_Dios
 {
-    public partial class FrmClientes : Form
+    public partial class FrmCategoria : Form
     {
-        private List<Cliente> listaOriginalClientes;
-        public FrmClientes()
+        public FrmCategoria()
         {
             InitializeComponent();
         }
-        private void CargarClientes()
+        private void CargarCategorias()
         {
-            // 1. Limpia las filas existentes
-            DGVUs.Rows.Clear(); // Asegúrate de que tu DGV se llame DGVUs
+            // 1. Limpia las filas
+            DGVCat.Rows.Clear(); // Asegúrate de que tu DGV se llame DGVDatos
 
             // 2. Obtiene la lista nueva de la BDD
-            CN_cliente obj_cn_cliente = new CN_cliente();
-            listaOriginalClientes = obj_cn_cliente.Listar();
+            CN_Categoria obj_cn_categoria = new CN_Categoria();
+            List<Categoria> listaCategorias = obj_cn_categoria.Listar();
 
             // 3. Llena el DGV fila por fila
-            foreach (Cliente item in listaOriginalClientes)
+            foreach (Categoria item in listaCategorias)
             {
-                DGVUs.Rows.Add(new object[] {
+                DGVCat.Rows.Add(new object[] {
                 "", // Para el botón de seleccionar
-                item.IdCliente,
-                item.Cedula,
-                item.Nombre,
-                item.Correo,
-                item.Telefono,
-                item.Direccion,
+                item.IdCategoria,
+                item.Descripcion,
                 item.Estado == true ? 1 : 0, // Valor (para el ComboBox)
                 item.EstadoValor // Texto (Activo/Inactivo)
             });
             }
         }
+
         private void LimpiarCampos()
         {
             tbindice.Text = "-1";
-            tbid.Text = "0";
+            txtid.Text = "0";
 
-            // Asegúrate de que tus TextBoxes se llamen así
-            tbCedula.Clear();
-            tbnombre.Clear();
-            tbcorreo.Clear();
-            tbtlf.Clear();
-            tbdir.Clear();
+            tbDescripcion.Clear(); // Asegúrate que tu TextBox se llame así
 
             // Resetea el ComboBox de Estado
-            if (CBestado.Items.Count > 0)
-                CBestado.SelectedIndex = 0;
+            if (CbEstado.Items.Count > 0)
+                CbEstado.SelectedIndex = 0;
 
             BtnGuardar.Text = "Guardar";
-            tbCedula.Select();
+            tbDescripcion.Select();
         }
-
-        private void FrmClientes_Load(object sender, EventArgs e)
+        private void FrmCategoria_Load(object sender, EventArgs e)
         {
-            CBestado.Items.Add(new Opcombo() { Texto = "Activo", Valor = 1 });
-            CBestado.Items.Add(new Opcombo() { Texto = "No Activo", Valor = 0 });
-            CBestado.DisplayMember = "Texto";
-            CBestado.ValueMember = "Valor";
-            CBestado.SelectedIndex = 0;
+            // --- 1. LLENA EL COMBOBOX DE ESTADO ---
+            CbEstado.Items.Add(new Opcombo() { Texto = "Activo", Valor = 1 });
+            CbEstado.Items.Add(new Opcombo() { Texto = "No Activo", Valor = 0 });
+            CbEstado.DisplayMember = "Texto";
+            CbEstado.ValueMember = "Valor";
+            CbEstado.SelectedIndex = 0;
 
-            CargarClientes();
+            // --- 2. LLAMA AL MÉTODO PARA CARGAR EL DATAGRIDVIEW ---
+            CargarCategorias();
 
-            foreach (DataGridViewColumn columna in DGVUs.Columns)
+            // --- 3. LLENA EL COMBOBOX DE FILTRO ---
+            // (Asumo que tienes un CBFiltro como en los otros formularios)
+            foreach (DataGridViewColumn columna in DGVCat.Columns)
             {
                 if (columna.Visible == true && columna.Name != "BtnSelect" && columna.Name != "Valor")
                 {
@@ -90,15 +82,15 @@ namespace Llamen_a_Dios
             {
                 CBFiltro.SelectedIndex = 0;
             }
-
         }
-        private void DGVUs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void DGVCat_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // 1. Verifica que no sea la fila de cabecera
             if (e.RowIndex < 0) return;
 
             // 2. Verifica que se haya presionado la columna del botón "Seleccionar"
-            if (DGVUs.Columns[e.ColumnIndex].Name == "BtnSelect")
+            if (DGVCat.Columns[e.ColumnIndex].Name == "BtnSelect")
             {
                 int indice = e.RowIndex;
 
@@ -106,24 +98,24 @@ namespace Llamen_a_Dios
                 tbindice.Text = indice.ToString();
 
                 // --- LECTURA POR ÍNDICE ---
-                tbid.Text = DGVUs.Rows[indice].Cells[1].Value.ToString();
-                tbCedula.Text = DGVUs.Rows[indice].Cells[2].Value.ToString();
-                tbnombre.Text = DGVUs.Rows[indice].Cells[3].Value.ToString();
-                tbcorreo.Text = DGVUs.Rows[indice].Cells[4].Value.ToString();
+                // Basado en CargarCategorias():
+                // 0: Botón
+                // 1: IdCategoria
+                // 2: Descripcion
+                // 3: Valor (1 o 0)
+                // 4: EstadoValor (Activo/Inactivo)
 
-                // --- ESTA ES LA LÍNEA CORREGIDA (usando tu TextBox 'tbtlf' y el índice 5) ---
-                tbtlf.Text = DGVUs.Rows[indice].Cells[5].Value?.ToString() ?? "";
+                txtid.Text = DGVCat.Rows[indice].Cells[1].Value.ToString();
+                tbDescripcion.Text = DGVCat.Rows[indice].Cells[2].Value.ToString();
 
-                tbdir.Text = DGVUs.Rows[indice].Cells[6].Value?.ToString() ?? "";
+                // 4. Selecciona el Estado (leemos el índice 3)
+                int estadoValor = Convert.ToInt32(DGVCat.Rows[indice].Cells[3].Value);
 
-                // 4. Selecciona el Estado (leemos el índice 7)
-                int estadoValor = Convert.ToInt32(DGVUs.Rows[indice].Cells[7].Value);
-
-                foreach (Opcombo item in CBestado.Items)
+                foreach (Opcombo item in CbEstado.Items)
                 {
                     if (Convert.ToInt32(item.Valor) == estadoValor)
                     {
-                        CBestado.SelectedItem = item;
+                        CbEstado.SelectedItem = item;
                         break;
                     }
                 }
@@ -133,7 +125,7 @@ namespace Llamen_a_Dios
             }
         }
 
-        private void DGVUs_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void DGVCat_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -154,40 +146,30 @@ namespace Llamen_a_Dios
             }
         }
 
-        private void BtnLimpiar_Click(object sender, EventArgs e)
-        {
-            TBBuscar.Clear();
-            CBFiltro.SelectedIndex = 0;
-        }
-
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
 
-            // 1. Crea el objeto Cliente con los datos de los campos
-            Cliente obj_cliente = new Cliente()
+            // 1. Crea el objeto Categoria con los datos de los campos
+            Categoria obj_categoria = new Categoria()
             {
-                IdCliente = Convert.ToInt32(tbid.Text),
-                Cedula = tbCedula.Text,
-                Nombre = tbnombre.Text,
-                Correo = tbcorreo.Text,
-                Telefono = tbtlf.Text,
-                Direccion = tbdir.Text,
-                Estado = Convert.ToInt32(((Opcombo)CBestado.SelectedItem).Valor) == 1
+                IdCategoria = Convert.ToInt32(txtid.Text),
+                Descripcion = tbDescripcion.Text,
+                Estado = Convert.ToInt32(((Opcombo)CbEstado.SelectedItem).Valor) == 1
             };
 
-            CN_cliente obj_cn_cliente = new CN_cliente();
+            CN_Categoria obj_cn_categoria = new CN_Categoria();
 
             // MODO CREAR (El ID es 0)
-            if (obj_cliente.IdCliente == 0)
+            if (obj_categoria.IdCategoria == 0)
             {
-                int idGenerado = obj_cn_cliente.Registrar(obj_cliente, out mensaje);
+                int idGenerado = obj_cn_categoria.Registrar(obj_categoria, out mensaje);
 
                 // Comprueba si se generó un ID (éxito)
                 if (idGenerado != 0)
                 {
                     MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarClientes();
+                    CargarCategorias();
                     LimpiarCampos();
                 }
                 else // Si el ID es 0, fue un error
@@ -198,65 +180,69 @@ namespace Llamen_a_Dios
             // MODO EDITAR (El ID NO es 0)
             else
             {
-                bool resultado = obj_cn_cliente.Editar(obj_cliente, out mensaje);
+                bool resultado = obj_cn_categoria.Editar(obj_categoria, out mensaje);
 
                 // Comprueba si 'resultado' es true (éxito)
                 if (resultado)
                 {
                     MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarClientes();
+                    CargarCategorias();
                     LimpiarCampos();
                 }
                 else // Si es false, fue un error
                 {
                     MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
-        private void BtnLim_Click(object sender, EventArgs e)
+        private void BtnLimc_Click(object sender, EventArgs e)
         {
-
             LimpiarCampos();
-
         }
+
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            // 1. Verifica que haya un cliente seleccionado (que el ID no sea 0)
-            if (Convert.ToInt32(tbid.Text) != 0)
+            if (Convert.ToInt32(txtid.Text) != 0)
             {
-                // 2. MUESTRA UNA CONFIRMACIÓN ANTES DE BORRAR
-                if (MessageBox.Show("¿Está seguro de que desea desactivar este cliente?",
+                if (MessageBox.Show("¿Está seguro de que desea desactivar esta categoría?\n(No podrá si está en uso por un producto)",
                                    "Confirmación",
                                    MessageBoxButtons.YesNo,
                                    MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     string mensaje = string.Empty;
-                    int idCliente = Convert.ToInt32(tbid.Text);
+                    int idCategoria = Convert.ToInt32(txtid.Text);
 
-                    CN_cliente obj_cn_cliente = new CN_cliente();
-
-                    // 3. Llama al procedimiento de ELIMINAR (Desactivar)
-                    bool resultado = obj_cn_cliente.Eliminar(idCliente, out mensaje);
+                    CN_Categoria obj_cn_categoria = new CN_Categoria();
+                    bool resultado = obj_cn_categoria.Eliminar(idCategoria, out mensaje);
 
                     if (resultado)
                     {
                         MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarClientes();
+                        CargarCategorias();
                         LimpiarCampos();
                     }
                     else
                     {
+                        // Muestra el error (ej. "Categoría en uso")
                         MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un cliente de la lista primero.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Por favor, seleccione una categoría de la lista primero.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
 
-
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            TBBuscar.Clear();
+            CBFiltro.SelectedIndex = 0;
+            foreach (DataGridViewRow row in DGVCat.Rows)
+            {
+                row.Visible = true;
+            }
+            TBBuscar.Select();
         }
 
         private void TBBuscar_TextChanged(object sender, EventArgs e)
@@ -274,8 +260,8 @@ namespace Llamen_a_Dios
             string textoBusqueda = TBBuscar.Text.Trim().ToLower();
 
             // 4. Recorre CADA fila del DataGridView
-            // (Asegúrate de que tu DGV se llame DGVUs)
-            foreach (DataGridViewRow row in DGVUs.Rows)
+            // (¡Asegúrate de que tu DGV se llame DGVDatos!)
+            foreach (DataGridViewRow row in DGVCat.Rows)
             {
                 // (Nos saltamos la fila "nueva" al final)
                 if (row.IsNewRow) continue;

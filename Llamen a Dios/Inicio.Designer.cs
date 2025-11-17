@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.MenuTitulo = new System.Windows.Forms.MenuStrip();
             this.MenuUs = new FontAwesome.Sharp.IconMenuItem();
             this.MenuVentas = new FontAwesome.Sharp.IconMenuItem();
@@ -36,6 +37,8 @@
             this.MenuClient = new FontAwesome.Sharp.IconMenuItem();
             this.MenuInformes = new FontAwesome.Sharp.IconMenuItem();
             this.MenuStock = new FontAwesome.Sharp.IconMenuItem();
+            this.submenuinv = new FontAwesome.Sharp.IconMenuItem();
+            this.submenucategorias = new FontAwesome.Sharp.IconMenuItem();
             this.MenuAcerca = new FontAwesome.Sharp.IconMenuItem();
             this.Menu = new System.Windows.Forms.MenuStrip();
             this.Textotitulo = new System.Windows.Forms.Label();
@@ -98,7 +101,7 @@
             this.submenuregistrarventa.IconColor = System.Drawing.Color.Black;
             this.submenuregistrarventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenuregistrarventa.Name = "submenuregistrarventa";
-            this.submenuregistrarventa.Size = new System.Drawing.Size(134, 22);
+            this.submenuregistrarventa.Size = new System.Drawing.Size(180, 22);
             this.submenuregistrarventa.Text = "Registrar";
             this.submenuregistrarventa.Click += new System.EventHandler(this.submenuregistrarventa_Click);
             // 
@@ -108,7 +111,7 @@
             this.submenudetalleventa.IconColor = System.Drawing.Color.Black;
             this.submenudetalleventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenudetalleventa.Name = "submenudetalleventa";
-            this.submenudetalleventa.Size = new System.Drawing.Size(134, 22);
+            this.submenudetalleventa.Size = new System.Drawing.Size(180, 22);
             this.submenudetalleventa.Text = "Ver Detalles";
             this.submenudetalleventa.Click += new System.EventHandler(this.submenudetalleventa_Click);
             // 
@@ -143,6 +146,9 @@
             // MenuStock
             // 
             this.MenuStock.AutoSize = false;
+            this.MenuStock.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.submenuinv,
+            this.submenucategorias});
             this.MenuStock.IconChar = FontAwesome.Sharp.IconChar.BoxOpen;
             this.MenuStock.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.MenuStock.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -152,7 +158,26 @@
             this.MenuStock.Size = new System.Drawing.Size(80, 69);
             this.MenuStock.Text = "Stock";
             this.MenuStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.MenuStock.Click += new System.EventHandler(this.MenuStock_Click);
+            // 
+            // submenuinv
+            // 
+            this.submenuinv.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.submenuinv.IconColor = System.Drawing.Color.Black;
+            this.submenuinv.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.submenuinv.Name = "submenuinv";
+            this.submenuinv.Size = new System.Drawing.Size(180, 22);
+            this.submenuinv.Text = "Inventario";
+            this.submenuinv.Click += new System.EventHandler(this.submenuinv_Click);
+            // 
+            // submenucategorias
+            // 
+            this.submenucategorias.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.submenucategorias.IconColor = System.Drawing.Color.Black;
+            this.submenucategorias.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.submenucategorias.Name = "submenucategorias";
+            this.submenucategorias.Size = new System.Drawing.Size(180, 22);
+            this.submenucategorias.Text = "Categorias";
+            this.submenucategorias.Click += new System.EventHandler(this.submenucategorias_Click);
             // 
             // MenuAcerca
             // 
@@ -205,7 +230,7 @@
             this.labeluser.BackColor = System.Drawing.Color.SteelBlue;
             this.labeluser.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labeluser.ForeColor = System.Drawing.SystemColors.Control;
-            this.labeluser.Location = new System.Drawing.Point(945, 19);
+            this.labeluser.Location = new System.Drawing.Point(926, 19);
             this.labeluser.Name = "labeluser";
             this.labeluser.Size = new System.Drawing.Size(48, 13);
             this.labeluser.TabIndex = 4;
@@ -218,7 +243,7 @@
             this.lblnombreuser.BackColor = System.Drawing.Color.SteelBlue;
             this.lblnombreuser.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblnombreuser.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblnombreuser.Location = new System.Drawing.Point(992, 19);
+            this.lblnombreuser.Location = new System.Drawing.Point(973, 19);
             this.lblnombreuser.Name = "lblnombreuser";
             this.lblnombreuser.Size = new System.Drawing.Size(66, 13);
             this.lblnombreuser.TabIndex = 5;
@@ -234,7 +259,7 @@
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 21;
-            this.iconButton1.Location = new System.Drawing.Point(1030, 84);
+            this.iconButton1.Location = new System.Drawing.Point(1024, 85);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(28, 27);
             this.iconButton1.TabIndex = 6;
@@ -254,6 +279,7 @@
             this.Controls.Add(this.MenuTitulo);
             this.Controls.Add(this.Menu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuTitulo;
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -283,6 +309,8 @@
         private FontAwesome.Sharp.IconMenuItem submenuregistrarventa;
         private FontAwesome.Sharp.IconMenuItem submenudetalleventa;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconMenuItem submenuinv;
+        private FontAwesome.Sharp.IconMenuItem submenucategorias;
     }
 }
 

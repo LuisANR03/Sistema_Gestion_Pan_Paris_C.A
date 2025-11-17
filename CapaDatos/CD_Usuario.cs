@@ -225,14 +225,15 @@ namespace Dato
                     MySqlCommand cmd = new MySqlCommand("sp_EliminarUsuario", oconexion);
                     cmd.Parameters.AddWithValue("p_idusuario", idusuario);
 
-                    // Parámetros de salida
+                    // Parámetros de salida (usando INT, como en CambiarClave)
                     cmd.Parameters.Add("p_Resultado", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("p_Mensaje", MySqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
 
-                    resultado = Convert.ToBoolean(cmd.Parameters["p_Resultado"].Value);
+                    // Leemos el resultado (1 = true, 0 = false)
+                    resultado = Convert.ToInt32(cmd.Parameters["p_Resultado"].Value) == 1;
                     Mensaje = cmd.Parameters["p_Mensaje"].Value.ToString();
                 }
             }

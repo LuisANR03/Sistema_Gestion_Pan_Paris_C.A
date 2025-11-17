@@ -13,7 +13,12 @@ namespace Entidades
         public string Nombre { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
+        public string Direccion { get; set; }
         public bool Estado { get; set; }
         public DateTime FechaRegistro { get; set; }
+        public string EstadoValor
+        {
+            get { return Estado ? "Activo" : "Inactivo"; }
+        }
     }
 }

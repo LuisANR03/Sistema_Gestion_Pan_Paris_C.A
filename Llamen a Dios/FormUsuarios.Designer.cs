@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCedul = new System.Windows.Forms.Label();
             this.lblnombre = new System.Windows.Forms.Label();
@@ -41,9 +41,6 @@
             this.lblContraseña = new System.Windows.Forms.Label();
             this.lblrepetir = new System.Windows.Forms.Label();
             this.tbContraseña = new System.Windows.Forms.TextBox();
-            this.BtnGuardar = new FontAwesome.Sharp.IconButton();
-            this.Btlimpiar = new FontAwesome.Sharp.IconButton();
-            this.btnBorrar = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
             this.DGVUs = new System.Windows.Forms.DataGridView();
             this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -59,13 +56,16 @@
             this.lbllistausu = new System.Windows.Forms.Label();
             this.txtid = new System.Windows.Forms.TextBox();
             this.TBBuscar = new System.Windows.Forms.TextBox();
-            this.BtnBuscar = new FontAwesome.Sharp.IconButton();
             this.CbEstado = new System.Windows.Forms.ComboBox();
             this.CBRol = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.BtnLimpiar = new FontAwesome.Sharp.IconButton();
             this.CBFiltro = new System.Windows.Forms.ComboBox();
             this.tbindice = new System.Windows.Forms.TextBox();
+            this.BtnLimpiar = new FontAwesome.Sharp.IconButton();
+            this.BtnBuscar = new FontAwesome.Sharp.IconButton();
+            this.btnBorrar = new FontAwesome.Sharp.IconButton();
+            this.Btlimpiar = new FontAwesome.Sharp.IconButton();
+            this.BtnGuardar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,79 +184,6 @@
             this.tbContraseña.Size = new System.Drawing.Size(189, 23);
             this.tbContraseña.TabIndex = 12;
             // 
-            // BtnGuardar
-            // 
-            this.BtnGuardar.BackColor = System.Drawing.Color.White;
-            this.BtnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.ForestGreen;
-            this.BtnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.ForestGreen;
-            this.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
-            this.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGuardar.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGuardar.ForeColor = System.Drawing.Color.ForestGreen;
-            this.BtnGuardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.BtnGuardar.IconColor = System.Drawing.Color.ForestGreen;
-            this.BtnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnGuardar.IconSize = 16;
-            this.BtnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnGuardar.Location = new System.Drawing.Point(27, 381);
-            this.BtnGuardar.Name = "BtnGuardar";
-            this.BtnGuardar.Size = new System.Drawing.Size(189, 27);
-            this.BtnGuardar.TabIndex = 16;
-            this.BtnGuardar.Text = "Guardar";
-            this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnGuardar.UseVisualStyleBackColor = false;
-            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
-            // 
-            // Btlimpiar
-            // 
-            this.Btlimpiar.BackColor = System.Drawing.Color.White;
-            this.Btlimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btlimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.Btlimpiar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
-            this.Btlimpiar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
-            this.Btlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btlimpiar.Font = new System.Drawing.Font("Roboto", 9.75F);
-            this.Btlimpiar.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.Btlimpiar.IconChar = FontAwesome.Sharp.IconChar.Brush;
-            this.Btlimpiar.IconColor = System.Drawing.Color.RoyalBlue;
-            this.Btlimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Btlimpiar.IconSize = 18;
-            this.Btlimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Btlimpiar.Location = new System.Drawing.Point(27, 414);
-            this.Btlimpiar.Name = "Btlimpiar";
-            this.Btlimpiar.Rotation = 180D;
-            this.Btlimpiar.Size = new System.Drawing.Size(189, 27);
-            this.Btlimpiar.TabIndex = 17;
-            this.Btlimpiar.Text = "Limpiar";
-            this.Btlimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Btlimpiar.UseVisualStyleBackColor = false;
-            this.Btlimpiar.Click += new System.EventHandler(this.Btlimpiar_Click);
-            // 
-            // btnBorrar
-            // 
-            this.btnBorrar.BackColor = System.Drawing.Color.White;
-            this.btnBorrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBorrar.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
-            this.btnBorrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Firebrick;
-            this.btnBorrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
-            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBorrar.Font = new System.Drawing.Font("Roboto", 9.75F);
-            this.btnBorrar.ForeColor = System.Drawing.Color.Firebrick;
-            this.btnBorrar.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.btnBorrar.IconColor = System.Drawing.Color.Firebrick;
-            this.btnBorrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBorrar.IconSize = 16;
-            this.btnBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBorrar.Location = new System.Drawing.Point(27, 447);
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(189, 27);
-            this.btnBorrar.TabIndex = 18;
-            this.btnBorrar.Text = "Borrar";
-            this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBorrar.UseVisualStyleBackColor = false;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -272,15 +199,15 @@
             // DGVUs
             // 
             this.DGVUs.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVUs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVUs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DGVUs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVUs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BtnSelect,
@@ -297,11 +224,11 @@
             this.DGVUs.MultiSelect = false;
             this.DGVUs.Name = "DGVUs";
             this.DGVUs.ReadOnly = true;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGVUs.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGVUs.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DGVUs.RowTemplate.Height = 28;
-            this.DGVUs.Size = new System.Drawing.Size(742, 399);
+            this.DGVUs.Size = new System.Drawing.Size(756, 399);
             this.DGVUs.TabIndex = 20;
             this.DGVUs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUs_CellContentClick);
             this.DGVUs.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGVUs_CellPainting);
@@ -403,22 +330,7 @@
             this.TBBuscar.Name = "TBBuscar";
             this.TBBuscar.Size = new System.Drawing.Size(160, 23);
             this.TBBuscar.TabIndex = 24;
-            // 
-            // BtnBuscar
-            // 
-            this.BtnBuscar.BackColor = System.Drawing.Color.White;
-            this.BtnBuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.BtnBuscar.IconColor = System.Drawing.Color.Black;
-            this.BtnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnBuscar.IconSize = 18;
-            this.BtnBuscar.Location = new System.Drawing.Point(926, 27);
-            this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Size = new System.Drawing.Size(42, 25);
-            this.BtnBuscar.TabIndex = 25;
-            this.BtnBuscar.UseVisualStyleBackColor = false;
-            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            this.TBBuscar.TextChanged += new System.EventHandler(this.TBBuscar_TextChanged);
             // 
             // CbEstado
             // 
@@ -452,23 +364,6 @@
             this.label4.TabIndex = 29;
             this.label4.Text = "Buscar por:";
             // 
-            // BtnLimpiar
-            // 
-            this.BtnLimpiar.BackColor = System.Drawing.Color.White;
-            this.BtnLimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLimpiar.Flip = FontAwesome.Sharp.FlipOrientation.Vertical;
-            this.BtnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Brush;
-            this.BtnLimpiar.IconColor = System.Drawing.Color.Black;
-            this.BtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnLimpiar.IconSize = 18;
-            this.BtnLimpiar.Location = new System.Drawing.Point(974, 27);
-            this.BtnLimpiar.Name = "BtnLimpiar";
-            this.BtnLimpiar.Size = new System.Drawing.Size(42, 25);
-            this.BtnLimpiar.TabIndex = 30;
-            this.BtnLimpiar.UseVisualStyleBackColor = false;
-            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
-            // 
             // CBFiltro
             // 
             this.CBFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -488,6 +383,111 @@
             this.tbindice.TabIndex = 32;
             this.tbindice.Text = "-1";
             this.tbindice.Visible = false;
+            // 
+            // BtnLimpiar
+            // 
+            this.BtnLimpiar.BackColor = System.Drawing.Color.White;
+            this.BtnLimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimpiar.Flip = FontAwesome.Sharp.FlipOrientation.Vertical;
+            this.BtnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Brush;
+            this.BtnLimpiar.IconColor = System.Drawing.Color.Black;
+            this.BtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnLimpiar.IconSize = 18;
+            this.BtnLimpiar.Location = new System.Drawing.Point(974, 27);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.Size = new System.Drawing.Size(42, 25);
+            this.BtnLimpiar.TabIndex = 30;
+            this.BtnLimpiar.UseVisualStyleBackColor = false;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
+            // 
+            // BtnBuscar
+            // 
+            this.BtnBuscar.BackColor = System.Drawing.Color.White;
+            this.BtnBuscar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.BtnBuscar.IconColor = System.Drawing.Color.Black;
+            this.BtnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnBuscar.IconSize = 18;
+            this.BtnBuscar.Location = new System.Drawing.Point(926, 27);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(42, 25);
+            this.BtnBuscar.TabIndex = 25;
+            this.BtnBuscar.UseVisualStyleBackColor = false;
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.BackColor = System.Drawing.Color.White;
+            this.btnBorrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrar.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
+            this.btnBorrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Firebrick;
+            this.btnBorrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBorrar.Font = new System.Drawing.Font("Roboto", 9.75F);
+            this.btnBorrar.ForeColor = System.Drawing.Color.Firebrick;
+            this.btnBorrar.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnBorrar.IconColor = System.Drawing.Color.Firebrick;
+            this.btnBorrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBorrar.IconSize = 16;
+            this.btnBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBorrar.Location = new System.Drawing.Point(27, 447);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(189, 27);
+            this.btnBorrar.TabIndex = 18;
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBorrar.UseVisualStyleBackColor = false;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // Btlimpiar
+            // 
+            this.Btlimpiar.BackColor = System.Drawing.Color.White;
+            this.Btlimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Btlimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.Btlimpiar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
+            this.Btlimpiar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.Btlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btlimpiar.Font = new System.Drawing.Font("Roboto", 9.75F);
+            this.Btlimpiar.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Btlimpiar.IconChar = FontAwesome.Sharp.IconChar.Brush;
+            this.Btlimpiar.IconColor = System.Drawing.Color.RoyalBlue;
+            this.Btlimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Btlimpiar.IconSize = 18;
+            this.Btlimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Btlimpiar.Location = new System.Drawing.Point(27, 414);
+            this.Btlimpiar.Name = "Btlimpiar";
+            this.Btlimpiar.Rotation = 180D;
+            this.Btlimpiar.Size = new System.Drawing.Size(189, 27);
+            this.Btlimpiar.TabIndex = 17;
+            this.Btlimpiar.Text = "Limpiar";
+            this.Btlimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Btlimpiar.UseVisualStyleBackColor = false;
+            this.Btlimpiar.Click += new System.EventHandler(this.Btlimpiar_Click);
+            // 
+            // BtnGuardar
+            // 
+            this.BtnGuardar.BackColor = System.Drawing.Color.White;
+            this.BtnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.ForestGreen;
+            this.BtnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.ForestGreen;
+            this.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            this.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnGuardar.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGuardar.ForeColor = System.Drawing.Color.ForestGreen;
+            this.BtnGuardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.BtnGuardar.IconColor = System.Drawing.Color.ForestGreen;
+            this.BtnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnGuardar.IconSize = 16;
+            this.BtnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnGuardar.Location = new System.Drawing.Point(27, 381);
+            this.BtnGuardar.Name = "BtnGuardar";
+            this.BtnGuardar.Size = new System.Drawing.Size(189, 27);
+            this.BtnGuardar.TabIndex = 16;
+            this.BtnGuardar.Text = "Guardar";
+            this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnGuardar.UseVisualStyleBackColor = false;
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // FormUsuarios
             // 
