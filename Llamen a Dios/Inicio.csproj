@@ -140,6 +140,9 @@
     <Compile Include="BotonModerno.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ComboBoxModerno.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +308,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GD Icono.ico" />
+    <None Include="Resources\299675261_457415886400056_1675879016386375382_n.png" />
+    <None Include="Resources\299675261_457415886400056_1675879016386375382_n1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,10 +8,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Llamen_a_Dios
 {
@@ -76,6 +78,8 @@ namespace Llamen_a_Dios
             CBestado.SelectedIndex = 0;
 
             CargarClientes();
+            ConfigurarTablaModerna();
+            AplicarDiseñoModerno();
 
             foreach (DataGridViewColumn columna in DGVUs.Columns)
             {
@@ -91,6 +95,84 @@ namespace Llamen_a_Dios
                 CBFiltro.SelectedIndex = 0;
             }
 
+        }
+        private void pnlBuscador_Paint(object sender, PaintEventArgs e)
+        {
+            // Creamos un borde redondeado moderno
+            Rectangle rect = new Rectangle(0, 0, pnlBuscador.Width - 1, pnlBuscador.Height - 1);
+            int radioRedondeo = 15; // Qué tan redondo lo quieres
+
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(rect.X, rect.Y, radioRedondeo, radioRedondeo, 180, 90);
+            path.AddArc(rect.Right - radioRedondeo, rect.Y, radioRedondeo, radioRedondeo, 270, 90);
+            path.AddArc(rect.Right - radioRedondeo, rect.Bottom - radioRedondeo, radioRedondeo, radioRedondeo, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - radioRedondeo, radioRedondeo, radioRedondeo, 90, 90);
+            path.CloseFigure();
+
+            // Suavizamos los bordes
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            // Pintamos el fondo blanco y el borde gris claro
+            e.Graphics.FillPath(Brushes.White, path);
+            using (Pen pen = new Pen(Color.FromArgb(209, 213, 219), 1)) // Color gris clarito para el borde
+            {
+                e.Graphics.DrawPath(pen, path);
+            }
+        }
+        private void AplicarDiseñoModerno()
+        {
+            Color azulOscuro = Color.FromArgb(21, 52, 168);
+            Color fondoClaro = Color.FromArgb(244, 246, 250);
+            Color textoTitulo = Color.FromArgb(31, 41, 55); // Gris muy oscuro para contraste
+
+            this.BackColor = fondoClaro;
+
+            // Botones (Se mantienen tus nombres actuales)
+            BtnGuardar.BackColor = Color.FromArgb(22, 163, 74);
+            BtnGuardar.FlatStyle = FlatStyle.Flat;
+            BtnGuardar.FlatAppearance.BorderSize = 0;
+
+            BtnLim.BackColor = Color.White;
+            BtnLim.FlatAppearance.BorderColor = azulOscuro;
+
+            btnBorrar.BackColor = Color.FromArgb(254, 242, 242);
+            btnBorrar.ForeColor = Color.FromArgb(220, 38, 38);
+            btnBorrar.FlatAppearance.BorderSize = 0;
+        }
+
+        private void ConfigurarTablaModerna()
+        {
+            // Colores de la paleta de Usuarios
+            DGVUs.BackgroundColor = Color.White;
+            DGVUs.BorderStyle = BorderStyle.None;
+            DGVUs.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DGVUs.GridColor = Color.FromArgb(240, 240, 240);
+            DGVUs.RowHeadersVisible = false;
+            DGVUs.AllowUserToAddRows = false;
+
+            // Cabecera estilizada (Gris muy claro)
+            DGVUs.EnableHeadersVisualStyles = false;
+            DGVUs.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            DGVUs.ColumnHeadersHeight = 45;
+            DGVUs.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(249, 250, 251);
+            DGVUs.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(107, 114, 128);
+            DGVUs.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F);
+
+            // Filas (Celdas blancas y selección azul pálido)
+            DGVUs.DefaultCellStyle.BackColor = Color.White;
+            DGVUs.DefaultCellStyle.SelectionBackColor = Color.FromArgb(242, 245, 255);
+            DGVUs.DefaultCellStyle.SelectionForeColor = Color.FromArgb(21, 52, 168);
+            DGVUs.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+            DGVUs.RowTemplate.Height = 45;
+
+            DGVUs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Alineación de la tabla en el formulario
+            int margen = 40;
+            int panelIzquierdoAncho = 320;
+            DGVUs.Location = new Point(panelIzquierdoAncho + margen, DGVUs.Location.Y);
+            DGVUs.Width = this.ClientSize.Width - (panelIzquierdoAncho + (margen * 2));
+            DGVUs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
         private void DGVUs_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -138,17 +220,18 @@ namespace Llamen_a_Dios
             if (e.RowIndex < 0)
                 return;
 
+            // Reemplazamos la imagen gigante por un icono sutil de texto (lapicito)
             if (e.ColumnIndex == 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
-                int padding = 4;
-                var x = e.CellBounds.Left + padding;
-                var y = e.CellBounds.Top + padding;
-                var w = e.CellBounds.Width - (padding * 2);
-                var h = e.CellBounds.Height - (padding * 2);
-                Rectangle rectDestino = new Rectangle(x, y, w, h);
 
-                e.Graphics.DrawImage(Properties.Resources._checked, rectDestino);
+                string textoIcono = "✏️";
+
+                TextRenderer.DrawText(e.Graphics, textoIcono,
+                    new Font("Segoe UI", 12F, FontStyle.Regular),
+                    e.CellBounds,
+                    Color.FromArgb(21, 52, 168),
+                    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
 
                 e.Handled = true;
             }

@@ -159,5 +159,11 @@ namespace Llamen_a_Dios
         {
             AbrirFrm(sender, new FrmCategoria());
         }
+
+        private void timerHora_Tick(object sender, EventArgs e)
+        {
+            // Formato de 12 horas con AM/PM.
+            lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy  |  hh:mm:ss tt");
+        }
     }
 }
