@@ -2,17 +2,14 @@
 using Dato;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace CapaDatos
 {
     public class CD_CierreCaja
     {
-        // Método para calcular cuánto se ha vendido HOY antes de hacer el cierre definitivo
-        public CierreCaja CalcularTotalesDelDia()
+        // 1. AHORA RECIBE EL idUsuario PARA MOSTRAR SOLO LO DE ESE CAJERO
+        public CierreCaja CalcularTotalesDelDia(int idUsuario)
         {
             CierreCaja totales = new CierreCaja();
 
@@ -20,13 +17,21 @@ namespace CapaDatos
             {
                 try
                 {
-                    // 1. Sumamos el IGTF y el Subtotal de la tabla ventas (solo de hoy)
-                    string queryVentas = @"SELECT IFNULL(SUM(Impuesto), 0) as TotalIGTF, 
-                                                  IFNULL(SUM(SubTotal), 0) as TotalVentas 
+                    // Validación para no chocar con conexiones abiertas
+                    if (oconexion.State == ConnectionState.Closed)
+                    {
+                        oconexion.Open();
+                    }
+
+                    // 1. NOMBRES CORRECTOS: MontoTotal, idUsuario, FechaVenta
+                    string queryVentas = @"SELECT 0 as TotalIGTF, 
+                                                  IFNULL(SUM(MontoTotal), 0) as TotalVentas 
                                            FROM ventas 
-                                           WHERE DATE(FechaVenta) = CURDATE()";
+                                           WHERE idUsuario = @idUsuario AND DATE(FechaVenta) = CURDATE()";
 
                     MySqlCommand cmd1 = new MySqlCommand(queryVentas, oconexion);
+                    cmd1.Parameters.AddWithValue("@idUsuario", idUsuario);
+
                     using (MySqlDataReader dr = cmd1.ExecuteReader())
                     {
                         if (dr.Read())
@@ -36,15 +41,17 @@ namespace CapaDatos
                         }
                     }
 
-                    // 2. Sumamos los montos agrupados por Método de Pago (solo de hoy)
-                    string queryPagos = @"SELECT vp.idMetodoPago, 
+                    // 2. NOMBRES CORRECTOS: idMetodoPago, idVenta, FechaVenta, idUsuario
+                    string queryPagos = @"SELECT vp.idMetodoPago as idMetodoPago, 
                                                  IFNULL(SUM(vp.monto_recibido - vp.monto_cambio), 0) as TotalRecaudado 
                                           FROM venta_pagos vp
                                           INNER JOIN ventas v ON vp.idVenta = v.idVenta
-                                          WHERE DATE(v.FechaVenta) = CURDATE()
+                                          WHERE v.idUsuario = @idUsuario AND DATE(v.FechaVenta) = CURDATE()
                                           GROUP BY vp.idMetodoPago";
 
                     MySqlCommand cmd2 = new MySqlCommand(queryPagos, oconexion);
+                    cmd2.Parameters.AddWithValue("@idUsuario", idUsuario);
+
                     using (MySqlDataReader dr2 = cmd2.ExecuteReader())
                     {
                         while (dr2.Read())
@@ -52,7 +59,7 @@ namespace CapaDatos
                             int idMetodo = Convert.ToInt32(dr2["idMetodoPago"]);
                             decimal monto = Convert.ToDecimal(dr2["TotalRecaudado"]);
 
-                            // Asignamos el monto a la propiedad correcta según el ID de tu tabla metodo_pago
+                            // Lógica de Switch-Case
                             switch (idMetodo)
                             {
                                 case 1: totales.TotalEfectivoUSD = monto; break;
@@ -68,15 +75,16 @@ namespace CapaDatos
                 catch (Exception ex)
                 {
                     System.Windows.Forms.MessageBox.Show("Error al calcular el cierre de caja: " + ex.Message,
-                                             "Error de Base de Datos",
-                                             System.Windows.Forms.MessageBoxButtons.OK,
-                                             System.Windows.Forms.MessageBoxIcon.Error);
+                                                 "Error de Base de Datos",
+                                                 System.Windows.Forms.MessageBoxButtons.OK,
+                                                 System.Windows.Forms.MessageBoxIcon.Error);
 
                     totales = new CierreCaja();
                 }
             }
             return totales;
         }
+
         public bool RegistrarCierre(CierreCaja obj, out string Mensaje)
         {
             bool respuesta = false;
@@ -86,7 +94,12 @@ namespace CapaDatos
             {
                 try
                 {
-                    // Preparamos el query para insertar
+                    // Validación para no chocar con conexiones abiertas
+                    if (oconexion.State == ConnectionState.Closed)
+                    {
+                        oconexion.Open();
+                    }
+
                     string query = @"INSERT INTO cierre_caja 
                                     (idUsuario, FondoInicial, TotalEfectivoUSD, TotalEfectivoBs, 
                                      TotalPagoMovil, TotalPuntoVenta, TotalCashea, TotalZelle, 
@@ -100,17 +113,14 @@ namespace CapaDatos
 
                     cmd.Parameters.AddWithValue("@idUsuario", obj.Cajero.IdUsuario);
                     cmd.Parameters.AddWithValue("@FondoInicial", obj.FondoInicial);
-
                     cmd.Parameters.AddWithValue("@EfeUSD", obj.TotalEfectivoUSD);
                     cmd.Parameters.AddWithValue("@EfeBs", obj.TotalEfectivoBs);
                     cmd.Parameters.AddWithValue("@PagoMovil", obj.TotalPagoMovil);
                     cmd.Parameters.AddWithValue("@PuntoVenta", obj.TotalPuntoVenta);
                     cmd.Parameters.AddWithValue("@Cashea", obj.TotalCashea);
                     cmd.Parameters.AddWithValue("@Zelle", obj.TotalZelle);
-
                     cmd.Parameters.AddWithValue("@IGTF", obj.TotalIGTF);
                     cmd.Parameters.AddWithValue("@Ventas", obj.TotalVentas);
-
                     cmd.Parameters.AddWithValue("@Obs", string.IsNullOrEmpty(obj.Observaciones) ? "" : obj.Observaciones);
                     cmd.Parameters.AddWithValue("@Estado", "CERRADO");
 
@@ -134,5 +144,4 @@ namespace CapaDatos
             return respuesta;
         }
     }
-
 }

@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaNegocios; // Tu capa de negocio
+using CapaNegocios;
+using CapaEntidades;
 
 namespace Llamen_a_Dios
 {
     public partial class CierreCaja : Form
     {
-        // Instanciamos la capa de negocio
-        private CN_Venta objCN_Venta = new CN_Venta();
+        // 1. Instanciamos nuestra capa de negocio específica
+        private CN_CierreCaja objCN_Cierre = new CN_CierreCaja();
+
+        // CORRECCIÓN: Le ponemos CapaEntidades delante para que no se confunda con el Formulario
+        private CapaEntidades.CierreCaja totalesSistema = new CapaEntidades.CierreCaja();
 
         public CierreCaja()
         {
@@ -22,7 +26,6 @@ namespace Llamen_a_Dios
 
             // ==============================================================
             // ENLAZAR EVENTOS AUTOMÁTICAMENTE
-            // Esto hace que al teclear en cualquier caja física, se calcule todo
             // ==============================================================
             txtFisicoBs.TextChanged += new EventHandler(CajasFisicas_TextChanged);
             txtFisicoUsd.TextChanged += new EventHandler(CajasFisicas_TextChanged);
@@ -35,65 +38,34 @@ namespace Llamen_a_Dios
 
         private void CierreCaja_Load(object sender, EventArgs e)
         {
-            // Al abrir la ventana, cargamos lo que dice el sistema
             CargarTotalesDelSistema();
         }
 
         // ==============================================================
-        // MÉTODO: CARGAR TOTALES DESDE LA BASE DE DATOS
+        // MÉTODO: CARGAR TOTALES DESDE NUESTRA ENTIDAD
         // ==============================================================
         private void CargarTotalesDelSistema()
         {
-            // 1. Limpiar cajitas por si acaso
-            txtSistemaBs.Text = "0.00";
-            txtSistemaUsd.Text = "0.00";
-            txtSistemaPagoMovil.Text = "0.00";
-            txtSistemaTransferencia.Text = "0.00";
-            txtSistemaPuntoVenta.Text = "0.00";
-            txtSistemaZinly.Text = "0.00";
-            txtSistemaCashea.Text = "0.00";
-
             try
             {
-                // 2. Traer datos de la BD
-                DataTable dtTotales = objCN_Venta.ObtenerTotalesCierreCaja();
+                // OJO: Reemplaza '1' por tu variable global del usuario logueado en tu sistema.
+                int idUsuarioActual = 2;
 
-                // 3. Repartir datos
-                foreach (DataRow fila in dtTotales.Rows)
-                {
-                    string metodo = fila["MetodoPago"].ToString().ToUpper();
-                    decimal total = Convert.ToDecimal(fila["TotalVendido"]);
+                // Traemos el objeto con los totales correspondientes al usuario
+                totalesSistema = objCN_Cierre.CalcularTotalesDelDia(idUsuarioActual);
 
-                    switch (metodo)
-                    {
-                        case "EFECTIVO BS":
-                            txtSistemaBs.Text = total.ToString("N2");
-                            break;
-                        case "EFECTIVO USD":
-                            txtSistemaUsd.Text = total.ToString("N2");
-                            break;
-                        case "PAGO MOVIL":
-                        case "PAGO MÓVIL":
-                            txtSistemaPagoMovil.Text = total.ToString("N2");
-                            break;
-                        case "TRANSFERENCIA":
-                        case "ZELLE": // En caso de que uses Zelle como transferencia
-                            txtSistemaTransferencia.Text = total.ToString("N2");
-                            break;
-                        case "PUNTO DE VENTA":
-                        case "PUNTO":
-                            txtSistemaPuntoVenta.Text = total.ToString("N2");
-                            break;
-                        case "ZINLY":
-                            txtSistemaZinly.Text = total.ToString("N2");
-                            break;
-                        case "CASHEA":
-                            txtSistemaCashea.Text = total.ToString("N2");
-                            break;
-                    }
-                }
+                // Repartimos los montos directo a las cajas de texto
+                txtSistemaBs.Text = totalesSistema.TotalEfectivoBs.ToString("N2");
+                txtSistemaUsd.Text = totalesSistema.TotalEfectivoUSD.ToString("N2");
+                txtSistemaPagoMovil.Text = totalesSistema.TotalPagoMovil.ToString("N2");
+                txtSistemaPuntoVenta.Text = totalesSistema.TotalPuntoVenta.ToString("N2");
+                txtSistemaCashea.Text = totalesSistema.TotalCashea.ToString("N2");
 
-                // 4. Calcular el arqueo por primera vez para sumar el Total del Sistema
+                // Mapeamos Zelle en la caja de transferencia del sistema
+                txtSistemaTransferencia.Text = totalesSistema.TotalZelle.ToString("N2");
+                txtSistemaZinly.Text = "0.00";
+
+                // Calcular el arqueo matemático por primera vez
                 CalcularArqueo();
             }
             catch (Exception ex)
@@ -102,38 +74,25 @@ namespace Llamen_a_Dios
             }
         }
 
-        // ==============================================================
-        // EVENTO QUE SE DISPARA AL ESCRIBIR EN LAS CAJAS FÍSICAS
-        // ==============================================================
         private void CajasFisicas_TextChanged(object sender, EventArgs e)
         {
             CalcularArqueo();
         }
 
         // ==============================================================
-        // MÉTODO: CALCULAR ARQUEO (MATEMÁTICAS)
+        // MÉTODO: CALCULAR ARQUEO (Tus matemáticas intactas)
         // ==============================================================
         private void CalcularArqueo()
         {
             try
             {
-                // --------------------------------------------------------
-                // ¡IMPORTANTE! Aquí defino la tasa BCV manualmente. 
-                // Debes reemplazar este 36.50m por la variable de tu sistema 
-                // que guarda la tasa de cambio real de ese día.
-                // --------------------------------------------------------
-                decimal tasaBCV = 36.50m;
-                if (tasaBCV <= 0) tasaBCV = 1m; // Evitar división por cero
+                decimal tasaBCV = 36.50m; // Recuerda cambiarlo por la variable de tu sistema
+                if (tasaBCV <= 0) tasaBCV = 1m;
 
-                // Función interna para leer montos seguros
-                // Solo tienes que agregarle "Moderno" al tipo de dato aquí:
                 decimal LeerMonto(TextBoxModerno textBox)
                 {
                     if (string.IsNullOrWhiteSpace(textBox.Text)) return 0m;
-
-                    // Intenta convertir, si el usuario pone una letra por error devuelve 0
                     if (decimal.TryParse(textBox.Text, out decimal resultado)) return resultado;
-
                     return 0m;
                 }
 
@@ -181,7 +140,56 @@ namespace Llamen_a_Dios
             }
             catch
             {
-                // Si el usuario borra todo o escribe un símbolo, ignoramos el cálculo momentáneamente
+                // Ignorar error momentáneo mientras el usuario tipea
+            }
+        }
+
+        // ==============================================================
+        // EVENTO: GUARDAR CIERRE DEFINITIVO (CON EXPLICITACIÓN DE ENTIDAD)
+        // ==============================================================
+        private void btnGuardarCierre_Click(object sender, EventArgs e)
+        {
+            // Confirmación para evitar cierres accidentales
+            DialogResult result = MessageBox.Show("¿Está seguro de que desea realizar el cierre de caja definitivo? Esto finalizará su turno.",
+                                                "Confirmar Cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No) return;
+
+            // CORRECCIÓN CLAVE: Agregamos 'CapaEntidades.' para que sepa qué objeto instanciar
+            CapaEntidades.CierreCaja objCierreFinal = new CapaEntidades.CierreCaja();
+
+            // Asignamos el objeto de usuario (Cajero) mapeado en la CapaEntidades
+            objCierreFinal.Cajero = new Usuario() { IdUsuario = 2 };
+
+            // Por defecto iniciamos con 0.00 de fondo o lo vinculas a una caja si la tienes
+            objCierreFinal.FondoInicial = 0.00m;
+
+            // Pasamos los totales del sistema que recuperamos al cargar la pantalla
+            objCierreFinal.TotalEfectivoUSD = totalesSistema.TotalEfectivoUSD;
+            objCierreFinal.TotalEfectivoBs = totalesSistema.TotalEfectivoBs;
+            objCierreFinal.TotalPagoMovil = totalesSistema.TotalPagoMovil;
+            objCierreFinal.TotalPuntoVenta = totalesSistema.TotalPuntoVenta;
+            objCierreFinal.TotalCashea = totalesSistema.TotalCashea;
+            objCierreFinal.TotalZelle = totalesSistema.TotalZelle;
+            objCierreFinal.TotalIGTF = totalesSistema.TotalIGTF;
+            objCierreFinal.TotalVentas = totalesSistema.TotalVentas;
+
+            // Agregamos las notas de cuadre automáticamente basadas en tus etiquetas dinámicas
+            objCierreFinal.Observaciones = "Cierre efectuado. Cuadre: " + txtcuadre.Text + " - " + lblcuadre.Text;
+
+            string mensaje = string.Empty;
+
+            // Invocamos la lógica de negocio para procesar el registro en la BD
+            bool exito = objCN_Cierre.RegistrarCierre(objCierreFinal, out mensaje);
+
+            if (exito)
+            {
+                MessageBox.Show("¡Cierre de caja registrado exitosamente!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo guardar el cierre: " + mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

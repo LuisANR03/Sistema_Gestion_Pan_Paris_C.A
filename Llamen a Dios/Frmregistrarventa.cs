@@ -478,16 +478,19 @@ namespace Llamen_a_Dios
                     Ventas oVenta = new Ventas()
                     {
                         IdUsuario = Inicio.usuarioActual.IdUsuario,
-
-                        // --- CAMBIO AQUÍ: Tomamos el ID del ComboBox ---
                         IdVendedor = Convert.ToInt32(cbvendedor.SelectedValue),
-
                         IdCliente = Convert.ToInt32(txtIdClienteOculto.Text),
                         TipoDocumento = "Factura",
                         NumeroDocumento = "V-" + DateTime.Now.ToString("mmss"),
                         SubTotal = Convert.ToDecimal(tbpreciodolar.Text), // Total base
                         Impuesto = 0.00m,
-                        MontoTotal = Convert.ToDecimal(tbpreciodolar.Text)
+                        MontoTotal = Convert.ToDecimal(tbpreciodolar.Text),
+
+                        // ==============================================================
+                        // ¡ESTA ES LA LÍNEA MÁGICA QUE FALTABA!
+                        // Le decimos que extraiga los pagos directamente desde el modal
+                        // ==============================================================
+                        Pagos = modal.ListaPagosRealizados
                     };
 
                     // C. Llamamos a la Capa de Negocio

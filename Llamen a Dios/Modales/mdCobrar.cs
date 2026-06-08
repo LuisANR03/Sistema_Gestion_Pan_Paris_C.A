@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades; // Necesario para que reconozca VentaPagos
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,11 @@ namespace Llamen_a_Dios.Modales
         public decimal _TotalPagarBs { get; set; }  // Viene del form ventas
         private string metodoPagoActual = "Punto de Venta";
         private decimal tasaDolar = 36.50m; // Ajusta a tu tasa real o léela de un txt
+
+        // ====================================================================
+        // ¡ESTA ES LA LISTA MÁGICA QUE PIDE EL FORMULARIO PRINCIPAL!
+        // ====================================================================
+        public List<VentaPagos> ListaPagosRealizados { get; set; } = new List<VentaPagos>();
 
         public mdCobrar()
         {
@@ -47,10 +53,11 @@ namespace Llamen_a_Dios.Modales
                 if (row.Cells[1].Value == null) continue;
 
                 decimal monto = Convert.ToDecimal(row.Cells[1].Value);
-                string metodo = row.Cells[0].Value.ToString();
+                string metodo = row.Cells[0].Value.ToString().ToLower();
 
                 // Si el método es de dólares, convertimos a Bs para sumar todo igual
-                if (metodo.Contains("$") || metodo.Contains("Zelle"))
+                // Asumo que tu botón de dólares dice "efectivo usd", "zelle", etc.
+                if (metodo.Contains("usd") || metodo.Contains("$") || metodo.Contains("zelle"))
                     totalPagadoEnBs += (monto * tasaActual);
                 else
                     totalPagadoEnBs += monto;
@@ -130,14 +137,16 @@ namespace Llamen_a_Dios.Modales
                     decimal monto = Convert.ToDecimal(DGV.CurrentRow.Cells[1].Value);
                     decimal tasaActual = decimal.TryParse(txtTasaCambio.Text, out decimal t) ? t : tasaDolar;
 
+                    string metodoActualMinuscula = metodoPagoActual.ToLower();
+
                     // LÓGICA DE CONVERSIÓN INTELIGENTE
                     // Si el nuevo método es Dólar y veníamos de Bolívares (monto grande)
-                    if ((metodoPagoActual.Contains("$") || metodoPagoActual.Contains("Zelle")) && monto > _TotalPagarUsd * 1.5m)
+                    if ((metodoActualMinuscula.Contains("usd") || metodoActualMinuscula.Contains("$") || metodoActualMinuscula.Contains("zelle")) && monto > _TotalPagarUsd * 1.5m)
                     {
                         DGV.CurrentRow.Cells[1].Value = (monto / tasaActual).ToString("N2");
                     }
                     // Si el nuevo método es Bolívares y veníamos de Dólar (monto pequeño)
-                    else if (!(metodoPagoActual.Contains("$") || metodoPagoActual.Contains("Zelle")) && monto <= _TotalPagarUsd * 1.1m)
+                    else if (!(metodoActualMinuscula.Contains("usd") || metodoActualMinuscula.Contains("$") || metodoActualMinuscula.Contains("zelle")) && monto <= _TotalPagarUsd * 1.1m)
                     {
                         DGV.CurrentRow.Cells[1].Value = (monto * tasaActual).ToString("N2");
                     }
@@ -166,6 +175,9 @@ namespace Llamen_a_Dios.Modales
             }
         }
 
+        // ====================================================================
+        // CUANDO EL CAJERO LE DA A IMPRIMIR/COBRAR
+        // ====================================================================
         private void Imprimir_Click(object sender, EventArgs e)
         {
             if (Convert.ToDecimal(lblFaltanteBs.Text) > 0)
@@ -173,6 +185,48 @@ namespace Llamen_a_Dios.Modales
                 MessageBox.Show("Aún falta dinero por cobrar.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            // LIMPIAMOS LA LISTA ANTES DE EMPEZAR
+            ListaPagosRealizados.Clear();
+            decimal vueltoRestante = Convert.ToDecimal(lblVueltoBs.Text);
+
+            // RECORREMOS EL DATAGRID Y ARMAMOS LOS OBJETOS DE PAGO
+            foreach (DataGridViewRow row in DGV.Rows)
+            {
+                if (row.Cells[1].Value == null) continue;
+
+                string nombreMetodo = row.Cells[0].Value.ToString().ToLower();
+                decimal monto = Convert.ToDecimal(row.Cells[1].Value);
+
+                // --- MAPEO DE IDs SEGÚN TU BASE DE DATOS gdventas ---
+                int idMetodo = 1; // Por defecto: Efectivo USD (1)
+
+                if (nombreMetodo.Contains("punto")) idMetodo = 4;
+                else if (nombreMetodo.Contains("móvil") || nombreMetodo.Contains("movil")) idMetodo = 3;
+                else if (nombreMetodo.Contains("bs") || nombreMetodo.Contains("efectivo bs")) idMetodo = 2;
+                else if (nombreMetodo.Contains("cashea")) idMetodo = 5;
+                else if (nombreMetodo.Contains("zelle") || nombreMetodo.Contains("transferencia")) idMetodo = 6;
+                // Si tienes Zinly en tu BD, agrega un 'else if' aquí.
+
+                decimal cambioParaEsteMetodo = 0;
+
+                // Si hay vuelto, se lo restamos al pago en efectivo (USD o BS)
+                if ((idMetodo == 1 || idMetodo == 2) && vueltoRestante > 0)
+                {
+                    cambioParaEsteMetodo = vueltoRestante;
+                    vueltoRestante = 0; // Ya se asignó el vuelto a esta fila
+                }
+
+                // AÑADIMOS A LA LISTA
+                ListaPagosRealizados.Add(new VentaPagos
+                {
+                    IdMetodoPago = idMetodo,
+                    MontoRecibido = monto,
+                    MontoCambio = cambioParaEsteMetodo
+                });
+            }
+
+            // AVISAMOS QUE TODO SALIÓ BIEN Y CERRAMOS
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -184,5 +238,4 @@ namespace Llamen_a_Dios.Modales
 
         }
     }
-
 }

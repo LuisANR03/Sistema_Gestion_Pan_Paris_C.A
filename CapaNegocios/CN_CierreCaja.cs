@@ -1,10 +1,6 @@
 ﻿using CapaDatos;
 using CapaEntidades;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaNegocios
 {
@@ -12,18 +8,22 @@ namespace CapaNegocios
     {
         private CD_CierreCaja objCierre = new CD_CierreCaja();
 
-        public CierreCaja CalcularTotalesDelDia()
+        // AHORA RECIBE EL idUsuario PARA PASARLO A LA CAPA DE DATOS
+        public CierreCaja CalcularTotalesDelDia(int idUsuario)
         {
-            return objCierre.CalcularTotalesDelDia();
+            return objCierre.CalcularTotalesDelDia(idUsuario);
         }
 
         public bool RegistrarCierre(CierreCaja obj, out string Mensaje)
         {
-            // Aquí en un futuro podrías poner reglas, por ejemplo:
-            // if (obj.FondoInicial < 0) { Mensaje = "El fondo no puede ser negativo"; return false; }
+            // Validaciones de negocio preventivas
+            if (obj.FondoInicial < 0)
+            {
+                Mensaje = "El fondo inicial no puede ser un monto negativo.";
+                return false;
+            }
 
             return objCierre.RegistrarCierre(obj, out Mensaje);
         }
     }
 }
-

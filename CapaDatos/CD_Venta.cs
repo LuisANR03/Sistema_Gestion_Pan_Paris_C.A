@@ -10,7 +10,7 @@ namespace CapaDatos
     public class CD_Venta
     {
         // ====================================================================
-        // MÉTODO 1: REGISTRAR (El que tú creaste para guardar las ventas)
+        // MÉTODO 1: REGISTRAR (Con soporte para guardar pagos en venta_pagos)
         // ====================================================================
         public bool Registrar(Ventas obj, List<DetalleVenta> detalle, out string Mensaje)
         {
@@ -41,7 +41,7 @@ namespace CapaDatos
                     object res = cmdVenta.ExecuteScalar();
                     int idVentaGenerado = Convert.ToInt32(res);
 
-                    // 2. Insertar Detalles
+                    // 2. Insertar Detalles y 3. Actualizar Stock
                     foreach (DetalleVenta dv in detalle)
                     {
                         string queryDetalle = "INSERT INTO detalle_venta (idVenta, idProducto, precio_unitario, cantidad) VALUES (@idv, @idp, @prec, @cant)";
@@ -60,11 +60,32 @@ namespace CapaDatos
                         cmdStock.ExecuteNonQuery();
                     }
 
+                    // ====================================================================
+                    // ¡PASO 4 NUEVO!: REGISTRAR LOS INGRESOS EN LA TABLA VENTA_PAGOS
+                    // ====================================================================
+                    if (obj.Pagos != null && obj.Pagos.Count > 0)
+                    {
+                        string queryPago = @"INSERT INTO venta_pagos (idVenta, idMetodoPago, monto_recibido, monto_cambio) 
+                                             VALUES (@idv, @idmp, @mrec, @mcam);";
+
+                        foreach (VentaPagos pago in obj.Pagos)
+                        {
+                            MySqlCommand cmdPago = new MySqlCommand(queryPago, oconexion, transaction);
+                            cmdPago.Parameters.AddWithValue("@idv", idVentaGenerado);
+                            cmdPago.Parameters.AddWithValue("@idmp", pago.IdMetodoPago);
+                            cmdPago.Parameters.AddWithValue("@mrec", pago.MontoRecibido);
+                            cmdPago.Parameters.AddWithValue("@mcam", pago.MontoCambio);
+                            cmdPago.ExecuteNonQuery();
+                        }
+                    }
+
+                    // Si todo salió bien hasta aquí, guardamos permanentemente en la BD
                     transaction.Commit();
                     respuesta = true;
                 }
                 catch (Exception ex)
                 {
+                    // Si algo falló en cualquier paso, deshacemos todo lo que se intentó guardar
                     transaction.Rollback();
                     respuesta = false;
                     Mensaje = ex.Message;
@@ -74,7 +95,7 @@ namespace CapaDatos
         }
 
         // ====================================================================
-        // MÉTODO 2: LISTAR (El nuevo para llenar tu historial de ventas)
+        // MÉTODO 2: LISTAR (Para llenar tu historial de ventas)
         // ====================================================================
         public List<Ventas> Listar()
         {
@@ -84,19 +105,18 @@ namespace CapaDatos
             {
                 try
                 {
-                    // CAMBIO AQUÍ: v.FechaRegistro -> v.FechaVenta
                     string query = @"SELECT 
-                v.idVenta, 
-                v.NumeroDocumento, 
-                v.FechaVenta, 
-                c.Nombre as Cliente, 
-                u.Nombre as Cajero, 
-                uv.Nombre as Vendedor, 
-                v.MontoTotal 
-                FROM ventas v
-                INNER JOIN cliente c ON v.idCliente = c.idCliente
-                INNER JOIN usuario u ON v.idUsuario = u.idUsuario
-                INNER JOIN usuario uv ON v.idVendedor = uv.idUsuario";
+                                v.idVenta, 
+                                v.NumeroDocumento, 
+                                v.FechaVenta, 
+                                c.Nombre as Cliente, 
+                                u.Nombre as Cajero, 
+                                uv.Nombre as Vendedor, 
+                                v.MontoTotal 
+                                FROM ventas v
+                                INNER JOIN cliente c ON v.idCliente = c.idCliente
+                                INNER JOIN usuario u ON v.idUsuario = u.idUsuario
+                                INNER JOIN usuario uv ON v.idVendedor = uv.idUsuario";
 
                     MySqlCommand cmd = new MySqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
@@ -109,7 +129,7 @@ namespace CapaDatos
                             {
                                 IdVenta = Convert.ToInt32(dr["idVenta"]),
                                 NumeroDocumento = dr["NumeroDocumento"].ToString(),
-                                FechaVenta = Convert.ToDateTime(dr["FechaVenta"]), // Corregido aquí también
+                                FechaVenta = Convert.ToDateTime(dr["FechaVenta"]),
                                 MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
 
                                 Cliente = new Cliente() { Nombre = dr["Cliente"].ToString() },
@@ -121,7 +141,6 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-                    // Si vuelve a dar 0, este mensaje te dirá por qué
                     System.Windows.Forms.MessageBox.Show("Error en CD_Venta: " + ex.Message);
                     lista = new List<Ventas>();
                 }
@@ -136,7 +155,6 @@ namespace CapaDatos
             {
                 try
                 {
-                    // 1. Buscamos la cabecera de la venta
                     string query = @"SELECT v.idVenta, v.NumeroDocumento, v.TipoDocumento, v.FechaVenta, v.MontoTotal,
                             c.Nombre as NombreCliente, u.Nombre as NombreCajero
                             FROM ventas v
@@ -161,12 +179,11 @@ namespace CapaDatos
                                 MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
                                 Cliente = new Cliente() { Nombre = dr["NombreCliente"].ToString() },
                                 Usuario = new Usuario() { Nombre = dr["NombreCajero"].ToString() },
-                                Detalles = new List<DetalleVenta>() // Preparamos la lista de productos
+                                Detalles = new List<DetalleVenta>()
                             };
                         }
                     }
 
-                    // 2. Buscamos los productos (detalles) de esa venta
                     string queryDetalle = @"SELECT p.Nombre, dv.precio_unitario, dv.cantidad 
                                     FROM detalle_venta dv
                                     INNER JOIN producto p ON p.idProducto = dv.idProducto
@@ -181,10 +198,7 @@ namespace CapaDatos
                         {
                             objeto.Detalles.Add(new DetalleVenta()
                             {
-                                // AQUÍ ESTÁ EL PRODUCTO DESCOMENTADO
-                                // Nota: Si tu entidad usa "oProducto" en vez de "Producto", agrégale la "o" al principio
                                 Producto = new Producto() { Nombre = dr2["Nombre"].ToString() },
-
                                 PrecioUnitario = Convert.ToDecimal(dr2["precio_unitario"]),
                                 Cantidad = Convert.ToInt32(dr2["cantidad"])
                             });
@@ -195,6 +209,7 @@ namespace CapaDatos
             }
             return objeto;
         }
+
         // ====================================================================
         // MÉTODO 3: OBTENER TOTALES POR MÉTODO PARA EL CIERRE DE CAJA
         // ====================================================================
@@ -206,7 +221,6 @@ namespace CapaDatos
             {
                 try
                 {
-                    // Sumamos (Monto Recibido - Vuelto) para tener el ingreso real de la caja
                     string query = @"
                         SELECT UPPER(mp.nombre) AS MetodoPago, 
                                SUM(vp.monto_recibido - vp.monto_cambio) AS TotalVendido 
