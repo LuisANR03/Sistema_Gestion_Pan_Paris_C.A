@@ -10,7 +10,7 @@ namespace Llamen_a_Dios
 {
     public partial class Inicio : Form
     {
-        private static Usuario usuarioActual = null;
+        public static Usuario usuarioActual = null;
         private IconButton menuActivo = null;
         private static Form formularioActivo = null;
 
@@ -30,13 +30,10 @@ namespace Llamen_a_Dios
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-            // Código de permisos y usuario (comentado si aún no lo necesitas)
-            
             if (usuarioActual != null)
             {
                 lblnombreuser.Text = usuarioActual.Nombre;
             }
-          /* */
         }
 
         // --- LÓGICA DEL MENÚ ACORDEÓN ---
@@ -44,6 +41,7 @@ namespace Llamen_a_Dios
         {
             if (PanelSubmenuVentas.Visible) PanelSubmenuVentas.Visible = false;
             if (PanelSubmenuStock.Visible) PanelSubmenuStock.Visible = false;
+            if (PanelSubmenuInformes.Visible) PanelSubmenuInformes.Visible = false; // Actualizado para incluir Informes
         }
 
         private void MostrarSubmenu(Panel submenu)
@@ -73,12 +71,13 @@ namespace Llamen_a_Dios
                 menuActivo = (IconButton)senderMenu;
                 menuActivo.BackColor = Color.FromArgb(45, 96, 238);
             }
-            // Identificamos si se hizo clic en un submenú (que ahora son botones normales)
+            // Identificamos si se hizo clic en un submenú
             else if (senderMenu is Button)
             {
                 Button btn = (Button)senderMenu;
                 if (btn.Parent == PanelSubmenuVentas) menuActivo = btnVentas;
                 if (btn.Parent == PanelSubmenuStock) menuActivo = btnStock;
+                if (btn.Parent == PanelSubmenuInformes) menuActivo = btnInformes; // Vincula los subbotones a Informes
 
                 if (menuActivo != null)
                     menuActivo.BackColor = Color.FromArgb(45, 96, 238);
@@ -113,8 +112,8 @@ namespace Llamen_a_Dios
 
         private void MenuInformes_Click(object sender, EventArgs e)
         {
-            OcultarSubmenus();
-            AbrirFrm(sender, new Frminformes());
+            // Cambiado: Ahora despliega el menú en vez de abrir el formulario directo
+            MostrarSubmenu(PanelSubmenuInformes);
         }
 
         private void MenuAcerca_Click(object sender, EventArgs e)
@@ -160,9 +159,29 @@ namespace Llamen_a_Dios
             AbrirFrm(sender, new FrmCategoria());
         }
 
+        // --- NUEVOS EVENTOS DE SUBMENÚ INFORMES (Solución a tus errores) ---
+        private void submenucierrecaja_Click(object sender, EventArgs e)
+        {
+            // NOTA: Si creas un formulario específico para esto, cambia "new Form()" por tu nuevo formulario
+            // Ejemplo: AbrirFrm(sender, new FrmCierreCaja());
+            MessageBox.Show("Formulario de Cierre de Caja (Próximamente)");
+        }
+
+        private void submenucomisiones_Click(object sender, EventArgs e)
+        {
+            // NOTA: Si creas un formulario específico para esto, cambia "new Form()" por tu nuevo formulario
+            // Ejemplo: AbrirFrm(sender, new FrmComisiones());
+            MessageBox.Show("Formulario de Comisiones (Próximamente)");
+        }
+
+        private void submenureporteventas_Click(object sender, EventArgs e)
+        {
+            // Vinculado a tu Frminformes actual que ya tenías creado
+            AbrirFrm(sender, new CierreCaja());
+        }
+
         private void timerHora_Tick(object sender, EventArgs e)
         {
-            // Formato de 12 horas con AM/PM.
             lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy  |  hh:mm:ss tt");
         }
     }

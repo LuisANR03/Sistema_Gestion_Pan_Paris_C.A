@@ -28,24 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbllistausu = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.DGVStck = new System.Windows.Forms.DataGridView();
-            this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Promocion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbindice = new System.Windows.Forms.TextBox();
             this.txtid = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,7 +50,6 @@
             this.BtnLimpiar = new BotonModerno();
             this.CBFiltro = new Llamen_a_Dios.ComboBoxModerno();
             this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.tbnombre = new TextBoxModerno();
             this.CBEstado = new Llamen_a_Dios.ComboBoxModerno();
             this.btnBorrar = new BotonModerno();
@@ -75,9 +61,26 @@
             this.TBCodigo = new TextBoxModerno();
             this.CBCategoria = new Llamen_a_Dios.ComboBoxModerno();
             this.tbPrecioPromocion = new TextBoxModerno();
+            this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Promocion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
+            this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             ((System.ComponentModel.ISupportInitialize)(this.DGVStck)).BeginInit();
             this.pnlBuscador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            this.panelModerno1.SuspendLayout();
+            this.groupBoxModerno1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbllistausu
@@ -86,7 +89,7 @@
             this.lbllistausu.BackColor = System.Drawing.Color.DarkBlue;
             this.lbllistausu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbllistausu.ForeColor = System.Drawing.Color.White;
-            this.lbllistausu.Location = new System.Drawing.Point(378, 35);
+            this.lbllistausu.Location = new System.Drawing.Point(30, 37);
             this.lbllistausu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbllistausu.Name = "lbllistausu";
             this.lbllistausu.Size = new System.Drawing.Size(109, 28);
@@ -107,16 +110,22 @@
             // DGVStck
             // 
             this.DGVStck.AllowUserToAddRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVStck.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.DGVStck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVStck.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVStck.BackgroundColor = System.Drawing.Color.White;
+            this.DGVStck.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DGVStck.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.DGVStck.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVStck.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGVStck.ColumnHeadersHeight = 40;
+            this.DGVStck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGVStck.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BtnSelect,
             this.IdProducto,
@@ -131,129 +140,28 @@
             this.Valor,
             this.dataGridViewTextBoxColumn2,
             this.Fecha});
-            this.DGVStck.Location = new System.Drawing.Point(383, 191);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVStck.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGVStck.EnableHeadersVisualStyles = false;
+            this.DGVStck.Location = new System.Drawing.Point(30, 129);
             this.DGVStck.Margin = new System.Windows.Forms.Padding(4);
             this.DGVStck.MultiSelect = false;
             this.DGVStck.Name = "DGVStck";
             this.DGVStck.ReadOnly = true;
+            this.DGVStck.RowHeadersVisible = false;
             this.DGVStck.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGVStck.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.DGVStck.RowTemplate.Height = 28;
-            this.DGVStck.Size = new System.Drawing.Size(1116, 836);
+            this.DGVStck.RowTemplate.Height = 40;
+            this.DGVStck.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGVStck.Size = new System.Drawing.Size(1116, 514);
             this.DGVStck.TabIndex = 48;
             this.DGVStck.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVStck_CellContentClick);
             this.DGVStck.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGVStck_CellPainting);
-            // 
-            // BtnSelect
-            // 
-            this.BtnSelect.HeaderText = "";
-            this.BtnSelect.MinimumWidth = 6;
-            this.BtnSelect.Name = "BtnSelect";
-            this.BtnSelect.ReadOnly = true;
-            this.BtnSelect.Width = 30;
-            // 
-            // IdProducto
-            // 
-            this.IdProducto.HeaderText = "Id";
-            this.IdProducto.MinimumWidth = 6;
-            this.IdProducto.Name = "IdProducto";
-            this.IdProducto.ReadOnly = true;
-            this.IdProducto.Visible = false;
-            this.IdProducto.Width = 125;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.MinimumWidth = 6;
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 125;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 125;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.MinimumWidth = 6;
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 125;
-            // 
-            // IdCategoria
-            // 
-            this.IdCategoria.HeaderText = "IdCategoria";
-            this.IdCategoria.MinimumWidth = 6;
-            this.IdCategoria.Name = "IdCategoria";
-            this.IdCategoria.ReadOnly = true;
-            this.IdCategoria.Visible = false;
-            this.IdCategoria.Width = 125;
-            // 
-            // Categoria
-            // 
-            this.Categoria.HeaderText = "Categoria";
-            this.Categoria.MinimumWidth = 6;
-            this.Categoria.Name = "Categoria";
-            this.Categoria.ReadOnly = true;
-            this.Categoria.Width = 125;
-            // 
-            // Stock
-            // 
-            this.Stock.HeaderText = "Stock";
-            this.Stock.MinimumWidth = 6;
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            this.Stock.Width = 125;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.MinimumWidth = 6;
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            this.Precio.Width = 125;
-            // 
-            // Promocion
-            // 
-            this.Promocion.HeaderText = "Promocion";
-            this.Promocion.MinimumWidth = 6;
-            this.Promocion.Name = "Promocion";
-            this.Promocion.ReadOnly = true;
-            this.Promocion.Width = 125;
-            // 
-            // Valor
-            // 
-            this.Valor.HeaderText = "Valor";
-            this.Valor.MinimumWidth = 6;
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            this.Valor.Visible = false;
-            this.Valor.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "EstadoValor";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            this.dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.MinimumWidth = 6;
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            this.Fecha.Visible = false;
-            this.Fecha.Width = 125;
             // 
             // tbindice
             // 
@@ -396,7 +304,7 @@
             // 
             this.pnlBuscador.Controls.Add(this.iconPictureBox1);
             this.pnlBuscador.Controls.Add(this.TBBuscar);
-            this.pnlBuscador.Location = new System.Drawing.Point(727, 128);
+            this.pnlBuscador.Location = new System.Drawing.Point(374, 66);
             this.pnlBuscador.Name = "pnlBuscador";
             this.pnlBuscador.Size = new System.Drawing.Size(714, 43);
             this.pnlBuscador.TabIndex = 79;
@@ -454,7 +362,7 @@
             this.BtnLimpiar.IconColor = System.Drawing.Color.Black;
             this.BtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnLimpiar.IconSize = 25;
-            this.BtnLimpiar.Location = new System.Drawing.Point(1450, 128);
+            this.BtnLimpiar.Location = new System.Drawing.Point(1097, 66);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.RadioBorde = 5;
             this.BtnLimpiar.Rotation = 180D;
@@ -476,7 +384,7 @@
             this.CBFiltro.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.CBFiltro.ForeColor = System.Drawing.Color.DimGray;
             this.CBFiltro.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(66)))), ((int)(((byte)(210)))));
-            this.CBFiltro.Location = new System.Drawing.Point(500, 127);
+            this.CBFiltro.Location = new System.Drawing.Point(147, 65);
             this.CBFiltro.MinimumSize = new System.Drawing.Size(150, 30);
             this.CBFiltro.Name = "CBFiltro";
             this.CBFiltro.Padding = new System.Windows.Forms.Padding(1);
@@ -492,21 +400,12 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(384, 134);
+            this.label6.Location = new System.Drawing.Point(31, 72);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 28);
             this.label6.TabIndex = 76;
             this.label6.Text = "Buscar por:";
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.DarkBlue;
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(294, 1);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1303, 85);
-            this.label3.TabIndex = 80;
             // 
             // tbnombre
             // 
@@ -759,12 +658,149 @@
             this.tbPrecioPromocion.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tbPrecioPromocion.UseSystemPasswordChar = false;
             // 
+            // BtnSelect
+            // 
+            this.BtnSelect.FillWeight = 20F;
+            this.BtnSelect.HeaderText = "";
+            this.BtnSelect.MinimumWidth = 6;
+            this.BtnSelect.Name = "BtnSelect";
+            this.BtnSelect.ReadOnly = true;
+            // 
+            // IdProducto
+            // 
+            this.IdProducto.HeaderText = "Id";
+            this.IdProducto.MinimumWidth = 6;
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.ReadOnly = true;
+            this.IdProducto.Visible = false;
+            // 
+            // Codigo
+            // 
+            this.Codigo.FillWeight = 98.45684F;
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.FillWeight = 98.45684F;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.FillWeight = 98.45684F;
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.MinimumWidth = 6;
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
+            // IdCategoria
+            // 
+            this.IdCategoria.HeaderText = "IdCategoria";
+            this.IdCategoria.MinimumWidth = 6;
+            this.IdCategoria.Name = "IdCategoria";
+            this.IdCategoria.ReadOnly = true;
+            this.IdCategoria.Visible = false;
+            // 
+            // Categoria
+            // 
+            this.Categoria.FillWeight = 98.45684F;
+            this.Categoria.HeaderText = "Categoria";
+            this.Categoria.MinimumWidth = 6;
+            this.Categoria.Name = "Categoria";
+            this.Categoria.ReadOnly = true;
+            // 
+            // Stock
+            // 
+            this.Stock.FillWeight = 98.45684F;
+            this.Stock.HeaderText = "Stock";
+            this.Stock.MinimumWidth = 6;
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            this.Precio.FillWeight = 98.45684F;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.MinimumWidth = 6;
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // Promocion
+            // 
+            this.Promocion.FillWeight = 98.45684F;
+            this.Promocion.HeaderText = "Promocion";
+            this.Promocion.MinimumWidth = 6;
+            this.Promocion.Name = "Promocion";
+            this.Promocion.ReadOnly = true;
+            // 
+            // Valor
+            // 
+            this.Valor.HeaderText = "Valor";
+            this.Valor.MinimumWidth = 6;
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            this.Valor.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "EstadoValor";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.MinimumWidth = 6;
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            this.Fecha.Visible = false;
+            // 
+            // panelModerno1
+            // 
+            this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.DarkBlue;
+            this.panelModerno1.BorderRadius = 15;
+            this.panelModerno1.Controls.Add(this.lbllistausu);
+            this.panelModerno1.Location = new System.Drawing.Point(353, 141);
+            this.panelModerno1.Name = "panelModerno1";
+            this.panelModerno1.RedondearAbajo = false;
+            this.panelModerno1.Size = new System.Drawing.Size(1176, 100);
+            this.panelModerno1.TabIndex = 92;
+            // 
+            // groupBoxModerno1
+            // 
+            this.groupBoxModerno1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+            this.groupBoxModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+            this.groupBoxModerno1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
+            this.groupBoxModerno1.BorderRadius = 15;
+            this.groupBoxModerno1.BorderSize = 2;
+            this.groupBoxModerno1.Controls.Add(this.label6);
+            this.groupBoxModerno1.Controls.Add(this.DGVStck);
+            this.groupBoxModerno1.Controls.Add(this.CBFiltro);
+            this.groupBoxModerno1.Controls.Add(this.BtnLimpiar);
+            this.groupBoxModerno1.Controls.Add(this.pnlBuscador);
+            this.groupBoxModerno1.Location = new System.Drawing.Point(353, 222);
+            this.groupBoxModerno1.Name = "groupBoxModerno1";
+            this.groupBoxModerno1.RedondearAbajo = true;
+            this.groupBoxModerno1.Size = new System.Drawing.Size(1176, 746);
+            this.groupBoxModerno1.TabIndex = 93;
+            this.groupBoxModerno1.TabStop = false;
+            // 
             // FrmStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(1595, 1080);
+            this.Controls.Add(this.panelModerno1);
+            this.Controls.Add(this.groupBoxModerno1);
             this.Controls.Add(this.tbPrecioPromocion);
             this.Controls.Add(this.CBCategoria);
             this.Controls.Add(this.tbnombre);
@@ -776,10 +812,6 @@
             this.Controls.Add(this.TBStock);
             this.Controls.Add(this.tbdesc);
             this.Controls.Add(this.TBCodigo);
-            this.Controls.Add(this.pnlBuscador);
-            this.Controls.Add(this.BtnLimpiar);
-            this.Controls.Add(this.CBFiltro);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbindice);
@@ -791,10 +823,7 @@
             this.Controls.Add(this.lbldsc);
             this.Controls.Add(this.lblnombre);
             this.Controls.Add(this.lblcodigo);
-            this.Controls.Add(this.DGVStck);
-            this.Controls.Add(this.lbllistausu);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label3);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmStock";
             this.Text = "FrmStock";
@@ -802,6 +831,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVStck)).EndInit();
             this.pnlBuscador.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            this.panelModerno1.ResumeLayout(false);
+            this.panelModerno1.PerformLayout();
+            this.groupBoxModerno1.ResumeLayout(false);
+            this.groupBoxModerno1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -822,6 +855,23 @@
         private System.Windows.Forms.Label lblcodigo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel pnlBuscador;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private TextBoxModerno TBBuscar;
+        private BotonModerno BtnLimpiar;
+        private ComboBoxModerno CBFiltro;
+        private System.Windows.Forms.Label label6;
+        private TextBoxModerno tbnombre;
+        private ComboBoxModerno CBEstado;
+        private BotonModerno btnBorrar;
+        private BotonModerno Btlimc;
+        private BotonModerno BtnGuardar;
+        private TextBoxModerno tbPrecio;
+        private TextBoxModerno TBStock;
+        private TextBoxModerno tbdesc;
+        private TextBoxModerno TBCodigo;
+        private ComboBoxModerno CBCategoria;
+        private TextBoxModerno tbPrecioPromocion;
         private System.Windows.Forms.DataGridViewButtonColumn BtnSelect;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
@@ -835,23 +885,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.Panel pnlBuscador;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
-        private TextBoxModerno TBBuscar;
-        private BotonModerno BtnLimpiar;
-        private ComboBoxModerno CBFiltro;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label3;
-        private TextBoxModerno tbnombre;
-        private ComboBoxModerno CBEstado;
-        private BotonModerno btnBorrar;
-        private BotonModerno Btlimc;
-        private BotonModerno BtnGuardar;
-        private TextBoxModerno tbPrecio;
-        private TextBoxModerno TBStock;
-        private TextBoxModerno tbdesc;
-        private TextBoxModerno TBCodigo;
-        private ComboBoxModerno CBCategoria;
-        private TextBoxModerno tbPrecioPromocion;
+        private PanelModerno panelModerno1;
+        private GroupBoxModerno groupBoxModerno1;
     }
 }

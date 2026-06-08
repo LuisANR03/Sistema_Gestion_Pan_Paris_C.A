@@ -92,11 +92,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CD_Categoria.cs" />
+    <Compile Include="CD_CierreCaja.cs" />
     <Compile Include="CD_cliente.cs" />
     <Compile Include="CD_permisos.cs" />
     <Compile Include="CD_Producto.cs" />
     <Compile Include="CD_rol.cs" />
     <Compile Include="CD_Usuario.cs" />
+    <Compile Include="CD_Venta.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

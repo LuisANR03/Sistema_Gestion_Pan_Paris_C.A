@@ -1,9 +1,11 @@
-﻿using System;
+﻿using CapaDatos;
+using CapaNegocios;
+using Entidades;
+using Llamen_a_Dios.Modales;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using CapaNegocios;
-using Entidades;
 
 namespace Llamen_a_Dios
 {
@@ -12,7 +14,7 @@ namespace Llamen_a_Dios
         public Frmregistrarventa()
         {
             InitializeComponent();
-
+           
             // Suscribimos los eventos del DataGridView
             this.DGVStck.CellPainting += new DataGridViewCellPaintingEventHandler(this.DGVStck_CellPainting);
             this.DGVStck.CellContentClick += new DataGridViewCellEventHandler(this.DGVStck_CellContentClick);
@@ -20,7 +22,19 @@ namespace Llamen_a_Dios
 
         private void Frmregistrarventa_Load(object sender, EventArgs e)
         {
-            AplicarDiseñoModerno();
+            List<Usuario> listaVendedores = new CN_Usuario().ListarVendedores();
+            cbvendedor.DataSource = listaVendedores;
+            cbvendedor.DisplayMember = "Nombre";    // La propiedad que se muestra al usuario (asegúrate que tu clase Usuario usa "Nombre")
+            cbvendedor.ValueMember = "IdUsuario";   // El ID que guardaremos en la BD
+
+            // Para que no haya ninguno seleccionado por defecto
+            cbvendedor.SelectedIndex = -1;
+
+            txbcajero.Text = Inicio.usuarioActual.Nombre;
+            txbfecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            tbtotalitems.Text = "0";
+            tbpreciodolar.Text = "0.00";
+            tbpreciobs.Text = "0.00";
         }
 
         #region MÉTODOS DE OPERACIÓN (CARRITO DE COMPRAS)
@@ -35,45 +49,70 @@ namespace Llamen_a_Dios
                 return;
             }
 
-            // Instanciamos la capa de negocios y traemos los productos
             CN_Producto obj_cn_producto = new CN_Producto();
             List<Producto> listaProductos = obj_cn_producto.Listar();
 
-            // Buscamos el producto que coincida con el código y que esté activo
+            // Buscamos el producto en la base de datos
             Producto productoEncontrado = listaProductos.Find(p => p.Codigo == codigoIngresado && p.Estado == true);
 
             if (productoEncontrado != null)
             {
                 if (productoEncontrado.Stock > 0)
                 {
-                    // Asumimos que la cantidad inicial a vender es 1
-                    int cantidad = 1;
+                    bool producto_existe = false;
 
-                    // Calculamos el precio real (si hay promo, usamos promo, si no, precio de venta)
-                    decimal precioAplicado = (productoEncontrado.PrecioPromocion > 0)
-                                             ? (decimal)productoEncontrado.PrecioPromocion
-                                             : productoEncontrado.PrecioVenta;
+                    // --- 1. RECORREMOS EL DGV PARA VER SI YA ESTÁ AGREGADO ---
+                    foreach (DataGridViewRow fila in DGVStck.Rows)
+                    {
+                        // Comparamos el ID del producto (Celda 1 según tu estructura)
+                        if (fila.Cells[1].Value.ToString() == productoEncontrado.IdProducto.ToString())
+                        {
+                            producto_existe = true;
 
-                    decimal subtotal = cantidad * precioAplicado;
+                            // Obtenemos la cantidad actual y el precio que se está aplicando
+                            int cantidadActual = Convert.ToInt32(fila.Cells[7].Value);
+                            decimal precioAplicado = Convert.ToDecimal(fila.Cells[10].Value) / cantidadActual;
 
-                    // Agregamos el producto al DataGridView (Carrito)
-                    DGVStck.Rows.Add(new object[] {
-                        "", // Columna 0: BtnSelect (Lo usaremos para eliminar)
-                        productoEncontrado.IdProducto,
-                        productoEncontrado.Codigo,
-                        productoEncontrado.Nombre,
-                        productoEncontrado.Descripcion,
-                        productoEncontrado.oCategoria.IdCategoria,
-                        productoEncontrado.oCategoria.Descripcion,
-                        cantidad, // Columna de Cantidad 
-                        productoEncontrado.PrecioVenta,
-                        productoEncontrado.PrecioPromocion ?? 0,
-                        subtotal, // Columna Subtotal
-                        productoEncontrado.EstadoValor,
-                        DateTime.Now.ToString("d")
-                    });
+                            // Validamos que no exceda el stock físico al intentar sumar 1
+                            if ((cantidadActual + 1) <= productoEncontrado.Stock)
+                            {
+                                fila.Cells[7].Value = cantidadActual + 1; // Actualizamos Cantidad
+                                fila.Cells[10].Value = (cantidadActual + 1) * precioAplicado; // Actualizamos Subtotal
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se puede agregar más. Stock máximo alcanzado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            break;
+                        }
+                    }
 
-                    // Limpiamos el textbox y le regresamos el foco (adaptado para textbox modernos)
+                    // --- 2. SI NO EXISTE EN LA TABLA, LO AGREGAMOS POR PRIMERA VEZ ---
+                    if (!producto_existe)
+                    {
+                        decimal precioAplicado = (productoEncontrado.PrecioPromocion > 0)
+                                                 ? (decimal)productoEncontrado.PrecioPromocion
+                                                 : productoEncontrado.PrecioVenta;
+
+                        DGVStck.Rows.Add(new object[] {
+                    "",
+                    productoEncontrado.IdProducto,
+                    productoEncontrado.Codigo,
+                    productoEncontrado.Nombre,
+                    productoEncontrado.Descripcion,
+                    productoEncontrado.oCategoria.IdCategoria,
+                    productoEncontrado.oCategoria.Descripcion,
+                    1, // Cantidad inicial
+                    productoEncontrado.PrecioVenta,
+                    productoEncontrado.PrecioPromocion ?? 0,
+                    precioAplicado, // Subtotal (1 * precioAplicado)
+                    productoEncontrado.EstadoValor,
+                    DateTime.Now.ToString("d")
+                });
+                    }
+
+                    // --- 3. RECALCULAMOS TOTALES Y LIMPIAMOS ---
+                    CalcularTotales();
                     txbproducto.Text = "";
                     txbproducto.Focus();
                 }
@@ -85,8 +124,6 @@ namespace Llamen_a_Dios
             else
             {
                 MessageBox.Show("Código de producto no encontrado o inactivo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // Limpiamos el texto para que el cajero intente escanear de nuevo rápidamente
                 txbproducto.Text = "";
                 txbproducto.Focus();
             }
@@ -94,20 +131,32 @@ namespace Llamen_a_Dios
 
         private void btnbuscarproducto_Click(object sender, EventArgs e)
         {
-            // NOTA: Descomenta esto cuando crees tu FrmModalProductos
-            /*
-            using (var modal = new FrmModalProductos())
+            string codigoIngresado = txbproducto.Text.Trim();
+
+            if (string.IsNullOrEmpty(codigoIngresado))
+            {
+                // Si está vacío, el cajero quiere abrir la lista para buscar a mano
+                AbrirModalBusquedaProducto();
+            }
+            else
+            {
+                // Si hay texto, actúa como el botón de agregar / Enter
+                BuscarProductoPorCodigo();
+            }
+        }
+        private void AbrirModalBusquedaProducto()
+        {
+            using (var modal = new mdProducto())
             {
                 var result = modal.ShowDialog();
 
                 if (result == DialogResult.OK)
                 {
-                    txbproducto.Text = modal.CodigoSeleccionado;
-                    btnagregarproducto.PerformClick(); // Agrega automáticamente el producto
+                    // Pegamos el código y llamamos a la función de agregar
+                    txbproducto.Text = modal._Producto.Codigo;
+                    BuscarProductoPorCodigo();
                 }
             }
-            */
-            MessageBox.Show("Aquí se abrirá la ventana para buscar productos.", "Buscador");
         }
 
         private void DGVStck_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -123,167 +172,352 @@ namespace Llamen_a_Dios
 
         private void DGVStck_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex < 0) return;
 
-            if (e.ColumnIndex == 0) // La columna del botón
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
-
-                // Dibujamos una X roja para eliminar del carrito
-                var font = new Font("Segoe UI Emoji", 10F);
-                var color = Color.FromArgb(239, 68, 68); // Rojo moderno
-                TextRenderer.DrawText(e.Graphics, "❌", font, e.CellBounds, color, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-
-                e.Handled = true;
-            }
         }
 
         #endregion
 
-        #region MÉTODOS DE DISEÑO
 
-        private void AplicarDiseñoModerno()
+
+        private void btnbuscarcliente_Click(object sender, EventArgs e)
         {
-            // --- 1. CONFIGURACIÓN DEL FONDO PRINCIPAL ---
-            this.BackColor = Color.FromArgb(243, 244, 246); // Gris súper claro como en la web
-            lbllistausu.BackColor = Color.White; // Tarjeta principal
-
-            // --- 2. COLORES POR SECCIÓN (Basado en el diseño web) ---
-
-            // Grupo 1: Información Venta (Tonos Azules)
-            groupBox1.BackColor = Color.FromArgb(239, 246, 255); // Fondo azul muy sutil
-            groupBox1.ForeColor = Color.FromArgb(37, 99, 235);   // Texto azul fuerte
-            groupBox1.Font = new Font("Segoe UI Semibold", 10F);
-
-            // Grupo 2: Información Cliente (Tonos Verdes)
-            groupBox2.BackColor = Color.FromArgb(240, 253, 244); // Fondo verde muy sutil
-            groupBox2.ForeColor = Color.FromArgb(22, 163, 74);   // Texto verde fuerte
-            groupBox2.Font = new Font("Segoe UI Semibold", 10F);
-
-            // Grupo 3: Información Productos (Tonos Morados)
-            groupBox3.BackColor = Color.FromArgb(250, 245, 255); // Fondo morado muy sutil
-            groupBox3.ForeColor = Color.FromArgb(147, 51, 234);  // Texto morado fuerte
-            groupBox3.Font = new Font("Segoe UI Semibold", 10F);
-
-            // Restaurar fuente de los controles internos para que no queden de colores
-            foreach (Control c in this.Controls)
+            using (mdCliente modal = new mdCliente())
             {
-                if (c is GroupBox gb)
+                if (modal.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (Control child in gb.Controls)
+                    txbcedula.Text = modal.CedulaSeleccionada;
+                    txbcliente.Text = modal.NombreSeleccionado;
+                    txtIdClienteOculto.Text = modal.IdClienteSeleccionado;
+                }
+            }
+        }
+
+        private void CalcularTotales()
+        {
+            decimal totalDolar = 0;
+            int totalItems = 0;
+            decimal tasaCambio = 505m; // Define aquí tu tasa de cambio actual del BCV
+
+            foreach (DataGridViewRow row in DGVStck.Rows)
+            {
+                // Sumamos los subtotales (Asumiendo que es la Columna 10 según tu código anterior)
+                totalDolar += Convert.ToDecimal(row.Cells[10].Value);
+                // Sumamos las cantidades (Columna 7)
+                totalItems += Convert.ToInt32(row.Cells[7].Value);
+            }
+
+            // Actualizamos los campos visuales
+            tbpreciodolar.Text = totalDolar.ToString("0.00");
+            tbpreciobs.Text = (totalDolar * tasaCambio).ToString("0.00");
+            tbtotalitems.Text = totalItems.ToString();
+        }
+
+        private void txbproducto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+               
+                MessageBox.Show("Enter detectado"); 
+
+                btnagregarproducto_Click(sender, e);
+            }
+        }
+
+
+
+        // 1. LA OPCIÓN NUCLEAR: Intercepta las teclas a nivel global del formulario
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                // 1. Si el Enter fue en la Cédula
+                if (txbcedula.ContainsFocus)
+                {
+                    BuscarClientePorCedula();
+                    return true;
+                }
+
+                // 2. Si el Enter fue en el Código del Producto
+                if (txbproducto.ContainsFocus)
+                {
+                    BuscarProductoPorCodigo(); // Llamamos al nuevo método
+                    return true;
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        // 2. EL MÉTODO QUE HACE EL TRABAJO
+        private void BuscarClientePorCedula()
+        {
+            string cedulaBuscar = txbcedula.Text.Trim();
+
+            if (!string.IsNullOrEmpty(cedulaBuscar))
+            {
+                CN_cliente obj_cn_cliente = new CN_cliente();
+                List<Cliente> listaClientes = obj_cn_cliente.Listar();
+
+                // Ajusta 'Documento' o 'NombreCompleto' según cómo se llamen en tu clase Cliente
+                Cliente clienteEncontrado = listaClientes.Find(c => c.Cedula == cedulaBuscar && c.Estado == true);
+
+                if (clienteEncontrado != null)
+                {
+                    txbcliente.Text = clienteEncontrado.Nombre;
+                    txtIdClienteOculto.Text = clienteEncontrado.IdCliente.ToString();
+
+                    // Foco al producto para vender rápido
+                    txbproducto.Focus();
+                }
+                else
+                {
+                    txbcliente.Text = "";
+                    txtIdClienteOculto.Text = "";
+
+                    // Cambiamos la pregunta para invitar a registrarlo
+                    DialogResult respuesta = MessageBox.Show(
+                        "El cliente con la cédula " + cedulaBuscar + " no existe. ¿Deseas registrarlo ahora?",
+                        "Nuevo Cliente",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (respuesta == DialogResult.Yes)
                     {
-                        if (!(child is Button))
+                        using (var modalRegistro = new mdRegistrarCliente())
                         {
-                            child.ForeColor = Color.FromArgb(71, 85, 105); // Gris oscuro estándar para labels internos
-                            child.Font = new Font("Segoe UI", 9F);
+                            // AQUÍ ESTÁ EL CAMBIO: Le pasamos la cédula a la variable pública que creamos
+                            modalRegistro.CedulaSugerida = cedulaBuscar;
+
+                            var resultadoModal = modalRegistro.ShowDialog();
+
+                            // Si el usuario guardó el cliente correctamente y cerró el modal con DialogResult.OK
+                            if (resultadoModal == DialogResult.OK)
+                            {
+                                // ¡MAGIA! Volvemos a llamar a la búsqueda automáticamente.
+                                BuscarClientePorCedula();
+                            }
                         }
                     }
                 }
             }
-
-            // --- 3. CONFIGURAR DATAGRIDVIEW ---
-            ConfigurarDGVModerno();
-
-            // --- 4. ESTILIZAR BOTONES ---
-            EstilizarBotonesYCampos();
         }
-
-        private void ConfigurarDGVModerno()
+        private void BuscarProductoPorCodigo()
         {
-            DGVStck.BackgroundColor = Color.White;
-            DGVStck.BorderStyle = BorderStyle.None;
-            DGVStck.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            DGVStck.RowHeadersVisible = false;
-            DGVStck.AllowUserToAddRows = false;
-            DGVStck.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DGVStck.MultiSelect = false;
+            string codigoIngresado = txbproducto.Text.Trim();
 
-            // Cabecera estilizada
-            DGVStck.EnableHeadersVisualStyles = false;
-            DGVStck.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            DGVStck.ColumnHeadersHeight = 40;
+            // Si por alguna razón llega vacío, nos salimos
+            if (string.IsNullOrEmpty(codigoIngresado)) return;
 
-            Color colorCabecera = Color.FromArgb(245, 247, 250);
-            DGVStck.ColumnHeadersDefaultCellStyle.BackColor = colorCabecera;
-            DGVStck.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(71, 85, 105);
-            DGVStck.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F);
-            DGVStck.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            CN_Producto obj_cn_producto = new CN_Producto();
+            List<Producto> listaProductos = obj_cn_producto.Listar();
 
-            // Solución al cuadro azul en la esquina superior izquierda
-            DGVStck.TopLeftHeaderCell.Style.BackColor = colorCabecera;
-            DGVStck.ColumnHeadersDefaultCellStyle.SelectionBackColor = colorCabecera;
-            DGVStck.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Empty;
+            Producto productoEncontrado = listaProductos.Find(p => p.Codigo == codigoIngresado && p.Estado == true);
 
-            // Filas
-            DGVStck.DefaultCellStyle.BackColor = Color.White;
-            DGVStck.DefaultCellStyle.ForeColor = Color.FromArgb(30, 41, 59);
-            DGVStck.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 242, 255); // Resaltado azul suave
-            DGVStck.DefaultCellStyle.SelectionForeColor = Color.FromArgb(37, 99, 235);
-            DGVStck.RowTemplate.Height = 40;
-            DGVStck.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
-
-        private void EstilizarBotonesYCampos()
-        {
-            // --- BOTONES PRINCIPALES ---
-
-            // Botón Agregar (+) - Verde Moderno
-            btnagregarproducto.BackColor = Color.FromArgb(34, 197, 94);
-            btnagregarproducto.ForeColor = Color.White;
-            btnagregarproducto.ColorBorde = Color.FromArgb(34, 197, 94);
-            btnagregarproducto.ColorHover = Color.FromArgb(22, 163, 74);
-            btnagregarproducto.IconColor = Color.White;
-            btnagregarproducto.ColorIconoHover = Color.White;
-
-            // Botón Crear Venta (Esquina inferior derecha) - Azul claro/fuerte
-            btnVenta.BackColor = Color.FromArgb(147, 197, 253); // Un azul suave
-            btnVenta.ForeColor = Color.FromArgb(30, 58, 138); // Letra azul oscuro
-            btnVenta.ColorBorde = Color.FromArgb(147, 197, 253);
-            btnVenta.ColorHover = Color.FromArgb(191, 219, 254);
-            btnVenta.IconColor = Color.FromArgb(30, 58, 138);
-            btnVenta.ColorIconoHover = Color.FromArgb(30, 58, 138);
-
-            // --- BOTONES SECUNDARIOS (Lupas y Stock) ---
-            Color fondoSecundario = Color.FromArgb(248, 250, 252);
-            Color bordeSecundario = Color.FromArgb(203, 213, 225);
-            Color iconoGris = Color.FromArgb(71, 85, 105);
-
-            var botonesSecundarios = new[] { btnbuscarcliente, btnbuscarproducto };
-            foreach (var btn in botonesSecundarios)
+            if (productoEncontrado != null)
             {
-                if (btn != null)
+                if (productoEncontrado.Stock > 0)
                 {
-                    btn.BackColor = fondoSecundario;
-                    btn.ColorBorde = bordeSecundario;
-                    btn.GrosorBorde = 1;
-                    btn.IconColor = iconoGris;
-                    btn.ColorHover = Color.FromArgb(226, 232, 240);
-                    btn.ColorIconoHover = Color.Black;
+                    bool producto_existe = false;
+
+                    foreach (DataGridViewRow fila in DGVStck.Rows)
+                    {
+                        if (fila.Cells[1].Value.ToString() == productoEncontrado.IdProducto.ToString())
+                        {
+                            producto_existe = true;
+
+                            int cantidadActual = Convert.ToInt32(fila.Cells[7].Value);
+                            decimal precioAplicado = Convert.ToDecimal(fila.Cells[10].Value) / cantidadActual;
+
+                            if ((cantidadActual + 1) <= productoEncontrado.Stock)
+                            {
+                                fila.Cells[7].Value = cantidadActual + 1;
+                                fila.Cells[10].Value = (cantidadActual + 1) * precioAplicado;
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se puede agregar más. Stock máximo alcanzado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            break;
+                        }
+                    }
+
+                    if (!producto_existe)
+                    {
+                        decimal precioAplicado = (productoEncontrado.PrecioPromocion > 0)
+                                                 ? (decimal)productoEncontrado.PrecioPromocion
+                                                 : productoEncontrado.PrecioVenta;
+
+                        DGVStck.Rows.Add(new object[] {
+                            "",
+                            productoEncontrado.IdProducto,
+                            productoEncontrado.Codigo,
+                            productoEncontrado.Nombre,
+                            productoEncontrado.Descripcion,
+                            productoEncontrado.oCategoria.IdCategoria,
+                            productoEncontrado.oCategoria.Descripcion,
+                            1,
+                            productoEncontrado.PrecioVenta,
+                            productoEncontrado.PrecioPromocion ?? 0,
+                            precioAplicado,
+                            productoEncontrado.EstadoValor,
+                            DateTime.Now.ToString("d")
+                        });
+                    }
+
+                    CalcularTotales();
+                    txbproducto.Text = "";
+                    txbproducto.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("El producto no tiene stock disponible.", "Sin Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    
                 }
             }
-
-            // --- CAMPOS DE TEXTO MODERNOS ---
-            var textboxes = new[] { txbfecha, txbcajero, txbcliente, txbcedula, txbproducto };
-            foreach (var txt in textboxes)
+            else
             {
-                if (txt != null)
+                // AQUÍ ESTÁ EL AJUSTE CLAVE
+                DialogResult respuesta = MessageBox.Show(
+                    "El producto con código '" + codigoIngresado + "' no se encuentra. ¿Deseas abrir el buscador manual?",
+                    "Producto No Encontrado",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
                 {
-                    txt.ColorBorde = Color.FromArgb(226, 232, 240); // Borde gris súper claro
-                    txt.ColorBordeFocus = Color.FromArgb(147, 51, 234); // Focus morado (basado en la zona)
+                    txbproducto.Text = ""; // Borramos el código malo antes de abrir el modal
+                    AbrirModalBusquedaProducto(); // Llamamos al nuevo método directamente
                 }
-            }
-
-            if (cbvendedor != null)
-            {
-                cbvendedor.BorderColor = Color.FromArgb(226, 232, 240);
+                else
+                {
+                    txbproducto.Text = "";
+                }
             }
         }
 
-        #endregion
-
-        private void DGVStck_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        private void btnborrar_Click(object sender, EventArgs e)
         {
+            // 1. Verificamos si hay alguna fila actualmente seleccionada en el DataGridView
+            if (DGVStck.CurrentRow != null)
+            {
+                // Opcional pero recomendado: Preguntarle al cajero si de verdad quiere borrarlo
+                DialogResult respuesta = MessageBox.Show(
+                    "¿Estás seguro de que deseas eliminar este producto de la venta?",
+                    "Eliminar Producto",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
+                if (respuesta == DialogResult.Yes)
+                {
+                    
+                    DGVStck.Rows.Remove(DGVStck.CurrentRow);
+
+                    
+                    CalcularTotales();
+
+                    
+                    txbproducto.Focus();
+                }
+            }
+            else
+            {
+                // Si apretó el botón sin seleccionar nada, le avisamos
+                MessageBox.Show("Por favor, selecciona un producto de la lista para eliminarlo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnVenta_Click(object sender, EventArgs e)
+        {
+            // 1. VALIDACIONES DE INTERFAZ
+            if (DGVStck.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe agregar productos a la venta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtIdClienteOculto.Text))
+            {
+                MessageBox.Show("Debe seleccionar un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // --- NUEVA VALIDACIÓN: VENDEDOR ---
+            if (cbvendedor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un vendedor", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // 2. ABRIR MODAL DE COBRO
+            // Asumiendo que tienes textboxes o labels con los totales ya calculados en el formulario principal
+            using (var modal = new mdCobrar())
+            {
+                // Pasamos los totales al modal (ajusta el nombre de los textbox a los que uses en tu diseño)
+                modal._TotalPagarUsd = Convert.ToDecimal(tbpreciodolar.Text);
+                modal._TotalPagarBs = Convert.ToDecimal(tbpreciobs.Text); // Ajusta al textbox de Bolívares
+
+                var resultado = modal.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    // --- INICIO DEL PROCESO DE GUARDADO ---
+                    List<DetalleVenta> oListaDetalle = new List<DetalleVenta>();
+
+                    foreach (DataGridViewRow row in DGVStck.Rows)
+                    {
+                        oListaDetalle.Add(new DetalleVenta()
+                        {
+                            IdProducto = Convert.ToInt32(row.Cells["IdProducto"].Value),
+                            PrecioUnitario = Convert.ToDecimal(row.Cells["Precio"].Value),
+                            Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value)
+                        });
+                    }
+
+                    // B. Creamos el objeto principal Ventas
+                    Ventas oVenta = new Ventas()
+                    {
+                        IdUsuario = Inicio.usuarioActual.IdUsuario,
+
+                        // --- CAMBIO AQUÍ: Tomamos el ID del ComboBox ---
+                        IdVendedor = Convert.ToInt32(cbvendedor.SelectedValue),
+
+                        IdCliente = Convert.ToInt32(txtIdClienteOculto.Text),
+                        TipoDocumento = "Factura",
+                        NumeroDocumento = "V-" + DateTime.Now.ToString("mmss"),
+                        SubTotal = Convert.ToDecimal(tbpreciodolar.Text), // Total base
+                        Impuesto = 0.00m,
+                        MontoTotal = Convert.ToDecimal(tbpreciodolar.Text)
+                    };
+
+                    // C. Llamamos a la Capa de Negocio
+                    string mensaje = string.Empty;
+                    bool respuesta = new CN_Venta().Registrar(oVenta, oListaDetalle, out mensaje);
+
+                    if (respuesta)
+                    {
+                        MessageBox.Show("Venta Generada con Éxito", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarVenta();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error: " + mensaje, "Error al registrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        private void LimpiarVenta()
+        {
+            txbcedula.Clear();
+            txbcliente.Clear();
+            txtIdClienteOculto.Clear();
+            txbproducto.Clear();
+            DGVStck.Rows.Clear();
+
+            // Llamamos a tu método que calcula los totales para que vuelvan a cero
+            CalcularTotales();
+
+            txbcedula.Focus();
         }
     }
 }

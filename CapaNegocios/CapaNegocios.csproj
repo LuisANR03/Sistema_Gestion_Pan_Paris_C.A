@@ -91,11 +91,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CN_Categoria.cs" />
+    <Compile Include="CN_CierreCaja.cs" />
     <Compile Include="CN_cliente.cs" />
     <Compile Include="CN_permisos.cs" />
     <Compile Include="CN_Producto.cs" />
     <Compile Include="CN_rol.cs" />
     <Compile Include="CN_Usuario.cs" />
+    <Compile Include="CN_Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

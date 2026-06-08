@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Llamen_a_Dios 
+namespace Llamen_a_Dios
 {
     [DefaultEvent("OnSelectedIndexChanged")]
     public class ComboBoxModerno : UserControl
@@ -113,7 +113,7 @@ namespace Llamen_a_Dios
             set { borderRadius = value; this.Invalidate(); }
         }
 
-        // Propiedades del ComboBox interno (Fundamentales para la base de datos)
+        // --- PROPIEDADES DEL COMBOBOX INTERNO (Fundamentales para la base de datos) ---
         [Category("Datos")]
         public ComboBox.ObjectCollection Items => cmbList.Items;
         [Category("Datos")]
@@ -126,6 +126,11 @@ namespace Llamen_a_Dios
         public int SelectedIndex { get => cmbList.SelectedIndex; set => cmbList.SelectedIndex = value; }
         [Category("Datos")]
         public object SelectedItem { get => cmbList.SelectedItem; set => cmbList.SelectedItem = value; }
+
+        // ¡AQUÍ ESTÁ LA PROPIEDAD QUE FALTABA PARA QUE NO DE ERROR!
+        [Category("Datos")]
+        [Bindable(true)]
+        public object SelectedValue { get => cmbList.SelectedValue; set => cmbList.SelectedValue = value; }
 
         public override string Text
         {
@@ -161,7 +166,12 @@ namespace Llamen_a_Dios
         {
             if (OnSelectedIndexChanged != null)
                 OnSelectedIndexChanged.Invoke(sender, e);
-            lblText.Text = cmbList.Text;
+
+            // Mejora visual: solo actualiza si hay algo seleccionado
+            if (cmbList.SelectedIndex >= 0)
+                lblText.Text = cmbList.Text;
+            else
+                lblText.Text = string.Empty;
         }
 
         private void ComboBox_TextChanged(object sender, EventArgs e)

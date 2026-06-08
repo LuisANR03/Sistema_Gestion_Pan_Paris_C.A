@@ -19,7 +19,7 @@ namespace Llamen_a_Dios
 {
     public partial class FrmClientes : Form
     {
-        private List<Cliente> listaOriginalClientes;
+        public List<Cliente> listaOriginalClientes;
         public FrmClientes()
         {
             InitializeComponent();
@@ -78,7 +78,7 @@ namespace Llamen_a_Dios
             CBestado.SelectedIndex = 0;
 
             CargarClientes();
-            ConfigurarTablaModerna();
+           // ConfigurarTablaModerna();
             AplicarDiseñoModerno();
 
             foreach (DataGridViewColumn columna in DGVUs.Columns)
@@ -140,40 +140,51 @@ namespace Llamen_a_Dios
             btnBorrar.FlatAppearance.BorderSize = 0;
         }
 
-        private void ConfigurarTablaModerna()
+        /*private void ConfigurarTablaModerna()
         {
-            // Colores de la paleta de Usuarios
+            // Colores y diseño basados en tu nueva configuración (DGVStck)
             DGVUs.BackgroundColor = Color.White;
             DGVUs.BorderStyle = BorderStyle.None;
             DGVUs.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            DGVUs.GridColor = Color.FromArgb(240, 240, 240);
+            DGVUs.GridColor = Color.FromArgb(240, 240, 240); // Añadido para mantener la línea divisoria
             DGVUs.RowHeadersVisible = false;
             DGVUs.AllowUserToAddRows = false;
+            DGVUs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DGVUs.MultiSelect = false;
 
-            // Cabecera estilizada (Gris muy claro)
+            // Cabecera estilizada
             DGVUs.EnableHeadersVisualStyles = false;
             DGVUs.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            DGVUs.ColumnHeadersHeight = 45;
-            DGVUs.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(249, 250, 251);
-            DGVUs.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(107, 114, 128);
+            DGVUs.ColumnHeadersHeight = 40;
+
+            Color colorCabecera = Color.FromArgb(245, 247, 250);
+            DGVUs.ColumnHeadersDefaultCellStyle.BackColor = colorCabecera;
+            DGVUs.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(71, 85, 105);
             DGVUs.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F);
+            DGVUs.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            // Filas (Celdas blancas y selección azul pálido)
+            // Solución al cuadro azul en la esquina superior izquierda
+            DGVUs.TopLeftHeaderCell.Style.BackColor = colorCabecera;
+            DGVUs.ColumnHeadersDefaultCellStyle.SelectionBackColor = colorCabecera;
+            DGVUs.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Empty;
+
+            // Filas
             DGVUs.DefaultCellStyle.BackColor = Color.White;
-            DGVUs.DefaultCellStyle.SelectionBackColor = Color.FromArgb(242, 245, 255);
-            DGVUs.DefaultCellStyle.SelectionForeColor = Color.FromArgb(21, 52, 168);
+            DGVUs.DefaultCellStyle.ForeColor = Color.FromArgb(30, 41, 59);
+            DGVUs.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 242, 255); // Resaltado azul suave
+            DGVUs.DefaultCellStyle.SelectionForeColor = Color.FromArgb(37, 99, 235);
             DGVUs.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
-            DGVUs.RowTemplate.Height = 45;
-
+            DGVUs.RowTemplate.Height = 40;
             DGVUs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Alineación de la tabla en el formulario
+            // Alineación y tamaño de la tabla en tu formulario (MANTENIDO)
             int margen = 40;
             int panelIzquierdoAncho = 320;
             DGVUs.Location = new Point(panelIzquierdoAncho + margen, DGVUs.Location.Y);
             DGVUs.Width = this.ClientSize.Width - (panelIzquierdoAncho + (margen * 2));
             DGVUs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
+        */
         private void DGVUs_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // 1. Verifica que no sea la fila de cabecera
@@ -217,11 +228,10 @@ namespace Llamen_a_Dios
 
         private void DGVUs_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex < 0)
-                return;
+            if (e.RowIndex < 0) return;
 
             // Reemplazamos la imagen gigante por un icono sutil de texto (lapicito)
-            if (e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0) // Si tu botón está en otra columna, cambia el 0
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
 
@@ -230,7 +240,7 @@ namespace Llamen_a_Dios
                 TextRenderer.DrawText(e.Graphics, textoIcono,
                     new Font("Segoe UI", 12F, FontStyle.Regular),
                     e.CellBounds,
-                    Color.FromArgb(21, 52, 168),
+                    Color.FromArgb(37, 99, 235), // <--- NUEVO COLOR AZUL PARA EL LÁPIZ
                     TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
 
                 e.Handled = true;

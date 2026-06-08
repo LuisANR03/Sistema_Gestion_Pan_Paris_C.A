@@ -244,7 +244,52 @@ namespace Dato
             }
             return resultado;
         }
+        // --- MÉTODO NUEVO: LISTAR SOLO VENDEDORES ---
+        public List<Usuario> ListarVendedores()
+        {
+            List<Usuario> lista = new List<Usuario>();
 
+            using (MySqlConnection oconexion = Conexion.obtenerConexion())
+            {
+                try
+                {
+                    // Consulta filtrada: Solo usuarios activos (estado = 1) y con Rol 'Vendedor'
+                    string query = "SELECT u.idusuario, u.cedula, u.Nombre, u.correo, u.estado, r.IdRol, r.Descripcion as RolDescripcion " +
+                                   "FROM usuario u " +
+                                   "INNER JOIN rol r ON u.idrol = r.IdRol " +
+                                   "WHERE r.Descripcion = 'Vendedor' AND u.estado = 1";
+
+                    MySqlCommand cmd = new MySqlCommand(query, oconexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Usuario()
+                            {
+                                IdUsuario = Convert.ToInt32(reader["idusuario"]),
+                                Cedula = reader["cedula"].ToString(),
+                                Nombre = reader["Nombre"].ToString(),
+                                Correo = reader["correo"].ToString(),
+                                Estado = reader["estado"] != DBNull.Value ? Convert.ToBoolean(reader["estado"]) : false,
+                                oRol = new Rol()
+                                {
+                                    IdRol = Convert.ToInt32(reader["IdRol"]),
+                                    Descripcion = reader["RolDescripcion"].ToString()
+                                }
+                            });
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al listar vendedores: " + ex.Message);
+                    lista = new List<Usuario>();
+                }
+            }
+            return lista;
+        }
 
     }
 }

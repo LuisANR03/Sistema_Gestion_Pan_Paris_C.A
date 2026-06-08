@@ -8,19 +8,19 @@ namespace CapaNegocios
     {
         private CD_Usuario objetoCD_Usuario = new CD_Usuario();
 
-        
+
         public List<Usuario> Listar()
         {
             return objetoCD_Usuario.Listar();
         }
         //Llama a la capa de datos para validar las credenciales de un usuario.
-        
+
         // <param name="cedula">Cédula del usuario.</param>
         // <param name="clave">Clave del usuario.</param>
         // <returns>Devuelve el objeto Usuario si es válido, de lo contrario devuelve null.</returns>
         public Usuario Loguear(string cedula, string clave)
         {
-            
+
             //no permite que los campos estén vacíos antes de consultar la BDD.
             if (string.IsNullOrEmpty(cedula) || string.IsNullOrEmpty(clave))
             {
@@ -54,7 +54,7 @@ namespace CapaNegocios
                 return 0;
             }
 
-            
+
             return objetoCD_Usuario.Registrar(obj, out Mensaje);
         }
 
@@ -77,7 +77,7 @@ namespace CapaNegocios
                 return false;
             }
 
-           
+
             return objetoCD_Usuario.Editar(obj, out Mensaje);
         }
 
@@ -90,7 +90,7 @@ namespace CapaNegocios
                 return false;
             }
 
-            
+
             return objetoCD_Usuario.CambiarClave(idusuario, nuevaclave, out Mensaje);
         }
         public bool Eliminar(int idusuario, out string Mensaje)
@@ -104,8 +104,15 @@ namespace CapaNegocios
                 return false;
             }
 
-            
+
             return objetoCD_Usuario.Eliminar(idusuario, out Mensaje);
+        }
+    
+
+    public List<Usuario> ListarVendedores()
+        {
+            // Llama a un método específico en la capa de datos que filtra por rol
+            return objetoCD_Usuario.ListarVendedores();
         }
     }
 }

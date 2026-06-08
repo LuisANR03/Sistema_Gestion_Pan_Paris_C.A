@@ -15,34 +15,43 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.PanelSidebar = new System.Windows.Forms.Panel();
+            this.btnAcerca = new FontAwesome.Sharp.IconButton();
             this.PanelSubmenuStock = new System.Windows.Forms.Panel();
             this.submenucategorias = new System.Windows.Forms.Button();
             this.submenuinv = new System.Windows.Forms.Button();
+            this.btnStock = new FontAwesome.Sharp.IconButton();
+
+            // Inicialización de los nuevos componentes de Informes
+            this.PanelSubmenuInformes = new System.Windows.Forms.Panel();
+            this.submenureporteventas = new System.Windows.Forms.Button();
+            this.submenucomisiones = new System.Windows.Forms.Button();
+            this.submenucierrecaja = new System.Windows.Forms.Button();
+
+            this.btnInformes = new FontAwesome.Sharp.IconButton();
+            this.btnClientes = new FontAwesome.Sharp.IconButton();
             this.PanelSubmenuVentas = new System.Windows.Forms.Panel();
             this.submenudetalleventa = new System.Windows.Forms.Button();
             this.submenuregistrarventa = new System.Windows.Forms.Button();
+            this.btnVentas = new FontAwesome.Sharp.IconButton();
+            this.btnUsuarios = new FontAwesome.Sharp.IconButton();
             this.PanelLogo = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Textotitulo = new System.Windows.Forms.Label();
+            this.btnCerrarSesion = new FontAwesome.Sharp.IconButton();
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.lblHora = new System.Windows.Forms.Label();
             this.lblnombreuser = new System.Windows.Forms.Label();
             this.labeluser = new System.Windows.Forms.Label();
             this.Contenedor = new System.Windows.Forms.Panel();
             this.timerHora = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnAcerca = new FontAwesome.Sharp.IconButton();
-            this.btnStock = new FontAwesome.Sharp.IconButton();
-            this.btnInformes = new FontAwesome.Sharp.IconButton();
-            this.btnClientes = new FontAwesome.Sharp.IconButton();
-            this.btnVentas = new FontAwesome.Sharp.IconButton();
-            this.btnUsuarios = new FontAwesome.Sharp.IconButton();
-            this.btnCerrarSesion = new FontAwesome.Sharp.IconButton();
+
             this.PanelSidebar.SuspendLayout();
             this.PanelSubmenuStock.SuspendLayout();
+            this.PanelSubmenuInformes.SuspendLayout(); // Soporte de diseño para informes
             this.PanelSubmenuVentas.SuspendLayout();
             this.PanelLogo.SuspendLayout();
-            this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.PanelHeader.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelSidebar
@@ -52,6 +61,7 @@
             this.PanelSidebar.Controls.Add(this.btnAcerca);
             this.PanelSidebar.Controls.Add(this.PanelSubmenuStock);
             this.PanelSidebar.Controls.Add(this.btnStock);
+            this.PanelSidebar.Controls.Add(this.PanelSubmenuInformes); // Posicionado exactamente debajo de su botón principal
             this.PanelSidebar.Controls.Add(this.btnInformes);
             this.PanelSidebar.Controls.Add(this.btnClientes);
             this.PanelSidebar.Controls.Add(this.PanelSubmenuVentas);
@@ -66,13 +76,37 @@
             this.PanelSidebar.Size = new System.Drawing.Size(307, 1200);
             this.PanelSidebar.TabIndex = 0;
             // 
+            // btnAcerca
+            // 
+            this.btnAcerca.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAcerca.FlatAppearance.BorderSize = 0;
+            this.btnAcerca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAcerca.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnAcerca.ForeColor = System.Drawing.Color.White;
+            this.btnAcerca.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
+            this.btnAcerca.IconColor = System.Drawing.Color.White;
+            this.btnAcerca.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAcerca.IconSize = 32;
+            this.btnAcerca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAcerca.Location = new System.Drawing.Point(0, 580);
+            this.btnAcerca.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAcerca.Name = "btnAcerca";
+            this.btnAcerca.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnAcerca.Size = new System.Drawing.Size(307, 62);
+            this.btnAcerca.TabIndex = 0;
+            this.btnAcerca.Text = "  Acerca de";
+            this.btnAcerca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAcerca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAcerca.UseVisualStyleBackColor = true;
+            this.btnAcerca.Click += new System.EventHandler(this.MenuAcerca_Click);
+            // 
             // PanelSubmenuStock
             // 
             this.PanelSubmenuStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.PanelSubmenuStock.Controls.Add(this.submenucategorias);
             this.PanelSubmenuStock.Controls.Add(this.submenuinv);
             this.PanelSubmenuStock.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSubmenuStock.Location = new System.Drawing.Point(0, 489);
+            this.PanelSubmenuStock.Location = new System.Drawing.Point(0, 482);
             this.PanelSubmenuStock.Margin = new System.Windows.Forms.Padding(4);
             this.PanelSubmenuStock.Name = "PanelSubmenuStock";
             this.PanelSubmenuStock.Size = new System.Drawing.Size(307, 98);
@@ -115,13 +149,153 @@
             this.submenuinv.UseVisualStyleBackColor = true;
             this.submenuinv.Click += new System.EventHandler(this.submenuinv_Click);
             // 
+            // btnStock
+            // 
+            this.btnStock.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStock.FlatAppearance.BorderSize = 0;
+            this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStock.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnStock.ForeColor = System.Drawing.Color.White;
+            this.btnStock.IconChar = FontAwesome.Sharp.IconChar.BoxOpen;
+            this.btnStock.IconColor = System.Drawing.Color.White;
+            this.btnStock.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnStock.IconSize = 32;
+            this.btnStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStock.Location = new System.Drawing.Point(0, 420);
+            this.btnStock.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStock.Name = "btnStock";
+            this.btnStock.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnStock.Size = new System.Drawing.Size(307, 62);
+            this.btnStock.TabIndex = 9;
+            this.btnStock.Text = "  Stock";
+            this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStock.UseVisualStyleBackColor = true;
+            this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
+            // 
+            // PanelSubmenuInformes
+            // 
+            this.PanelSubmenuInformes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.PanelSubmenuInformes.Controls.Add(this.submenureporteventas);
+            this.PanelSubmenuInformes.Controls.Add(this.submenucomisiones);
+            this.PanelSubmenuInformes.Controls.Add(this.submenucierrecaja);
+            this.PanelSubmenuInformes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelSubmenuInformes.Location = new System.Drawing.Point(0, 420);
+            this.PanelSubmenuInformes.Margin = new System.Windows.Forms.Padding(4);
+            this.PanelSubmenuInformes.Name = "PanelSubmenuInformes";
+            this.PanelSubmenuInformes.Size = new System.Drawing.Size(307, 147);
+            this.PanelSubmenuInformes.TabIndex = 15;
+            this.PanelSubmenuInformes.Visible = false;
+            // 
+            // submenureporteventas
+            // 
+            this.submenureporteventas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.submenureporteventas.FlatAppearance.BorderSize = 0;
+            this.submenureporteventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submenureporteventas.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.submenureporteventas.ForeColor = System.Drawing.Color.LightGray;
+            this.submenureporteventas.Location = new System.Drawing.Point(0, 98);
+            this.submenureporteventas.Margin = new System.Windows.Forms.Padding(4);
+            this.submenureporteventas.Name = "submenureporteventas";
+            this.submenureporteventas.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.submenureporteventas.Size = new System.Drawing.Size(307, 49);
+            this.submenureporteventas.TabIndex = 2;
+            this.submenureporteventas.Text = "Reporte de Ventas";
+            this.submenureporteventas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submenureporteventas.UseVisualStyleBackColor = true;
+            this.submenureporteventas.Click += new System.EventHandler(this.submenureporteventas_Click);
+            // 
+            // submenucomisiones
+            // 
+            this.submenucomisiones.Dock = System.Windows.Forms.DockStyle.Top;
+            this.submenucomisiones.FlatAppearance.BorderSize = 0;
+            this.submenucomisiones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submenucomisiones.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.submenucomisiones.ForeColor = System.Drawing.Color.LightGray;
+            this.submenucomisiones.Location = new System.Drawing.Point(0, 49);
+            this.submenucomisiones.Margin = new System.Windows.Forms.Padding(4);
+            this.submenucomisiones.Name = "submenucomisiones";
+            this.submenucomisiones.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.submenucomisiones.Size = new System.Drawing.Size(307, 49);
+            this.submenucomisiones.TabIndex = 1;
+            this.submenucomisiones.Text = "Comisiones";
+            this.submenucomisiones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submenucomisiones.UseVisualStyleBackColor = true;
+            this.submenucomisiones.Click += new System.EventHandler(this.submenucomisiones_Click);
+            // 
+            // submenucierrecaja
+            // 
+            this.submenucierrecaja.Dock = System.Windows.Forms.DockStyle.Top;
+            this.submenucierrecaja.FlatAppearance.BorderSize = 0;
+            this.submenucierrecaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submenucierrecaja.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.submenucierrecaja.ForeColor = System.Drawing.Color.LightGray;
+            this.submenucierrecaja.Location = new System.Drawing.Point(0, 0);
+            this.submenucierrecaja.Margin = new System.Windows.Forms.Padding(4);
+            this.submenucierrecaja.Name = "submenucierrecaja";
+            this.submenucierrecaja.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.submenucierrecaja.Size = new System.Drawing.Size(307, 49);
+            this.submenucierrecaja.TabIndex = 0;
+            this.submenucierrecaja.Text = "Cierre de Caja";
+            this.submenucierrecaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submenucierrecaja.UseVisualStyleBackColor = true;
+            this.submenucierrecaja.Click += new System.EventHandler(this.submenucierrecaja_Click);
+            // 
+            // btnInformes
+            // 
+            this.btnInformes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnInformes.FlatAppearance.BorderSize = 0;
+            this.btnInformes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInformes.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnInformes.ForeColor = System.Drawing.Color.White;
+            this.btnInformes.IconChar = FontAwesome.Sharp.IconChar.ChartBar;
+            this.btnInformes.IconColor = System.Drawing.Color.White;
+            this.btnInformes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInformes.IconSize = 32;
+            this.btnInformes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInformes.Location = new System.Drawing.Point(0, 358);
+            this.btnInformes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnInformes.Name = "btnInformes";
+            this.btnInformes.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnInformes.Size = new System.Drawing.Size(307, 62);
+            this.btnInformes.TabIndex = 10;
+            this.btnInformes.Text = "  Informes";
+            this.btnInformes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInformes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInformes.UseVisualStyleBackColor = true;
+            this.btnInformes.Click += new System.EventHandler(this.MenuInformes_Click);
+            // 
+            // btnClientes
+            // 
+            this.btnClientes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnClientes.FlatAppearance.BorderSize = 0;
+            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClientes.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnClientes.ForeColor = System.Drawing.Color.White;
+            this.btnClientes.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
+            this.btnClientes.IconColor = System.Drawing.Color.White;
+            this.btnClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClientes.IconSize = 32;
+            this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClientes.Location = new System.Drawing.Point(0, 296);
+            this.btnClientes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnClientes.Size = new System.Drawing.Size(307, 62);
+            this.btnClientes.TabIndex = 11;
+            this.btnClientes.Text = "  Clientes";
+            this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.Click += new System.EventHandler(this.MenuClient_Click);
+            // 
             // PanelSubmenuVentas
             // 
             this.PanelSubmenuVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.PanelSubmenuVentas.Controls.Add(this.submenudetalleventa);
             this.PanelSubmenuVentas.Controls.Add(this.submenuregistrarventa);
             this.PanelSubmenuVentas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSubmenuVentas.Location = new System.Drawing.Point(0, 205);
+            this.PanelSubmenuVentas.Location = new System.Drawing.Point(0, 198);
             this.PanelSubmenuVentas.Margin = new System.Windows.Forms.Padding(4);
             this.PanelSubmenuVentas.Name = "PanelSubmenuVentas";
             this.PanelSubmenuVentas.Size = new System.Drawing.Size(307, 98);
@@ -164,200 +338,6 @@
             this.submenuregistrarventa.UseVisualStyleBackColor = true;
             this.submenuregistrarventa.Click += new System.EventHandler(this.submenuregistrarventa_Click);
             // 
-            // PanelLogo
-            // 
-            this.PanelLogo.Controls.Add(this.pictureBox1);
-            this.PanelLogo.Controls.Add(this.Textotitulo);
-            this.PanelLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelLogo.Location = new System.Drawing.Point(0, 0);
-            this.PanelLogo.Margin = new System.Windows.Forms.Padding(4);
-            this.PanelLogo.Name = "PanelLogo";
-            this.PanelLogo.Size = new System.Drawing.Size(307, 81);
-            this.PanelLogo.TabIndex = 0;
-            // 
-            // Textotitulo
-            // 
-            this.Textotitulo.AutoSize = true;
-            this.Textotitulo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Textotitulo.ForeColor = System.Drawing.Color.White;
-            this.Textotitulo.Location = new System.Drawing.Point(10, 15);
-            this.Textotitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Textotitulo.Name = "Textotitulo";
-            this.Textotitulo.Size = new System.Drawing.Size(165, 41);
-            this.Textotitulo.TabIndex = 2;
-            this.Textotitulo.Text = "GD Tienda";
-            // 
-            // PanelHeader
-            // 
-            this.PanelHeader.BackColor = System.Drawing.Color.White;
-            this.PanelHeader.Controls.Add(this.lblHora);
-            this.PanelHeader.Controls.Add(this.lblnombreuser);
-            this.PanelHeader.Controls.Add(this.labeluser);
-            this.PanelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelHeader.Location = new System.Drawing.Point(307, 0);
-            this.PanelHeader.Margin = new System.Windows.Forms.Padding(4);
-            this.PanelHeader.Name = "PanelHeader";
-            this.PanelHeader.Size = new System.Drawing.Size(1613, 74);
-            this.PanelHeader.TabIndex = 1;
-            // 
-            // lblHora
-            // 
-            this.lblHora.AutoSize = true;
-            this.lblHora.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHora.Location = new System.Drawing.Point(75, 25);
-            this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(108, 23);
-            this.lblHora.TabIndex = 2;
-            this.lblHora.Text = "Cargando ...";
-            // 
-            // lblnombreuser
-            // 
-            this.lblnombreuser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblnombreuser.AutoSize = true;
-            this.lblnombreuser.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
-            this.lblnombreuser.ForeColor = System.Drawing.Color.Black;
-            this.lblnombreuser.Location = new System.Drawing.Point(1429, 27);
-            this.lblnombreuser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblnombreuser.Name = "lblnombreuser";
-            this.lblnombreuser.Size = new System.Drawing.Size(108, 23);
-            this.lblnombreuser.TabIndex = 0;
-            this.lblnombreuser.Text = "Cargando ...";
-            // 
-            // labeluser
-            // 
-            this.labeluser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labeluser.AutoSize = true;
-            this.labeluser.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.labeluser.ForeColor = System.Drawing.Color.Gray;
-            this.labeluser.Location = new System.Drawing.Point(1354, 27);
-            this.labeluser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labeluser.Name = "labeluser";
-            this.labeluser.Size = new System.Drawing.Size(72, 23);
-            this.labeluser.TabIndex = 1;
-            this.labeluser.Text = "Usuario:";
-            // 
-            // Contenedor
-            // 
-            this.Contenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.Contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Contenedor.Location = new System.Drawing.Point(307, 74);
-            this.Contenedor.Margin = new System.Windows.Forms.Padding(4);
-            this.Contenedor.Name = "Contenedor";
-            this.Contenedor.Size = new System.Drawing.Size(1613, 1126);
-            this.Contenedor.TabIndex = 2;
-            // 
-            // timerHora
-            // 
-            this.timerHora.Enabled = true;
-            this.timerHora.Interval = 1000;
-            this.timerHora.Tick += new System.EventHandler(this.timerHora_Tick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Llamen_a_Dios.Properties.Resources._299675261_457415886400056_1675879016386375382_n1;
-            this.pictureBox1.Location = new System.Drawing.Point(197, -8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(90, 98);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnAcerca
-            // 
-            this.btnAcerca.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAcerca.FlatAppearance.BorderSize = 0;
-            this.btnAcerca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAcerca.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnAcerca.ForeColor = System.Drawing.Color.White;
-            this.btnAcerca.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
-            this.btnAcerca.IconColor = System.Drawing.Color.White;
-            this.btnAcerca.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAcerca.IconSize = 32;
-            this.btnAcerca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAcerca.Location = new System.Drawing.Point(0, 587);
-            this.btnAcerca.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAcerca.Name = "btnAcerca";
-            this.btnAcerca.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
-            this.btnAcerca.Size = new System.Drawing.Size(307, 62);
-            this.btnAcerca.TabIndex = 0;
-            this.btnAcerca.Text = "  Acerca de";
-            this.btnAcerca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAcerca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAcerca.UseVisualStyleBackColor = true;
-            this.btnAcerca.Click += new System.EventHandler(this.MenuAcerca_Click);
-            // 
-            // btnStock
-            // 
-            this.btnStock.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnStock.FlatAppearance.BorderSize = 0;
-            this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStock.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnStock.ForeColor = System.Drawing.Color.White;
-            this.btnStock.IconChar = FontAwesome.Sharp.IconChar.BoxOpen;
-            this.btnStock.IconColor = System.Drawing.Color.White;
-            this.btnStock.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnStock.IconSize = 32;
-            this.btnStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStock.Location = new System.Drawing.Point(0, 427);
-            this.btnStock.Margin = new System.Windows.Forms.Padding(4);
-            this.btnStock.Name = "btnStock";
-            this.btnStock.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
-            this.btnStock.Size = new System.Drawing.Size(307, 62);
-            this.btnStock.TabIndex = 9;
-            this.btnStock.Text = "  Stock";
-            this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnStock.UseVisualStyleBackColor = true;
-            this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
-            // 
-            // btnInformes
-            // 
-            this.btnInformes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnInformes.FlatAppearance.BorderSize = 0;
-            this.btnInformes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInformes.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnInformes.ForeColor = System.Drawing.Color.White;
-            this.btnInformes.IconChar = FontAwesome.Sharp.IconChar.ChartBar;
-            this.btnInformes.IconColor = System.Drawing.Color.White;
-            this.btnInformes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnInformes.IconSize = 32;
-            this.btnInformes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInformes.Location = new System.Drawing.Point(0, 365);
-            this.btnInformes.Margin = new System.Windows.Forms.Padding(4);
-            this.btnInformes.Name = "btnInformes";
-            this.btnInformes.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
-            this.btnInformes.Size = new System.Drawing.Size(307, 62);
-            this.btnInformes.TabIndex = 10;
-            this.btnInformes.Text = "  Informes";
-            this.btnInformes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInformes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnInformes.UseVisualStyleBackColor = true;
-            this.btnInformes.Click += new System.EventHandler(this.MenuInformes_Click);
-            // 
-            // btnClientes
-            // 
-            this.btnClientes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnClientes.FlatAppearance.BorderSize = 0;
-            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClientes.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnClientes.ForeColor = System.Drawing.Color.White;
-            this.btnClientes.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
-            this.btnClientes.IconColor = System.Drawing.Color.White;
-            this.btnClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnClientes.IconSize = 32;
-            this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClientes.Location = new System.Drawing.Point(0, 303);
-            this.btnClientes.Margin = new System.Windows.Forms.Padding(4);
-            this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
-            this.btnClientes.Size = new System.Drawing.Size(307, 62);
-            this.btnClientes.TabIndex = 11;
-            this.btnClientes.Text = "  Clientes";
-            this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnClientes.UseVisualStyleBackColor = true;
-            this.btnClientes.Click += new System.EventHandler(this.MenuClient_Click);
-            // 
             // btnVentas
             // 
             this.btnVentas.Dock = System.Windows.Forms.DockStyle.Top;
@@ -370,7 +350,7 @@
             this.btnVentas.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVentas.IconSize = 32;
             this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVentas.Location = new System.Drawing.Point(0, 143);
+            this.btnVentas.Location = new System.Drawing.Point(0, 136);
             this.btnVentas.Margin = new System.Windows.Forms.Padding(4);
             this.btnVentas.Name = "btnVentas";
             this.btnVentas.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -394,7 +374,7 @@
             this.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUsuarios.IconSize = 32;
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsuarios.Location = new System.Drawing.Point(0, 81);
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 74);
             this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -405,6 +385,40 @@
             this.btnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUsuarios.UseVisualStyleBackColor = true;
             this.btnUsuarios.Click += new System.EventHandler(this.MenuUs_Click);
+            // 
+            // PanelLogo
+            // 
+            this.PanelLogo.BackColor = System.Drawing.Color.Black;
+            this.PanelLogo.Controls.Add(this.pictureBox1);
+            this.PanelLogo.Controls.Add(this.Textotitulo);
+            this.PanelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelLogo.Location = new System.Drawing.Point(0, 0);
+            this.PanelLogo.Margin = new System.Windows.Forms.Padding(4);
+            this.PanelLogo.Name = "PanelLogo";
+            this.PanelLogo.Size = new System.Drawing.Size(307, 74);
+            this.PanelLogo.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Llamen_a_Dios.Properties.Resources._299675261_457415886400056_1675879016386375382_n1;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(65, 56);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // Textotitulo
+            // 
+            this.Textotitulo.AutoSize = true;
+            this.Textotitulo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Textotitulo.ForeColor = System.Drawing.Color.White;
+            this.Textotitulo.Location = new System.Drawing.Point(84, 14);
+            this.Textotitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Textotitulo.Name = "Textotitulo";
+            this.Textotitulo.Size = new System.Drawing.Size(165, 41);
+            this.Textotitulo.TabIndex = 2;
+            this.Textotitulo.Text = "GD Tienda";
             // 
             // btnCerrarSesion
             // 
@@ -429,6 +443,75 @@
             this.btnCerrarSesion.UseVisualStyleBackColor = true;
             this.btnCerrarSesion.Click += new System.EventHandler(this.iconButton1_Click);
             // 
+            // PanelHeader
+            // 
+            this.PanelHeader.BackColor = System.Drawing.Color.Black;
+            this.PanelHeader.Controls.Add(this.lblHora);
+            this.PanelHeader.Controls.Add(this.lblnombreuser);
+            this.PanelHeader.Controls.Add(this.labeluser);
+            this.PanelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelHeader.Location = new System.Drawing.Point(307, 0);
+            this.PanelHeader.Margin = new System.Windows.Forms.Padding(4);
+            this.PanelHeader.Name = "PanelHeader";
+            this.PanelHeader.Size = new System.Drawing.Size(1613, 74);
+            this.PanelHeader.TabIndex = 1;
+            // 
+            // lblHora
+            // 
+            this.lblHora.AutoSize = true;
+            this.lblHora.BackColor = System.Drawing.Color.Black;
+            this.lblHora.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.ForeColor = System.Drawing.Color.White;
+            this.lblHora.Location = new System.Drawing.Point(75, 25);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(108, 23);
+            this.lblHora.TabIndex = 2;
+            this.lblHora.Text = "Cargando ...";
+            // 
+            // lblnombreuser
+            // 
+            this.lblnombreuser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblnombreuser.AutoSize = true;
+            this.lblnombreuser.BackColor = System.Drawing.Color.Black;
+            this.lblnombreuser.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblnombreuser.ForeColor = System.Drawing.Color.White;
+            this.lblnombreuser.Location = new System.Drawing.Point(1429, 27);
+            this.lblnombreuser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblnombreuser.Name = "lblnombreuser";
+            this.lblnombreuser.Size = new System.Drawing.Size(108, 23);
+            this.lblnombreuser.TabIndex = 0;
+            this.lblnombreuser.Text = "Cargando ...";
+            // 
+            // labeluser
+            // 
+            this.labeluser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labeluser.AutoSize = true;
+            this.labeluser.BackColor = System.Drawing.Color.Black;
+            this.labeluser.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.labeluser.ForeColor = System.Drawing.Color.White;
+            this.labeluser.Location = new System.Drawing.Point(1354, 27);
+            this.labeluser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labeluser.Name = "labeluser";
+            this.labeluser.Size = new System.Drawing.Size(72, 23);
+            this.labeluser.TabIndex = 1;
+            this.labeluser.Text = "Usuario:";
+            // 
+            // Contenedor
+            // 
+            this.Contenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.Contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Contenedor.Location = new System.Drawing.Point(307, 74);
+            this.Contenedor.Margin = new System.Windows.Forms.Padding(4);
+            this.Contenedor.Name = "Contenedor";
+            this.Contenedor.Size = new System.Drawing.Size(1613, 1126);
+            this.Contenedor.TabIndex = 2;
+            // 
+            // timerHora
+            // 
+            this.timerHora.Enabled = true;
+            this.timerHora.Interval = 1000;
+            this.timerHora.Tick += new System.EventHandler(this.timerHora_Tick);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -446,12 +529,13 @@
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.PanelSidebar.ResumeLayout(false);
             this.PanelSubmenuStock.ResumeLayout(false);
+            this.PanelSubmenuInformes.ResumeLayout(false); // Reseteo de layout informes
             this.PanelSubmenuVentas.ResumeLayout(false);
             this.PanelLogo.ResumeLayout(false);
             this.PanelLogo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -473,13 +557,20 @@
         private FontAwesome.Sharp.IconButton btnAcerca;
         private FontAwesome.Sharp.IconButton btnCerrarSesion;
 
-        // Nuevos Paneles y Botones para el Menú Acordeón
+        // Paneles y Botones para el Menú Acordeón
         private System.Windows.Forms.Panel PanelSubmenuVentas;
         private System.Windows.Forms.Button submenudetalleventa;
         private System.Windows.Forms.Button submenuregistrarventa;
         private System.Windows.Forms.Panel PanelSubmenuStock;
         private System.Windows.Forms.Button submenucategorias;
         private System.Windows.Forms.Button submenuinv;
+
+        // Declaraciones de las nuevas variables de Informes
+        private System.Windows.Forms.Panel PanelSubmenuInformes;
+        private System.Windows.Forms.Button submenucierrecaja;
+        private System.Windows.Forms.Button submenucomisiones;
+        private System.Windows.Forms.Button submenureporteventas;
+
         private System.Windows.Forms.Label lblHora;
         private System.Windows.Forms.Timer timerHora;
         private System.Windows.Forms.PictureBox pictureBox1;

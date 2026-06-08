@@ -30,7 +30,7 @@ namespace Llamen_a_Dios
 
         private void FormUsuarios_Load(object sender, EventArgs e)
         {
-            AplicarDiseñoModerno();
+            
 
             // Esto le pone el texto fantasma nativo de Windows al buscador
             SendMessage(TBBuscar.Handle, 0x1501, (IntPtr)1, "Buscar...");
@@ -54,8 +54,7 @@ namespace Llamen_a_Dios
 
             CargarUsuarios();
 
-            // Llamamos a configurar la tabla DESPUÉS de cargar los datos para que el auto-ajuste funcione perfecto
-            ConfigurarTablaModerna();
+            
 
             foreach (DataGridViewColumn columna in DGVUs.Columns)
             {
@@ -94,117 +93,9 @@ namespace Llamen_a_Dios
                 e.Graphics.DrawPath(pen, path);
             }
         }
-        private void AplicarDiseñoModerno()
-        {
-            // 1. Colores principales basados en tu imagen de referencia
-            Color azulOscuro = Color.FromArgb(21, 52, 168); // Azul del panel izquierdo
-            Color fondoClaro = Color.FromArgb(244, 246, 250); // Gris súper claro del fondo derecho
-            Color verdeBoton = Color.FromArgb(22, 163, 74); // Verde moderno
 
-            // 2. Fondos Generales
-            this.BackColor = fondoClaro;
-            
-            label1.Width = 320;
 
-            // 3. Textos del Panel Izquierdo
-            
 
-            Label[] labelsIzquierda = { txtCedul, lblnombre, lblcorreo, lblrol, lblContraseña, lblrepetir };
-            foreach (Label lbl in labelsIzquierda)
-            {
-                
-                lbl.ForeColor = Color.White;
-                lbl.Font = new Font("Segoe UI Semibold", 9.5F);
-            }
-
-            // --- ¡NUEVO! 4. Arreglar los títulos de la derecha (Lista de Usuarios, Buscar por) ---
-            // Busca en tu diseño cómo se llaman esos labels (aquí asumo que iteramos sobre los controles del form)
-            foreach (Control c in this.Controls)
-            {
-                // Si es un Label, está a la derecha (fuera del panel izquierdo) y no es el título principal
-                if (c is Label && c.Location.X > 320)
-                {
-                    
-                    
-
-                    
-                }
-            }
-
-            // --- ¡NUEVO! 5. Estilizar el Buscador ---
-           // CBFiltro.BackColor = Color.White;
-           // CBFiltro.Font = new Font("Segoe UI", 10F);
-
-           // TBBuscar.BorderStyle = BorderStyle.FixedSingle;
-           // TBBuscar.Font = new Font("Segoe UI", 10F);
-
-            // TBBuscar.Height = 35; // Descomenta si te deja ajustar la altura
-
-            // 6. Estilo de los Botones
-            BtnGuardar.BackColor = verdeBoton;
-            BtnGuardar.ForeColor = Color.White;
-            BtnGuardar.FlatStyle = FlatStyle.Flat;
-            BtnGuardar.FlatAppearance.BorderSize = 0;
-
-            Btlimpiar.BackColor = Color.White;
-            Btlimpiar.ForeColor = azulOscuro;
-            Btlimpiar.FlatStyle = FlatStyle.Flat;
-
-            btnBorrar.BackColor = Color.FromArgb(254, 242, 242);
-            btnBorrar.ForeColor = Color.FromArgb(220, 38, 38);
-            btnBorrar.FlatStyle = FlatStyle.Flat;
-            btnBorrar.FlatAppearance.BorderSize = 0;
-        }
-
-        private void ConfigurarTablaModerna()
-        {
-            // 1. Configuración general y fondo
-            DGVUs.BackgroundColor = Color.FromArgb(244, 246, 250); // El mismo gris claro del fondo derecho
-            DGVUs.BorderStyle = BorderStyle.None;
-            DGVUs.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal; // Solo líneas horizontales sutiles
-            DGVUs.GridColor = Color.FromArgb(230, 230, 230); // Color de las líneas separadoras
-            DGVUs.RowHeadersVisible = false; // Oculta la columna fea de la izquierda con la flechita
-            DGVUs.AllowUserToAddRows = false; // Quita la fila vacía del final
-
-            // 2. Estilo de la Cabecera (Títulos de las columnas)
-            DGVUs.EnableHeadersVisualStyles = false; // ¡Súper importante para que nos deje cambiar colores!
-            DGVUs.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            DGVUs.ColumnHeadersHeight = 45; // Cabecera más alta para que respire
-            DGVUs.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            DGVUs.ColumnHeadersDefaultCellStyle.ForeColor = Color.DimGray;
-            DGVUs.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            DGVUs.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.White; // Para que no cambie de color al hacer clic
-            DGVUs.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.DimGray;
-
-            // 3. Estilo de las Filas (Los datos)
-            DGVUs.DefaultCellStyle.BackColor = Color.White;
-            DGVUs.DefaultCellStyle.ForeColor = Color.FromArgb(64, 64, 64);
-            DGVUs.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
-            DGVUs.RowTemplate.Height = 45; // Filas más altas
-            DGVUs.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Selecciona toda la fila junta
-
-            // 4. Color al seleccionar una fila (El azul clarito moderno)
-            DGVUs.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 244, 255);
-            DGVUs.DefaultCellStyle.SelectionForeColor = Color.FromArgb(25, 66, 210);
-
-            // 5. Ajuste de ancho de columnas
-            DGVUs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            // 6. Ajustar el tamaño y centrado del DataGridView
-            // Dejamos un margen de 40 píxeles a cada lado (izquierdo y derecho del área blanca)
-            int margen = 40;
-            int panelIzquierdoAncho = 320; // El ancho de tu menú azul
-            int inicioX = panelIzquierdoAncho + margen;
-
-            // Calculamos el ancho ideal restando el panel izquierdo y los márgenes de ambos lados
-            int nuevoAncho = this.ClientSize.Width - inicioX - margen;
-
-            // Aplicamos la nueva posición y tamaño
-            DGVUs.Location = new Point(inicioX, DGVUs.Location.Y);
-            DGVUs.Width = nuevoAncho;
-
-            // Le ponemos anclajes para que si estiras o maximizas la ventana, la tabla se estire sola
-            DGVUs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        }
 
         private void CargarUsuarios()
         {
@@ -455,11 +346,7 @@ namespace Llamen_a_Dios
         {
             if (e.RowIndex < 0 || e.Value == null) return;
 
-            // Centrar el texto en todas las celdas (menos la del botón de edición)
-            if (e.ColumnIndex > 0)
-            {
-                e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            }
+            // BORRAMOS EL CÓDIGO QUE CENTRABA TODO PARA QUE RESPETE EL DISEÑO ORIGINAL
 
             // Usamos HeaderText (el título visible) en lugar de Name para no fallar
             string tituloColumna = DGVUs.Columns[e.ColumnIndex].HeaderText;
@@ -467,7 +354,7 @@ namespace Llamen_a_Dios
             // Colorear ESTADO
             if (tituloColumna == "Estado")
             {
-                e.CellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+                e.CellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
                 string estado = e.Value.ToString().Trim();
 
                 if (estado == "Activo")
@@ -479,7 +366,7 @@ namespace Llamen_a_Dios
             // Colorear ROL
             if (tituloColumna == "Rol")
             {
-                e.CellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+                e.CellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
                 string rol = e.Value.ToString().ToLower().Trim();
 
                 if (rol.Contains("administrador"))
@@ -489,7 +376,7 @@ namespace Llamen_a_Dios
                 else if (rol.Contains("cajero"))
                     e.CellStyle.ForeColor = Color.FromArgb(217, 119, 6); // Naranja/Dorado
             }
-        
+
         }
     }
 }
