@@ -56,7 +56,6 @@ namespace Llamen_a_Dios.Modales
                 string metodo = row.Cells[0].Value.ToString().ToLower();
 
                 // Si el método es de dólares, convertimos a Bs para sumar todo igual
-                // Asumo que tu botón de dólares dice "efectivo usd", "zelle", etc.
                 if (metodo.Contains("usd") || metodo.Contains("$") || metodo.Contains("zelle"))
                     totalPagadoEnBs += (monto * tasaActual);
                 else
@@ -97,7 +96,8 @@ namespace Llamen_a_Dios.Modales
                     // Solo añadimos si es la última fila editada para evitar bucles
                     if (e.RowIndex == DGV.Rows.Count - 1)
                     {
-                        DGV.Rows.Add("Punto de Venta", faltante.ToString("N2"));
+                        // CORRECCIÓN: Agregamos "BS" al final para que la nueva columna no quede vacía
+                        DGV.Rows.Add("Punto de Venta", faltante.ToString("N2"), "BS");
                         CalcularSaldos();
                     }
                 }
@@ -129,27 +129,33 @@ namespace Llamen_a_Dios.Modales
             {
                 DGV.CellValueChanged -= DGV_CellValueChanged; // Pausamos eventos
 
-                string metodoAnterior = DGV.CurrentRow.Cells[0].Value?.ToString() ?? "";
                 DGV.CurrentRow.Cells[0].Value = metodoPagoActual;
 
-                if (DGV.CurrentRow.Cells[1].Value != null)
+                if (DGV.CurrentRow.Cells[1].Value != null && DGV.CurrentRow.Cells[2].Value != null)
                 {
-                    decimal monto = Convert.ToDecimal(DGV.CurrentRow.Cells[1].Value);
+                    decimal montoActual = Convert.ToDecimal(DGV.CurrentRow.Cells[1].Value);
+                    string monedaActual = DGV.CurrentRow.Cells[2].Value.ToString();
                     decimal tasaActual = decimal.TryParse(txtTasaCambio.Text, out decimal t) ? t : tasaDolar;
-
                     string metodoActualMinuscula = metodoPagoActual.ToLower();
 
-                    // LÓGICA DE CONVERSIÓN INTELIGENTE
-                    // Si el nuevo método es Dólar y veníamos de Bolívares (monto grande)
-                    if ((metodoActualMinuscula.Contains("usd") || metodoActualMinuscula.Contains("$") || metodoActualMinuscula.Contains("zelle")) && monto > _TotalPagarUsd * 1.5m)
+                    // Identificamos si el NUEVO método es en Dólares
+                    bool nuevoMetodoEsUSD = metodoActualMinuscula.Contains("usd") ||
+                                            metodoActualMinuscula.Contains("$") ||
+                                            metodoActualMinuscula.Contains("zelle");
+
+                    // 1. Si estaba en BS y cambia a un método USD
+                    if (monedaActual == "BS" && nuevoMetodoEsUSD)
                     {
-                        DGV.CurrentRow.Cells[1].Value = (monto / tasaActual).ToString("N2");
+                        DGV.CurrentRow.Cells[1].Value = (montoActual / tasaActual).ToString("N2");
+                        DGV.CurrentRow.Cells[2].Value = "USD"; // Actualizamos la moneda de la fila
                     }
-                    // Si el nuevo método es Bolívares y veníamos de Dólar (monto pequeño)
-                    else if (!(metodoActualMinuscula.Contains("usd") || metodoActualMinuscula.Contains("$") || metodoActualMinuscula.Contains("zelle")) && monto <= _TotalPagarUsd * 1.1m)
+                    // 2. Si estaba en USD y cambia a un método BS (Punto, Pago Móvil, etc)
+                    else if (monedaActual == "USD" && !nuevoMetodoEsUSD)
                     {
-                        DGV.CurrentRow.Cells[1].Value = (monto * tasaActual).ToString("N2");
+                        DGV.CurrentRow.Cells[1].Value = (montoActual * tasaActual).ToString("N2");
+                        DGV.CurrentRow.Cells[2].Value = "BS"; // Actualizamos la moneda de la fila
                     }
+                    // Si cambia de BS a BS o de USD a USD, no hacemos nada con el monto.
                 }
 
                 CalcularSaldos();
@@ -169,11 +175,11 @@ namespace Llamen_a_Dios.Modales
             // Solo agregamos si todavía falta dinero
             if (Convert.ToDecimal(lblFaltanteBs.Text) > 0)
             {
-                // Agregamos la diferencia faltante en la nueva fila
-                DGV.Rows.Add(metodoPagoActual, lblFaltanteBs.Text);
+                // Agregamos la diferencia faltante en la nueva fila (por defecto asume que el faltante está en BS)
+                DGV.Rows.Add(metodoPagoActual, lblFaltanteBs.Text, "BS");
                 CalcularSaldos();
             }
-        }
+        } // CORRECCIÓN: Se eliminó la llave que sobraba aquí
 
         // ====================================================================
         // CUANDO EL CAJERO LE DA A IMPRIMIR/COBRAR

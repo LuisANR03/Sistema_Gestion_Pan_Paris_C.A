@@ -196,7 +196,7 @@ namespace Llamen_a_Dios
         {
             decimal totalDolar = 0;
             int totalItems = 0;
-            decimal tasaCambio = 505m; // Define aquí tu tasa de cambio actual del BCV
+            decimal tasaCambio = 36.50m; // Define aquí tu tasa de cambio actual del BCV
 
             foreach (DataGridViewRow row in DGVStck.Rows)
             {

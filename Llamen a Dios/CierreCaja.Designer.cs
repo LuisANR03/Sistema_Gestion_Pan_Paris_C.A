@@ -21,7 +21,6 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBoxModerno2 = new Llamen_a_Dios.GroupBoxModerno();
-            this.textBoxModerno1 = new TextBoxModerno();
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.txtcuadre = new TextBoxModerno();
             this.lblcuadre = new System.Windows.Forms.Label();
@@ -56,7 +55,6 @@
             this.panelModerno5 = new Llamen_a_Dios.PanelModerno();
             this.txtTotaldec = new TextBoxModerno();
             this.label20 = new System.Windows.Forms.Label();
-            this.lblResultado = new System.Windows.Forms.Label();
             this.labelObservaciones = new System.Windows.Forms.Label();
             this.grpSistema = new Llamen_a_Dios.GroupBoxModerno();
             this.panelModerno11 = new Llamen_a_Dios.PanelModerno();
@@ -154,12 +152,10 @@
             this.groupBoxModerno2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.groupBoxModerno2.BorderRadius = 15;
             this.groupBoxModerno2.BorderSize = 2;
-            this.groupBoxModerno2.Controls.Add(this.textBoxModerno1);
             this.groupBoxModerno2.Controls.Add(this.groupBoxModerno1);
             this.groupBoxModerno2.Controls.Add(this.panelModerno1);
             this.groupBoxModerno2.Controls.Add(this.btnProcesarCierre);
             this.groupBoxModerno2.Controls.Add(this.grpFisico);
-            this.groupBoxModerno2.Controls.Add(this.lblResultado);
             this.groupBoxModerno2.Controls.Add(this.labelObservaciones);
             this.groupBoxModerno2.Controls.Add(this.grpSistema);
             this.groupBoxModerno2.Location = new System.Drawing.Point(154, 43);
@@ -168,26 +164,6 @@
             this.groupBoxModerno2.Size = new System.Drawing.Size(1350, 1152);
             this.groupBoxModerno2.TabIndex = 100;
             this.groupBoxModerno2.TabStop = false;
-            // 
-            // textBoxModerno1
-            // 
-            this.textBoxModerno1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(249)))), ((int)(((byte)(194)))));
-            this.textBoxModerno1.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(223)))), ((int)(((byte)(32)))));
-            this.textBoxModerno1.ColorBordeFocus = System.Drawing.Color.CornflowerBlue;
-            this.textBoxModerno1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxModerno1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(35)))), ((int)(((byte)(0)))));
-            this.textBoxModerno1.GrosorBorde = 2;
-            this.textBoxModerno1.Location = new System.Drawing.Point(286, 1011);
-            this.textBoxModerno1.MaxLength = 32767;
-            this.textBoxModerno1.Name = "textBoxModerno1";
-            this.textBoxModerno1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.textBoxModerno1.PasswordChar = '\0';
-            this.textBoxModerno1.RadioBorde = 15;
-            this.textBoxModerno1.ReadOnly = false;
-            this.textBoxModerno1.Size = new System.Drawing.Size(95, 34);
-            this.textBoxModerno1.TabIndex = 101;
-            this.textBoxModerno1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.textBoxModerno1.UseSystemPasswordChar = false;
             // 
             // groupBoxModerno1
             // 
@@ -311,6 +287,7 @@
             this.btnProcesarCierre.Text = "Procesar Cierre de Caja";
             this.btnProcesarCierre.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProcesarCierre.UseVisualStyleBackColor = false;
+            this.btnProcesarCierre.Click += new System.EventHandler(this.btnProcesarCierre_Click);
             // 
             // grpFisico
             // 
@@ -377,6 +354,7 @@
             this.txtFisicoCashea.TabIndex = 101;
             this.txtFisicoCashea.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFisicoCashea.UseSystemPasswordChar = false;
+            this.txtFisicoCashea._TextChanged += new System.EventHandler(this.txtFisicoCashea__TextChanged);
             // 
             // panelModerno18
             // 
@@ -420,6 +398,7 @@
             this.txtFisicoZinly.TabIndex = 100;
             this.txtFisicoZinly.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFisicoZinly.UseSystemPasswordChar = false;
+            this.txtFisicoZinly._TextChanged += new System.EventHandler(this.txtFisicoZinly__TextChanged);
             // 
             // panelModerno17
             // 
@@ -463,6 +442,7 @@
             this.txtFisicoPuntoVenta.TabIndex = 99;
             this.txtFisicoPuntoVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFisicoPuntoVenta.UseSystemPasswordChar = false;
+            this.txtFisicoPuntoVenta._TextChanged += new System.EventHandler(this.txtFisicoPuntoVenta__TextChanged);
             // 
             // panelModerno16
             // 
@@ -506,6 +486,7 @@
             this.txtFisicoTransferencia.TabIndex = 98;
             this.txtFisicoTransferencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFisicoTransferencia.UseSystemPasswordChar = false;
+            this.txtFisicoTransferencia._TextChanged += new System.EventHandler(this.txtFisicoTransferencia__TextChanged);
             // 
             // panelModerno15
             // 
@@ -549,6 +530,7 @@
             this.txtFisicoPagoMovil.TabIndex = 97;
             this.txtFisicoPagoMovil.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFisicoPagoMovil.UseSystemPasswordChar = false;
+            this.txtFisicoPagoMovil._TextChanged += new System.EventHandler(this.txtFisicoPagoMovil__TextChanged);
             // 
             // panelModerno14
             // 
@@ -592,6 +574,7 @@
             this.txtFisicoUsd.TabIndex = 96;
             this.txtFisicoUsd.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFisicoUsd.UseSystemPasswordChar = false;
+            this.txtFisicoUsd._TextChanged += new System.EventHandler(this.txtFisicoUsd__TextChanged);
             // 
             // panelModerno12
             // 
@@ -625,6 +608,7 @@
             this.txtFisicoBs.TabIndex = 95;
             this.txtFisicoBs.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFisicoBs.UseSystemPasswordChar = false;
+            this.txtFisicoBs._TextChanged += new System.EventHandler(this.txtFisicoBs__TextChanged);
             // 
             // label1
             // 
@@ -690,18 +674,6 @@
             this.label20.Size = new System.Drawing.Size(64, 28);
             this.label20.TabIndex = 109;
             this.label20.Text = "Total:";
-            // 
-            // lblResultado
-            // 
-            this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResultado.ForeColor = System.Drawing.Color.Gray;
-            this.lblResultado.Location = new System.Drawing.Point(90, 1008);
-            this.lblResultado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(213, 37);
-            this.lblResultado.TabIndex = 1;
-            this.lblResultado.Text = "Estado General:";
-            this.lblResultado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelObservaciones
             // 
@@ -1163,7 +1135,6 @@
         private System.Windows.Forms.Label label1, label2, label3, label4, label6, label7, label5;
         private System.Windows.Forms.Label labelObservaciones;
         private System.Windows.Forms.TextBox txtObservaciones;
-        private System.Windows.Forms.Label lblResultado;
         private PanelModerno panelModerno2;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.Label label15;
@@ -1192,7 +1163,6 @@
         private System.Windows.Forms.Label TotalVendido;
         private GroupBoxModerno groupBoxModerno2;
         private GroupBoxModerno groupBoxModerno1;
-        private TextBoxModerno textBoxModerno1;
         private System.Windows.Forms.Label lblcuadre;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;

@@ -41,6 +41,9 @@
             this.txtPagaCon = new TextBoxModerno();
             this.Total = new Llamen_a_Dios.GroupBoxModerno();
             this.DGV = new System.Windows.Forms.DataGridView();
+            this.Metodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
             this.Cancelar = new BotonModerno();
             this.Imprimir = new BotonModerno();
@@ -51,9 +54,6 @@
             this.btnpm = new BotonModerno();
             this.txtTotal = new TextBoxModerno();
             this.txtImpuesto = new TextBoxModerno();
-            this.Metodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             this.panelModerno1.SuspendLayout();
@@ -74,6 +74,7 @@
             this.lblFaltanteBs.Size = new System.Drawing.Size(65, 28);
             this.lblFaltanteBs.TabIndex = 16;
             this.lblFaltanteBs.Text = "label1";
+            this.lblFaltanteBs.Visible = false;
             // 
             // lblVueltoBs
             // 
@@ -83,6 +84,7 @@
             this.lblVueltoBs.Size = new System.Drawing.Size(65, 28);
             this.lblVueltoBs.TabIndex = 17;
             this.lblVueltoBs.Text = "label2";
+            this.lblVueltoBs.Visible = false;
             // 
             // botonModerno2
             // 
@@ -155,6 +157,7 @@
             this.txtTasaCambio.TabIndex = 18;
             this.txtTasaCambio.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtTasaCambio.UseSystemPasswordChar = false;
+            this.txtTasaCambio.Visible = false;
             // 
             // txtTotalUsdReferencia
             // 
@@ -276,6 +279,28 @@
             this.DGV.Size = new System.Drawing.Size(1402, 312);
             this.DGV.TabIndex = 0;
             this.DGV.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CellValueChanged);
+            // 
+            // Metodo
+            // 
+            this.Metodo.FillWeight = 11.19131F;
+            this.Metodo.HeaderText = "Metodo";
+            this.Metodo.MinimumWidth = 6;
+            this.Metodo.Name = "Metodo";
+            // 
+            // Pago
+            // 
+            this.Pago.FillWeight = 10F;
+            this.Pago.HeaderText = "Total";
+            this.Pago.MaxInputLength = 5000;
+            this.Pago.MinimumWidth = 6;
+            this.Pago.Name = "Pago";
+            // 
+            // Moneda
+            // 
+            this.Moneda.HeaderText = "Moneda";
+            this.Moneda.MinimumWidth = 6;
+            this.Moneda.Name = "Moneda";
+            this.Moneda.Visible = false;
             // 
             // panelModerno1
             // 
@@ -522,7 +547,7 @@
             this.txtImpuesto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtImpuesto.ForeColor = System.Drawing.Color.Green;
             this.txtImpuesto.GrosorBorde = 2;
-            this.txtImpuesto.Location = new System.Drawing.Point(78, 150);
+            this.txtImpuesto.Location = new System.Drawing.Point(78, 147);
             this.txtImpuesto.MaxLength = 32767;
             this.txtImpuesto.Name = "txtImpuesto";
             this.txtImpuesto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -533,28 +558,6 @@
             this.txtImpuesto.TabIndex = 11;
             this.txtImpuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtImpuesto.UseSystemPasswordChar = false;
-            // 
-            // Metodo
-            // 
-            this.Metodo.FillWeight = 11.19131F;
-            this.Metodo.HeaderText = "Metodo";
-            this.Metodo.MinimumWidth = 6;
-            this.Metodo.Name = "Metodo";
-            // 
-            // Pago
-            // 
-            this.Pago.FillWeight = 10F;
-            this.Pago.HeaderText = "Total";
-            this.Pago.MaxInputLength = 5000;
-            this.Pago.MinimumWidth = 6;
-            this.Pago.Name = "Pago";
-            // 
-            // Moneda
-            // 
-            this.Moneda.HeaderText = "Moneda";
-            this.Moneda.MinimumWidth = 6;
-            this.Moneda.Name = "Moneda";
-            this.Moneda.Visible = false;
             // 
             // mdCobrar
             // 
