@@ -15,18 +15,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.PanelSidebar = new System.Windows.Forms.Panel();
+            this.Btnasistente = new FontAwesome.Sharp.IconButton();
             this.btnAcerca = new FontAwesome.Sharp.IconButton();
             this.PanelSubmenuStock = new System.Windows.Forms.Panel();
-            this.submenucategorias = new System.Windows.Forms.Button();
             this.submenuinv = new System.Windows.Forms.Button();
             this.btnStock = new FontAwesome.Sharp.IconButton();
-
-            // Inicialización de los nuevos componentes de Informes
             this.PanelSubmenuInformes = new System.Windows.Forms.Panel();
             this.submenureporteventas = new System.Windows.Forms.Button();
             this.submenucomisiones = new System.Windows.Forms.Button();
             this.submenucierrecaja = new System.Windows.Forms.Button();
-
             this.btnInformes = new FontAwesome.Sharp.IconButton();
             this.btnClientes = new FontAwesome.Sharp.IconButton();
             this.PanelSubmenuVentas = new System.Windows.Forms.Panel();
@@ -44,10 +41,9 @@
             this.labeluser = new System.Windows.Forms.Label();
             this.Contenedor = new System.Windows.Forms.Panel();
             this.timerHora = new System.Windows.Forms.Timer(this.components);
-
             this.PanelSidebar.SuspendLayout();
             this.PanelSubmenuStock.SuspendLayout();
-            this.PanelSubmenuInformes.SuspendLayout(); // Soporte de diseño para informes
+            this.PanelSubmenuInformes.SuspendLayout();
             this.PanelSubmenuVentas.SuspendLayout();
             this.PanelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -57,11 +53,12 @@
             // PanelSidebar
             // 
             this.PanelSidebar.AutoScroll = true;
-            this.PanelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(78)))), ((int)(((byte)(216)))));
+            this.PanelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.PanelSidebar.Controls.Add(this.Btnasistente);
             this.PanelSidebar.Controls.Add(this.btnAcerca);
             this.PanelSidebar.Controls.Add(this.PanelSubmenuStock);
             this.PanelSidebar.Controls.Add(this.btnStock);
-            this.PanelSidebar.Controls.Add(this.PanelSubmenuInformes); // Posicionado exactamente debajo de su botón principal
+            this.PanelSidebar.Controls.Add(this.PanelSubmenuInformes);
             this.PanelSidebar.Controls.Add(this.btnInformes);
             this.PanelSidebar.Controls.Add(this.btnClientes);
             this.PanelSidebar.Controls.Add(this.PanelSubmenuVentas);
@@ -76,8 +73,34 @@
             this.PanelSidebar.Size = new System.Drawing.Size(307, 1200);
             this.PanelSidebar.TabIndex = 0;
             // 
+            // Btnasistente
+            // 
+            this.Btnasistente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.Btnasistente.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Btnasistente.FlatAppearance.BorderSize = 0;
+            this.Btnasistente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btnasistente.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.Btnasistente.ForeColor = System.Drawing.Color.White;
+            this.Btnasistente.IconChar = FontAwesome.Sharp.IconChar.Brain;
+            this.Btnasistente.IconColor = System.Drawing.Color.White;
+            this.Btnasistente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Btnasistente.IconSize = 32;
+            this.Btnasistente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btnasistente.Location = new System.Drawing.Point(0, 742);
+            this.Btnasistente.Margin = new System.Windows.Forms.Padding(4);
+            this.Btnasistente.Name = "Btnasistente";
+            this.Btnasistente.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.Btnasistente.Size = new System.Drawing.Size(307, 62);
+            this.Btnasistente.TabIndex = 16;
+            this.Btnasistente.Text = "  Asistente";
+            this.Btnasistente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btnasistente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Btnasistente.UseVisualStyleBackColor = false;
+            this.Btnasistente.Click += new System.EventHandler(this.Btnasistente_Click);
+            // 
             // btnAcerca
             // 
+            this.btnAcerca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.btnAcerca.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAcerca.FlatAppearance.BorderSize = 0;
             this.btnAcerca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -88,7 +111,7 @@
             this.btnAcerca.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAcerca.IconSize = 32;
             this.btnAcerca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAcerca.Location = new System.Drawing.Point(0, 580);
+            this.btnAcerca.Location = new System.Drawing.Point(0, 680);
             this.btnAcerca.Margin = new System.Windows.Forms.Padding(4);
             this.btnAcerca.Name = "btnAcerca";
             this.btnAcerca.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -97,42 +120,24 @@
             this.btnAcerca.Text = "  Acerca de";
             this.btnAcerca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAcerca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAcerca.UseVisualStyleBackColor = true;
+            this.btnAcerca.UseVisualStyleBackColor = false;
             this.btnAcerca.Click += new System.EventHandler(this.MenuAcerca_Click);
             // 
             // PanelSubmenuStock
             // 
             this.PanelSubmenuStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.PanelSubmenuStock.Controls.Add(this.submenucategorias);
             this.PanelSubmenuStock.Controls.Add(this.submenuinv);
             this.PanelSubmenuStock.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSubmenuStock.Location = new System.Drawing.Point(0, 482);
+            this.PanelSubmenuStock.Location = new System.Drawing.Point(0, 629);
             this.PanelSubmenuStock.Margin = new System.Windows.Forms.Padding(4);
             this.PanelSubmenuStock.Name = "PanelSubmenuStock";
-            this.PanelSubmenuStock.Size = new System.Drawing.Size(307, 98);
+            this.PanelSubmenuStock.Size = new System.Drawing.Size(307, 51);
             this.PanelSubmenuStock.TabIndex = 8;
             this.PanelSubmenuStock.Visible = false;
             // 
-            // submenucategorias
-            // 
-            this.submenucategorias.Dock = System.Windows.Forms.DockStyle.Top;
-            this.submenucategorias.FlatAppearance.BorderSize = 0;
-            this.submenucategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.submenucategorias.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.submenucategorias.ForeColor = System.Drawing.Color.LightGray;
-            this.submenucategorias.Location = new System.Drawing.Point(0, 49);
-            this.submenucategorias.Margin = new System.Windows.Forms.Padding(4);
-            this.submenucategorias.Name = "submenucategorias";
-            this.submenucategorias.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
-            this.submenucategorias.Size = new System.Drawing.Size(307, 49);
-            this.submenucategorias.TabIndex = 0;
-            this.submenucategorias.Text = "Categorías";
-            this.submenucategorias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.submenucategorias.UseVisualStyleBackColor = true;
-            this.submenucategorias.Click += new System.EventHandler(this.submenucategorias_Click);
-            // 
             // submenuinv
             // 
+            this.submenuinv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.submenuinv.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenuinv.FlatAppearance.BorderSize = 0;
             this.submenuinv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -146,11 +151,12 @@
             this.submenuinv.TabIndex = 1;
             this.submenuinv.Text = "Inventario";
             this.submenuinv.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.submenuinv.UseVisualStyleBackColor = true;
+            this.submenuinv.UseVisualStyleBackColor = false;
             this.submenuinv.Click += new System.EventHandler(this.submenuinv_Click);
             // 
             // btnStock
             // 
+            this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.btnStock.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStock.FlatAppearance.BorderSize = 0;
             this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -161,7 +167,7 @@
             this.btnStock.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnStock.IconSize = 32;
             this.btnStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStock.Location = new System.Drawing.Point(0, 420);
+            this.btnStock.Location = new System.Drawing.Point(0, 567);
             this.btnStock.Margin = new System.Windows.Forms.Padding(4);
             this.btnStock.Name = "btnStock";
             this.btnStock.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -170,7 +176,7 @@
             this.btnStock.Text = "  Stock";
             this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnStock.UseVisualStyleBackColor = true;
+            this.btnStock.UseVisualStyleBackColor = false;
             this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
             // 
             // PanelSubmenuInformes
@@ -189,6 +195,7 @@
             // 
             // submenureporteventas
             // 
+            this.submenureporteventas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.submenureporteventas.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenureporteventas.FlatAppearance.BorderSize = 0;
             this.submenureporteventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -202,11 +209,12 @@
             this.submenureporteventas.TabIndex = 2;
             this.submenureporteventas.Text = "Reporte de Ventas";
             this.submenureporteventas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.submenureporteventas.UseVisualStyleBackColor = true;
+            this.submenureporteventas.UseVisualStyleBackColor = false;
             this.submenureporteventas.Click += new System.EventHandler(this.submenureporteventas_Click);
             // 
             // submenucomisiones
             // 
+            this.submenucomisiones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.submenucomisiones.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenucomisiones.FlatAppearance.BorderSize = 0;
             this.submenucomisiones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -220,11 +228,12 @@
             this.submenucomisiones.TabIndex = 1;
             this.submenucomisiones.Text = "Comisiones";
             this.submenucomisiones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.submenucomisiones.UseVisualStyleBackColor = true;
+            this.submenucomisiones.UseVisualStyleBackColor = false;
             this.submenucomisiones.Click += new System.EventHandler(this.submenucomisiones_Click);
             // 
             // submenucierrecaja
             // 
+            this.submenucierrecaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.submenucierrecaja.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenucierrecaja.FlatAppearance.BorderSize = 0;
             this.submenucierrecaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -238,11 +247,12 @@
             this.submenucierrecaja.TabIndex = 0;
             this.submenucierrecaja.Text = "Cierre de Caja";
             this.submenucierrecaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.submenucierrecaja.UseVisualStyleBackColor = true;
+            this.submenucierrecaja.UseVisualStyleBackColor = false;
             this.submenucierrecaja.Click += new System.EventHandler(this.submenucierrecaja_Click);
             // 
             // btnInformes
             // 
+            this.btnInformes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.btnInformes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnInformes.FlatAppearance.BorderSize = 0;
             this.btnInformes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -262,11 +272,12 @@
             this.btnInformes.Text = "  Informes";
             this.btnInformes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInformes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnInformes.UseVisualStyleBackColor = true;
+            this.btnInformes.UseVisualStyleBackColor = false;
             this.btnInformes.Click += new System.EventHandler(this.MenuInformes_Click);
             // 
             // btnClientes
             // 
+            this.btnClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.btnClientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnClientes.FlatAppearance.BorderSize = 0;
             this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -286,7 +297,7 @@
             this.btnClientes.Text = "  Clientes";
             this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.UseVisualStyleBackColor = false;
             this.btnClientes.Click += new System.EventHandler(this.MenuClient_Click);
             // 
             // PanelSubmenuVentas
@@ -304,6 +315,7 @@
             // 
             // submenudetalleventa
             // 
+            this.submenudetalleventa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.submenudetalleventa.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenudetalleventa.FlatAppearance.BorderSize = 0;
             this.submenudetalleventa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -317,11 +329,12 @@
             this.submenudetalleventa.TabIndex = 0;
             this.submenudetalleventa.Text = "Ver Detalles";
             this.submenudetalleventa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.submenudetalleventa.UseVisualStyleBackColor = true;
+            this.submenudetalleventa.UseVisualStyleBackColor = false;
             this.submenudetalleventa.Click += new System.EventHandler(this.submenudetalleventa_Click);
             // 
             // submenuregistrarventa
             // 
+            this.submenuregistrarventa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.submenuregistrarventa.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenuregistrarventa.FlatAppearance.BorderSize = 0;
             this.submenuregistrarventa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -335,11 +348,12 @@
             this.submenuregistrarventa.TabIndex = 1;
             this.submenuregistrarventa.Text = "Registrar Venta";
             this.submenuregistrarventa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.submenuregistrarventa.UseVisualStyleBackColor = true;
+            this.submenuregistrarventa.UseVisualStyleBackColor = false;
             this.submenuregistrarventa.Click += new System.EventHandler(this.submenuregistrarventa_Click);
             // 
             // btnVentas
             // 
+            this.btnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.btnVentas.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnVentas.FlatAppearance.BorderSize = 0;
             this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -359,11 +373,12 @@
             this.btnVentas.Text = "  Ventas";
             this.btnVentas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVentas.UseVisualStyleBackColor = true;
+            this.btnVentas.UseVisualStyleBackColor = false;
             this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
             // 
             // btnUsuarios
             // 
+            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnUsuarios.FlatAppearance.BorderSize = 0;
             this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -383,12 +398,12 @@
             this.btnUsuarios.Text = "  Usuarios";
             this.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.UseVisualStyleBackColor = false;
             this.btnUsuarios.Click += new System.EventHandler(this.MenuUs_Click);
             // 
             // PanelLogo
             // 
-            this.PanelLogo.BackColor = System.Drawing.Color.Black;
+            this.PanelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.PanelLogo.Controls.Add(this.pictureBox1);
             this.PanelLogo.Controls.Add(this.Textotitulo);
             this.PanelLogo.Dock = System.Windows.Forms.DockStyle.Top;
@@ -400,10 +415,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Llamen_a_Dios.Properties.Resources._299675261_457415886400056_1675879016386375382_n1;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 8);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, -2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(65, 56);
+            this.pictureBox1.Size = new System.Drawing.Size(85, 73);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -413,12 +428,12 @@
             this.Textotitulo.AutoSize = true;
             this.Textotitulo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Textotitulo.ForeColor = System.Drawing.Color.White;
-            this.Textotitulo.Location = new System.Drawing.Point(84, 14);
+            this.Textotitulo.Location = new System.Drawing.Point(95, 15);
             this.Textotitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Textotitulo.Name = "Textotitulo";
-            this.Textotitulo.Size = new System.Drawing.Size(165, 41);
+            this.Textotitulo.Size = new System.Drawing.Size(187, 41);
             this.Textotitulo.TabIndex = 2;
-            this.Textotitulo.Text = "GD Tienda";
+            this.Textotitulo.Text = "Pan de Paris";
             // 
             // btnCerrarSesion
             // 
@@ -505,6 +520,7 @@
             this.Contenedor.Name = "Contenedor";
             this.Contenedor.Size = new System.Drawing.Size(1613, 1126);
             this.Contenedor.TabIndex = 2;
+            this.Contenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.Contenedor_Paint);
             // 
             // timerHora
             // 
@@ -529,7 +545,7 @@
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.PanelSidebar.ResumeLayout(false);
             this.PanelSubmenuStock.ResumeLayout(false);
-            this.PanelSubmenuInformes.ResumeLayout(false); // Reseteo de layout informes
+            this.PanelSubmenuInformes.ResumeLayout(false);
             this.PanelSubmenuVentas.ResumeLayout(false);
             this.PanelLogo.ResumeLayout(false);
             this.PanelLogo.PerformLayout();
@@ -562,7 +578,6 @@
         private System.Windows.Forms.Button submenudetalleventa;
         private System.Windows.Forms.Button submenuregistrarventa;
         private System.Windows.Forms.Panel PanelSubmenuStock;
-        private System.Windows.Forms.Button submenucategorias;
         private System.Windows.Forms.Button submenuinv;
 
         // Declaraciones de las nuevas variables de Informes
@@ -574,5 +589,6 @@
         private System.Windows.Forms.Label lblHora;
         private System.Windows.Forms.Timer timerHora;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private FontAwesome.Sharp.IconButton Btnasistente;
     }
 }

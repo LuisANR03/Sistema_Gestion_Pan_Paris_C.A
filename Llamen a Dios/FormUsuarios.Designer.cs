@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCedul = new System.Windows.Forms.Label();
             this.lblnombre = new System.Windows.Forms.Label();
@@ -39,6 +39,16 @@
             this.lblrepetir = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.DGVUs = new System.Windows.Forms.DataGridView();
+            this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EdoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbllistausu = new System.Windows.Forms.Label();
             this.txtid = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,16 +67,6 @@
             this.tbcorreo = new TextBoxModerno();
             this.tbnombre = new TextBoxModerno();
             this.tvCedula = new TextBoxModerno();
-            this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EdoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUs)).BeginInit();
@@ -78,7 +78,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -89,7 +89,7 @@
             // txtCedul
             // 
             this.txtCedul.AutoSize = true;
-            this.txtCedul.BackColor = System.Drawing.Color.MidnightBlue;
+            this.txtCedul.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.txtCedul.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.txtCedul.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.txtCedul.Location = new System.Drawing.Point(30, 106);
@@ -102,7 +102,7 @@
             // lblnombre
             // 
             this.lblnombre.AutoSize = true;
-            this.lblnombre.BackColor = System.Drawing.Color.MidnightBlue;
+            this.lblnombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.lblnombre.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.lblnombre.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblnombre.Location = new System.Drawing.Point(37, 202);
@@ -115,7 +115,7 @@
             // lblcorreo
             // 
             this.lblcorreo.AutoSize = true;
-            this.lblcorreo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.lblcorreo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.lblcorreo.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.lblcorreo.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblcorreo.Location = new System.Drawing.Point(37, 290);
@@ -128,7 +128,7 @@
             // lblrol
             // 
             this.lblrol.AutoSize = true;
-            this.lblrol.BackColor = System.Drawing.Color.MidnightBlue;
+            this.lblrol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.lblrol.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.lblrol.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblrol.Location = new System.Drawing.Point(37, 375);
@@ -141,7 +141,7 @@
             // lblContraseña
             // 
             this.lblContraseña.AutoSize = true;
-            this.lblContraseña.BackColor = System.Drawing.Color.MidnightBlue;
+            this.lblContraseña.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.lblContraseña.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.lblContraseña.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblContraseña.Location = new System.Drawing.Point(37, 449);
@@ -154,7 +154,7 @@
             // lblrepetir
             // 
             this.lblrepetir.AutoSize = true;
-            this.lblrepetir.BackColor = System.Drawing.Color.MidnightBlue;
+            this.lblrepetir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.lblrepetir.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.lblrepetir.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblrepetir.Location = new System.Drawing.Point(37, 524);
@@ -167,7 +167,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.MidnightBlue;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(49, 28);
@@ -185,15 +185,15 @@
             this.DGVUs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVUs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVUs.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVUs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVUs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DGVUs.ColumnHeadersHeight = 40;
             this.DGVUs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGVUs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -207,14 +207,14 @@
             this.DescRol,
             this.EstadoValor,
             this.EdoValor});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVUs.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVUs.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGVUs.EnableHeadersVisualStyles = false;
             this.DGVUs.Location = new System.Drawing.Point(0, 150);
             this.DGVUs.Margin = new System.Windows.Forms.Padding(4);
@@ -230,10 +230,100 @@
             this.DGVUs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUs_CellContentClick);
             this.DGVUs.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGVUs_CellPainting);
             // 
+            // BtnSelect
+            // 
+            this.BtnSelect.FillWeight = 20F;
+            this.BtnSelect.HeaderText = "";
+            this.BtnSelect.MinimumWidth = 6;
+            this.BtnSelect.Name = "BtnSelect";
+            this.BtnSelect.ReadOnly = true;
+            this.BtnSelect.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // IdUsuario
+            // 
+            this.IdUsuario.HeaderText = "Id";
+            this.IdUsuario.MinimumWidth = 6;
+            this.IdUsuario.Name = "IdUsuario";
+            this.IdUsuario.ReadOnly = true;
+            this.IdUsuario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IdUsuario.Visible = false;
+            // 
+            // Cedula
+            // 
+            this.Cedula.FillWeight = 87.91444F;
+            this.Cedula.HeaderText = "Documento";
+            this.Cedula.MinimumWidth = 6;
+            this.Cedula.Name = "Cedula";
+            this.Cedula.ReadOnly = true;
+            this.Cedula.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Nombre
+            // 
+            this.Nombre.FillWeight = 87.91444F;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Correo
+            // 
+            this.Correo.FillWeight = 87.91444F;
+            this.Correo.HeaderText = "Correo";
+            this.Correo.MinimumWidth = 6;
+            this.Correo.Name = "Correo";
+            this.Correo.ReadOnly = true;
+            this.Correo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Clave
+            // 
+            this.Clave.HeaderText = "Clave";
+            this.Clave.MinimumWidth = 6;
+            this.Clave.Name = "Clave";
+            this.Clave.ReadOnly = true;
+            this.Clave.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Clave.Visible = false;
+            // 
+            // idRol
+            // 
+            this.idRol.HeaderText = "idRol";
+            this.idRol.MinimumWidth = 6;
+            this.idRol.Name = "idRol";
+            this.idRol.ReadOnly = true;
+            this.idRol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.idRol.Visible = false;
+            // 
+            // DescRol
+            // 
+            this.DescRol.FillWeight = 87.91444F;
+            this.DescRol.HeaderText = "Rol";
+            this.DescRol.MinimumWidth = 6;
+            this.DescRol.Name = "DescRol";
+            this.DescRol.ReadOnly = true;
+            this.DescRol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // EstadoValor
+            // 
+            this.EstadoValor.HeaderText = "EstadoValor";
+            this.EstadoValor.MinimumWidth = 6;
+            this.EstadoValor.Name = "EstadoValor";
+            this.EstadoValor.ReadOnly = true;
+            this.EstadoValor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.EstadoValor.Visible = false;
+            // 
+            // EdoValor
+            // 
+            this.EdoValor.FillWeight = 87.91444F;
+            this.EdoValor.HeaderText = "Estado";
+            this.EdoValor.MinimumWidth = 6;
+            this.EdoValor.Name = "EdoValor";
+            this.EdoValor.ReadOnly = true;
+            this.EdoValor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // lbllistausu
             // 
             this.lbllistausu.AutoSize = true;
-            this.lbllistausu.BackColor = System.Drawing.Color.MidnightBlue;
+            this.lbllistausu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.lbllistausu.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbllistausu.ForeColor = System.Drawing.Color.White;
             this.lbllistausu.Location = new System.Drawing.Point(20, 35);
@@ -366,6 +456,7 @@
             this.CBFiltro.Padding = new System.Windows.Forms.Padding(1);
             this.CBFiltro.SelectedIndex = -1;
             this.CBFiltro.SelectedItem = null;
+            this.CBFiltro.SelectedValue = null;
             this.CBFiltro.Size = new System.Drawing.Size(202, 43);
             this.CBFiltro.TabIndex = 42;
             this.CBFiltro.ValueMember = "";
@@ -388,6 +479,7 @@
             this.CbEstado.Padding = new System.Windows.Forms.Padding(1);
             this.CbEstado.SelectedIndex = -1;
             this.CbEstado.SelectedItem = null;
+            this.CbEstado.SelectedValue = null;
             this.CbEstado.Size = new System.Drawing.Size(252, 36);
             this.CbEstado.TabIndex = 41;
             this.CbEstado.ValueMember = "";
@@ -410,6 +502,7 @@
             this.CBRol.Padding = new System.Windows.Forms.Padding(1);
             this.CBRol.SelectedIndex = -1;
             this.CBRol.SelectedItem = null;
+            this.CBRol.SelectedValue = null;
             this.CBRol.Size = new System.Drawing.Size(252, 36);
             this.CBRol.TabIndex = 40;
             this.CBRol.ValueMember = "";
@@ -581,100 +674,9 @@
             this.tvCedula.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tvCedula.UseSystemPasswordChar = false;
             // 
-            // BtnSelect
-            // 
-            this.BtnSelect.FillWeight = 20F;
-            this.BtnSelect.HeaderText = "";
-            this.BtnSelect.MinimumWidth = 6;
-            this.BtnSelect.Name = "BtnSelect";
-            this.BtnSelect.ReadOnly = true;
-            this.BtnSelect.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // IdUsuario
-            // 
-            this.IdUsuario.HeaderText = "Id";
-            this.IdUsuario.MinimumWidth = 6;
-            this.IdUsuario.Name = "IdUsuario";
-            this.IdUsuario.ReadOnly = true;
-            this.IdUsuario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IdUsuario.Visible = false;
-            // 
-            // Cedula
-            // 
-            this.Cedula.FillWeight = 87.91444F;
-            this.Cedula.HeaderText = "Documento";
-            this.Cedula.MinimumWidth = 6;
-            this.Cedula.Name = "Cedula";
-            this.Cedula.ReadOnly = true;
-            this.Cedula.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Nombre
-            // 
-            this.Nombre.FillWeight = 87.91444F;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Correo
-            // 
-            this.Correo.FillWeight = 87.91444F;
-            this.Correo.HeaderText = "Correo";
-            this.Correo.MinimumWidth = 6;
-            this.Correo.Name = "Correo";
-            this.Correo.ReadOnly = true;
-            this.Correo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Clave
-            // 
-            this.Clave.HeaderText = "Clave";
-            this.Clave.MinimumWidth = 6;
-            this.Clave.Name = "Clave";
-            this.Clave.ReadOnly = true;
-            this.Clave.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Clave.Visible = false;
-            // 
-            // idRol
-            // 
-            this.idRol.HeaderText = "idRol";
-            this.idRol.MinimumWidth = 6;
-            this.idRol.Name = "idRol";
-            this.idRol.ReadOnly = true;
-            this.idRol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.idRol.Visible = false;
-            // 
-            // DescRol
-            // 
-            this.DescRol.FillWeight = 87.91444F;
-            this.DescRol.HeaderText = "Rol";
-            this.DescRol.MinimumWidth = 6;
-            this.DescRol.Name = "DescRol";
-            this.DescRol.ReadOnly = true;
-            this.DescRol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // EstadoValor
-            // 
-            this.EstadoValor.HeaderText = "EstadoValor";
-            this.EstadoValor.MinimumWidth = 6;
-            this.EstadoValor.Name = "EstadoValor";
-            this.EstadoValor.ReadOnly = true;
-            this.EstadoValor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.EstadoValor.Visible = false;
-            // 
-            // EdoValor
-            // 
-            this.EdoValor.FillWeight = 87.91444F;
-            this.EdoValor.HeaderText = "Estado";
-            this.EdoValor.MinimumWidth = 6;
-            this.EdoValor.Name = "EdoValor";
-            this.EdoValor.ReadOnly = true;
-            this.EdoValor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
             // panelModerno1
             // 
-            this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.MidnightBlue;
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.panelModerno1.BorderRadius = 15;
             this.panelModerno1.Controls.Add(this.lbllistausu);
             this.panelModerno1.Location = new System.Drawing.Point(348, 95);

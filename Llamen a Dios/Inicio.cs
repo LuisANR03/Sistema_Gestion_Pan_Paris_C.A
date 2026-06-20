@@ -34,6 +34,8 @@ namespace Llamen_a_Dios
             {
                 lblnombreuser.Text = usuarioActual.Nombre;
             }
+
+            AbrirFrm(sender, new FrmAcercade());
         }
 
         // --- LÓGICA DEL MENÚ ACORDEÓN ---
@@ -183,6 +185,16 @@ namespace Llamen_a_Dios
         private void timerHora_Tick(object sender, EventArgs e)
         {
             lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy  |  hh:mm:ss tt");
+        }
+
+        private void Btnasistente_Click(object sender, EventArgs e)
+        {
+            AbrirFrm(sender, new FormAnaliticaIA());
+        }
+
+        private void Contenedor_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

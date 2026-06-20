@@ -43,10 +43,10 @@
             // Picture
             // 
             this.Picture.Image = ((System.Drawing.Image)(resources.GetObject("Picture.Image")));
-            this.Picture.Location = new System.Drawing.Point(-1, -2);
+            this.Picture.Location = new System.Drawing.Point(-2, 0);
             this.Picture.Margin = new System.Windows.Forms.Padding(4);
             this.Picture.Name = "Picture";
-            this.Picture.Size = new System.Drawing.Size(437, 445);
+            this.Picture.Size = new System.Drawing.Size(481, 445);
             this.Picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Picture.TabIndex = 2;
             this.Picture.TabStop = false;
@@ -55,7 +55,7 @@
             // 
             this.txtCedula.AutoSize = true;
             this.txtCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCedula.Location = new System.Drawing.Point(577, 67);
+            this.txtCedula.Location = new System.Drawing.Point(544, 67);
             this.txtCedula.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(112, 25);
@@ -66,7 +66,7 @@
             // 
             this.txtpsw.AutoSize = true;
             this.txtpsw.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpsw.Location = new System.Drawing.Point(575, 189);
+            this.txtpsw.Location = new System.Drawing.Point(542, 189);
             this.txtpsw.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtpsw.Name = "txtpsw";
             this.txtpsw.Size = new System.Drawing.Size(114, 25);
@@ -81,7 +81,7 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(825, 37);
+            this.button1.Location = new System.Drawing.Point(792, 37);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 29);
@@ -97,7 +97,7 @@
             this.tbmcedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbmcedula.ForeColor = System.Drawing.Color.DimGray;
             this.tbmcedula.GrosorBorde = 2;
-            this.tbmcedula.Location = new System.Drawing.Point(580, 116);
+            this.tbmcedula.Location = new System.Drawing.Point(547, 116);
             this.tbmcedula.MaxLength = 32767;
             this.tbmcedula.Name = "tbmcedula";
             this.tbmcedula.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -117,7 +117,7 @@
             this.tbmcontraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbmcontraseña.ForeColor = System.Drawing.Color.DimGray;
             this.tbmcontraseña.GrosorBorde = 2;
-            this.tbmcontraseña.Location = new System.Drawing.Point(580, 237);
+            this.tbmcontraseña.Location = new System.Drawing.Point(547, 237);
             this.tbmcontraseña.MaxLength = 32767;
             this.tbmcontraseña.Name = "tbmcontraseña";
             this.tbmcontraseña.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -149,7 +149,7 @@
             this.btnmcerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnmcerrar.IconSize = 35;
             this.btnmcerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnmcerrar.Location = new System.Drawing.Point(770, 298);
+            this.btnmcerrar.Location = new System.Drawing.Point(737, 298);
             this.btnmcerrar.Name = "btnmcerrar";
             this.btnmcerrar.RadioBorde = 10;
             this.btnmcerrar.Size = new System.Drawing.Size(175, 50);
@@ -181,7 +181,7 @@
             this.btnmingresar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnmingresar.IconSize = 35;
             this.btnmingresar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnmingresar.Location = new System.Drawing.Point(580, 298);
+            this.btnmingresar.Location = new System.Drawing.Point(547, 298);
             this.btnmingresar.Name = "btnmingresar";
             this.btnmingresar.RadioBorde = 10;
             this.btnmingresar.Size = new System.Drawing.Size(184, 50);
@@ -196,7 +196,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(1080, 442);
+            this.ClientSize = new System.Drawing.Size(985, 442);
             this.Controls.Add(this.tbmcedula);
             this.Controls.Add(this.tbmcontraseña);
             this.Controls.Add(this.btnmcerrar);

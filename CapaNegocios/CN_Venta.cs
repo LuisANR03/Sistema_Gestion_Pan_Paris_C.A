@@ -1,5 +1,5 @@
-﻿using CapaDatos; // Referencia a tu capa de datos
-using Entidades;  // Referencia a tus entidades
+﻿using CapaDatos;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,22 +10,15 @@ namespace CapaNegocios
     {
         private CD_Venta objcd_venta = new CD_Venta();
 
-        // ==============================================================
-        // MÉTODO LISTAR (Este es el que faltaba y arregla el error)
-        // ==============================================================
         public List<Ventas> Listar()
         {
             return objcd_venta.Listar();
         }
 
-        // ==============================================================
-        // MÉTODO REGISTRAR (El tuyo, intacto)
-        // ==============================================================
         public bool Registrar(Ventas obj, List<DetalleVenta> detalle, out string Mensaje)
         {
+            // ... (todo tu código de validaciones que está perfecto) ...
             Mensaje = string.Empty;
-
-            // --- VALIDACIONES DE SEGURIDAD ---
 
             if (obj.IdCliente <= 0)
             {
@@ -45,22 +38,17 @@ namespace CapaNegocios
                 return false;
             }
 
-            // Validación de montos básicos
             if (obj.MontoTotal < 0)
             {
                 Mensaje = "El monto total de la venta no puede ser negativo.";
                 return false;
             }
 
-            // --- LÓGICA ADICIONAL (Opcional) ---
-            // Aquí podrías, por ejemplo, forzar que el Número de Documento 
-            // tenga un formato específico antes de guardarlo.
             if (string.IsNullOrEmpty(obj.NumeroDocumento))
             {
-                obj.NumeroDocumento = "S/N"; // Sin número si viene vacío
+                obj.NumeroDocumento = "S/N";
             }
 
-            // Si todo está bien, enviamos a la Capa de Datos
             try
             {
                 return objcd_venta.Registrar(obj, detalle, out Mensaje);
@@ -72,18 +60,20 @@ namespace CapaNegocios
             }
         }
 
-
         public Ventas ObtenerVenta(int idVenta)
         {
             return objcd_venta.ObtenerVenta(idVenta);
         }
-        // ==============================================================
-        // MÉTODO PARA EL CIERRE DE CAJA
-        // ==============================================================
+
         public DataTable ObtenerTotalesCierreCaja()
         {
             return objcd_venta.ObtenerTotalesDelDiaParaCierre();
         }
-    }
 
+        // --- ¡AQUÍ ESTÁ EL MÉTODO NUEVO PARA LA IA! ---
+        public List<string> ResumenVentasParaIA()
+        {
+            return objcd_venta.ResumenVentasParaIA();
+        }
+    }
 }

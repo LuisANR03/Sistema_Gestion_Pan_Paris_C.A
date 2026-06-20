@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGV = new System.Windows.Forms.DataGridView();
+            this.Boton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cajero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlBuscador = new System.Windows.Forms.Panel();
             this.btnBuscador = new FontAwesome.Sharp.IconPictureBox();
             this.txtBusqueda = new TextBoxModerno();
@@ -43,14 +51,6 @@
             this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.btnBuscarFecha = new FontAwesome.Sharp.IconPictureBox();
-            this.Boton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cajero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             this.pnlBuscador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnBuscador)).BeginInit();
@@ -67,15 +67,15 @@
             this.DGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV.ColumnHeadersHeight = 40;
             this.DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -87,14 +87,14 @@
             this.Cajero,
             this.Vendedor,
             this.Total});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(51)))), ((int)(((byte)(234)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(51)))), ((int)(((byte)(234)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV.EnableHeadersVisualStyles = false;
             this.DGV.Location = new System.Drawing.Point(27, 179);
             this.DGV.Margin = new System.Windows.Forms.Padding(4);
@@ -108,6 +108,63 @@
             this.DGV.Size = new System.Drawing.Size(1286, 835);
             this.DGV.TabIndex = 36;
             this.DGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CellContentClick);
+            // 
+            // Boton
+            // 
+            this.Boton.HeaderText = "";
+            this.Boton.MinimumWidth = 6;
+            this.Boton.Name = "Boton";
+            this.Boton.ReadOnly = true;
+            // 
+            // IdVenta
+            // 
+            this.IdVenta.HeaderText = "IdVenta";
+            this.IdVenta.MinimumWidth = 6;
+            this.IdVenta.Name = "IdVenta";
+            this.IdVenta.ReadOnly = true;
+            this.IdVenta.Visible = false;
+            // 
+            // NFactura
+            // 
+            this.NFactura.HeaderText = "Factura";
+            this.NFactura.MinimumWidth = 6;
+            this.NFactura.Name = "NFactura";
+            this.NFactura.ReadOnly = true;
+            // 
+            // FechaVenta
+            // 
+            this.FechaVenta.HeaderText = "Fecha";
+            this.FechaVenta.MinimumWidth = 6;
+            this.FechaVenta.Name = "FechaVenta";
+            this.FechaVenta.ReadOnly = true;
+            // 
+            // Cliente
+            // 
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.MinimumWidth = 6;
+            this.Cliente.Name = "Cliente";
+            this.Cliente.ReadOnly = true;
+            // 
+            // Cajero
+            // 
+            this.Cajero.HeaderText = "Cajero";
+            this.Cajero.MinimumWidth = 6;
+            this.Cajero.Name = "Cajero";
+            this.Cajero.ReadOnly = true;
+            // 
+            // Vendedor
+            // 
+            this.Vendedor.HeaderText = "Vendedor";
+            this.Vendedor.MinimumWidth = 6;
+            this.Vendedor.Name = "Vendedor";
+            this.Vendedor.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // pnlBuscador
             // 
@@ -221,7 +278,7 @@
             // 
             this.dtpInicio.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.dtpInicio.Location = new System.Drawing.Point(27, 110);
-            this.dtpInicio.MinimumSize = new System.Drawing.Size(0, 35);
+            this.dtpInicio.MinimumSize = new System.Drawing.Size(4, 35);
             this.dtpInicio.Name = "dtpInicio";
             this.dtpInicio.Size = new System.Drawing.Size(236, 35);
             this.dtpInicio.TabIndex = 78;
@@ -230,7 +287,7 @@
             // 
             this.dtpFin.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.dtpFin.Location = new System.Drawing.Point(282, 110);
-            this.dtpFin.MinimumSize = new System.Drawing.Size(0, 35);
+            this.dtpFin.MinimumSize = new System.Drawing.Size(4, 35);
             this.dtpFin.Name = "dtpFin";
             this.dtpFin.Size = new System.Drawing.Size(236, 35);
             this.dtpFin.TabIndex = 79;
@@ -238,7 +295,7 @@
             // lbldetalles
             // 
             this.lbldetalles.AutoSize = true;
-            this.lbldetalles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.lbldetalles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.lbldetalles.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbldetalles.ForeColor = System.Drawing.Color.White;
             this.lbldetalles.Location = new System.Drawing.Point(40, 27);
@@ -251,7 +308,7 @@
             // panelModerno1
             // 
             this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.panelModerno1.BorderRadius = 15;
             this.panelModerno1.Controls.Add(this.lbldetalles);
             this.panelModerno1.Location = new System.Drawing.Point(107, 41);
@@ -298,63 +355,6 @@
             this.btnBuscarFecha.TabIndex = 45;
             this.btnBuscarFecha.TabStop = false;
             this.btnBuscarFecha.Click += new System.EventHandler(this.btnBuscarFecha_Click);
-            // 
-            // Boton
-            // 
-            this.Boton.HeaderText = "";
-            this.Boton.MinimumWidth = 6;
-            this.Boton.Name = "Boton";
-            this.Boton.ReadOnly = true;
-            // 
-            // IdVenta
-            // 
-            this.IdVenta.HeaderText = "IdVenta";
-            this.IdVenta.MinimumWidth = 6;
-            this.IdVenta.Name = "IdVenta";
-            this.IdVenta.ReadOnly = true;
-            this.IdVenta.Visible = false;
-            // 
-            // NFactura
-            // 
-            this.NFactura.HeaderText = "Factura";
-            this.NFactura.MinimumWidth = 6;
-            this.NFactura.Name = "NFactura";
-            this.NFactura.ReadOnly = true;
-            // 
-            // FechaVenta
-            // 
-            this.FechaVenta.HeaderText = "Fecha";
-            this.FechaVenta.MinimumWidth = 6;
-            this.FechaVenta.Name = "FechaVenta";
-            this.FechaVenta.ReadOnly = true;
-            // 
-            // Cliente
-            // 
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.MinimumWidth = 6;
-            this.Cliente.Name = "Cliente";
-            this.Cliente.ReadOnly = true;
-            // 
-            // Cajero
-            // 
-            this.Cajero.HeaderText = "Cajero";
-            this.Cajero.MinimumWidth = 6;
-            this.Cajero.Name = "Cajero";
-            this.Cajero.ReadOnly = true;
-            // 
-            // Vendedor
-            // 
-            this.Vendedor.HeaderText = "Vendedor";
-            this.Vendedor.MinimumWidth = 6;
-            this.Vendedor.Name = "Vendedor";
-            this.Vendedor.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.MinimumWidth = 6;
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
             // 
             // Frmdetalleventa
             // 

@@ -92,6 +92,9 @@
     <Reference Include="MySql.Data, Version=9.5.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.9.5.0\lib\net462\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -148,6 +151,12 @@
     </Compile>
     <Compile Include="ComboBoxModerno.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormAnaliticaIA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAnaliticaIA.Designer.cs">
+      <DependentUpon>FormAnaliticaIA.cs</DependentUpon>
     </Compile>
     <Compile Include="FormUsuarios.cs">
       <SubType>Form</SubType>
@@ -256,6 +265,9 @@
     <Compile Include="Utiles\Opcombo.cs" />
     <EmbeddedResource Include="CierreCaja.resx">
       <DependentUpon>CierreCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAnaliticaIA.resx">
+      <DependentUpon>FormAnaliticaIA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuarios.resx">
       <DependentUpon>FormUsuarios.cs</DependentUpon>

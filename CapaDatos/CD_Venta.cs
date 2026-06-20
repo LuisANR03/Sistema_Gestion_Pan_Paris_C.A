@@ -97,6 +97,48 @@ namespace CapaDatos
         // ====================================================================
         // MÉTODO 2: LISTAR (Para llenar tu historial de ventas)
         // ====================================================================
+
+        // ====================================================================
+        // MÉTODO EXCLUSIVO PARA LA IA: PRODUCTOS MÁS VENDIDOS (ÚLTIMOS 7 DÍAS)
+        // ====================================================================
+        public List<string> ResumenVentasParaIA()
+        {
+            List<string> resumen = new List<string>();
+
+            using (MySqlConnection oconexion = Conexion.obtenerConexion())
+            {
+                try
+                {
+                    // Sumamos las cantidades vendidas agrupadas por el nombre del pan
+                    string query = @"
+                        SELECT p.Nombre, SUM(dv.cantidad) AS TotalVendidos 
+                        FROM detalle_venta dv
+                        INNER JOIN producto p ON dv.idProducto = p.idproducto
+                        INNER JOIN ventas v ON dv.idVenta = v.idVenta
+                        WHERE v.FechaVenta >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+                        GROUP BY p.Nombre
+                        ORDER BY TotalVendidos DESC";
+
+                    MySqlCommand cmd = new MySqlCommand(query, oconexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    using (MySqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            // Formateamos el texto exactamente como le gusta leerlo a la IA
+                            resumen.Add($"- {dr["Nombre"]}: {dr["TotalVendidos"]} unidades vendidas.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    resumen.Add("Error al obtener ventas: " + ex.Message);
+                }
+            }
+            return resumen;
+        }
+
         public List<Ventas> Listar()
         {
             List<Ventas> lista = new List<Ventas>();

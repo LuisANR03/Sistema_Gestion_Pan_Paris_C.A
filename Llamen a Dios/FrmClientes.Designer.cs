@@ -61,13 +61,13 @@
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.CBFiltro = new Llamen_a_Dios.ComboBoxModerno();
+            this.BtnLimpiar = new BotonModerno();
             this.pnlBuscador = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.TBBuscar = new TextBoxModerno();
             this.btnBorrar = new BotonModerno();
             this.BtnLim = new BotonModerno();
             this.BtnGuardar = new BotonModerno();
-            this.BtnLimpiar = new BotonModerno();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panelModerno1.SuspendLayout();
             this.groupBoxModerno1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUs)).BeginInit();
@@ -88,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.DarkBlue;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(52, 33);
@@ -101,7 +101,7 @@
             // lblnombre
             // 
             this.lblnombre.AutoSize = true;
-            this.lblnombre.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblnombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.lblnombre.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblnombre.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblnombre.Location = new System.Drawing.Point(41, 207);
@@ -114,7 +114,7 @@
             // txtCedul
             // 
             this.txtCedul.AutoSize = true;
-            this.txtCedul.BackColor = System.Drawing.Color.DarkBlue;
+            this.txtCedul.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.txtCedul.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCedul.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.txtCedul.Location = new System.Drawing.Point(43, 112);
@@ -126,7 +126,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.DarkBlue;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -138,7 +138,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.DarkBlue;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label4.Location = new System.Drawing.Point(41, 307);
@@ -151,7 +151,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.DarkBlue;
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label5.Location = new System.Drawing.Point(37, 403);
@@ -164,7 +164,7 @@
             // Telefono
             // 
             this.Telefono.AutoSize = true;
-            this.Telefono.BackColor = System.Drawing.Color.DarkBlue;
+            this.Telefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.Telefono.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Telefono.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.Telefono.Location = new System.Drawing.Point(39, 502);
@@ -187,7 +187,7 @@
             // lblrepetir
             // 
             this.lblrepetir.AutoSize = true;
-            this.lblrepetir.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblrepetir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.lblrepetir.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.lblrepetir.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblrepetir.Location = new System.Drawing.Point(42, 595);
@@ -200,7 +200,7 @@
             // panelModerno1
             // 
             this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.DarkBlue;
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.panelModerno1.BorderRadius = 15;
             this.panelModerno1.Controls.Add(this.lbllistausu);
             this.panelModerno1.Location = new System.Drawing.Point(355, 105);
@@ -212,7 +212,7 @@
             // lbllistausu
             // 
             this.lbllistausu.AutoSize = true;
-            this.lbllistausu.BackColor = System.Drawing.Color.DarkBlue;
+            this.lbllistausu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
             this.lbllistausu.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbllistausu.ForeColor = System.Drawing.Color.White;
             this.lbllistausu.Location = new System.Drawing.Point(25, 33);
@@ -260,6 +260,7 @@
             this.CBestado.Padding = new System.Windows.Forms.Padding(1);
             this.CBestado.SelectedIndex = -1;
             this.CBestado.SelectedItem = null;
+            this.CBestado.SelectedValue = null;
             this.CBestado.Size = new System.Drawing.Size(252, 36);
             this.CBestado.TabIndex = 78;
             this.CBestado.ValueMember = "";
@@ -518,9 +519,36 @@
             this.CBFiltro.Padding = new System.Windows.Forms.Padding(1);
             this.CBFiltro.SelectedIndex = -1;
             this.CBFiltro.SelectedItem = null;
+            this.CBFiltro.SelectedValue = null;
             this.CBFiltro.Size = new System.Drawing.Size(202, 43);
             this.CBFiltro.TabIndex = 65;
             this.CBFiltro.ValueMember = "";
+            // 
+            // BtnLimpiar
+            // 
+            this.BtnLimpiar.ColorBorde = System.Drawing.Color.White;
+            this.BtnLimpiar.ColorClick = System.Drawing.Color.AliceBlue;
+            this.BtnLimpiar.ColorHover = System.Drawing.Color.Gainsboro;
+            this.BtnLimpiar.ColorIconoHover = System.Drawing.Color.Black;
+            this.BtnLimpiar.ColorTextoHover = System.Drawing.Color.White;
+            this.BtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLimpiar.FlatAppearance.BorderSize = 0;
+            this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimpiar.ForeColor = System.Drawing.Color.White;
+            this.BtnLimpiar.GrosorBorde = 0;
+            this.BtnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Brush;
+            this.BtnLimpiar.IconColor = System.Drawing.Color.Black;
+            this.BtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnLimpiar.IconSize = 25;
+            this.BtnLimpiar.Location = new System.Drawing.Point(1109, 96);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.RadioBorde = 5;
+            this.BtnLimpiar.Rotation = 180D;
+            this.BtnLimpiar.Size = new System.Drawing.Size(48, 36);
+            this.BtnLimpiar.TabIndex = 66;
+            this.BtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnLimpiar.UseVisualStyleBackColor = true;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // pnlBuscador
             // 
@@ -531,6 +559,21 @@
             this.pnlBuscador.Size = new System.Drawing.Size(714, 43);
             this.pnlBuscador.TabIndex = 67;
             this.pnlBuscador.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBuscador_Paint);
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.LightGray;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.LightGray;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.iconPictureBox1.IconSize = 36;
+            this.iconPictureBox1.Location = new System.Drawing.Point(11, 5);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(40, 36);
+            this.iconPictureBox1.TabIndex = 44;
+            this.iconPictureBox1.TabStop = false;
             // 
             // TBBuscar
             // 
@@ -639,47 +682,6 @@
             this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnGuardar.UseVisualStyleBackColor = false;
             this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
-            // 
-            // BtnLimpiar
-            // 
-            this.BtnLimpiar.ColorBorde = System.Drawing.Color.White;
-            this.BtnLimpiar.ColorClick = System.Drawing.Color.AliceBlue;
-            this.BtnLimpiar.ColorHover = System.Drawing.Color.Gainsboro;
-            this.BtnLimpiar.ColorIconoHover = System.Drawing.Color.Black;
-            this.BtnLimpiar.ColorTextoHover = System.Drawing.Color.White;
-            this.BtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnLimpiar.FlatAppearance.BorderSize = 0;
-            this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.BtnLimpiar.GrosorBorde = 0;
-            this.BtnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Brush;
-            this.BtnLimpiar.IconColor = System.Drawing.Color.Black;
-            this.BtnLimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnLimpiar.IconSize = 25;
-            this.BtnLimpiar.Location = new System.Drawing.Point(1109, 96);
-            this.BtnLimpiar.Name = "BtnLimpiar";
-            this.BtnLimpiar.RadioBorde = 5;
-            this.BtnLimpiar.Rotation = 180D;
-            this.BtnLimpiar.Size = new System.Drawing.Size(48, 36);
-            this.BtnLimpiar.TabIndex = 66;
-            this.BtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnLimpiar.UseVisualStyleBackColor = true;
-            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
-            // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.iconPictureBox1.ForeColor = System.Drawing.Color.LightGray;
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.LightGray;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.iconPictureBox1.IconSize = 36;
-            this.iconPictureBox1.Location = new System.Drawing.Point(11, 5);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(40, 36);
-            this.iconPictureBox1.TabIndex = 44;
-            this.iconPictureBox1.TabStop = false;
             // 
             // FrmClientes
             // 

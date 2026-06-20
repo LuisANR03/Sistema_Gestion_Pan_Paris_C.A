@@ -310,7 +310,7 @@ namespace Llamen_a_Dios
         {
             CalcularArqueo();   
 
-        }
+        } 
 
         private void txtFisicoPuntoVenta__TextChanged(object sender, EventArgs e)
         {

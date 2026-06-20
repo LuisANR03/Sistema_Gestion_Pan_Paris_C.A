@@ -110,7 +110,7 @@
             // panelModerno2
             // 
             this.panelModerno2.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.panelModerno2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.panelModerno2.BorderRadius = 15;
             this.panelModerno2.Controls.Add(this.iconPictureBox1);
             this.panelModerno2.Controls.Add(this.label15);
@@ -135,7 +135,7 @@
             // 
             // label15
             // 
-            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.label15.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.White;
             this.label15.Location = new System.Drawing.Point(85, 15);
@@ -1016,7 +1016,7 @@
             // panelModerno4
             // 
             this.panelModerno4.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.panelModerno4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.panelModerno4.BorderRadius = 15;
             this.panelModerno4.Controls.Add(this.txtTotalSis);
             this.panelModerno4.Controls.Add(this.TotalVendido);
@@ -1028,9 +1028,9 @@
             // 
             // txtTotalSis
             // 
-            this.txtTotalSis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.txtTotalSis.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.txtTotalSis.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.txtTotalSis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.txtTotalSis.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.txtTotalSis.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
             this.txtTotalSis.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalSis.ForeColor = System.Drawing.Color.White;
             this.txtTotalSis.GrosorBorde = 2;

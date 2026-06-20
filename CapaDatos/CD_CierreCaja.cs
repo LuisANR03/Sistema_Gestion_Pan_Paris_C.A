@@ -100,19 +100,30 @@ namespace CapaDatos
                         oconexion.Open();
                     }
 
+                    // 1. EL QUERY ACTUALIZADO CON TODAS LAS COLUMNAS NUEVAS
                     string query = @"INSERT INTO cierre_caja 
-                                    (idUsuario, FondoInicial, TotalEfectivoUSD, TotalEfectivoBs, 
-                                     TotalPagoMovil, TotalPuntoVenta, TotalCashea, TotalZelle, 
-                                     TotalIGTF, TotalVentas, Observaciones, Estado) 
-                                    VALUES 
-                                    (@idUsuario, @FondoInicial, @EfeUSD, @EfeBs, 
-                                     @PagoMovil, @PuntoVenta, @Cashea, @Zelle, 
-                                     @IGTF, @Ventas, @Obs, @Estado)";
+                            (idUsuario, FondoInicial, TasaCambio, 
+                             TotalEfectivoUSD, TotalEfectivoBs, TotalPagoMovil, TotalPuntoVenta, TotalCashea, TotalZelle, TotalIGTF, TotalVentas, 
+                             FisicoEfectivoUSD, FisicoEfectivoBs, FisicoPagoMovil, FisicoPuntoVenta, FisicoTransferencia, FisicoZinly, FisicoCashea, 
+                             TotalSistemaCalculado, TotalFisicoDeclarado, DiferenciaCuadre, Observaciones, Estado) 
+                            VALUES 
+                            (@idUsuario, @FondoInicial, @TasaCambio, 
+                             @EfeUSD, @EfeBs, @PagoMovil, @PuntoVenta, @Cashea, @Zelle, @IGTF, @Ventas, 
+                             @FisUSD, @FisBs, @FisPagoMovil, @FisPuntoVenta, @FisTransferencia, @FisZinly, @FisCashea, 
+                             @TotalSis, @TotalFis, @DifCuadre, @Obs, @Estado)";
 
                     MySqlCommand cmd = new MySqlCommand(query, oconexion);
 
+                    // ==========================================
+                    // 2. PASAMOS LOS PARÁMETROS GENERALES
+                    // ==========================================
                     cmd.Parameters.AddWithValue("@idUsuario", obj.Cajero.IdUsuario);
                     cmd.Parameters.AddWithValue("@FondoInicial", obj.FondoInicial);
+                    cmd.Parameters.AddWithValue("@TasaCambio", obj.TasaCambio);
+
+                    // ==========================================
+                    // 3. PARÁMETROS DEL SISTEMA (CAJA AZUL)
+                    // ==========================================
                     cmd.Parameters.AddWithValue("@EfeUSD", obj.TotalEfectivoUSD);
                     cmd.Parameters.AddWithValue("@EfeBs", obj.TotalEfectivoBs);
                     cmd.Parameters.AddWithValue("@PagoMovil", obj.TotalPagoMovil);
@@ -121,9 +132,32 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@Zelle", obj.TotalZelle);
                     cmd.Parameters.AddWithValue("@IGTF", obj.TotalIGTF);
                     cmd.Parameters.AddWithValue("@Ventas", obj.TotalVentas);
+
+                    // ==========================================
+                    // 4. PARÁMETROS DEL CONTEO FÍSICO (CAJA VERDE)
+                    // ==========================================
+                    cmd.Parameters.AddWithValue("@FisUSD", obj.FisicoEfectivoUSD);
+                    cmd.Parameters.AddWithValue("@FisBs", obj.FisicoEfectivoBs);
+                    cmd.Parameters.AddWithValue("@FisPagoMovil", obj.FisicoPagoMovil);
+                    cmd.Parameters.AddWithValue("@FisPuntoVenta", obj.FisicoPuntoVenta);
+                    cmd.Parameters.AddWithValue("@FisTransferencia", obj.FisicoTransferencia);
+                    cmd.Parameters.AddWithValue("@FisZinly", obj.FisicoZinly);
+                    cmd.Parameters.AddWithValue("@FisCashea", obj.FisicoCashea);
+
+                    // ==========================================
+                    // 5. PARÁMETROS DE TOTALES Y CUADRE
+                    // ==========================================
+                    cmd.Parameters.AddWithValue("@TotalSis", obj.TotalSistemaCalculado);
+                    cmd.Parameters.AddWithValue("@TotalFis", obj.TotalFisicoDeclarado);
+                    cmd.Parameters.AddWithValue("@DifCuadre", obj.DiferenciaCuadre);
+
+                    // ==========================================
+                    // 6. ESTADO Y OBSERVACIONES
+                    // ==========================================
                     cmd.Parameters.AddWithValue("@Obs", string.IsNullOrEmpty(obj.Observaciones) ? "" : obj.Observaciones);
                     cmd.Parameters.AddWithValue("@Estado", "CERRADO");
 
+                    // Ejecutamos la inserción
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
@@ -132,13 +166,13 @@ namespace CapaDatos
                     }
                     else
                     {
-                        Mensaje = "No se pudo registrar el cierre de caja.";
+                        Mensaje = "No se pudo registrar el cierre de caja en la base de datos.";
                     }
                 }
                 catch (Exception ex)
                 {
                     respuesta = false;
-                    Mensaje = ex.Message;
+                    Mensaje = ex.Message; // Si hay algún error en nombres o tipos, aquí lo atrapará
                 }
             }
             return respuesta;
