@@ -95,10 +95,6 @@ namespace CapaDatos
         }
 
         // ====================================================================
-        // MÉTODO 2: LISTAR (Para llenar tu historial de ventas)
-        // ====================================================================
-
-        // ====================================================================
         // MÉTODO EXCLUSIVO PARA LA IA: PRODUCTOS MÁS VENDIDOS (ÚLTIMOS 7 DÍAS)
         // ====================================================================
         public List<string> ResumenVentasParaIA()
@@ -139,6 +135,9 @@ namespace CapaDatos
             return resumen;
         }
 
+        // ====================================================================
+        // MÉTODO 2: LISTAR (Para llenar tu historial de ventas)
+        // ====================================================================
         public List<Ventas> Listar()
         {
             List<Ventas> lista = new List<Ventas>();
@@ -183,8 +182,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Forms.MessageBox.Show("Error en CD_Venta: " + ex.Message);
-                    lista = new List<Ventas>();
+                    throw new Exception("Error en la base de datos al listar ventas: " + ex.Message);
                 }
             }
             return lista;
@@ -247,7 +245,10 @@ namespace CapaDatos
                         }
                     }
                 }
-                catch (Exception) { objeto = new Ventas(); }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error en la base de datos al obtener venta individual: " + ex.Message);
+                }
             }
             return objeto;
         }
@@ -282,10 +283,89 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Forms.MessageBox.Show("Error al cargar datos para el cierre: " + ex.Message);
+                    throw new Exception("Error en la base de datos al cargar datos para el cierre: " + ex.Message);
                 }
             }
             return tabla;
         }
+
+        // ====================================================================
+        // MÉTODO PARA EL EXCEL: MOVIMIENTO DE PRODUCTOS DEL DÍA
+        // ====================================================================
+        public DataTable ObtenerMovimientoProductosDelDia()
+        {
+            DataTable tabla = new DataTable();
+            using (MySqlConnection oconexion = Conexion.obtenerConexion())
+            {
+                try
+                {
+                    // Sumamos cuántos panes de cada tipo se vendieron exactamente HOY
+                    string query = @"
+                        SELECT 
+                            p.codigo AS Codigo,
+                            p.Nombre AS Producto, 
+                            SUM(dv.cantidad) AS UnidadesVendidas, 
+                            SUM(dv.cantidad * dv.precio_unitario) AS TotalIngresado
+                        FROM detalle_venta dv
+                        INNER JOIN producto p ON dv.idProducto = p.idproducto
+                        INNER JOIN ventas v ON dv.idVenta = v.idVenta
+                        WHERE DATE(v.FechaVenta) = CURDATE()
+                        GROUP BY p.codigo, p.Nombre
+                        ORDER BY UnidadesVendidas DESC";
+
+                    MySqlCommand cmd = new MySqlCommand(query, oconexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    using (MySqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        tabla.Load(dr);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error en la base de datos al cargar productos del día: " + ex.Message);
+                }
+            }
+            return tabla;
+        }
+
+        // ====================================================================
+        // MÉTODO NUEVO PARA IA Y PROYECCIONES: HISTORIAL DE 3 MESES
+        // ====================================================================
+        public DataTable ObtenerHistorial3Meses()
+        {
+            DataTable tabla = new DataTable();
+            using (MySqlConnection oconexion = Conexion.obtenerConexion())
+            {
+                try
+                {
+                    string query = @"
+                        SELECT 
+                            p.nombre AS Producto, 
+                            SUM(dv.cantidad) AS TotalUnidades, 
+                            SUM(dv.cantidad * dv.precio_unitario) AS Ingresos
+                        FROM detalle_venta dv
+                        INNER JOIN ventas v ON dv.idVenta = v.idVenta
+                        INNER JOIN producto p ON dv.idProducto = p.idproducto
+                        WHERE v.FechaVenta >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)
+                        GROUP BY p.idproducto, p.nombre
+                        ORDER BY TotalUnidades DESC";
+
+                    MySqlCommand cmd = new MySqlCommand(query, oconexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    using (MySqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        tabla.Load(dr);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error en la base de datos al obtener historial de 3 meses: " + ex.Message);
+                }
+            }
+            return tabla;
+        }
+
     }
 }

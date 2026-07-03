@@ -5,9 +5,11 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Llamen_a_Dios
 {
@@ -93,7 +95,7 @@ namespace Llamen_a_Dios
 
                 // 4. El Prompt estratégico para el Maestro Panadero
                 string prompt = $@"Actúa como un analista de ventas experto en panaderías y pastelerías. 
-Acabo de extraer estos datos reales de ventas recientes de mi sistema:
+Acabo de extraer estos datos reales de ventas recientes de mi sistema: 
 
 {datosVentas.ToString()}
 
@@ -101,7 +103,7 @@ Escribe un reporte de 3 viñetas concisas.
 1. Identifica el pan más vendido (producto estrella).
 2. Advierte cuál se está quedando rezagado.
 3. Dame 1 recomendación estratégica breve y creativa (ej. un combo) para aumentar la venta del producto menos vendido.
-REGLA ESTRICTA: Solo menciona los panes que están en la lista proporcionada. No inventes datos.";
+REGLA ESTRICTA: Solo menciona los panes que están en la lista proporcionada. No inventes datos. y no des las respuestas tipadas/formateadas en MarkDown,";
 
                 // 5. Enviamos a Gemini
                 string respuesta = await ConsultarGemini(prompt);
@@ -151,6 +153,7 @@ REGLA ESTRICTA: Solo menciona los panes que están en la lista proporcionada. No
                     }
                 }
 
+
                 if (alertas == 0)
                 {
                     RestaurarInterfaz("✅ ¡Todo en orden! Las vitrinas tienen suficiente pan y el almacén tiene materia prima.");
@@ -165,7 +168,7 @@ Revisé la base de datos de mi panadería y estos son los problemas actuales de 
 
 Escribe un reporte muy conciso de máximo 4 viñetas.
 Indica qué panes debemos hornear con urgencia hoy, y qué ingredientes debo pedir a mis proveedores para no detener la producción mañana. 
-REGLA ESTRICTA: Basa tu respuesta ÚNICAMENTE en la lista anterior. No inventes ingredientes ni productos.";
+REGLA ESTRICTA: Basa tu respuesta ÚNICAMENTE en la lista anterior. No inventes ingredientes ni productos y no des las respuestas tipadas/formateadas en MarkDown";
 
                 string respuesta = await ConsultarGemini(prompt);
                 RestaurarInterfaz(respuesta);
@@ -179,14 +182,7 @@ REGLA ESTRICTA: Basa tu respuesta ÚNICAMENTE en la lista anterior. No inventes 
         // --- 3. BOTÓN AUDITORÍA DE CAJA ---
         private async void btnAuditoriaCaja_Click(object sender, EventArgs e)
         {
-            PrepararInterfaz("⏳ Cruzando datos de cuadre de caja...");
 
-            // Este aún tiene el texto de prueba. Más adelante lo conectaremos 
-            // al cierre de caja real usando tu método CN_Venta.ObtenerTotalesCierreCaja()
-            string prompt = "Actúa como un auditor financiero de tiendas. Escribe un reporte de 1 párrafo muy breve simulando que encontraste un pequeño descuadre de 5 dólares en la caja del turno de la tarde. Da 2 consejos rápidos y prácticos para evitar que esto vuelva a suceder.";
-
-            string respuesta = await ConsultarGemini(prompt);
-            RestaurarInterfaz(respuesta);
         }
 
         // --- MÉTODOS AYUDANTES PARA NO REPETIR CÓDIGO ---
@@ -194,12 +190,12 @@ REGLA ESTRICTA: Basa tu respuesta ÚNICAMENTE en la lista anterior. No inventes 
         {
             lblCargando.Visible = true;
             lblCargando.Text = mensajeCarga;
-            lblCargando.ForeColor = System.Drawing.Color.MediumSpringGreen;
+            lblCargando.ForeColor = System.Drawing.Color.FromArgb(70, 136, 242);
             rtbResultadoIA.Text = "";
 
             btnAnalisisVentas.Enabled = false;
             btnSugerirCompras.Enabled = false;
-            btnAuditoriaCaja.Enabled = false;
+            btnProyeccion.Enabled = false;
         }
 
         private void RestaurarInterfaz(string respuestaIA)
@@ -209,7 +205,221 @@ REGLA ESTRICTA: Basa tu respuesta ÚNICAMENTE en la lista anterior. No inventes 
 
             btnAnalisisVentas.Enabled = true;
             btnSugerirCompras.Enabled = true;
-            btnAuditoriaCaja.Enabled = true;
+            btnProyeccion.Enabled = true;
+        }
+
+        private async void btnProyeccion_Click(object sender, EventArgs e)
+        {
+            PrepararInterfaz("⏳ Analizando el historial de los últimos 3 meses...");
+
+            try
+            {
+                // 1. Instanciamos la Capa de Negocio
+                CN_Venta objNegocioVenta = new CN_Venta();
+
+                // 2. Traemos el historial agrupado de 3 meses (Haremos este método en el Paso 2)
+                System.Data.DataTable dtHistorial = objNegocioVenta.ObtenerHistorial3Meses();
+
+                if (dtHistorial == null || dtHistorial.Rows.Count == 0)
+                {
+                    RestaurarInterfaz("📊 No hay datos suficientes de meses anteriores para realizar una proyección.");
+                    return;
+                }
+
+                // 3. Traducimos la tabla de MySQL para que Gemini la entienda
+                StringBuilder datosVentas = new StringBuilder();
+                foreach (System.Data.DataRow row in dtHistorial.Rows)
+                {
+                    string producto = row["Producto"].ToString();
+                    string cantidad = row["TotalUnidades"].ToString();
+                    decimal ingresos = Convert.ToDecimal(row["Ingresos"]);
+
+                    datosVentas.AppendLine($"- {producto}: {cantidad} unidades en 3 meses. (Total generado: {ingresos.ToString("$ #,##0.00")})");
+                }
+
+                // 4. El Prompt Avanzado para predecir el futuro
+                string prompt = $@"Actúa como un analista financiero predictivo. 
+Aquí tienes el resumen total de ventas de mi panadería de los ÚLTIMOS 3 MESES:
+
+{datosVentas.ToString()}
+
+Escribe un reporte directivo y conciso de 3 viñetas:
+1. Análisis de tendencia: Qué dice este volumen sobre las preferencias de mis clientes.
+2. Predicción: Basado en esto, qué producto será el más demandado el próximo mes.
+3. Sugerencia de Producción: Una recomendación para ajustar el inventario y evitar mermas.
+REGLA: Basa tus predicciones solo en los datos provistos y no des las respuestas tipadas/formateadas en MarkDown";
+
+                // 5. Enviamos a la IA y mostramos el resultado
+                string respuestaIA = await ConsultarGemini(prompt);
+                RestaurarInterfaz(respuestaIA);
+
+                // 6. ¡LA PREGUNTA MILLONARIA!
+                DialogResult respuestaUsuario = MessageBox.Show(
+                    "Análisis completado.\n\n¿Deseas generar un reporte en Excel con la meta de producción sugerida para el próximo mes?",
+                    "Proyección de Inventario IA",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (respuestaUsuario == DialogResult.Yes)
+                {
+                    GenerarExcelProyeccion(dtHistorial);
+                }
+            }
+            catch (Exception ex)
+            {
+                RestaurarInterfaz($"❌ Error al generar la proyección:\n\n{ex.Message}");
+            }
+        }
+
+        // --- MÉTODO PARA CREAR EL EXCEL PREDICTIVO ---
+        // --- MÉTODO PARA CREAR EL EXCEL PREDICTIVO (CON METAS DIARIAS) ---
+        // --- MÉTODO PARA CREAR EL EXCEL PREDICTIVO (CON METAS FINANCIERAS DIARIAS) ---
+        private void GenerarExcelProyeccion(System.Data.DataTable dtHistorial)
+        {
+            Excel.Application excelApp = null;
+            Excel.Workbook workbook = null;
+            Excel.Worksheet wsProy = null;
+            Excel.Worksheet wsDiario = null;
+
+            try
+            {
+                excelApp = new Excel.Application();
+                excelApp.Visible = false;
+                excelApp.DisplayAlerts = false;
+                workbook = excelApp.Workbooks.Add(Type.Missing);
+
+                // ==========================================
+                // --- HOJA 1: RESUMEN MENSUAL POR PRODUCTO ---
+                // ==========================================
+                wsProy = (Excel.Worksheet)workbook.Sheets[1];
+                wsProy.Name = "Proyección Mensual";
+
+                wsProy.Cells[1, 1] = "PROYECCIÓN DE PRODUCCIÓN PARA EL PRÓXIMO MES";
+                Excel.Range titulo = wsProy.Range["A1", "D1"];
+                titulo.Merge();
+                titulo.Font.Bold = true;
+                titulo.Font.Size = 14;
+
+                wsProy.Cells[3, 1] = "Producto";
+                wsProy.Cells[3, 2] = "Promedio Mensual Actual";
+                wsProy.Cells[3, 3] = "Crecimiento Estimado (+15%)";
+                wsProy.Cells[3, 4] = "META A HORNEAR SUGERIDA";
+
+                Excel.Range encabezados = wsProy.Range["A3", "D3"];
+                encabezados.Font.Bold = true;
+                encabezados.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gold);
+
+                // Variable para acumular todo el dinero proyectado del mes
+                decimal totalIngresosProyectadosMes = 0;
+
+                int fila = 4;
+                foreach (System.Data.DataRow row in dtHistorial.Rows)
+                {
+                    string producto = row["Producto"].ToString();
+
+                    // Cálculos de unidades
+                    int total3Meses = Convert.ToInt32(row["TotalUnidades"]);
+                    double promedioMensual = total3Meses / 3.0;
+                    int metaSugerida = Convert.ToInt32(Math.Ceiling(promedioMensual * 1.15));
+
+                    // Cálculos financieros (Dinero)
+                    decimal ingresos3Meses = Convert.ToDecimal(row["Ingresos"]);
+                    decimal ingresosMensuales = ingresos3Meses / 3m;
+                    decimal ingresosProyectados = ingresosMensuales * 1.15m; // +15% de dinero esperado
+
+                    totalIngresosProyectadosMes += ingresosProyectados; // Sumamos a la gran bolsa del mes
+
+                    wsProy.Cells[fila, 1] = producto;
+                    wsProy.Cells[fila, 2] = Math.Round(promedioMensual, 0);
+                    wsProy.Cells[fila, 3] = "15 %";
+                    wsProy.Cells[fila, 4] = metaSugerida;
+                    wsProy.Cells[fila, 4].Font.Bold = true;
+                    wsProy.Cells[fila, 4].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.DarkGreen);
+
+                    fila++;
+                }
+                wsProy.Columns.AutoFit();
+
+                // ==========================================
+                // --- HOJA 2: METAS DE VENTAS DIARIAS ($) ---
+                // ==========================================
+                wsDiario = (Excel.Worksheet)workbook.Sheets.Add(After: wsProy);
+                wsDiario.Name = "Metas Diarias (Ingresos)";
+
+                wsDiario.Cells[1, 1] = "META ESTIMADA DE VENTAS DIARIAS EN CAJA";
+                Excel.Range tituloDiario = wsDiario.Range["A1", "B1"];
+                tituloDiario.Merge();
+                tituloDiario.Font.Bold = true;
+                tituloDiario.Font.Size = 14;
+
+                // Calculamos el mes siguiente y sus días
+                DateTime mesProximo = DateTime.Now.AddMonths(1);
+                int diasDelMes = DateTime.DaysInMonth(mesProximo.Year, mesProximo.Month);
+
+                // Encabezados
+                wsDiario.Cells[3, 1] = $"Fecha ({mesProximo.ToString("MMMM yyyy").ToUpper()})";
+                wsDiario.Cells[3, 2] = "Meta de Ingresos a Facturar";
+
+                Excel.Range encDiario = wsDiario.Range["A3", "B3"];
+                encDiario.Font.Bold = true;
+                encDiario.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
+
+                // Dividimos la bolsa de dinero entre los días del mes
+                decimal metaDineroDiario = totalIngresosProyectadosMes / diasDelMes;
+
+                // Llenamos los días hacia abajo
+                int filaDiaria = 4;
+                for (int dia = 1; dia <= diasDelMes; dia++)
+                {
+                    DateTime fechaDia = new DateTime(mesProximo.Year, mesProximo.Month, dia);
+
+                    // Columna 1: Fecha
+                    wsDiario.Cells[filaDiaria, 1] = fechaDia.ToString("dddd, dd/MM/yyyy"); // Formato "lunes, 01/07/2026"
+
+                    // Columna 2: Meta de dinero
+                    wsDiario.Cells[filaDiaria, 2] = metaDineroDiario;
+
+                    // Le damos formato de Moneda
+                    Excel.Range celdaMonto = (Excel.Range)wsDiario.Cells[filaDiaria, 2];
+                    celdaMonto.NumberFormat = "$ #,##0.00";
+
+                    filaDiaria++;
+                }
+
+                // Fila Total al final
+                wsDiario.Cells[filaDiaria, 1] = "TOTAL PROYECTADO DEL MES:";
+                wsDiario.Cells[filaDiaria, 1].Font.Bold = true;
+                wsDiario.Cells[filaDiaria, 2] = totalIngresosProyectadosMes;
+                wsDiario.Cells[filaDiaria, 2].Font.Bold = true;
+                ((Excel.Range)wsDiario.Cells[filaDiaria, 2]).NumberFormat = "$ #,##0.00";
+
+                wsDiario.Columns.AutoFit();
+
+                // ==========================================
+                // --- GUARDAR ARCHIVO EN ESCRITORIO ---
+                // ==========================================
+                string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string nombreArchivo = $"Metas_Ventas_{DateTime.Now.ToString("MMM_yyyy")}.xlsx";
+                string rutaCompleta = System.IO.Path.Combine(rutaEscritorio, nombreArchivo);
+
+                workbook.SaveAs(rutaCompleta, Excel.XlFileFormat.xlOpenXMLWorkbook);
+
+                MessageBox.Show($"¡Excel predictivo generado con éxito!\nGuardado en tu escritorio como:\n{nombreArchivo}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el Excel de proyección: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (workbook != null) { workbook.Close(false); Marshal.ReleaseComObject(workbook); }
+                if (excelApp != null) { excelApp.Quit(); Marshal.ReleaseComObject(excelApp); }
+                if (wsProy != null) Marshal.ReleaseComObject(wsProy);
+                if (wsDiario != null) Marshal.ReleaseComObject(wsDiario);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
         }
     }
+    
 }

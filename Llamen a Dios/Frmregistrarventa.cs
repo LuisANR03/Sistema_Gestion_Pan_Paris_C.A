@@ -35,6 +35,7 @@ namespace Llamen_a_Dios
             tbtotalitems.Text = "0";
             tbpreciodolar.Text = "0.00";
             tbpreciobs.Text = "0.00";
+            cbvendedor.SelectedIndex = 1;
         }
 
         #region MÉTODOS DE OPERACIÓN (CARRITO DE COMPRAS)
@@ -196,7 +197,7 @@ namespace Llamen_a_Dios
         {
             decimal totalDolar = 0;
             int totalItems = 0;
-            decimal tasaCambio = 36.50m; // Define aquí tu tasa de cambio actual del BCV
+            decimal tasaCambio = 620.50m; // Define aquí tu tasa de cambio actual del BCV
 
             foreach (DataGridViewRow row in DGVStck.Rows)
             {

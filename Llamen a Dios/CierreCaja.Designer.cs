@@ -82,6 +82,7 @@
             this.txtTotalSis = new TextBoxModerno();
             this.TotalVendido = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.btnexcel = new BotonModerno();
             this.panelModerno2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.groupBoxModerno2.SuspendLayout();
@@ -152,6 +153,7 @@
             this.groupBoxModerno2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.groupBoxModerno2.BorderRadius = 15;
             this.groupBoxModerno2.BorderSize = 2;
+            this.groupBoxModerno2.Controls.Add(this.btnexcel);
             this.groupBoxModerno2.Controls.Add(this.groupBoxModerno1);
             this.groupBoxModerno2.Controls.Add(this.panelModerno1);
             this.groupBoxModerno2.Controls.Add(this.btnProcesarCierre);
@@ -1068,6 +1070,34 @@
             this.label19.TabIndex = 111;
             this.label19.Text = "Totales Registrados (Sistema)";
             // 
+            // btnexcel
+            // 
+            this.btnexcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btnexcel.ColorBorde = System.Drawing.Color.Black;
+            this.btnexcel.ColorClick = System.Drawing.Color.RoyalBlue;
+            this.btnexcel.ColorHover = System.Drawing.Color.CornflowerBlue;
+            this.btnexcel.ColorIconoHover = System.Drawing.Color.White;
+            this.btnexcel.ColorTextoHover = System.Drawing.Color.White;
+            this.btnexcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnexcel.FlatAppearance.BorderSize = 0;
+            this.btnexcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnexcel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnexcel.ForeColor = System.Drawing.Color.White;
+            this.btnexcel.GrosorBorde = 0;
+            this.btnexcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
+            this.btnexcel.IconColor = System.Drawing.Color.White;
+            this.btnexcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnexcel.IconSize = 25;
+            this.btnexcel.Location = new System.Drawing.Point(693, 990);
+            this.btnexcel.Name = "btnexcel";
+            this.btnexcel.RadioBorde = 15;
+            this.btnexcel.Size = new System.Drawing.Size(230, 55);
+            this.btnexcel.TabIndex = 101;
+            this.btnexcel.Text = "    Exportar a Excel";
+            this.btnexcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnexcel.UseVisualStyleBackColor = false;
+            this.btnexcel.Click += new System.EventHandler(this.btnexcel_Click);
+            // 
             // CierreCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1188,5 +1218,6 @@
         private PanelModerno panelModerno12;
         private PanelModerno panelModerno11;
         private TextBoxModerno txtcuadre;
+        private BotonModerno btnexcel;
     }
 }

@@ -16,7 +16,7 @@ namespace Llamen_a_Dios.Modales
         public decimal _TotalPagarUsd { get; set; } // Viene del form ventas
         public decimal _TotalPagarBs { get; set; }  // Viene del form ventas
         private string metodoPagoActual = "Punto de Venta";
-        private decimal tasaDolar = 36.50m; // Ajusta a tu tasa real o léela de un txt
+        private decimal tasaDolar = 620.50m; // Ajusta a tu tasa real o léela de un txt
 
         // ====================================================================
         // ¡ESTA ES LA LISTA MÁGICA QUE PIDE EL FORMULARIO PRINCIPAL!

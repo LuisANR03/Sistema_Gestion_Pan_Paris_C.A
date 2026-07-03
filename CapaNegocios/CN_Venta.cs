@@ -17,9 +17,9 @@ namespace CapaNegocios
 
         public bool Registrar(Ventas obj, List<DetalleVenta> detalle, out string Mensaje)
         {
-            // ... (todo tu código de validaciones que está perfecto) ...
             Mensaje = string.Empty;
 
+            // Validaciones de negocio
             if (obj.IdCliente <= 0)
             {
                 Mensaje = "Debe seleccionar un cliente para realizar la venta.";
@@ -65,15 +65,32 @@ namespace CapaNegocios
             return objcd_venta.ObtenerVenta(idVenta);
         }
 
+        // ====================================================================
+        // PUENTES HACIA LA CAPA DE DATOS
+        // ====================================================================
+
         public DataTable ObtenerTotalesCierreCaja()
         {
             return objcd_venta.ObtenerTotalesDelDiaParaCierre();
         }
 
-        // --- ¡AQUÍ ESTÁ EL MÉTODO NUEVO PARA LA IA! ---
+        public DataTable ObtenerMovimientoProductosDelDia()
+        {
+            return objcd_venta.ObtenerMovimientoProductosDelDia();
+        }
+
         public List<string> ResumenVentasParaIA()
         {
             return objcd_venta.ResumenVentasParaIA();
         }
+
+        // ====================================================================
+        // MÉTODO PARA PROYECCIONES IA (Historial de 3 meses)
+        // ====================================================================
+        public System.Data.DataTable ObtenerHistorial3Meses()
+        {
+            return objcd_venta.ObtenerHistorial3Meses();
+        }
+
     }
 }

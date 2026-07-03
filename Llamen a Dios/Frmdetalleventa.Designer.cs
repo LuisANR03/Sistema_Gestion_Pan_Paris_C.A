@@ -31,14 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGV = new System.Windows.Forms.DataGridView();
-            this.Boton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cajero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlBuscador = new System.Windows.Forms.Panel();
             this.btnBuscador = new FontAwesome.Sharp.IconPictureBox();
             this.txtBusqueda = new TextBoxModerno();
@@ -51,6 +43,14 @@
             this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.btnBuscarFecha = new FontAwesome.Sharp.IconPictureBox();
+            this.Boton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cajero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             this.pnlBuscador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnBuscador)).BeginInit();
@@ -108,63 +108,6 @@
             this.DGV.Size = new System.Drawing.Size(1286, 835);
             this.DGV.TabIndex = 36;
             this.DGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CellContentClick);
-            // 
-            // Boton
-            // 
-            this.Boton.HeaderText = "";
-            this.Boton.MinimumWidth = 6;
-            this.Boton.Name = "Boton";
-            this.Boton.ReadOnly = true;
-            // 
-            // IdVenta
-            // 
-            this.IdVenta.HeaderText = "IdVenta";
-            this.IdVenta.MinimumWidth = 6;
-            this.IdVenta.Name = "IdVenta";
-            this.IdVenta.ReadOnly = true;
-            this.IdVenta.Visible = false;
-            // 
-            // NFactura
-            // 
-            this.NFactura.HeaderText = "Factura";
-            this.NFactura.MinimumWidth = 6;
-            this.NFactura.Name = "NFactura";
-            this.NFactura.ReadOnly = true;
-            // 
-            // FechaVenta
-            // 
-            this.FechaVenta.HeaderText = "Fecha";
-            this.FechaVenta.MinimumWidth = 6;
-            this.FechaVenta.Name = "FechaVenta";
-            this.FechaVenta.ReadOnly = true;
-            // 
-            // Cliente
-            // 
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.MinimumWidth = 6;
-            this.Cliente.Name = "Cliente";
-            this.Cliente.ReadOnly = true;
-            // 
-            // Cajero
-            // 
-            this.Cajero.HeaderText = "Cajero";
-            this.Cajero.MinimumWidth = 6;
-            this.Cajero.Name = "Cajero";
-            this.Cajero.ReadOnly = true;
-            // 
-            // Vendedor
-            // 
-            this.Vendedor.HeaderText = "Vendedor";
-            this.Vendedor.MinimumWidth = 6;
-            this.Vendedor.Name = "Vendedor";
-            this.Vendedor.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.MinimumWidth = 6;
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
             // 
             // pnlBuscador
             // 
@@ -355,6 +298,70 @@
             this.btnBuscarFecha.TabIndex = 45;
             this.btnBuscarFecha.TabStop = false;
             this.btnBuscarFecha.Click += new System.EventHandler(this.btnBuscarFecha_Click);
+            // 
+            // Boton
+            // 
+            this.Boton.FillWeight = 8.672823F;
+            this.Boton.HeaderText = "";
+            this.Boton.MinimumWidth = 6;
+            this.Boton.Name = "Boton";
+            this.Boton.ReadOnly = true;
+            // 
+            // IdVenta
+            // 
+            this.IdVenta.HeaderText = "IdVenta";
+            this.IdVenta.MinimumWidth = 6;
+            this.IdVenta.Name = "IdVenta";
+            this.IdVenta.ReadOnly = true;
+            this.IdVenta.Visible = false;
+            // 
+            // NFactura
+            // 
+            this.NFactura.FillWeight = 20F;
+            this.NFactura.HeaderText = "Factura";
+            this.NFactura.MinimumWidth = 6;
+            this.NFactura.Name = "NFactura";
+            this.NFactura.ReadOnly = true;
+            // 
+            // FechaVenta
+            // 
+            this.FechaVenta.FillWeight = 22.88012F;
+            this.FechaVenta.HeaderText = "Fecha";
+            this.FechaVenta.MinimumWidth = 6;
+            this.FechaVenta.Name = "FechaVenta";
+            this.FechaVenta.ReadOnly = true;
+            // 
+            // Cliente
+            // 
+            this.Cliente.FillWeight = 22.88012F;
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.MinimumWidth = 6;
+            this.Cliente.Name = "Cliente";
+            this.Cliente.ReadOnly = true;
+            // 
+            // Cajero
+            // 
+            this.Cajero.FillWeight = 22.88012F;
+            this.Cajero.HeaderText = "Cajero";
+            this.Cajero.MinimumWidth = 6;
+            this.Cajero.Name = "Cajero";
+            this.Cajero.ReadOnly = true;
+            // 
+            // Vendedor
+            // 
+            this.Vendedor.HeaderText = "Vendedor";
+            this.Vendedor.MinimumWidth = 6;
+            this.Vendedor.Name = "Vendedor";
+            this.Vendedor.ReadOnly = true;
+            this.Vendedor.Visible = false;
+            // 
+            // Total
+            // 
+            this.Total.FillWeight = 22.88012F;
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // Frmdetalleventa
             // 

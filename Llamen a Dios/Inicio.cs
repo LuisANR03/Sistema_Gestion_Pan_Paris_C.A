@@ -1,10 +1,12 @@
-﻿using Dato;
+﻿using CapaDatos;
+using CapaNegocios;
+using Dato;
+using Entidades;
 using FontAwesome.Sharp;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using CapaNegocios;
-using Entidades;
 
 namespace Llamen_a_Dios
 {
@@ -33,9 +35,77 @@ namespace Llamen_a_Dios
             if (usuarioActual != null)
             {
                 lblnombreuser.Text = usuarioActual.Nombre;
+
+                // 1. OCULTAMOS TODOS LOS BOTONES POR SEGURIDAD
+                // Botones Principales
+                btndashboard.Visible = false;
+                Btnasistente.Visible = false;
+                btnProduccion.Visible = false;
+                btnAcerca.Visible = false;
+                btnUsuarios.Visible = false;
+                btnClientes.Visible = false;
+                btnVentas.Visible = false;
+                btnStock.Visible = false;
+                btnInformes.Visible = false;
+
+                // Submenús
+                submenuregistrarventa.Visible = false;
+                submenudetalleventa.Visible = false;
+                submenuinv.Visible = false;
+                submenucierrecaja.Visible = false;
+                submenureporteventas.Visible = false;
+
+                // 2. BUSCAMOS LOS PERMISOS DEL USUARIO EN LA BASE DE DATOS
+                // Asumiendo que tienes un método Listar en CN_permisos que recibe el IdRol
+                List<Permisos> ListaPermisos = new CN_permisos().Listar(usuarioActual.IdUsuario);
+
+                // 3. MOSTRAMOS SOLO LOS BOTONES A LOS QUE TIENE ACCESO
+                // Recorremos los botones principales (Sidebar)
+                foreach (Control control in PanelSidebar.Controls)
+                {
+                    if (control is FontAwesome.Sharp.IconButton || control is Button)
+                    {
+                        foreach (Permisos permiso in ListaPermisos)
+                        {
+                            if (control.Name == permiso.NombreMenu)
+                            {
+                                control.Visible = true;
+                                break; // Si lo encuentra, deja de buscar y pasa al siguiente control
+                            }
+                        }
+                    }
+                }
+
+                // Recorremos los submenús de Ventas
+                foreach (Control control in PanelSubmenuVentas.Controls)
+                {
+                    foreach (Permisos permiso in ListaPermisos)
+                    {
+                        if (control.Name == permiso.NombreMenu) { control.Visible = true; break; }
+                    }
+                }
+
+                // Recorremos los submenús de Stock
+                foreach (Control control in PanelSubmenuStock.Controls)
+                {
+                    foreach (Permisos permiso in ListaPermisos)
+                    {
+                        if (control.Name == permiso.NombreMenu) { control.Visible = true; break; }
+                    }
+                }
+
+                // Recorremos los submenús de Informes
+                foreach (Control control in PanelSubmenuInformes.Controls)
+                {
+                    foreach (Permisos permiso in ListaPermisos)
+                    {
+                        if (control.Name == permiso.NombreMenu) { control.Visible = true; break; }
+                    }
+                }
             }
 
-            AbrirFrm(sender, new FrmAcercade());
+            // Por defecto abrimos el Dashboard o Acerca de
+            AbrirFrm(sender, new Dashboard());
         }
 
         // --- LÓGICA DEL MENÚ ACORDEÓN ---
@@ -164,22 +234,14 @@ namespace Llamen_a_Dios
         // --- NUEVOS EVENTOS DE SUBMENÚ INFORMES (Solución a tus errores) ---
         private void submenucierrecaja_Click(object sender, EventArgs e)
         {
-            // NOTA: Si creas un formulario específico para esto, cambia "new Form()" por tu nuevo formulario
-            // Ejemplo: AbrirFrm(sender, new FrmCierreCaja());
-            MessageBox.Show("Formulario de Cierre de Caja (Próximamente)");
+            // Vinculado a tu Frminformes actual que ya tenías creado
+            AbrirFrm(sender, new CierreCaja());
         }
 
-        private void submenucomisiones_Click(object sender, EventArgs e)
-        {
-            // NOTA: Si creas un formulario específico para esto, cambia "new Form()" por tu nuevo formulario
-            // Ejemplo: AbrirFrm(sender, new FrmComisiones());
-            MessageBox.Show("Formulario de Comisiones (Próximamente)");
-        }
 
         private void submenureporteventas_Click(object sender, EventArgs e)
         {
-            // Vinculado a tu Frminformes actual que ya tenías creado
-            AbrirFrm(sender, new CierreCaja());
+           
         }
 
         private void timerHora_Tick(object sender, EventArgs e)
@@ -195,6 +257,16 @@ namespace Llamen_a_Dios
         private void Contenedor_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btndashboard_Click(object sender, EventArgs e)
+        {
+            AbrirFrm(sender, new Dashboard());
+        }
+
+        private void btnProduccion_Click(object sender, EventArgs e)
+        {
+            AbrirFrm(sender, new Produccion());
         }
     }
 }

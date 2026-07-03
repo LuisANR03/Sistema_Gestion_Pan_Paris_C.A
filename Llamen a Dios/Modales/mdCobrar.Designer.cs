@@ -111,6 +111,7 @@
             this.botonModerno2.Text = "botonModerno2";
             this.botonModerno2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.botonModerno2.UseVisualStyleBackColor = false;
+            this.botonModerno2.Visible = false;
             // 
             // btnAgregarPago
             // 
@@ -137,6 +138,7 @@
             this.btnAgregarPago.Text = "botonModerno1";
             this.btnAgregarPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAgregarPago.UseVisualStyleBackColor = false;
+            this.btnAgregarPago.Visible = false;
             this.btnAgregarPago.Click += new System.EventHandler(this.btnAgregarPago_Click);
             // 
             // txtTasaCambio
@@ -423,7 +425,7 @@
             this.btnca.IconColor = System.Drawing.Color.White;
             this.btnca.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnca.IconSize = 35;
-            this.btnca.Location = new System.Drawing.Point(1234, 8);
+            this.btnca.Location = new System.Drawing.Point(1232, 7);
             this.btnca.Name = "btnca";
             this.btnca.RadioBorde = 3;
             this.btnca.Size = new System.Drawing.Size(230, 106);
@@ -431,6 +433,7 @@
             this.btnca.Text = "CASHEA";
             this.btnca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnca.UseVisualStyleBackColor = false;
+            this.btnca.Visible = false;
             this.btnca.Click += new System.EventHandler(this.btnca_Click);
             // 
             // btned
