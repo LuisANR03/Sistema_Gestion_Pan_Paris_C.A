@@ -43,6 +43,7 @@ namespace Llamen_a_Dios
 
         private void CierreCaja_Load(object sender, EventArgs e)
         {
+            btnProcesarCierre.Enabled = false; // Desactivamos el botón de cierre hasta que se carguen los totales del sistema
             btnexcel.Enabled = false;
             CargarTotalesDelSistema();
         }
@@ -54,9 +55,10 @@ namespace Llamen_a_Dios
         {
             try
             {
-                int idUsuarioActual = 2; // OJO: Reemplaza por tu variable global del usuario
+                int idUsuarioActual = Inicio.usuarioActual.IdUsuario;
 
                 totalesSistema = objCN_Cierre.CalcularTotalesDelDia(idUsuarioActual);
+
 
                 // Repartimos los montos directo a las cajas de texto del Sistema (Formato estándar)
                 txtSistemaBs.Text = totalesSistema.TotalEfectivoBs.ToString("N2");
@@ -151,6 +153,9 @@ namespace Llamen_a_Dios
                     txtcuadre.ForeColor = Color.MediumSeaGreen;
                     lblcuadre.Text = "CAJA CUADRADA EXACTA";
                     lblcuadre.ForeColor = Color.MediumSeaGreen;
+
+                    // 🌟 NUEVO: Solo si entra aquí, se enciende el botón
+                    btnProcesarCierre.Enabled = true;
                 }
                 else if (diferencia > 0)
                 {
@@ -158,6 +163,9 @@ namespace Llamen_a_Dios
                     txtcuadre.ForeColor = Color.Goldenrod; // Color Oro / Naranja para Sobrantes
                     lblcuadre.Text = "SOBRANTE EN CAJA";
                     lblcuadre.ForeColor = Color.Goldenrod;
+
+                    // 🌟 NUEVO: Hay sobrante, apagamos el botón
+                    btnProcesarCierre.Enabled = false;
                 }
                 else
                 {
@@ -165,6 +173,9 @@ namespace Llamen_a_Dios
                     txtcuadre.ForeColor = Color.Crimson; // Color Carmesí / Rojo para Faltantes
                     lblcuadre.Text = "FALTANTE EN CAJA";
                     lblcuadre.ForeColor = Color.Crimson;
+
+                    // 🌟 NUEVO: Hay faltante, apagamos el botón
+                    btnProcesarCierre.Enabled = false;
                 }
             }
             catch
@@ -173,66 +184,6 @@ namespace Llamen_a_Dios
             }
         }
 
-        // ==============================================================
-        // EVENTO: GUARDAR CIERRE DEFINITIVO
-        // ==============================================================
-        private void btnGuardarCierre_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("¿Está seguro de que desea realizar el cierre de caja definitivo? Esto finalizará su turno.",
-                                                "Confirmar Cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.No) return;
-
-            CapaEntidades.CierreCaja objCierreFinal = new CapaEntidades.CierreCaja();
-
-            objCierreFinal.Cajero = new Usuario() { IdUsuario = 2 }; // Cambiar por tu ID dinámico
-            objCierreFinal.FondoInicial = 0.00m;
-
-            objCierreFinal.TotalEfectivoUSD = totalesSistema.TotalEfectivoUSD;
-            objCierreFinal.TotalEfectivoBs = totalesSistema.TotalEfectivoBs;
-            objCierreFinal.TotalPagoMovil = totalesSistema.TotalPagoMovil;
-            objCierreFinal.TotalPuntoVenta = totalesSistema.TotalPuntoVenta;
-            objCierreFinal.TotalCashea = totalesSistema.TotalCashea;
-            objCierreFinal.TotalZelle = totalesSistema.TotalZelle;
-            objCierreFinal.TotalIGTF = totalesSistema.TotalIGTF;
-            objCierreFinal.TotalVentas = totalesSistema.TotalVentas;
-
-            objCierreFinal.Observaciones = "Cierre efectuado. Cuadre: " + txtcuadre.Text + " - " + lblcuadre.Text;
-
-            string mensaje = string.Empty;
-
-            bool exito = objCN_Cierre.RegistrarCierre(objCierreFinal, out mensaje);
-
-            if (exito)
-            {
-                MessageBox.Show("¡Cierre de caja registrado exitosamente!\n\nPor favor, exporte su comprobante en Excel ahora.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // =========================================================
-                // CAMBIO DE VISTA
-                // =========================================================
-
-                // 1. Apagamos el botón de cerrar caja para evitar duplicados
-                btnProcesarCierre.Enabled = false;
-
-                // 2. Encendemos el botón de exportar Excel
-                btnexcel.Enabled = true;
-
-                // 3. (Opcional) Te recomiendo bloquear los TextBox para que el cajero no siga editando números
-                txtFisicoBs.Enabled = false;
-                txtFisicoUsd.Enabled = false;
-                txtFisicoPagoMovil.Enabled = false;
-                txtFisicoPuntoVenta.Enabled = false;
-                txtFisicoTransferencia.Enabled = false;
-                txtFisicoZinly.Enabled = false;
-                txtFisicoCashea.Enabled = false;
-
-                // ELIMINAMOS el this.Close() para que el usuario se quede en la pantalla y le dé al botón del Excel.
-            }
-            else
-            {
-                MessageBox.Show("No se pudo guardar el cierre: " + mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void btnProcesarCierre_Click(object sender, EventArgs e)
         {
@@ -259,9 +210,10 @@ namespace Llamen_a_Dios
                 CapaEntidades.CierreCaja objCierreFinal = new CapaEntidades.CierreCaja();
 
                 // 1. Datos de Control
-                objCierreFinal.Cajero = new Usuario() { IdUsuario = 2 }; // Cambiar por tu ID dinámico
+                // Obtenemos el ID del usuario actual (Lo usaremos también para el log)
+                int idUsuarioLogueado = Inicio.usuarioActual.IdUsuario;
+                objCierreFinal.Cajero = new Usuario() { IdUsuario = idUsuarioLogueado };
                 objCierreFinal.FondoInicial = 0.00m;
-                // NOTA: Si en tu entidad tienes una propiedad para la Tasa, agrégala aquí (ej. objCierreFinal.TasaCambio = 36.50m;)
 
                 // 2. Lo que calculó el SISTEMA (Caja Azul)
                 objCierreFinal.TotalEfectivoUSD = totalesSistema.TotalEfectivoUSD;
@@ -292,20 +244,40 @@ namespace Llamen_a_Dios
                     objCierreFinal.DiferenciaCuadre = -objCierreFinal.DiferenciaCuadre;
                 }
 
-                objCierreFinal.Observaciones = "Cierre efectuado. Cuadre: " + txtcuadre.Text + " - " + lblcuadre.Text;
+                // Preparamos el texto del cuadre para la Base de Datos y el Log
+                string detalleDelCuadre = txtcuadre.Text + " - " + lblcuadre.Text;
+                objCierreFinal.Observaciones = "Cierre efectuado. Cuadre: " + detalleDelCuadre;
 
-                // 5. Envío a la Capa de Negocio
+                // =========================================================
+                // 5. Envío a la Capa de Negocio (¡AQUÍ ESTÁ EL CAMBIO!)
+                // =========================================================
                 string mensaje = string.Empty;
-                bool exito = objCN_Cierre.RegistrarCierre(objCierreFinal, out mensaje);
+
+                // Pasamos el objeto, el idUsuario y el detalleDelCuadre a la capa de negocios
+                bool exito = objCN_Cierre.RegistrarCierre(objCierreFinal, idUsuarioLogueado, detalleDelCuadre, out mensaje);
 
                 if (exito)
                 {
-                    MessageBox.Show("¡Cierre de caja registrado exitosamente!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("¡Cierre de caja y log de auditoría registrados exitosamente!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // =========================================================
+                    // CAMBIO DE VISTA Y BLOQUEO DE SEGURIDAD
+                    // =========================================================
+
+                    btnProcesarCierre.Enabled = false;
+
+                    txtFisicoBs.Enabled = false;
+                    txtFisicoUsd.Enabled = false;
+                    txtFisicoPagoMovil.Enabled = false;
+                    txtFisicoPuntoVenta.Enabled = false;
+                    txtFisicoTransferencia.Enabled = false;
+                    txtFisicoZinly.Enabled = false;
+                    txtFisicoCashea.Enabled = false;
 
                     // =========================================================
                     // ¡AQUÍ ES DONDE GENERAMOS EL EXCEL AUTOMÁTICAMENTE!
                     // =========================================================
-                    GenerarReporteExcel();
+                    GenerarReporteExcelAPdf();
 
                     btnexcel.Enabled = true;
                 }
@@ -356,9 +328,19 @@ namespace Llamen_a_Dios
             CalcularArqueo();
         }
 
-        private void GenerarReporteExcel()
+       
+
+        private void btnexcel_Click(object sender, EventArgs e)
         {
-            // Declaramos los objetos de Excel afuera para poder liberarlos de forma segura en el 'finally'
+            GenerarReporteExcelAPdf();
+        }
+
+        // ==============================================================
+        // MÉTODO: GENERAR REPORTE HÍBRIDO (EPPLUS + INTEROP PDF)
+        // ==============================================================
+        private void GenerarReporteExcelAPdf()
+        {
+            // Usamos los mismos objetos de Excel que ya conoces
             Excel.Application excelApp = null;
             Excel.Workbook workbook = null;
             Excel.Worksheet wsCaja = null;
@@ -366,156 +348,130 @@ namespace Llamen_a_Dios
 
             try
             {
-                // 1. Instanciamos la capa de negocio y obtenemos los datos de la Base de Datos
+                // 1. Obtenemos los datos de la Base de Datos con tu capa de negocio
                 CN_Venta objNegocioVenta = new CN_Venta();
                 DataTable dtPagos = objNegocioVenta.ObtenerTotalesCierreCaja();
                 DataTable dtProductos = objNegocioVenta.ObtenerMovimientoProductosDelDia();
 
-                // Si ambas tablas están vacías, avisamos al usuario y detenemos el proceso
                 if ((dtPagos == null || dtPagos.Rows.Count == 0) && (dtProductos == null || dtProductos.Rows.Count == 0))
                 {
                     MessageBox.Show("No hay ventas ni movimientos registrados el día de hoy para generar el reporte.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // 2. Inicializamos la aplicación de Excel en modo oculto (en segundo plano)
+                // 2. Definimos las rutas (Plantilla de entrada y PDF de salida)
+                string nombrePlantilla = "Plantilla Cierre de Caja.xlsx";
+                string rutaPlantilla = Path.Combine(Application.StartupPath, "Resources", nombrePlantilla);
+
+                string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string nombrePdf = $"CierreCaja_{DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss")}.pdf";
+                string rutaFinalPdf = Path.Combine(rutaEscritorio, nombrePdf);
+
+                if (!File.Exists(rutaPlantilla))
+                {
+                    MessageBox.Show("No se encontró la plantilla en la ruta:\n" + rutaPlantilla, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 3. Inicializamos Excel en segundo plano
                 excelApp = new Excel.Application();
                 excelApp.Visible = false;
-                excelApp.DisplayAlerts = false; // Evita que Excel muestre alertas molestas de confirmación
-
-                // 3. Creamos un nuevo libro de trabajo limpio
-                workbook = excelApp.Workbooks.Add(Type.Missing);
+                excelApp.DisplayAlerts = false;
 
                 // =========================================================================
-                // --- PESTAÑA 1: RESUMEN DE CIERRE DE CAJA (Métodos de Pago) ---
+                // 🔥 EL CAMBIO CLAVE: En lugar de .Add(), abrimos tu plantilla existente
+                // =========================================================================
+                workbook = excelApp.Workbooks.Open(rutaPlantilla);
+
+                // =========================================================================
+                // --- PESTAÑA 1: CIERRE DE CAJA ---
                 // =========================================================================
                 wsCaja = (Excel.Worksheet)workbook.Sheets[1];
-                wsCaja.Name = "Cierre de Caja";
 
-                // Título Principal de la Pestaña 1
-                wsCaja.Cells[1, 1] = "REPORTE DE CIERRE DE CAJA";
-                Excel.Range tituloCaja = wsCaja.Range["A1", "B1"];
-                tituloCaja.Merge();
-                tituloCaja.Font.Bold = true;
-                tituloCaja.Font.Size = 14;
+                wsCaja.Cells[5, 3] = "Generado: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
+                // 🌟 CAMBIO: Inyectamos el nombre real del cajero
+                wsCaja.Cells[6, 3] = "Por: " + Inicio.usuarioActual.Nombre;
 
-                // Fecha y hora del reporte
-                wsCaja.Cells[2, 1] = "Fecha: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
-
-                // Encabezados de la Tabla de Pagos
-                wsCaja.Cells[4, 1] = "Método de Pago";
-                wsCaja.Cells[4, 2] = "Total Ingresado";
-                Excel.Range encCaja = wsCaja.Range["A4", "B4"];
-                encCaja.Font.Bold = true;
-                encCaja.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
-
-                // Llenado de los datos de métodos de pago
-                int filaCaja = 5;
+                // Según tu plantilla, los datos de los métodos de pago empiezan en la Fila 12
+                int filaCaja = 12;
                 decimal totalGeneralCaja = 0;
 
                 if (dtPagos != null)
                 {
                     foreach (DataRow row in dtPagos.Rows)
                     {
-                        wsCaja.Cells[filaCaja, 1] = row["MetodoPago"].ToString();
+                        wsCaja.Cells[filaCaja, 1] = row["MetodoPago"].ToString(); // Columna A
 
                         decimal monto = Convert.ToDecimal(row["TotalVendido"]);
-                        wsCaja.Cells[filaCaja, 2] = monto;
-
-                        // Aplicamos formato de moneda ($) a la celda del dinero
-                        Excel.Range celdaMonto = (Excel.Range)wsCaja.Cells[filaCaja, 2];
-                        celdaMonto.NumberFormat = "$ #,##0.00";
+                        wsCaja.Cells[filaCaja, 2] = monto;                        // Columna B
+                        ((Excel.Range)wsCaja.Cells[filaCaja, 2]).NumberFormat = "$ #,##0.00";
 
                         totalGeneralCaja += monto;
                         filaCaja++;
                     }
                 }
 
-                // Fila de Totales de la Caja
+                // Fila de Totales de la Caja (justo abajo de donde terminaron los datos)
                 wsCaja.Cells[filaCaja, 1] = "TOTAL EN CAJA:";
-                wsCaja.Cells[filaCaja, 1].Font.Bold = true;
+                ((Excel.Range)wsCaja.Cells[filaCaja, 1]).Font.Bold = true;
                 wsCaja.Cells[filaCaja, 2] = totalGeneralCaja;
-                wsCaja.Cells[filaCaja, 2].Font.Bold = true;
+                ((Excel.Range)wsCaja.Cells[filaCaja, 2]).Font.Bold = true;
                 ((Excel.Range)wsCaja.Cells[filaCaja, 2]).NumberFormat = "$ #,##0.00";
 
-                // Autoajustar el ancho de las columnas de la pestaña 1 para que el texto no se corte
-                wsCaja.Columns.AutoFit();
-
 
                 // =========================================================================
-                // --- PESTAÑA 2: MOVIMIENTO DE PRODUCTOS (Panes y productos vendidos) ---
+                // --- PESTAÑA 2: MOVIMIENTO DE PRODUCTOS ---
                 // =========================================================================
-                // Añadimos una nueva pestaña en el libro justo después de la pestaña de Caja
-                wsProd = (Excel.Worksheet)workbook.Sheets.Add(Type.Missing, wsCaja, Type.Missing, Type.Missing);
-                wsProd.Name = "Movimiento de Productos";
+                wsProd = (Excel.Worksheet)workbook.Sheets[2];
 
-                // Título Principal de la Pestaña 2
-                wsProd.Cells[1, 1] = "PANES Y PRODUCTOS VENDIDOS HOY";
-                Excel.Range tituloProd = wsProd.Range["A1", "D1"];
-                tituloProd.Merge();
-                tituloProd.Font.Bold = true;
-                tituloProd.Font.Size = 14;
+                wsProd.Cells[4, 3] = "Generado: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
+                // 🌟 CAMBIO: Inyectamos el nombre real del cajero aquí también
+                wsProd.Cells[5, 3] = "Por: " + Inicio.usuarioActual.Nombre;
 
-                // Encabezados de la Tabla de Productos
-                wsProd.Cells[3, 1] = "Código";
-                wsProd.Cells[3, 2] = "Producto";
-                wsProd.Cells[3, 3] = "Unidades Vendidas";
-                wsProd.Cells[3, 4] = "Total Generado";
-                Excel.Range encProd = wsProd.Range["A3", "D3"];
-                encProd.Font.Bold = true;
-                encProd.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightSkyBlue);
+                // Los productos también empiezan en la Fila 12
+                int filaProd = 12;
 
-                // Llenado de los datos de productos desde el DataTable
-                int filaProd = 4;
                 if (dtProductos != null)
                 {
                     foreach (DataRow row in dtProductos.Rows)
                     {
-                        wsProd.Cells[filaProd, 1] = row[0].ToString(); // Código de producto
-                        wsProd.Cells[filaProd, 2] = row[1].ToString(); // Nombre del producto
-                        wsProd.Cells[filaProd, 3] = row[2];            // Cantidad de unidades (int)
-                        wsProd.Cells[filaProd, 4] = row[3];            // Total acumulado en dinero (decimal)
+                        wsProd.Cells[filaProd, 1] = row[0].ToString(); // Código (Columna A)
+                        wsProd.Cells[filaProd, 2] = row[1].ToString(); // Producto (Columna B)
+                        wsProd.Cells[filaProd, 3] = Convert.ToInt32(row[2]); // Unidades (Columna C)
+                        wsProd.Cells[filaProd, 4] = Convert.ToDecimal(row[3]); // Total (Columna D)
 
-                        // Formato de moneda ($) a la columna de totales de productos
-                        Excel.Range celdaTotalProd = (Excel.Range)wsProd.Cells[filaProd, 4];
-                        celdaTotalProd.NumberFormat = "$ #,##0.00";
+                        ((Excel.Range)wsProd.Cells[filaProd, 4]).NumberFormat = "$ #,##0.00";
 
                         filaProd++;
                     }
                 }
 
-                // Autoajustar el ancho de las columnas de la pestaña 2
-                wsProd.Columns.AutoFit();
-
-
                 // =========================================================================
-                // --- RUTA Y GUARDADO AUTOMÁTICO EN EL ESCRITORIO ---
+                // 🔥 EXPORTACIÓN DIRECTA A PDF
                 // =========================================================================
-                string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                // El nombre incluirá la fecha y la hora exacta para evitar que un reporte reemplace a otro
-                string nombreArchivo = $"CierreCaja_{DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss")}.xlsx";
-                string rutaCompleta = Path.Combine(rutaEscritorio, nombreArchivo);
+                // Este comando toma todo el libro editado (ambas pestañas) y genera el PDF
+                workbook.ExportAsFixedFormat(
+                    Excel.XlFixedFormatType.xlTypePDF,
+                    rutaFinalPdf,
+                    Excel.XlFixedFormatQuality.xlQualityStandard,
+                    true, false, Type.Missing, Type.Missing, false, Type.Missing);
 
-                // Guardamos el documento especificando el formato oficial moderno (.xlsx)
-                workbook.SaveAs(rutaCompleta, Excel.XlFileFormat.xlOpenXMLWorkbook, Type.Missing,
-                    Type.Missing, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
-                    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-
-                // Mensaje de éxito al usuario
-                MessageBox.Show($"¡Reporte generado con éxito de manera nativa!\nGuardado en tu escritorio como:\n{nombreArchivo}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"¡Reporte PDF generado con éxito desde la plantilla!\nGuardado en tu escritorio como:\n{nombrePdf}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                // Si algo llega a fallar con las celdas o los permisos de Windows, lo atrapamos aquí
-                MessageBox.Show("Error crítico al generar el archivo Excel nativo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al procesar la plantilla e Interop: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 // =========================================================================
-                // 🔥 LIMPIEZA TOTAL Y LIBERACIÓN DE MEMORIA RAM COM (Crucial para Office)
+                // REGLA DE ORO DE INTEROP: Limpieza total de procesos en segundo plano
                 // =========================================================================
                 if (workbook != null)
                 {
+                    // Crucial: Pasamos 'false' para que cierre la plantilla SIN guardar los cambios en el archivo .xlsx.
+                    // De este modo, tu archivo de Excel original queda siempre "limpio" y vacío para el día de mañana,
+                    // mientras que el cliente se lleva el PDF perfectamente lleno.
                     workbook.Close(false);
                     Marshal.ReleaseComObject(workbook);
                 }
@@ -527,16 +483,11 @@ namespace Llamen_a_Dios
                 if (wsCaja != null) Marshal.ReleaseComObject(wsCaja);
                 if (wsProd != null) Marshal.ReleaseComObject(wsProd);
 
-                // Le ordenamos a C# que limpie de forma inmediata cualquier rastro muerto de Office en la RAM
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
         }
 
-        private void btnexcel_Click(object sender, EventArgs e)
-        {
-            GenerarReporteExcel();
-        }
     }
     
 }

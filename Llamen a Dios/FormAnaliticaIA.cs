@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
+
 
 namespace Llamen_a_Dios
 {
@@ -251,7 +253,13 @@ REGLA: Basa tus predicciones solo en los datos provistos y no des las respuestas
 
                 // 5. Enviamos a la IA y mostramos el resultado
                 string respuestaIA = await ConsultarGemini(prompt);
+
+                // 1. Nos aseguramos de que esta línea exista (es la que escribe el texto)
                 RestaurarInterfaz(respuestaIA);
+
+                // 🌟 EL TRUCO VISUAL: Obligamos a la pantalla a dibujarse
+                rtbResultadoIA.Refresh(); // Fuerza a la caja de texto a mostrar su contenido
+                await Task.Delay(300);    // Le damos una pausa invisible de 0.3 segundos a C# antes de continuar
 
                 // 6. ¡LA PREGUNTA MILLONARIA!
                 DialogResult respuestaUsuario = MessageBox.Show(
@@ -262,7 +270,31 @@ REGLA: Basa tus predicciones solo en los datos provistos y no des las respuestas
 
                 if (respuestaUsuario == DialogResult.Yes)
                 {
-                    GenerarExcelProyeccion(dtHistorial);
+                    
+                    string input = MostrarInputBox(
+                        "La IA sugiere un ajuste. Ingrese el porcentaje de crecimiento o reducción para el próximo mes (ejemplo: 15 para aumentar un 15%, o -5 para reducir un 5%):",
+                        "Definir Meta de Crecimiento",
+                        "15");
+
+                    decimal crecimientoDefinidoPorGerente = 15m;
+
+                    // Validamos que el usuario haya ingresado un número válido
+                    if (!string.IsNullOrEmpty(input) && decimal.TryParse(input, out decimal porcentajeIngresado))
+                    {
+                        crecimientoDefinidoPorGerente = porcentajeIngresado;
+                    }
+                    else if (input == "") // Si el usuario presiona "Cancelar" o cierra la ventana
+                    {
+                        MessageBox.Show("Operación cancelada. No se generará el reporte.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("El valor ingresado no es un número válido. Se utilizará el 15% por defecto.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                    // Enviamos el historial y el porcentaje dinámico elegido por el gerente
+                    GenerarExcelProyeccion(dtHistorial, crecimientoDefinidoPorGerente);
                 }
             }
             catch (Exception ex)
@@ -274,7 +306,8 @@ REGLA: Basa tus predicciones solo en los datos provistos y no des las respuestas
         // --- MÉTODO PARA CREAR EL EXCEL PREDICTIVO ---
         // --- MÉTODO PARA CREAR EL EXCEL PREDICTIVO (CON METAS DIARIAS) ---
         // --- MÉTODO PARA CREAR EL EXCEL PREDICTIVO (CON METAS FINANCIERAS DIARIAS) ---
-        private void GenerarExcelProyeccion(System.Data.DataTable dtHistorial)
+        // --- MÉTODO CON MATEMÁTICA E INYECTADO DE DATOS 100% DINÁMICO ---
+        private void GenerarExcelProyeccion(System.Data.DataTable dtHistorial, decimal porcentajeCrecimiento)
         {
             Excel.Application excelApp = null;
             Excel.Workbook workbook = null;
@@ -283,132 +316,122 @@ REGLA: Basa tus predicciones solo en los datos provistos y no des las respuestas
 
             try
             {
-                excelApp = new Excel.Application();
-                excelApp.Visible = false;
-                excelApp.DisplayAlerts = false;
-                workbook = excelApp.Workbooks.Add(Type.Missing);
+                string nombrePlantilla = "Plantilla Proyeccion y Metas.xlsx";
+                string rutaPlantilla = Path.Combine(Application.StartupPath, "Resources", nombrePlantilla);
 
-                // ==========================================
-                // --- HOJA 1: RESUMEN MENSUAL POR PRODUCTO ---
-                // ==========================================
-                wsProy = (Excel.Worksheet)workbook.Sheets[1];
-                wsProy.Name = "Proyección Mensual";
-
-                wsProy.Cells[1, 1] = "PROYECCIÓN DE PRODUCCIÓN PARA EL PRÓXIMO MES";
-                Excel.Range titulo = wsProy.Range["A1", "D1"];
-                titulo.Merge();
-                titulo.Font.Bold = true;
-                titulo.Font.Size = 14;
-
-                wsProy.Cells[3, 1] = "Producto";
-                wsProy.Cells[3, 2] = "Promedio Mensual Actual";
-                wsProy.Cells[3, 3] = "Crecimiento Estimado (+15%)";
-                wsProy.Cells[3, 4] = "META A HORNEAR SUGERIDA";
-
-                Excel.Range encabezados = wsProy.Range["A3", "D3"];
-                encabezados.Font.Bold = true;
-                encabezados.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gold);
-
-                // Variable para acumular todo el dinero proyectado del mes
-                decimal totalIngresosProyectadosMes = 0;
-
-                int fila = 4;
-                foreach (System.Data.DataRow row in dtHistorial.Rows)
-                {
-                    string producto = row["Producto"].ToString();
-
-                    // Cálculos de unidades
-                    int total3Meses = Convert.ToInt32(row["TotalUnidades"]);
-                    double promedioMensual = total3Meses / 3.0;
-                    int metaSugerida = Convert.ToInt32(Math.Ceiling(promedioMensual * 1.15));
-
-                    // Cálculos financieros (Dinero)
-                    decimal ingresos3Meses = Convert.ToDecimal(row["Ingresos"]);
-                    decimal ingresosMensuales = ingresos3Meses / 3m;
-                    decimal ingresosProyectados = ingresosMensuales * 1.15m; // +15% de dinero esperado
-
-                    totalIngresosProyectadosMes += ingresosProyectados; // Sumamos a la gran bolsa del mes
-
-                    wsProy.Cells[fila, 1] = producto;
-                    wsProy.Cells[fila, 2] = Math.Round(promedioMensual, 0);
-                    wsProy.Cells[fila, 3] = "15 %";
-                    wsProy.Cells[fila, 4] = metaSugerida;
-                    wsProy.Cells[fila, 4].Font.Bold = true;
-                    wsProy.Cells[fila, 4].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.DarkGreen);
-
-                    fila++;
-                }
-                wsProy.Columns.AutoFit();
-
-                // ==========================================
-                // --- HOJA 2: METAS DE VENTAS DIARIAS ($) ---
-                // ==========================================
-                wsDiario = (Excel.Worksheet)workbook.Sheets.Add(After: wsProy);
-                wsDiario.Name = "Metas Diarias (Ingresos)";
-
-                wsDiario.Cells[1, 1] = "META ESTIMADA DE VENTAS DIARIAS EN CAJA";
-                Excel.Range tituloDiario = wsDiario.Range["A1", "B1"];
-                tituloDiario.Merge();
-                tituloDiario.Font.Bold = true;
-                tituloDiario.Font.Size = 14;
-
-                // Calculamos el mes siguiente y sus días
-                DateTime mesProximo = DateTime.Now.AddMonths(1);
-                int diasDelMes = DateTime.DaysInMonth(mesProximo.Year, mesProximo.Month);
-
-                // Encabezados
-                wsDiario.Cells[3, 1] = $"Fecha ({mesProximo.ToString("MMMM yyyy").ToUpper()})";
-                wsDiario.Cells[3, 2] = "Meta de Ingresos a Facturar";
-
-                Excel.Range encDiario = wsDiario.Range["A3", "B3"];
-                encDiario.Font.Bold = true;
-                encDiario.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
-
-                // Dividimos la bolsa de dinero entre los días del mes
-                decimal metaDineroDiario = totalIngresosProyectadosMes / diasDelMes;
-
-                // Llenamos los días hacia abajo
-                int filaDiaria = 4;
-                for (int dia = 1; dia <= diasDelMes; dia++)
-                {
-                    DateTime fechaDia = new DateTime(mesProximo.Year, mesProximo.Month, dia);
-
-                    // Columna 1: Fecha
-                    wsDiario.Cells[filaDiaria, 1] = fechaDia.ToString("dddd, dd/MM/yyyy"); // Formato "lunes, 01/07/2026"
-
-                    // Columna 2: Meta de dinero
-                    wsDiario.Cells[filaDiaria, 2] = metaDineroDiario;
-
-                    // Le damos formato de Moneda
-                    Excel.Range celdaMonto = (Excel.Range)wsDiario.Cells[filaDiaria, 2];
-                    celdaMonto.NumberFormat = "$ #,##0.00";
-
-                    filaDiaria++;
-                }
-
-                // Fila Total al final
-                wsDiario.Cells[filaDiaria, 1] = "TOTAL PROYECTADO DEL MES:";
-                wsDiario.Cells[filaDiaria, 1].Font.Bold = true;
-                wsDiario.Cells[filaDiaria, 2] = totalIngresosProyectadosMes;
-                wsDiario.Cells[filaDiaria, 2].Font.Bold = true;
-                ((Excel.Range)wsDiario.Cells[filaDiaria, 2]).NumberFormat = "$ #,##0.00";
-
-                wsDiario.Columns.AutoFit();
-
-                // ==========================================
-                // --- GUARDAR ARCHIVO EN ESCRITORIO ---
-                // ==========================================
                 string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 string nombreArchivo = $"Metas_Ventas_{DateTime.Now.ToString("MMM_yyyy")}.xlsx";
                 string rutaCompleta = System.IO.Path.Combine(rutaEscritorio, nombreArchivo);
 
+                if (!File.Exists(rutaPlantilla))
+                {
+                    MessageBox.Show("No se encontró la plantilla en la ruta de recursos:\n" + rutaPlantilla, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                excelApp = new Excel.Application();
+                excelApp.Visible = false;
+                excelApp.DisplayAlerts = false;
+
+                workbook = excelApp.Workbooks.Open(rutaPlantilla);
+
+                // =========================================================================
+                // --- HOJA 1: PROYECCIÓN MENSUAL ---
+                // =========================================================================
+                wsProy = (Excel.Worksheet)workbook.Sheets[1];
+
+                wsProy.Cells[4, 3] = "Generado: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
+                wsProy.Cells[5, 3] = "Por: Gerente de Operaciones";
+
+                // 🌟 NUEVO: Calculamos el factor matemático en base al porcentaje ingresado.
+                // Si ingresa 20 -> factor = 1 + (20 / 100) = 1.20 (Crecimiento)
+                // Si ingresa -10 -> factor = 1 + (-10 / 100) = 0.90 (Reducción por temporada baja)
+                decimal factorCrecimiento = 1m + (porcentajeCrecimiento / 100m);
+
+                // 🌟 NUEVO: Reescribimos dinámicamente el título de la columna C con el porcentaje real elegido
+                wsProy.Cells[11, 3] = $"Crecimiento Estimado ({porcentajeCrecimiento}%)";
+
+                decimal totalIngresosProyectadosMes = 0;
+                int filaProy = 12; // Inicia en la fila 12 respetando tu diseño físico
+
+                foreach (System.Data.DataRow row in dtHistorial.Rows)
+                {
+                    string producto = row["Producto"].ToString();
+
+                    int total3Meses = Convert.ToInt32(row["TotalUnidades"]);
+                    double promedioMensual = total3Meses / 3.0;
+
+                    // 🌟 NUEVO: Multiplicamos por el factor dinámico elegido por el usuario
+                    int metaSugerida = Convert.ToInt32(Math.Ceiling(promedioMensual * (double)factorCrecimiento));
+
+                    decimal ingresos3Meses = Convert.ToDecimal(row["Ingresos"]);
+                    decimal ingresosMensuales = ingresos3Meses / 3m;
+
+                    // 🌟 NUEVO: Los ingresos esperados también se calculan dinámicamente
+                    decimal ingresosProyectados = ingresosMensuales * factorCrecimiento;
+
+                    totalIngresosProyectadosMes += ingresosProyectados;
+
+                    // Inyectamos los datos en las celdas
+                    wsProy.Cells[filaProy, 1] = producto;
+                    wsProy.Cells[filaProy, 2] = Math.Round(promedioMensual, 0);
+                    wsProy.Cells[filaProy, 3] = $"{porcentajeCrecimiento} %"; // Muestra el porcentaje real en la tabla
+                    wsProy.Cells[filaProy, 4] = metaSugerida;
+
+                    ((Excel.Range)wsProy.Cells[filaProy, 4]).Font.Bold = true;
+                    ((Excel.Range)wsProy.Cells[filaProy, 4]).Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.DarkGreen);
+
+                    filaProy++;
+                }
+                wsProy.Columns.AutoFit();
+
+                // =========================================================================
+                // --- HOJA 2: METAS DIARIAS (INGRESOS) ---
+                // =========================================================================
+                wsDiario = (Excel.Worksheet)workbook.Sheets[2];
+
+                wsDiario.Cells[4, 2] = "Generado: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
+                wsDiario.Cells[5, 2] = "Por: Gerente de Operaciones";
+
+                DateTime mesProximo = DateTime.Now.AddMonths(1);
+                int diasDelMes = DateTime.DaysInMonth(mesProximo.Year, mesProximo.Month);
+
+                wsDiario.Cells[12, 1] = $"Fecha ({mesProximo.ToString("MMMM yyyy").ToUpper()})";
+
+                // La bolsa total de dinero calculada dinámicamente se divide entre los días del mes
+                decimal metaDineroDiario = totalIngresosProyectadosMes / diasDelMes;
+                int filaDiaria = 13; // Inicia en la fila 13 respetando tu diseño físico
+
+                for (int dia = 1; dia <= diasDelMes; dia++)
+                {
+                    DateTime fechaDia = new DateTime(mesProximo.Year, mesProximo.Month, dia);
+
+                    wsDiario.Cells[filaDiaria, 1] = fechaDia.ToString("dddd, dd/MM/yyyy");
+                    wsDiario.Cells[filaDiaria, 2] = metaDineroDiario;
+
+                    ((Excel.Range)wsDiario.Cells[filaDiaria, 2]).NumberFormat = "$ #,##0.00";
+
+                    filaDiaria++;
+                }
+
+                // Fila Totalizadora al final de los días
+                wsDiario.Cells[filaDiaria, 1] = "TOTAL PROYECTADO DEL MES:";
+                ((Excel.Range)wsDiario.Cells[filaDiaria, 1]).Font.Bold = true;
+
+                wsDiario.Cells[filaDiaria, 2] = totalIngresosProyectadosMes;
+                ((Excel.Range)wsDiario.Cells[filaDiaria, 2]).Font.Bold = true;
+                ((Excel.Range)wsDiario.Cells[filaDiaria, 2]).NumberFormat = "$ #,##0.00";
+
+                wsDiario.Columns.AutoFit();
+
+                // Guardamos los cambios en un archivo nuevo en el escritorio
                 workbook.SaveAs(rutaCompleta, Excel.XlFileFormat.xlOpenXMLWorkbook);
 
-                MessageBox.Show($"¡Excel predictivo generado con éxito!\nGuardado en tu escritorio como:\n{nombreArchivo}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"¡Excel predictivo generado con éxito!\nPorcentaje aplicado: {porcentajeCrecimiento}%\nGuardado en tu escritorio como:\n{nombreArchivo}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al crear el Excel de proyección: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al procesar la plantilla de proyección: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -416,9 +439,47 @@ REGLA: Basa tus predicciones solo en los datos provistos y no des las respuestas
                 if (excelApp != null) { excelApp.Quit(); Marshal.ReleaseComObject(excelApp); }
                 if (wsProy != null) Marshal.ReleaseComObject(wsProy);
                 if (wsDiario != null) Marshal.ReleaseComObject(wsDiario);
+
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
+
+
+
+        }
+        // --- MÉTODO C# NATIVO PARA REEMPLAZAR EL INPUTBOX DE VB ---
+        private string MostrarInputBox(string mensaje, string titulo, string valorPorDefecto)
+        {
+            Form prompt = new Form()
+            {
+                Width = 450,
+                Height = 200,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = titulo,
+                StartPosition = FormStartPosition.CenterScreen,
+                MaximizeBox = false,
+                MinimizeBox = false
+            };
+
+            Label textLabel = new Label() { Left = 20, Top = 20, Width = 400, Text = mensaje };
+            TextBox textBox = new TextBox() { Left = 20, Top = 60, Width = 390, Text = valorPorDefecto };
+            Button confirmation = new Button() { Text = "Aceptar", Left = 230, Width = 80, Top = 100, DialogResult = DialogResult.OK };
+            Button cancel = new Button() { Text = "Cancelar", Left = 330, Width = 80, Top = 100, DialogResult = DialogResult.Cancel };
+
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            cancel.Click += (sender, e) => { prompt.Close(); };
+
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(cancel);
+            prompt.Controls.Add(textLabel);
+
+            // Al presionar Enter acepta, al presionar Esc cancela
+            prompt.AcceptButton = confirmation;
+            prompt.CancelButton = cancel;
+
+            // Muestra la ventana y devuelve lo que el usuario escribió
+            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
         }
     }
     

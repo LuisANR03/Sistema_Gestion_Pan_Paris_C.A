@@ -21,6 +21,7 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBoxModerno2 = new Llamen_a_Dios.GroupBoxModerno();
+            this.btnexcel = new BotonModerno();
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.txtcuadre = new TextBoxModerno();
             this.lblcuadre = new System.Windows.Forms.Label();
@@ -82,7 +83,6 @@
             this.txtTotalSis = new TextBoxModerno();
             this.TotalVendido = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.btnexcel = new BotonModerno();
             this.panelModerno2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.groupBoxModerno2.SuspendLayout();
@@ -166,6 +166,34 @@
             this.groupBoxModerno2.Size = new System.Drawing.Size(1350, 1152);
             this.groupBoxModerno2.TabIndex = 100;
             this.groupBoxModerno2.TabStop = false;
+            // 
+            // btnexcel
+            // 
+            this.btnexcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btnexcel.ColorBorde = System.Drawing.Color.Black;
+            this.btnexcel.ColorClick = System.Drawing.Color.RoyalBlue;
+            this.btnexcel.ColorHover = System.Drawing.Color.CornflowerBlue;
+            this.btnexcel.ColorIconoHover = System.Drawing.Color.White;
+            this.btnexcel.ColorTextoHover = System.Drawing.Color.White;
+            this.btnexcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnexcel.FlatAppearance.BorderSize = 0;
+            this.btnexcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnexcel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnexcel.ForeColor = System.Drawing.Color.White;
+            this.btnexcel.GrosorBorde = 0;
+            this.btnexcel.IconChar = FontAwesome.Sharp.IconChar.FileExport;
+            this.btnexcel.IconColor = System.Drawing.Color.White;
+            this.btnexcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnexcel.IconSize = 25;
+            this.btnexcel.Location = new System.Drawing.Point(693, 990);
+            this.btnexcel.Name = "btnexcel";
+            this.btnexcel.RadioBorde = 15;
+            this.btnexcel.Size = new System.Drawing.Size(230, 55);
+            this.btnexcel.TabIndex = 101;
+            this.btnexcel.Text = "    Exportar PDF";
+            this.btnexcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnexcel.UseVisualStyleBackColor = false;
+            this.btnexcel.Click += new System.EventHandler(this.btnexcel_Click);
             // 
             // groupBoxModerno1
             // 
@@ -326,6 +354,7 @@
             this.panelModerno13.RedondearAbajo = true;
             this.panelModerno13.Size = new System.Drawing.Size(495, 46);
             this.panelModerno13.TabIndex = 121;
+            this.panelModerno13.Visible = false;
             // 
             // label7
             // 
@@ -336,6 +365,7 @@
             this.label7.Size = new System.Drawing.Size(62, 20);
             this.label7.TabIndex = 1;
             this.label7.Text = "Cashea:";
+            this.label7.Visible = false;
             // 
             // txtFisicoCashea
             // 
@@ -356,6 +386,7 @@
             this.txtFisicoCashea.TabIndex = 101;
             this.txtFisicoCashea.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFisicoCashea.UseSystemPasswordChar = false;
+            this.txtFisicoCashea.Visible = false;
             this.txtFisicoCashea._TextChanged += new System.EventHandler(this.txtFisicoCashea__TextChanged);
             // 
             // panelModerno18
@@ -370,6 +401,7 @@
             this.panelModerno18.RedondearAbajo = true;
             this.panelModerno18.Size = new System.Drawing.Size(495, 46);
             this.panelModerno18.TabIndex = 126;
+            this.panelModerno18.Visible = false;
             // 
             // label6
             // 
@@ -380,6 +412,7 @@
             this.label6.Size = new System.Drawing.Size(47, 20);
             this.label6.TabIndex = 3;
             this.label6.Text = "Zinly:";
+            this.label6.Visible = false;
             // 
             // txtFisicoZinly
             // 
@@ -400,6 +433,7 @@
             this.txtFisicoZinly.TabIndex = 100;
             this.txtFisicoZinly.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFisicoZinly.UseSystemPasswordChar = false;
+            this.txtFisicoZinly.Visible = false;
             this.txtFisicoZinly._TextChanged += new System.EventHandler(this.txtFisicoZinly__TextChanged);
             // 
             // panelModerno17
@@ -726,6 +760,7 @@
             this.panelModerno11.RedondearAbajo = true;
             this.panelModerno11.Size = new System.Drawing.Size(495, 46);
             this.panelModerno11.TabIndex = 119;
+            this.panelModerno11.Visible = false;
             // 
             // txtSistemaCashea
             // 
@@ -746,6 +781,7 @@
             this.txtSistemaCashea.TabIndex = 108;
             this.txtSistemaCashea.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtSistemaCashea.UseSystemPasswordChar = false;
+            this.txtSistemaCashea.Visible = false;
             // 
             // label14
             // 
@@ -756,6 +792,7 @@
             this.label14.Size = new System.Drawing.Size(62, 20);
             this.label14.TabIndex = 1;
             this.label14.Text = "Cashea:";
+            this.label14.Visible = false;
             // 
             // panelModerno10
             // 
@@ -789,6 +826,7 @@
             this.txtSistemaZinly.TabIndex = 107;
             this.txtSistemaZinly.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtSistemaZinly.UseSystemPasswordChar = false;
+            this.txtSistemaZinly.Visible = false;
             // 
             // label13
             // 
@@ -799,6 +837,7 @@
             this.label13.Size = new System.Drawing.Size(47, 20);
             this.label13.TabIndex = 3;
             this.label13.Text = "Zinly:";
+            this.label13.Visible = false;
             // 
             // panelModerno9
             // 
@@ -1069,34 +1108,6 @@
             this.label19.Size = new System.Drawing.Size(290, 28);
             this.label19.TabIndex = 111;
             this.label19.Text = "Totales Registrados (Sistema)";
-            // 
-            // btnexcel
-            // 
-            this.btnexcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.btnexcel.ColorBorde = System.Drawing.Color.Black;
-            this.btnexcel.ColorClick = System.Drawing.Color.RoyalBlue;
-            this.btnexcel.ColorHover = System.Drawing.Color.CornflowerBlue;
-            this.btnexcel.ColorIconoHover = System.Drawing.Color.White;
-            this.btnexcel.ColorTextoHover = System.Drawing.Color.White;
-            this.btnexcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnexcel.FlatAppearance.BorderSize = 0;
-            this.btnexcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnexcel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnexcel.ForeColor = System.Drawing.Color.White;
-            this.btnexcel.GrosorBorde = 0;
-            this.btnexcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
-            this.btnexcel.IconColor = System.Drawing.Color.White;
-            this.btnexcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnexcel.IconSize = 25;
-            this.btnexcel.Location = new System.Drawing.Point(693, 990);
-            this.btnexcel.Name = "btnexcel";
-            this.btnexcel.RadioBorde = 15;
-            this.btnexcel.Size = new System.Drawing.Size(230, 55);
-            this.btnexcel.TabIndex = 101;
-            this.btnexcel.Text = "    Exportar a Excel";
-            this.btnexcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnexcel.UseVisualStyleBackColor = false;
-            this.btnexcel.Click += new System.EventHandler(this.btnexcel_Click);
             // 
             // CierreCaja
             // 

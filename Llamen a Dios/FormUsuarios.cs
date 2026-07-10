@@ -144,7 +144,8 @@ namespace Llamen_a_Dios
             // MODO CREAR
             if (obj_usuario.IdUsuario == 0)
             {
-                int idGenerado = obj_cn_usuario.Registrar(obj_usuario, out mensaje);
+                // Agregamos Inicio.usuarioActual.IdUsuario
+                int idGenerado = obj_cn_usuario.Registrar(obj_usuario, Inicio.usuarioActual.IdUsuario, out mensaje);
 
                 if (idGenerado != 0)
                 {
@@ -160,13 +161,15 @@ namespace Llamen_a_Dios
             // MODO EDITAR
             else
             {
-                bool resultadoDatos = obj_cn_usuario.Editar(obj_usuario, out mensaje);
+                // Agregamos Inicio.usuarioActual.IdUsuario
+                bool resultadoDatos = obj_cn_usuario.Editar(obj_usuario, Inicio.usuarioActual.IdUsuario, out mensaje);
                 bool resultadoClave = true;
                 string mensajeClave = string.Empty;
 
                 if (resultadoDatos && !string.IsNullOrEmpty(tbContraseña.Text))
                 {
-                    claveCambiada = obj_cn_usuario.CambiarClave(obj_usuario.IdUsuario, tbContraseña.Text, out mensajeClave);
+                    // Agregamos Inicio.usuarioActual.IdUsuario también en CambiarClave
+                    claveCambiada = obj_cn_usuario.CambiarClave(obj_usuario.IdUsuario, tbContraseña.Text, Inicio.usuarioActual.IdUsuario, out mensajeClave);
                     resultadoClave = claveCambiada;
                 }
 
@@ -296,7 +299,8 @@ namespace Llamen_a_Dios
                     int idUsuario = Convert.ToInt32(txtid.Text);
                     CN_Usuario obj_cn_usuario = new CN_Usuario();
 
-                    bool resultado = obj_cn_usuario.Eliminar(idUsuario, out mensaje);
+                    // Agregamos Inicio.usuarioActual.IdUsuario
+                    bool resultado = obj_cn_usuario.Eliminar(idUsuario, Inicio.usuarioActual.IdUsuario, out mensaje);
 
                     if (resultado)
                     {

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D; // Necesario para los bordes redondeados
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,16 +19,20 @@ namespace Llamen_a_Dios
     {
         private List<Producto> listaOriginalProductos;
 
-        public FrmStock()
+        // 1. Variable global para almacenar al usuario actual
+        private Usuario _UsuarioActual;
+
+        // 2. Modificamos el constructor para recibir el Usuario
+        public FrmStock(Usuario usuarioActual = null)
         {
             InitializeComponent();
+            _UsuarioActual = usuarioActual; // Guardamos el usuario
         }
 
         private void FrmStock_Load(object sender, EventArgs e)
         {
             // --- 1. CONFIGURACIÓN VISUAL INICIAL ---
             ConfigurarDGVModerno();
-            
 
             // --- 2. LLENAR COMBOS ---
             CBEstado.Items.Add(new Opcombo() { Texto = "Activo", Valor = 1 });
@@ -81,22 +85,16 @@ namespace Llamen_a_Dios
             DGVStck.EnableHeadersVisualStyles = false;
             DGVStck.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             DGVStck.ColumnHeadersHeight = 40;
-            Color colorCabecera = Color.FromArgb(245, 247, 250); // Color gris suave de tu diseño
+            Color colorCabecera = Color.FromArgb(245, 247, 250);
             DGVStck.ColumnHeadersDefaultCellStyle.BackColor = colorCabecera;
             DGVStck.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(71, 85, 105);
             DGVStck.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F);
             DGVStck.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
             // --- SOLUCIÓN AL CUADRO AZUL ---
-            // 1. Cambia el color de la celda de la esquina (Top Left)
             DGVStck.TopLeftHeaderCell.Style.BackColor = colorCabecera;
-
-            // 2. Evita que la cabecera cambie a azul cuando la celda tiene el foco
             DGVStck.ColumnHeadersDefaultCellStyle.SelectionBackColor = colorCabecera;
-
-            // 3. Quita el borde de enfoque (dotted line) que a veces aparece
             DGVStck.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Empty;
-            // -------------------------------
 
             // Filas
             DGVStck.DefaultCellStyle.BackColor = Color.White;
@@ -107,9 +105,6 @@ namespace Llamen_a_Dios
             DGVStck.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-
-
-        // Pintado del botón de selección con icono moderno
         private void DGVStck_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -117,17 +112,13 @@ namespace Llamen_a_Dios
             if (e.ColumnIndex == 0) // La columna del botón seleccionar
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
-
-                // Dibujamos un icono de lápiz o check usando texto Unicode (más ligero que imágenes)
                 var font = new Font("Segoe UI Emoji", 10F);
-                var color = Color.FromArgb(37, 99, 235); // Azul moderno
+                var color = Color.FromArgb(37, 99, 235);
                 TextRenderer.DrawText(e.Graphics, "✏️", font, e.CellBounds, color, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-
                 e.Handled = true;
             }
         }
 
-        // Evento para redondear el panel del buscador si usas uno
         private void pnlBuscador_Paint(object sender, PaintEventArgs e)
         {
             GraphicsPath path = new GraphicsPath();
@@ -176,6 +167,7 @@ namespace Llamen_a_Dios
             tbdesc.Clear();
             tbPrecioPromocion.Clear();
             tbPrecio.Clear();
+            TBStock.Clear(); // Limpiar el stock también
             tbPrecioPromocion.Clear();
 
             if (CBCategoria.Items.Count > 0) CBCategoria.SelectedIndex = 0;
@@ -198,7 +190,7 @@ namespace Llamen_a_Dios
                 tbnombre.Text = DGVStck.Rows[indice].Cells[3].Value.ToString();
                 tbdesc.Text = DGVStck.Rows[indice].Cells[4].Value.ToString();
                 TBStock.Text = DGVStck.Rows[indice].Cells[7].Value.ToString();
-                
+
                 tbPrecio.Text = DGVStck.Rows[indice].Cells[8].Value.ToString();
 
                 string precioPromo = DGVStck.Rows[indice].Cells[9].Value.ToString();
@@ -237,6 +229,9 @@ namespace Llamen_a_Dios
             if (!string.IsNullOrEmpty(tbPrecioPromocion.Text) && decimal.TryParse(tbPrecioPromocion.Text, out decimal promo))
                 precioPromo = promo;
 
+            // 3. Obtenemos el ID del usuario
+            int idUsuarioLogueado = _UsuarioActual != null ? _UsuarioActual.IdUsuario : 0;
+
             Producto obj_producto = new Producto()
             {
                 IdProducto = Convert.ToInt32(txtid.Text),
@@ -244,7 +239,8 @@ namespace Llamen_a_Dios
                 Nombre = tbnombre.Text,
                 Descripcion = tbdesc.Text,
                 PrecioVenta = Convert.ToDecimal(tbPrecio.Text),
-                Stock = Convert.ToInt32(tbPrecioPromocion.Text),
+                // Corrección del BUG: Se leía tbPrecioPromocion.Text en lugar de TBStock.Text
+                Stock = string.IsNullOrEmpty(TBStock.Text) ? 0 : Convert.ToInt32(TBStock.Text),
                 Estado = Convert.ToInt32(((Opcombo)CBEstado.SelectedItem).Valor) == 1,
                 oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(((Opcombo)CBCategoria.SelectedItem).Valor) },
                 PrecioPromocion = precioPromo
@@ -254,7 +250,8 @@ namespace Llamen_a_Dios
 
             if (obj_producto.IdProducto == 0)
             {
-                int idGenerado = obj_cn_producto.Registrar(obj_producto, out mensaje);
+                // 4. Pasamos el ID del usuario al método Registrar
+                int idGenerado = obj_cn_producto.Registrar(obj_producto, idUsuarioLogueado, out mensaje);
                 if (idGenerado != 0)
                 {
                     MessageBox.Show("Producto registrado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -265,7 +262,8 @@ namespace Llamen_a_Dios
             }
             else
             {
-                bool resultado = obj_cn_producto.Editar(obj_producto, out mensaje);
+                // 5. Pasamos el ID del usuario al método Editar
+                bool resultado = obj_cn_producto.Editar(obj_producto, idUsuarioLogueado, out mensaje);
                 if (resultado)
                 {
                     MessageBox.Show("Producto actualizado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -283,7 +281,11 @@ namespace Llamen_a_Dios
                 if (MessageBox.Show("¿Desea desactivar este producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string mensaje = string.Empty;
-                    bool resultado = new CN_Producto().Eliminar(Convert.ToInt32(txtid.Text), out mensaje);
+
+                    // 6. Obtenemos y enviamos el ID del usuario al método Eliminar
+                    int idUsuarioLogueado = _UsuarioActual != null ? _UsuarioActual.IdUsuario : 0;
+                    bool resultado = new CN_Producto().Eliminar(Convert.ToInt32(txtid.Text), idUsuarioLogueado, out mensaje);
+
                     if (resultado)
                     {
                         CargarProductos();
@@ -316,5 +318,4 @@ namespace Llamen_a_Dios
 
         private void Btlimc_Click(object sender, EventArgs e) => LimpiarCampos();
     }
-
 }

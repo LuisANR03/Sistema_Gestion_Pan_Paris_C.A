@@ -14,16 +14,18 @@ namespace CapaNegocios
             return objCierre.CalcularTotalesDelDia(idUsuario);
         }
 
-        public bool RegistrarCierre(CierreCaja obj, out string Mensaje)
+        // SE AÑADEN LOS 2 PARÁMETROS NUEVOS AQUÍ: idUsuarioLogueado y detalleCuadre
+        public bool RegistrarCierre(CierreCaja obj, int idUsuarioLogueado, string detalleCuadre, out string Mensaje)
         {
-            // Validaciones de negocio preventivas
+            // Validaciones de negocio preventivas (Se mantiene intacta)
             if (obj.FondoInicial < 0)
             {
                 Mensaje = "El fondo inicial no puede ser un monto negativo.";
                 return false;
             }
 
-            return objCierre.RegistrarCierre(obj, out Mensaje);
+            // Pasamos los nuevos parámetros a la Capa de Datos
+            return objCierre.RegistrarCierre(obj, idUsuarioLogueado, detalleCuadre, out Mensaje);
         }
     }
 }

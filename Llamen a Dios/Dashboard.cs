@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq; // ¡Agregado para poder usar .Where() en las listas!
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting; // ¡Indispensable para el gráfico!
-using CapaNegocio;   // Referencia a tu Capa de Negocio
-using CapaEntidades; // Referencia a tu Capa de Entidades
+using System.Windows.Forms.DataVisualization.Charting;
+using CapaNegocio;
+using CapaEntidades;
+using CapaNegocios;  // Añadido para acceder a CN_Ingrediente
+using Entidades;     // Añadido para acceder a tu clase Ingrediente
 
 namespace Llamen_a_Dios
 {
@@ -22,6 +25,9 @@ namespace Llamen_a_Dios
         private void Dashboard_Load(object sender, EventArgs e)
         {
             CargarMetricas();
+
+            // Llamamos a nuestro nuevo método para sobreescribir la tarjeta de alertas
+            CargarAlertasIngredientes();
         }
 
         private void CargarMetricas()
@@ -29,23 +35,13 @@ namespace Llamen_a_Dios
             try
             {
                 // 3. Solicitamos la entidad completa a la Capa de Negocio
-                // Esta entidad ya trae: Ventas, Alertas de Stock, Total Productos y la Lista para el Gráfico
                 CapaEntidades.Dashboard datos = objetoNegocio.ObtenerMetricas();
 
                 // --- LLENADO DE TARJETAS (KPIs) ---
 
                 // Formato "C2" convierte el número a moneda (Ej: $ 1,500.25)
                 lblTotalMes.Text = datos.TotalVentasMes.ToString("C2");
-
-                lblAlertasStock.Text = datos.AlertasStock.ToString();
-
                 lblTotalProductos.Text = datos.TotalProductos.ToString();
-
-                // Lógica visual extra: Si hay stock bajo, ponemos el número en rojo/alerta
-                if (datos.AlertasStock > 0)
-                {
-                    lblAlertasStock.ForeColor = Color.Red;
-                }
 
                 // --- LLENADO DEL GRÁFICO (CHART) ---
 
@@ -71,6 +67,60 @@ namespace Llamen_a_Dios
             catch (Exception ex)
             {
                 MessageBox.Show("Hubo un error al cargar el Dashboard: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // =====================================================================
+        // MÉTODO: CARGAR ALERTAS DE STOCK DE MATERIA PRIMA EN LA TARJETA
+        // =====================================================================
+        private void CargarAlertasIngredientes()
+        {
+            try
+            {
+                // 1. Traemos TODO el inventario de ingredientes de la BD
+                List<Ingrediente> listaCompleta = new CN_Ingrediente().Listar();
+
+                // 2. Filtramos SOLAMENTE los críticos (<= Mínimo) y que estén activos
+                var ingredientesCriticos = listaCompleta.Where(i => i.StockActual <= i.StockMinimo && i.Estado == true).ToList();
+
+                // 3. Actualizamos el número de la tarjeta con la cantidad real de ingredientes en peligro
+                lblAlertasStock.Text = ingredientesCriticos.Count.ToString();
+
+                // 4. Creamos el ToolTip nativo de Windows Forms
+                ToolTip ttAlertas = new ToolTip();
+                ttAlertas.IsBalloon = true; // Lo hace redondito como un globo de diálogo
+                ttAlertas.ToolTipTitle = "Estado de Materia Prima";
+
+                // 5. Lógica de colores y texto al pasar el mouse
+                if (ingredientesCriticos.Count > 0)
+                {
+                    lblAlertasStock.ForeColor = Color.FromArgb(220, 38, 38); // Rojo de alerta
+                    ttAlertas.ToolTipIcon = ToolTipIcon.Warning;
+
+                    // Armamos la lista de lo que falta para mostrar en el globo
+                    string detalleAlertas = "ATENCIÓN - Ingredientes en nivel crítico:\n\n";
+                    foreach (var ing in ingredientesCriticos)
+                    {
+                        detalleAlertas += $"• {ing.Nombre} (Quedan: {ing.StockActual.ToString("N2")} {ing.UnidadMedida})\n";
+                    }
+
+                    // Se lo asignamos al texto y a tu panel pnlCardStock
+                    ttAlertas.SetToolTip(lblAlertasStock, detalleAlertas);
+                    ttAlertas.SetToolTip(pnlCardStock, detalleAlertas);
+                }
+                else
+                {
+                    lblAlertasStock.ForeColor = Color.FromArgb(22, 163, 74); // Verde (Todo OK)
+                    ttAlertas.ToolTipIcon = ToolTipIcon.Info;
+
+                    string mensajeOk = "El inventario de ingredientes está en niveles óptimos.";
+                    ttAlertas.SetToolTip(lblAlertasStock, mensajeOk);
+                    ttAlertas.SetToolTip(pnlCardStock, mensajeOk);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar alertas de ingredientes: " + ex.Message);
             }
         }
     }

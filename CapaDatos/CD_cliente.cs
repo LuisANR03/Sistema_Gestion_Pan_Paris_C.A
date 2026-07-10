@@ -12,8 +12,21 @@ namespace CapaDatos
 {
     public class CD_cliente
     {
+        // --- MÉTODO PRIVADO PARA AUDITORÍA ---
+        private void GuardarLog(MySqlConnection conexion, int idUsuarioLogueado, string accion, string tabla, string descripcion)
+        {
+            using (MySqlCommand cmdLog = new MySqlCommand("sp_RegistrarLog", conexion))
+            {
+                cmdLog.CommandType = CommandType.StoredProcedure;
+                cmdLog.Parameters.AddWithValue("p_id_usuario", idUsuarioLogueado);
+                cmdLog.Parameters.AddWithValue("p_accion", accion);
+                cmdLog.Parameters.AddWithValue("p_tabla_afectada", tabla);
+                cmdLog.Parameters.AddWithValue("p_descripcion", descripcion);
+                cmdLog.ExecuteNonQuery();
+            }
+        }
+
         // --- MÉTODO 1: LISTAR ---
-        // para traer todos los clientes.
         public List<Cliente> Listar()
         {
             List<Cliente> lista = new List<Cliente>();
@@ -37,7 +50,6 @@ namespace CapaDatos
                                 Cedula = reader["cedula"].ToString(),
                                 Nombre = reader["Nombre"].ToString(),
                                 Correo = reader["correo"].ToString(),
-                                // Manejamos nulos para campos opcionales
                                 Telefono = reader["telefono"] == DBNull.Value ? null : reader["telefono"].ToString(),
                                 Direccion = reader["direccion"] == DBNull.Value ? null : reader["direccion"].ToString(),
                                 Estado = Convert.ToBoolean(reader["estado"])
@@ -55,7 +67,7 @@ namespace CapaDatos
         }
 
         // --- MÉTODO 2: REGISTRAR ---
-        public int Registrar(Cliente obj, out string Mensaje)
+        public int Registrar(Cliente obj, int idUsuarioLogueado, out string Mensaje)
         {
             int idclientegenerado = 0;
             Mensaje = string.Empty;
@@ -66,14 +78,12 @@ namespace CapaDatos
                 {
                     MySqlCommand cmd = new MySqlCommand("sp_RegistrarCliente", oconexion);
 
-                    // Parámetros de ENTRADA
                     cmd.Parameters.AddWithValue("p_cedula", obj.Cedula);
                     cmd.Parameters.AddWithValue("p_nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("p_correo", obj.Correo);
                     cmd.Parameters.AddWithValue("p_telefono", obj.Telefono);
                     cmd.Parameters.AddWithValue("p_direccion", obj.Direccion);
 
-                    // Parámetros de SALIDA
                     cmd.Parameters.Add("p_IdClienteResultado", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("p_Mensaje", MySqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
@@ -82,6 +92,12 @@ namespace CapaDatos
 
                     idclientegenerado = Convert.ToInt32(cmd.Parameters["p_IdClienteResultado"].Value);
                     Mensaje = cmd.Parameters["p_Mensaje"].Value.ToString();
+
+                    // --- AUDITORÍA ---
+                    if (idclientegenerado > 0)
+                    {
+                        GuardarLog(oconexion, idUsuarioLogueado, "INSERT", "cliente", $"Se registró un nuevo cliente: {obj.Nombre} (Cédula: {obj.Cedula})");
+                    }
                 }
             }
             catch (Exception ex)
@@ -93,7 +109,7 @@ namespace CapaDatos
         }
 
         // --- MÉTODO 3: EDITAR ---
-        public bool Editar(Cliente obj, out string Mensaje)
+        public bool Editar(Cliente obj, int idUsuarioLogueado, out string Mensaje)
         {
             bool resultado = false;
             Mensaje = string.Empty;
@@ -104,7 +120,6 @@ namespace CapaDatos
                 {
                     MySqlCommand cmd = new MySqlCommand("sp_EditarCliente", oconexion);
 
-                    // Parámetros de ENTRADA
                     cmd.Parameters.AddWithValue("p_idcliente", obj.IdCliente);
                     cmd.Parameters.AddWithValue("p_cedula", obj.Cedula);
                     cmd.Parameters.AddWithValue("p_nombre", obj.Nombre);
@@ -113,7 +128,6 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("p_direccion", obj.Direccion);
                     cmd.Parameters.AddWithValue("p_estado", obj.Estado);
 
-                    // Parámetros de SALIDA
                     cmd.Parameters.Add("p_Resultado", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("p_Mensaje", MySqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
@@ -122,6 +136,12 @@ namespace CapaDatos
 
                     resultado = Convert.ToInt32(cmd.Parameters["p_Resultado"].Value) == 1;
                     Mensaje = cmd.Parameters["p_Mensaje"].Value.ToString();
+
+                    // --- AUDITORÍA ---
+                    if (resultado)
+                    {
+                        GuardarLog(oconexion, idUsuarioLogueado, "UPDATE", "cliente", $"Se editaron los datos del cliente: {obj.Nombre} (ID: {obj.IdCliente})");
+                    }
                 }
             }
             catch (Exception ex)
@@ -132,8 +152,8 @@ namespace CapaDatos
             return resultado;
         }
 
-        // --- MÉTODO 4: ELIMINAR (DESACTIVAR) ---
-        public bool Eliminar(int idcliente, out string Mensaje)
+        // --- MÉTODO 4: ELIMINAR ---
+        public bool Eliminar(int idcliente, int idUsuarioLogueado, out string Mensaje)
         {
             bool resultado = false;
             Mensaje = string.Empty;
@@ -144,10 +164,8 @@ namespace CapaDatos
                 {
                     MySqlCommand cmd = new MySqlCommand("sp_EliminarCliente", oconexion);
 
-                    // Parámetros de ENTRADA
                     cmd.Parameters.AddWithValue("p_idcliente", idcliente);
 
-                    // Parámetros de SALIDA
                     cmd.Parameters.Add("p_Resultado", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("p_Mensaje", MySqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
@@ -156,6 +174,12 @@ namespace CapaDatos
 
                     resultado = Convert.ToInt32(cmd.Parameters["p_Resultado"].Value) == 1;
                     Mensaje = cmd.Parameters["p_Mensaje"].Value.ToString();
+
+                    // --- AUDITORÍA ---
+                    if (resultado)
+                    {
+                        GuardarLog(oconexion, idUsuarioLogueado, "DELETE", "cliente", $"Se eliminó al cliente con ID: {idcliente}");
+                    }
                 }
             }
             catch (Exception ex)

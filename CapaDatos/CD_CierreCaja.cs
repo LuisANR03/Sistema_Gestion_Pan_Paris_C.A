@@ -8,7 +8,22 @@ namespace CapaDatos
 {
     public class CD_CierreCaja
     {
-        // 1. AHORA RECIBE EL idUsuario PARA MOSTRAR SOLO LO DE ESE CAJERO
+        // ==========================================
+        // MÉTODO PRIVADO PARA AUDITORÍA (LOG)
+        // ==========================================
+        private void GuardarLog(MySqlConnection conexion, int idUsuarioLogueado, string accion, string tabla, string descripcion)
+        {
+            using (MySqlCommand cmdLog = new MySqlCommand("sp_RegistrarLog", conexion))
+            {
+                cmdLog.CommandType = CommandType.StoredProcedure;
+                cmdLog.Parameters.AddWithValue("p_id_usuario", idUsuarioLogueado);
+                cmdLog.Parameters.AddWithValue("p_accion", accion);
+                cmdLog.Parameters.AddWithValue("p_tabla_afectada", tabla);
+                cmdLog.Parameters.AddWithValue("p_descripcion", descripcion);
+                cmdLog.ExecuteNonQuery();
+            }
+        }
+
         public CierreCaja CalcularTotalesDelDia(int idUsuario)
         {
             CierreCaja totales = new CierreCaja();
@@ -17,13 +32,11 @@ namespace CapaDatos
             {
                 try
                 {
-                    // Validación para no chocar con conexiones abiertas
                     if (oconexion.State == ConnectionState.Closed)
                     {
                         oconexion.Open();
                     }
 
-                    // 1. NOMBRES CORRECTOS: MontoTotal, idUsuario, FechaVenta
                     string queryVentas = @"SELECT 0 as TotalIGTF, 
                                                   IFNULL(SUM(MontoTotal), 0) as TotalVentas 
                                            FROM ventas 
@@ -41,7 +54,6 @@ namespace CapaDatos
                         }
                     }
 
-                    // 2. NOMBRES CORRECTOS: idMetodoPago, idVenta, FechaVenta, idUsuario
                     string queryPagos = @"SELECT vp.idMetodoPago as idMetodoPago, 
                                                  IFNULL(SUM(vp.monto_recibido - vp.monto_cambio), 0) as TotalRecaudado 
                                           FROM venta_pagos vp
@@ -59,7 +71,6 @@ namespace CapaDatos
                             int idMetodo = Convert.ToInt32(dr2["idMetodoPago"]);
                             decimal monto = Convert.ToDecimal(dr2["TotalRecaudado"]);
 
-                            // Lógica de Switch-Case
                             switch (idMetodo)
                             {
                                 case 1: totales.TotalEfectivoUSD = monto; break;
@@ -85,7 +96,8 @@ namespace CapaDatos
             return totales;
         }
 
-        public bool RegistrarCierre(CierreCaja obj, out string Mensaje)
+        // SE AÑADEN LOS 2 PARÁMETROS NUEVOS: idUsuarioLogueado y detalleCuadre
+        public bool RegistrarCierre(CierreCaja obj, int idUsuarioLogueado, string detalleCuadre, out string Mensaje)
         {
             bool respuesta = false;
             Mensaje = string.Empty;
@@ -94,13 +106,11 @@ namespace CapaDatos
             {
                 try
                 {
-                    // Validación para no chocar con conexiones abiertas
                     if (oconexion.State == ConnectionState.Closed)
                     {
                         oconexion.Open();
                     }
 
-                    // 1. EL QUERY ACTUALIZADO CON TODAS LAS COLUMNAS NUEVAS
                     string query = @"INSERT INTO cierre_caja 
                             (idUsuario, FondoInicial, TasaCambio, 
                              TotalEfectivoUSD, TotalEfectivoBs, TotalPagoMovil, TotalPuntoVenta, TotalCashea, TotalZelle, TotalIGTF, TotalVentas, 
@@ -114,16 +124,9 @@ namespace CapaDatos
 
                     MySqlCommand cmd = new MySqlCommand(query, oconexion);
 
-                    // ==========================================
-                    // 2. PASAMOS LOS PARÁMETROS GENERALES
-                    // ==========================================
                     cmd.Parameters.AddWithValue("@idUsuario", obj.Cajero.IdUsuario);
                     cmd.Parameters.AddWithValue("@FondoInicial", obj.FondoInicial);
                     cmd.Parameters.AddWithValue("@TasaCambio", obj.TasaCambio);
-
-                    // ==========================================
-                    // 3. PARÁMETROS DEL SISTEMA (CAJA AZUL)
-                    // ==========================================
                     cmd.Parameters.AddWithValue("@EfeUSD", obj.TotalEfectivoUSD);
                     cmd.Parameters.AddWithValue("@EfeBs", obj.TotalEfectivoBs);
                     cmd.Parameters.AddWithValue("@PagoMovil", obj.TotalPagoMovil);
@@ -132,10 +135,6 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@Zelle", obj.TotalZelle);
                     cmd.Parameters.AddWithValue("@IGTF", obj.TotalIGTF);
                     cmd.Parameters.AddWithValue("@Ventas", obj.TotalVentas);
-
-                    // ==========================================
-                    // 4. PARÁMETROS DEL CONTEO FÍSICO (CAJA VERDE)
-                    // ==========================================
                     cmd.Parameters.AddWithValue("@FisUSD", obj.FisicoEfectivoUSD);
                     cmd.Parameters.AddWithValue("@FisBs", obj.FisicoEfectivoBs);
                     cmd.Parameters.AddWithValue("@FisPagoMovil", obj.FisicoPagoMovil);
@@ -143,26 +142,23 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@FisTransferencia", obj.FisicoTransferencia);
                     cmd.Parameters.AddWithValue("@FisZinly", obj.FisicoZinly);
                     cmd.Parameters.AddWithValue("@FisCashea", obj.FisicoCashea);
-
-                    // ==========================================
-                    // 5. PARÁMETROS DE TOTALES Y CUADRE
-                    // ==========================================
                     cmd.Parameters.AddWithValue("@TotalSis", obj.TotalSistemaCalculado);
                     cmd.Parameters.AddWithValue("@TotalFis", obj.TotalFisicoDeclarado);
                     cmd.Parameters.AddWithValue("@DifCuadre", obj.DiferenciaCuadre);
-
-                    // ==========================================
-                    // 6. ESTADO Y OBSERVACIONES
-                    // ==========================================
                     cmd.Parameters.AddWithValue("@Obs", string.IsNullOrEmpty(obj.Observaciones) ? "" : obj.Observaciones);
                     cmd.Parameters.AddWithValue("@Estado", "CERRADO");
 
-                    // Ejecutamos la inserción
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
                     {
                         respuesta = true;
+
+                        // ==========================================
+                        // REGISTRAR LA AUDITORÍA SI SE GUARDÓ CON ÉXITO
+                        // ==========================================
+                        string descripcionLog = $"Se registró cierre de caja. Cuadre: {detalleCuadre}";
+                        GuardarLog(oconexion, idUsuarioLogueado, "INSERT", "cierre_caja", descripcionLog);
                     }
                     else
                     {
@@ -172,7 +168,7 @@ namespace CapaDatos
                 catch (Exception ex)
                 {
                     respuesta = false;
-                    Mensaje = ex.Message; // Si hay algún error en nombres o tipos, aquí lo atrapará
+                    Mensaje = ex.Message;
                 }
             }
             return respuesta;

@@ -12,6 +12,20 @@ namespace CapaDatos
 {
     public class CD_Producto
     {
+        // --- MÉTODO PRIVADO PARA AUDITORÍA ---
+        private void GuardarLog(MySqlConnection conexion, int idUsuarioLogueado, string accion, string tabla, string descripcion)
+        {
+            using (MySqlCommand cmdLog = new MySqlCommand("sp_RegistrarLog", conexion))
+            {
+                cmdLog.CommandType = CommandType.StoredProcedure;
+                cmdLog.Parameters.AddWithValue("p_id_usuario", idUsuarioLogueado);
+                cmdLog.Parameters.AddWithValue("p_accion", accion);
+                cmdLog.Parameters.AddWithValue("p_tabla_afectada", tabla);
+                cmdLog.Parameters.AddWithValue("p_descripcion", descripcion);
+                cmdLog.ExecuteNonQuery();
+            }
+        }
+
         public List<Producto> Listar()
         {
             List<Producto> lista = new List<Producto>();
@@ -68,7 +82,7 @@ namespace CapaDatos
         }
 
         // --- MÉTODO 2: REGISTRAR ---
-        public int Registrar(Producto obj, out string Mensaje)
+        public int Registrar(Producto obj, int idUsuarioLogueado, out string Mensaje)
         {
             int idproductogenerado = 0;
             Mensaje = string.Empty;
@@ -100,6 +114,12 @@ namespace CapaDatos
 
                     idproductogenerado = Convert.ToInt32(cmd.Parameters["p_IdResultado"].Value);
                     Mensaje = cmd.Parameters["p_Mensaje"].Value.ToString();
+
+                    // --- AUDITORÍA ---
+                    if (idproductogenerado > 0)
+                    {
+                        GuardarLog(oconexion, idUsuarioLogueado, "INSERT", "producto", $"Se registró un nuevo producto: {obj.Nombre} (Código: {obj.Codigo})");
+                    }
                 }
             }
             catch (Exception ex)
@@ -111,7 +131,7 @@ namespace CapaDatos
         }
 
         // --- MÉTODO 3: EDITAR ---
-        public bool Editar(Producto obj, out string Mensaje)
+        public bool Editar(Producto obj, int idUsuarioLogueado, out string Mensaje)
         {
             bool resultado = false;
             Mensaje = string.Empty;
@@ -145,6 +165,12 @@ namespace CapaDatos
 
                     resultado = Convert.ToInt32(cmd.Parameters["p_Resultado"].Value) == 1;
                     Mensaje = cmd.Parameters["p_Mensaje"].Value.ToString();
+
+                    // --- AUDITORÍA ---
+                    if (resultado)
+                    {
+                        GuardarLog(oconexion, idUsuarioLogueado, "UPDATE", "producto", $"Se editaron los datos del producto: {obj.Nombre} (ID: {obj.IdProducto})");
+                    }
                 }
             }
             catch (Exception ex)
@@ -156,7 +182,7 @@ namespace CapaDatos
         }
 
         // --- MÉTODO 4: ELIMINAR (DESACTIVAR) ---
-        public bool Eliminar(int idproducto, out string Mensaje)
+        public bool Eliminar(int idproducto, int idUsuarioLogueado, out string Mensaje)
         {
             bool resultado = false;
             Mensaje = string.Empty;
@@ -179,6 +205,12 @@ namespace CapaDatos
 
                     resultado = Convert.ToInt32(cmd.Parameters["p_Resultado"].Value) == 1;
                     Mensaje = cmd.Parameters["p_Mensaje"].Value.ToString();
+
+                    // --- AUDITORÍA ---
+                    if (resultado)
+                    {
+                        GuardarLog(oconexion, idUsuarioLogueado, "DELETE", "producto", $"Se eliminó el producto con ID: {idproducto}");
+                    }
                 }
             }
             catch (Exception ex)

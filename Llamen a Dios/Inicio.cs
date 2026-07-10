@@ -53,7 +53,7 @@ namespace Llamen_a_Dios
                 submenudetalleventa.Visible = false;
                 submenuinv.Visible = false;
                 submenucierrecaja.Visible = false;
-                submenureporteventas.Visible = false;
+                
 
                 // 2. BUSCAMOS LOS PERMISOS DEL USUARIO EN LA BASE DE DATOS
                 // Asumiendo que tienes un método Listar en CN_permisos que recibe el IdRol
@@ -179,7 +179,7 @@ namespace Llamen_a_Dios
         private void MenuClient_Click(object sender, EventArgs e)
         {
             OcultarSubmenus();
-            AbrirFrm(sender, new FrmClientes());
+            AbrirFrm(sender, new FrmClientes(usuarioActual));
         }
 
         private void MenuInformes_Click(object sender, EventArgs e)
@@ -223,7 +223,7 @@ namespace Llamen_a_Dios
 
         private void submenuinv_Click(object sender, EventArgs e)
         {
-            AbrirFrm(sender, new FrmStock());
+            AbrirFrm(sender, new FrmStock(usuarioActual));
         }
 
         private void submenucategorias_Click(object sender, EventArgs e)
@@ -267,6 +267,11 @@ namespace Llamen_a_Dios
         private void btnProduccion_Click(object sender, EventArgs e)
         {
             AbrirFrm(sender, new Produccion());
+        }
+
+        private void btnIngredientes_Click(object sender, EventArgs e)
+        {
+            AbrirFrm(sender, new FrmIngredientes(usuarioActual));
         }
     }
 }

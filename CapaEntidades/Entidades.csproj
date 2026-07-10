@@ -272,6 +272,7 @@
     <Compile Include="DetalleCompra.cs" />
     <Compile Include="DetalleVenta.cs" />
     <Compile Include="Ingrediente.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="MetodoPago.cs" />
     <Compile Include="Permisos.cs" />
     <Compile Include="Producto.cs" />

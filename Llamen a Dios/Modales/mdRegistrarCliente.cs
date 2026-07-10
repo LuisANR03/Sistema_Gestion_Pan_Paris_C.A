@@ -17,12 +17,17 @@ namespace Llamen_a_Dios.Modales
         // 1. Variable para recibir la cédula desde las ventas
         public string CedulaSugerida { get; set; }
 
-        public mdRegistrarCliente()
+        // Variable global privada para guardar el usuario que inició sesión
+        private Usuario _UsuarioActual;
+
+        // 2. Modificamos el constructor para recibir el Usuario
+        public mdRegistrarCliente(Usuario usuarioActual = null)
         {
             InitializeComponent();
+            _UsuarioActual = usuarioActual; // Guardamos el usuario
         }
 
-        // 2. Evento Load del formulario
+        // 3. Evento Load del formulario
         private void mdRegistrarCliente_Load(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(CedulaSugerida))
@@ -32,7 +37,7 @@ namespace Llamen_a_Dios.Modales
             }
         }
 
-        // 3. Evento Click del botón Guardar
+        // 4. Evento Click del botón Guardar
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbCedula.Text) || string.IsNullOrWhiteSpace(tbnombre.Text))
@@ -54,8 +59,13 @@ namespace Llamen_a_Dios.Modales
                 Estado = true
             };
 
+            // Obtenemos el ID del usuario logueado (si es null, mandamos 0)
+            int idUsuarioLogueado = _UsuarioActual != null ? _UsuarioActual.IdUsuario : 0;
+
             CN_cliente obj_cn_cliente = new CN_cliente();
-            int idGenerado = obj_cn_cliente.Registrar(obj_cliente, out mensaje);
+
+            // Pasamos el idUsuarioLogueado a la capa de negocios
+            int idGenerado = obj_cn_cliente.Registrar(obj_cliente, idUsuarioLogueado, out mensaje);
 
             if (idGenerado != 0)
             {
@@ -69,7 +79,7 @@ namespace Llamen_a_Dios.Modales
             }
         }
 
-        // 4. Evento Click del botón Cancelar (Opcional, si tienes uno)
+        // 5. Evento Click del botón Cancelar
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

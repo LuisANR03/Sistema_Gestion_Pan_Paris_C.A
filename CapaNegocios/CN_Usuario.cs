@@ -8,31 +8,22 @@ namespace CapaNegocios
     {
         private CD_Usuario objetoCD_Usuario = new CD_Usuario();
 
-
         public List<Usuario> Listar()
         {
             return objetoCD_Usuario.Listar();
         }
-        //Llama a la capa de datos para validar las credenciales de un usuario.
 
-        // <param name="cedula">Cédula del usuario.</param>
-        // <param name="clave">Clave del usuario.</param>
-        // <returns>Devuelve el objeto Usuario si es válido, de lo contrario devuelve null.</returns>
         public Usuario Loguear(string cedula, string clave)
         {
-
-            //no permite que los campos estén vacíos antes de consultar la BDD.
             if (string.IsNullOrEmpty(cedula) || string.IsNullOrEmpty(clave))
             {
-                return null; // Si los campos están vacíos no se intenta loguear.
+                return null;
             }
-
-            // Pasa la búsqueda a la capa de datos.
             return objetoCD_Usuario.Loguear(cedula, clave);
         }
 
-        // --- MÉTODO 1: REGISTRAR ---
-        public int Registrar(Usuario obj, out string Mensaje)
+        // --- MÉTODO 1: REGISTRAR (Se añadió idUsuarioLogueado) ---
+        public int Registrar(Usuario obj, int idUsuarioLogueado, out string Mensaje)
         {
             Mensaje = string.Empty;
 
@@ -54,12 +45,12 @@ namespace CapaNegocios
                 return 0;
             }
 
-
-            return objetoCD_Usuario.Registrar(obj, out Mensaje);
+            // Pasamos el ID a la capa de datos
+            return objetoCD_Usuario.Registrar(obj, idUsuarioLogueado, out Mensaje);
         }
 
-        // --- MÉTODO 2: EDITAR ---
-        public bool Editar(Usuario obj, out string Mensaje)
+        // --- MÉTODO 2: EDITAR (Se añadió idUsuarioLogueado) ---
+        public bool Editar(Usuario obj, int idUsuarioLogueado, out string Mensaje)
         {
             Mensaje = string.Empty;
 
@@ -77,12 +68,12 @@ namespace CapaNegocios
                 return false;
             }
 
-
-            return objetoCD_Usuario.Editar(obj, out Mensaje);
+            // Pasamos el ID a la capa de datos
+            return objetoCD_Usuario.Editar(obj, idUsuarioLogueado, out Mensaje);
         }
 
-        // --- MÉTODO 3: CAMBIAR CLAVE ---
-        public bool CambiarClave(int idusuario, string nuevaclave, out string Mensaje)
+        // --- MÉTODO 3: CAMBIAR CLAVE (Se añadió idUsuarioLogueado) ---
+        public bool CambiarClave(int idusuario, string nuevaclave, int idUsuarioLogueado, out string Mensaje)
         {
             if (string.IsNullOrEmpty(nuevaclave) || string.IsNullOrWhiteSpace(nuevaclave))
             {
@@ -90,28 +81,27 @@ namespace CapaNegocios
                 return false;
             }
 
-
-            return objetoCD_Usuario.CambiarClave(idusuario, nuevaclave, out Mensaje);
+            // Pasamos el ID a la capa de datos
+            return objetoCD_Usuario.CambiarClave(idusuario, nuevaclave, idUsuarioLogueado, out Mensaje);
         }
-        public bool Eliminar(int idusuario, out string Mensaje)
+
+        // --- MÉTODO 4: ELIMINAR (Se añadió idUsuarioLogueado) ---
+        public bool Eliminar(int idusuario, int idUsuarioLogueado, out string Mensaje)
         {
             Mensaje = string.Empty;
 
-            //No se puede eliminar un ID inválido
             if (idusuario == 0)
             {
                 Mensaje = "No se ha seleccionado ningún usuario.";
                 return false;
             }
 
-
-            return objetoCD_Usuario.Eliminar(idusuario, out Mensaje);
+            // Pasamos el ID a la capa de datos
+            return objetoCD_Usuario.Eliminar(idusuario, idUsuarioLogueado, out Mensaje);
         }
-    
 
-    public List<Usuario> ListarVendedores()
+        public List<Usuario> ListarVendedores()
         {
-            // Llama a un método específico en la capa de datos que filtra por rol
             return objetoCD_Usuario.ListarVendedores();
         }
     }

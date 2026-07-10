@@ -21,7 +21,7 @@ namespace CapaNegocios
         }
 
         // --- MÉTODO 2: REGISTRAR ---
-        public int Registrar(Cliente obj, out string Mensaje)
+        public int Registrar(Cliente obj, int idUsuarioLogueado, out string Mensaje)
         {
             Mensaje = string.Empty;
 
@@ -46,11 +46,11 @@ namespace CapaNegocios
             }
 
             // Si todo está bien, llama a la Capa de Datos
-            return objetoCD_Cliente.Registrar(obj, out Mensaje);
+            return objetoCD_Cliente.Registrar(obj, idUsuarioLogueado, out Mensaje);
         }
 
         // --- MÉTODO 3: EDITAR ---
-        public bool Editar(Cliente obj, out string Mensaje)
+        public bool Editar(Cliente obj, int idUsuarioLogueado, out string Mensaje)
         {
             Mensaje = string.Empty;
 
@@ -74,11 +74,11 @@ namespace CapaNegocios
             }
 
             // Si todo está bien, llama a la Capa de Datos
-            return objetoCD_Cliente.Editar(obj, out Mensaje);
+            return objetoCD_Cliente.Editar(obj, idUsuarioLogueado, out Mensaje);
         }
 
         // --- MÉTODO 4: ELIMINAR ---
-        public bool Eliminar(int idcliente, out string Mensaje)
+        public bool Eliminar(int idcliente, int idUsuarioLogueado, out string Mensaje)
         {
             Mensaje = string.Empty;
             if (idcliente == 0)
@@ -87,7 +87,7 @@ namespace CapaNegocios
                 return false;
             }
 
-            return objetoCD_Cliente.Eliminar(idcliente, out Mensaje);
+            return objetoCD_Cliente.Eliminar(idcliente, idUsuarioLogueado, out Mensaje);
         }
     }
 }
