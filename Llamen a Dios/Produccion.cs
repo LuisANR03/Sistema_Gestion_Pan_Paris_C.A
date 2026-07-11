@@ -1,5 +1,4 @@
-﻿
-using CapaEntidades;
+﻿using CapaEntidades;
 using CapaNegocio;
 using Entidades;
 using System;
@@ -42,9 +41,8 @@ namespace Llamen_a_Dios
                 // Recorremos la lista y agregamos una fila por cada pan
                 foreach (Producto prod in listaProductos)
                 {
-                    // Agrega una fila respetando el orden de tus columnas: 
-                    // Id, Producto, Stock Actual, IA Sugerido, Horneado, Merma
-                    dgvProduccion.Rows.Add(new object[] {
+                    // NUEVO: Guardamos el índice de la fila que se acaba de crear
+                    int rowIndex = dgvProduccion.Rows.Add(new object[] {
                         prod.IdProducto,
                         prod.Nombre,
                         prod.Stock,
@@ -52,6 +50,10 @@ namespace Llamen_a_Dios
                         "0", // Inicializamos en cero para evitar nulos al escribir
                         "0"  // Inicializamos en cero
                     });
+
+                    // NUEVO: Usamos el 'Tag' de la fila como bolsillo secreto para guardar el costo 
+                    // sin necesidad de crear una columna extra en el diseño visual.
+                    dgvProduccion.Rows[rowIndex].Tag = prod.CostoProduccion;
                 }
             }
             catch (Exception ex)
@@ -116,12 +118,20 @@ namespace Llamen_a_Dios
                     int entrada = int.TryParse(Convert.ToString(fila.Cells["colEntrada"].Value), out int en) ? en : 0;
                     int merma = int.TryParse(Convert.ToString(fila.Cells["colMerma"].Value), out int me) ? me : 0;
 
+                    // NUEVO: Recuperamos el costo escondido en el Tag de la fila
+                    decimal costoEscondido = fila.Tag != null ? Convert.ToDecimal(fila.Tag) : 0m;
+
                     // Solo tomamos en cuenta filas que tengan algún movimiento para no saturar la BD
                     if (entrada > 0 || merma > 0)
                     {
                         listaAMandar.Add(new ControlProduccion()
                         {
-                            oProducto = new Producto() { IdProducto = idProd },
+                            // NUEVO: Adjuntamos el costo al objeto Producto para que viaje a la Base de Datos
+                            oProducto = new Producto()
+                            {
+                                IdProducto = idProd,
+                                CostoProduccion = costoEscondido
+                            },
                             SugeridoIA = sugerido,
                             EntradaHorno = entrada,
                             Merma = merma
@@ -141,7 +151,7 @@ namespace Llamen_a_Dios
 
                 if (exito)
                 {
-                    MessageBox.Show("¡Producción y Mermas registradas correctamente!\nEl inventario en stock ha sido actualizado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("¡Producción y Mermas registradas correctamente!\nEl inventario en stock ha sido actualizado y los costos calculados.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // 3. Refrescamos la tabla para ver reflejado el nuevo Stock Actualizado desde MySQL
                     CargarProductosEnTabla();

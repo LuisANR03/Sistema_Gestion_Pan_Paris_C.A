@@ -34,11 +34,11 @@ namespace CapaDatos
             {
                 try
                 {
-                    // Consulta con JOIN para unir producto (p) y categoria (c)
+                    // Consulta actualizada incluyendo p.costo_produccion
                     string query = @"
                         SELECT p.IdProducto, p.Codigo, p.Nombre, p.Descripcion,
                                c.IdCategoria, c.Descripcion as CategoriaDescripcion,
-                               p.Stock, p.PrecioVenta, p.PrecioPromocion, p.estado
+                               p.Stock, p.PrecioVenta, p.PrecioPromocion, p.estado, p.costo_produccion
                         FROM producto p
                         INNER JOIN categoria c ON p.idcategoria = c.IdCategoria";
 
@@ -55,7 +55,6 @@ namespace CapaDatos
                                 Codigo = reader["Codigo"].ToString(),
                                 Nombre = reader["Nombre"].ToString(),
                                 Descripcion = reader["Descripcion"].ToString(),
-                                // Creamos el objeto Categoria anidado
                                 oCategoria = new Categoria()
                                 {
                                     IdCategoria = Convert.ToInt32(reader["IdCategoria"]),
@@ -63,10 +62,11 @@ namespace CapaDatos
                                 },
                                 Stock = Convert.ToInt32(reader["Stock"]),
                                 PrecioVenta = Convert.ToDecimal(reader["PrecioVenta"]),
-                                // Manejamos el valor NULO de PrecioPromocion
                                 PrecioPromocion = reader["PrecioPromocion"] == DBNull.Value
                                                     ? (decimal?)null
                                                     : Convert.ToDecimal(reader["PrecioPromocion"]),
+                                // Lectura del nuevo campo
+                                CostoProduccion = Convert.ToDecimal(reader["costo_produccion"]),
                                 Estado = Convert.ToBoolean(reader["estado"])
                             });
                         }
@@ -101,8 +101,9 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("p_stock", obj.Stock);
                     cmd.Parameters.AddWithValue("p_precioventa", obj.PrecioVenta);
 
-                    // Manejamos el valor NULO de PrecioPromocion
-                    // Si es null, enviamos 0, el SP lo convertirá a NULL.
+                    // Nuevo parámetro para el costo
+                    cmd.Parameters.AddWithValue("p_costo_produccion", obj.CostoProduccion);
+
                     cmd.Parameters.AddWithValue("p_preciopromocion", obj.PrecioPromocion.HasValue ? obj.PrecioPromocion.Value : 0);
 
                     // Parámetros de SALIDA
@@ -151,9 +152,10 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("p_stock", obj.Stock);
                     cmd.Parameters.AddWithValue("p_precioventa", obj.PrecioVenta);
 
-                    // Manejamos el valor NULO
-                    cmd.Parameters.AddWithValue("p_preciopromocion", obj.PrecioPromocion.HasValue ? obj.PrecioPromocion.Value : 0);
+                    // Nuevo parámetro para el costo
+                    cmd.Parameters.AddWithValue("p_costo_produccion", obj.CostoProduccion);
 
+                    cmd.Parameters.AddWithValue("p_preciopromocion", obj.PrecioPromocion.HasValue ? obj.PrecioPromocion.Value : 0);
                     cmd.Parameters.AddWithValue("p_estado", obj.Estado);
 
                     // Parámetros de SALIDA

@@ -37,6 +37,7 @@ namespace CapaDatos
                         oconexion.Open();
                     }
 
+                    // 1. CONSULTA DE VENTAS TOTALES
                     string queryVentas = @"SELECT 0 as TotalIGTF, 
                                                   IFNULL(SUM(MontoTotal), 0) as TotalVentas 
                                            FROM ventas 
@@ -54,6 +55,7 @@ namespace CapaDatos
                         }
                     }
 
+                    // 2. CONSULTA DE METODOS DE PAGO
                     string queryPagos = @"SELECT vp.idMetodoPago as idMetodoPago, 
                                                  IFNULL(SUM(vp.monto_recibido - vp.monto_cambio), 0) as TotalRecaudado 
                                           FROM venta_pagos vp
@@ -82,6 +84,26 @@ namespace CapaDatos
                             }
                         }
                     }
+
+                    // 3. ACTUALIZADO: CONSULTA DE COSTOS DE PRODUCCIÓN DEL DÍA
+                    // Sumamos todo el costo de producción registrado hoy
+                    string queryCostos = @"SELECT IFNULL(SUM(costo_total), 0) as CostoDiario 
+                                           FROM control_produccion 
+                                           WHERE DATE(FechaRegistro) = CURDATE()";
+
+                    MySqlCommand cmd3 = new MySqlCommand(queryCostos, oconexion);
+                    using (MySqlDataReader dr3 = cmd3.ExecuteReader())
+                    {
+                        if (dr3.Read())
+                        {
+                            // Usamos el nuevo nombre de la propiedad de tu entidad
+                            totales.CostoTotalProduccion = Convert.ToDecimal(dr3["CostoDiario"]);
+                        }
+                    }
+
+                    // ACTUALIZADO: Calculamos la ganancia neta usando los nombres correctos
+                    totales.GananciaNeta = totales.TotalVentas - totales.CostoTotalProduccion;
+
                 }
                 catch (Exception ex)
                 {
@@ -111,16 +133,18 @@ namespace CapaDatos
                         oconexion.Open();
                     }
 
+                    // ACTUALIZADO: Las columnas ahora coinciden exactamente con tu base de datos
                     string query = @"INSERT INTO cierre_caja 
                             (idUsuario, FondoInicial, TasaCambio, 
                              TotalEfectivoUSD, TotalEfectivoBs, TotalPagoMovil, TotalPuntoVenta, TotalCashea, TotalZelle, TotalIGTF, TotalVentas, 
                              FisicoEfectivoUSD, FisicoEfectivoBs, FisicoPagoMovil, FisicoPuntoVenta, FisicoTransferencia, FisicoZinly, FisicoCashea, 
-                             TotalSistemaCalculado, TotalFisicoDeclarado, DiferenciaCuadre, Observaciones, Estado) 
+                             TotalSistemaCalculado, TotalFisicoDeclarado, DiferenciaCuadre, 
+                             costo_total_produccion, ganancia_neta, Observaciones, Estado) 
                             VALUES 
                             (@idUsuario, @FondoInicial, @TasaCambio, 
                              @EfeUSD, @EfeBs, @PagoMovil, @PuntoVenta, @Cashea, @Zelle, @IGTF, @Ventas, 
                              @FisUSD, @FisBs, @FisPagoMovil, @FisPuntoVenta, @FisTransferencia, @FisZinly, @FisCashea, 
-                             @TotalSis, @TotalFis, @DifCuadre, @Obs, @Estado)";
+                             @TotalSis, @TotalFis, @DifCuadre, @CostoProd, @Ganancia, @Obs, @Estado)";
 
                     MySqlCommand cmd = new MySqlCommand(query, oconexion);
 
@@ -145,6 +169,11 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@TotalSis", obj.TotalSistemaCalculado);
                     cmd.Parameters.AddWithValue("@TotalFis", obj.TotalFisicoDeclarado);
                     cmd.Parameters.AddWithValue("@DifCuadre", obj.DiferenciaCuadre);
+
+                    // ACTUALIZADO: Pasamos los valores correctos desde tu objeto CierreCaja
+                    cmd.Parameters.AddWithValue("@CostoProd", obj.CostoTotalProduccion);
+                    cmd.Parameters.AddWithValue("@Ganancia", obj.GananciaNeta);
+
                     cmd.Parameters.AddWithValue("@Obs", string.IsNullOrEmpty(obj.Observaciones) ? "" : obj.Observaciones);
                     cmd.Parameters.AddWithValue("@Estado", "CERRADO");
 
@@ -157,7 +186,7 @@ namespace CapaDatos
                         // ==========================================
                         // REGISTRAR LA AUDITORÍA SI SE GUARDÓ CON ÉXITO
                         // ==========================================
-                        string descripcionLog = $"Se registró cierre de caja. Cuadre: {detalleCuadre}";
+                        string descripcionLog = $"Se registró cierre de caja. Cuadre: {detalleCuadre}. Ganancia Neta: {obj.GananciaNeta}";
                         GuardarLog(oconexion, idUsuarioLogueado, "INSERT", "cierre_caja", descripcionLog);
                     }
                     else

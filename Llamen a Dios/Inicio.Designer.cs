@@ -15,10 +15,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.PanelSidebar = new System.Windows.Forms.Panel();
-            this.btndashboard = new FontAwesome.Sharp.IconButton();
-            this.Btnasistente = new FontAwesome.Sharp.IconButton();
             this.btnAcerca = new FontAwesome.Sharp.IconButton();
+            this.btnrespaldo = new FontAwesome.Sharp.IconButton();
             this.PanelSubmenuStock = new System.Windows.Forms.Panel();
+            this.btnIngredientes = new System.Windows.Forms.Button();
             this.btnProduccion = new System.Windows.Forms.Button();
             this.submenuinv = new System.Windows.Forms.Button();
             this.btnStock = new FontAwesome.Sharp.IconButton();
@@ -30,7 +30,9 @@
             this.submenudetalleventa = new System.Windows.Forms.Button();
             this.submenuregistrarventa = new System.Windows.Forms.Button();
             this.btnVentas = new FontAwesome.Sharp.IconButton();
+            this.Btnasistente = new FontAwesome.Sharp.IconButton();
             this.btnUsuarios = new FontAwesome.Sharp.IconButton();
+            this.btndashboard = new FontAwesome.Sharp.IconButton();
             this.PanelLogo = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Textotitulo = new System.Windows.Forms.Label();
@@ -41,7 +43,6 @@
             this.labeluser = new System.Windows.Forms.Label();
             this.Contenedor = new System.Windows.Forms.Panel();
             this.timerHora = new System.Windows.Forms.Timer(this.components);
-            this.btnIngredientes = new System.Windows.Forms.Button();
             this.PanelSidebar.SuspendLayout();
             this.PanelSubmenuStock.SuspendLayout();
             this.PanelSubmenuInformes.SuspendLayout();
@@ -55,9 +56,8 @@
             // 
             this.PanelSidebar.AutoScroll = true;
             this.PanelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.PanelSidebar.Controls.Add(this.btndashboard);
-            this.PanelSidebar.Controls.Add(this.Btnasistente);
             this.PanelSidebar.Controls.Add(this.btnAcerca);
+            this.PanelSidebar.Controls.Add(this.btnrespaldo);
             this.PanelSidebar.Controls.Add(this.PanelSubmenuStock);
             this.PanelSidebar.Controls.Add(this.btnStock);
             this.PanelSidebar.Controls.Add(this.PanelSubmenuInformes);
@@ -65,7 +65,9 @@
             this.PanelSidebar.Controls.Add(this.btnClientes);
             this.PanelSidebar.Controls.Add(this.PanelSubmenuVentas);
             this.PanelSidebar.Controls.Add(this.btnVentas);
+            this.PanelSidebar.Controls.Add(this.Btnasistente);
             this.PanelSidebar.Controls.Add(this.btnUsuarios);
+            this.PanelSidebar.Controls.Add(this.btndashboard);
             this.PanelSidebar.Controls.Add(this.PanelLogo);
             this.PanelSidebar.Controls.Add(this.btnCerrarSesion);
             this.PanelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
@@ -74,56 +76,6 @@
             this.PanelSidebar.Name = "PanelSidebar";
             this.PanelSidebar.Size = new System.Drawing.Size(307, 1200);
             this.PanelSidebar.TabIndex = 0;
-            // 
-            // btndashboard
-            // 
-            this.btndashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.btndashboard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btndashboard.FlatAppearance.BorderSize = 0;
-            this.btndashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btndashboard.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btndashboard.ForeColor = System.Drawing.Color.White;
-            this.btndashboard.IconChar = FontAwesome.Sharp.IconChar.TachometerAltFast;
-            this.btndashboard.IconColor = System.Drawing.Color.White;
-            this.btndashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btndashboard.IconSize = 32;
-            this.btndashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndashboard.Location = new System.Drawing.Point(0, 808);
-            this.btndashboard.Margin = new System.Windows.Forms.Padding(4);
-            this.btndashboard.Name = "btndashboard";
-            this.btndashboard.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
-            this.btndashboard.Size = new System.Drawing.Size(307, 62);
-            this.btndashboard.TabIndex = 17;
-            this.btndashboard.Text = "Dashboard";
-            this.btndashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btndashboard.UseVisualStyleBackColor = false;
-            this.btndashboard.Click += new System.EventHandler(this.btndashboard_Click);
-            // 
-            // Btnasistente
-            // 
-            this.Btnasistente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.Btnasistente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Btnasistente.FlatAppearance.BorderSize = 0;
-            this.Btnasistente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btnasistente.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.Btnasistente.ForeColor = System.Drawing.Color.White;
-            this.Btnasistente.IconChar = FontAwesome.Sharp.IconChar.Brain;
-            this.Btnasistente.IconColor = System.Drawing.Color.White;
-            this.Btnasistente.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Btnasistente.IconSize = 32;
-            this.Btnasistente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btnasistente.Location = new System.Drawing.Point(0, 746);
-            this.Btnasistente.Margin = new System.Windows.Forms.Padding(4);
-            this.Btnasistente.Name = "Btnasistente";
-            this.Btnasistente.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
-            this.Btnasistente.Size = new System.Drawing.Size(307, 62);
-            this.Btnasistente.TabIndex = 16;
-            this.Btnasistente.Text = "  Asistente";
-            this.Btnasistente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btnasistente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Btnasistente.UseVisualStyleBackColor = false;
-            this.Btnasistente.Click += new System.EventHandler(this.Btnasistente_Click);
             // 
             // btnAcerca
             // 
@@ -138,7 +90,7 @@
             this.btnAcerca.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAcerca.IconSize = 32;
             this.btnAcerca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAcerca.Location = new System.Drawing.Point(0, 684);
+            this.btnAcerca.Location = new System.Drawing.Point(0, 805);
             this.btnAcerca.Margin = new System.Windows.Forms.Padding(4);
             this.btnAcerca.Name = "btnAcerca";
             this.btnAcerca.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -150,6 +102,29 @@
             this.btnAcerca.UseVisualStyleBackColor = false;
             this.btnAcerca.Click += new System.EventHandler(this.MenuAcerca_Click);
             // 
+            // btnrespaldo
+            // 
+            this.btnrespaldo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnrespaldo.FlatAppearance.BorderSize = 0;
+            this.btnrespaldo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnrespaldo.ForeColor = System.Drawing.Color.White;
+            this.btnrespaldo.IconChar = FontAwesome.Sharp.IconChar.Database;
+            this.btnrespaldo.IconColor = System.Drawing.Color.White;
+            this.btnrespaldo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnrespaldo.IconSize = 32;
+            this.btnrespaldo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnrespaldo.Location = new System.Drawing.Point(0, 1052);
+            this.btnrespaldo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnrespaldo.Name = "btnrespaldo";
+            this.btnrespaldo.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btnrespaldo.Size = new System.Drawing.Size(307, 74);
+            this.btnrespaldo.TabIndex = 18;
+            this.btnrespaldo.Text = "  Crear Respaldo";
+            this.btnrespaldo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnrespaldo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnrespaldo.UseVisualStyleBackColor = true;
+            this.btnrespaldo.Click += new System.EventHandler(this.btnrespaldo_Click);
+            // 
             // PanelSubmenuStock
             // 
             this.PanelSubmenuStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
@@ -157,12 +132,31 @@
             this.PanelSubmenuStock.Controls.Add(this.btnProduccion);
             this.PanelSubmenuStock.Controls.Add(this.submenuinv);
             this.PanelSubmenuStock.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSubmenuStock.Location = new System.Drawing.Point(0, 533);
+            this.PanelSubmenuStock.Location = new System.Drawing.Point(0, 657);
             this.PanelSubmenuStock.Margin = new System.Windows.Forms.Padding(4);
             this.PanelSubmenuStock.Name = "PanelSubmenuStock";
-            this.PanelSubmenuStock.Size = new System.Drawing.Size(307, 151);
+            this.PanelSubmenuStock.Size = new System.Drawing.Size(307, 148);
             this.PanelSubmenuStock.TabIndex = 8;
             this.PanelSubmenuStock.Visible = false;
+            // 
+            // btnIngredientes
+            // 
+            this.btnIngredientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.btnIngredientes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnIngredientes.FlatAppearance.BorderSize = 0;
+            this.btnIngredientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIngredientes.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnIngredientes.ForeColor = System.Drawing.Color.LightGray;
+            this.btnIngredientes.Location = new System.Drawing.Point(0, 98);
+            this.btnIngredientes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnIngredientes.Name = "btnIngredientes";
+            this.btnIngredientes.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.btnIngredientes.Size = new System.Drawing.Size(307, 49);
+            this.btnIngredientes.TabIndex = 3;
+            this.btnIngredientes.Text = "Ingredientes";
+            this.btnIngredientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnIngredientes.UseVisualStyleBackColor = false;
+            this.btnIngredientes.Click += new System.EventHandler(this.btnIngredientes_Click);
             // 
             // btnProduccion
             // 
@@ -215,7 +209,7 @@
             this.btnStock.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnStock.IconSize = 32;
             this.btnStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStock.Location = new System.Drawing.Point(0, 471);
+            this.btnStock.Location = new System.Drawing.Point(0, 595);
             this.btnStock.Margin = new System.Windows.Forms.Padding(4);
             this.btnStock.Name = "btnStock";
             this.btnStock.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -232,7 +226,7 @@
             this.PanelSubmenuInformes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.PanelSubmenuInformes.Controls.Add(this.submenucierrecaja);
             this.PanelSubmenuInformes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSubmenuInformes.Location = new System.Drawing.Point(0, 420);
+            this.PanelSubmenuInformes.Location = new System.Drawing.Point(0, 544);
             this.PanelSubmenuInformes.Margin = new System.Windows.Forms.Padding(4);
             this.PanelSubmenuInformes.Name = "PanelSubmenuInformes";
             this.PanelSubmenuInformes.Size = new System.Drawing.Size(307, 51);
@@ -271,7 +265,7 @@
             this.btnInformes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnInformes.IconSize = 32;
             this.btnInformes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInformes.Location = new System.Drawing.Point(0, 358);
+            this.btnInformes.Location = new System.Drawing.Point(0, 482);
             this.btnInformes.Margin = new System.Windows.Forms.Padding(4);
             this.btnInformes.Name = "btnInformes";
             this.btnInformes.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -296,7 +290,7 @@
             this.btnClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnClientes.IconSize = 32;
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClientes.Location = new System.Drawing.Point(0, 296);
+            this.btnClientes.Location = new System.Drawing.Point(0, 420);
             this.btnClientes.Margin = new System.Windows.Forms.Padding(4);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -314,7 +308,7 @@
             this.PanelSubmenuVentas.Controls.Add(this.submenudetalleventa);
             this.PanelSubmenuVentas.Controls.Add(this.submenuregistrarventa);
             this.PanelSubmenuVentas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSubmenuVentas.Location = new System.Drawing.Point(0, 198);
+            this.PanelSubmenuVentas.Location = new System.Drawing.Point(0, 322);
             this.PanelSubmenuVentas.Margin = new System.Windows.Forms.Padding(4);
             this.PanelSubmenuVentas.Name = "PanelSubmenuVentas";
             this.PanelSubmenuVentas.Size = new System.Drawing.Size(307, 98);
@@ -372,7 +366,7 @@
             this.btnVentas.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVentas.IconSize = 32;
             this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVentas.Location = new System.Drawing.Point(0, 136);
+            this.btnVentas.Location = new System.Drawing.Point(0, 260);
             this.btnVentas.Margin = new System.Windows.Forms.Padding(4);
             this.btnVentas.Name = "btnVentas";
             this.btnVentas.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -383,6 +377,31 @@
             this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVentas.UseVisualStyleBackColor = false;
             this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
+            // 
+            // Btnasistente
+            // 
+            this.Btnasistente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.Btnasistente.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Btnasistente.FlatAppearance.BorderSize = 0;
+            this.Btnasistente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btnasistente.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.Btnasistente.ForeColor = System.Drawing.Color.White;
+            this.Btnasistente.IconChar = FontAwesome.Sharp.IconChar.Brain;
+            this.Btnasistente.IconColor = System.Drawing.Color.White;
+            this.Btnasistente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Btnasistente.IconSize = 32;
+            this.Btnasistente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btnasistente.Location = new System.Drawing.Point(0, 198);
+            this.Btnasistente.Margin = new System.Windows.Forms.Padding(4);
+            this.Btnasistente.Name = "Btnasistente";
+            this.Btnasistente.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.Btnasistente.Size = new System.Drawing.Size(307, 62);
+            this.Btnasistente.TabIndex = 16;
+            this.Btnasistente.Text = "  Asistente";
+            this.Btnasistente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btnasistente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Btnasistente.UseVisualStyleBackColor = false;
+            this.Btnasistente.Click += new System.EventHandler(this.Btnasistente_Click);
             // 
             // btnUsuarios
             // 
@@ -397,7 +416,7 @@
             this.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUsuarios.IconSize = 32;
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsuarios.Location = new System.Drawing.Point(0, 74);
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 136);
             this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
@@ -408,6 +427,31 @@
             this.btnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUsuarios.UseVisualStyleBackColor = false;
             this.btnUsuarios.Click += new System.EventHandler(this.MenuUs_Click);
+            // 
+            // btndashboard
+            // 
+            this.btndashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btndashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btndashboard.FlatAppearance.BorderSize = 0;
+            this.btndashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btndashboard.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btndashboard.ForeColor = System.Drawing.Color.White;
+            this.btndashboard.IconChar = FontAwesome.Sharp.IconChar.TachometerAltFast;
+            this.btndashboard.IconColor = System.Drawing.Color.White;
+            this.btndashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btndashboard.IconSize = 32;
+            this.btndashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btndashboard.Location = new System.Drawing.Point(0, 74);
+            this.btndashboard.Margin = new System.Windows.Forms.Padding(4);
+            this.btndashboard.Name = "btndashboard";
+            this.btndashboard.Padding = new System.Windows.Forms.Padding(20, 0, 27, 0);
+            this.btndashboard.Size = new System.Drawing.Size(307, 62);
+            this.btndashboard.TabIndex = 17;
+            this.btndashboard.Text = "Dashboard";
+            this.btndashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btndashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btndashboard.UseVisualStyleBackColor = false;
+            this.btndashboard.Click += new System.EventHandler(this.btndashboard_Click);
             // 
             // PanelLogo
             // 
@@ -536,25 +580,6 @@
             this.timerHora.Interval = 1000;
             this.timerHora.Tick += new System.EventHandler(this.timerHora_Tick);
             // 
-            // btnIngredientes
-            // 
-            this.btnIngredientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
-            this.btnIngredientes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnIngredientes.FlatAppearance.BorderSize = 0;
-            this.btnIngredientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIngredientes.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnIngredientes.ForeColor = System.Drawing.Color.LightGray;
-            this.btnIngredientes.Location = new System.Drawing.Point(0, 98);
-            this.btnIngredientes.Margin = new System.Windows.Forms.Padding(4);
-            this.btnIngredientes.Name = "btnIngredientes";
-            this.btnIngredientes.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
-            this.btnIngredientes.Size = new System.Drawing.Size(307, 49);
-            this.btnIngredientes.TabIndex = 3;
-            this.btnIngredientes.Text = "Ingredientes";
-            this.btnIngredientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIngredientes.UseVisualStyleBackColor = false;
-            this.btnIngredientes.Click += new System.EventHandler(this.btnIngredientes_Click);
-            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -618,5 +643,6 @@
         private FontAwesome.Sharp.IconButton btndashboard;
         private System.Windows.Forms.Button btnProduccion;
         private System.Windows.Forms.Button btnIngredientes;
+        private FontAwesome.Sharp.IconButton btnrespaldo;
     }
 }

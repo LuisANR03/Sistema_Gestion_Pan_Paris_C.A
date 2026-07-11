@@ -21,6 +21,8 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBoxModerno2 = new Llamen_a_Dios.GroupBoxModerno();
+            this.txtGananciaNeta = new TextBoxModerno();
+            this.txtCostoProduccion = new TextBoxModerno();
             this.btnexcel = new BotonModerno();
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.txtcuadre = new TextBoxModerno();
@@ -153,6 +155,8 @@
             this.groupBoxModerno2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.groupBoxModerno2.BorderRadius = 15;
             this.groupBoxModerno2.BorderSize = 2;
+            this.groupBoxModerno2.Controls.Add(this.txtGananciaNeta);
+            this.groupBoxModerno2.Controls.Add(this.txtCostoProduccion);
             this.groupBoxModerno2.Controls.Add(this.btnexcel);
             this.groupBoxModerno2.Controls.Add(this.groupBoxModerno1);
             this.groupBoxModerno2.Controls.Add(this.panelModerno1);
@@ -166,6 +170,46 @@
             this.groupBoxModerno2.Size = new System.Drawing.Size(1350, 1152);
             this.groupBoxModerno2.TabIndex = 100;
             this.groupBoxModerno2.TabStop = false;
+            // 
+            // txtGananciaNeta
+            // 
+            this.txtGananciaNeta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtGananciaNeta.ColorBorde = System.Drawing.Color.Black;
+            this.txtGananciaNeta.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtGananciaNeta.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
+            this.txtGananciaNeta.ForeColor = System.Drawing.Color.Black;
+            this.txtGananciaNeta.GrosorBorde = 1;
+            this.txtGananciaNeta.Location = new System.Drawing.Point(350, 1004);
+            this.txtGananciaNeta.MaxLength = 32767;
+            this.txtGananciaNeta.Name = "txtGananciaNeta";
+            this.txtGananciaNeta.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtGananciaNeta.PasswordChar = '\0';
+            this.txtGananciaNeta.RadioBorde = 5;
+            this.txtGananciaNeta.ReadOnly = false;
+            this.txtGananciaNeta.Size = new System.Drawing.Size(228, 41);
+            this.txtGananciaNeta.TabIndex = 103;
+            this.txtGananciaNeta.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtGananciaNeta.UseSystemPasswordChar = false;
+            // 
+            // txtCostoProduccion
+            // 
+            this.txtCostoProduccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtCostoProduccion.ColorBorde = System.Drawing.Color.Black;
+            this.txtCostoProduccion.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtCostoProduccion.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
+            this.txtCostoProduccion.ForeColor = System.Drawing.Color.Black;
+            this.txtCostoProduccion.GrosorBorde = 1;
+            this.txtCostoProduccion.Location = new System.Drawing.Point(93, 1004);
+            this.txtCostoProduccion.MaxLength = 32767;
+            this.txtCostoProduccion.Name = "txtCostoProduccion";
+            this.txtCostoProduccion.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtCostoProduccion.PasswordChar = '\0';
+            this.txtCostoProduccion.RadioBorde = 5;
+            this.txtCostoProduccion.ReadOnly = false;
+            this.txtCostoProduccion.Size = new System.Drawing.Size(228, 41);
+            this.txtCostoProduccion.TabIndex = 102;
+            this.txtCostoProduccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtCostoProduccion.UseSystemPasswordChar = false;
             // 
             // btnexcel
             // 
@@ -1230,5 +1274,7 @@
         private PanelModerno panelModerno11;
         private TextBoxModerno txtcuadre;
         private BotonModerno btnexcel;
+        private TextBoxModerno txtGananciaNeta;
+        private TextBoxModerno txtCostoProduccion;
     }
 }

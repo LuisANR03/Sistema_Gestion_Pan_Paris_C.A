@@ -49,6 +49,12 @@ namespace CapaEntidades
         public decimal TotalFisicoDeclarado { get; set; }
         public decimal DiferenciaCuadre { get; set; } // Faltante (-) o Sobrante (+)
 
+        // ==========================================
+        // RENTABILIDAD DEL DÍA (NUEVO)
+        // ==========================================
+        public decimal CostoTotalProduccion { get; set; }
+        public decimal GananciaNeta { get; set; }
+
         public string Observaciones { get; set; }
         public string Estado { get; set; }
     }

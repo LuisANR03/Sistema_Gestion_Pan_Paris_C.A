@@ -3,10 +3,13 @@ using CapaNegocios;
 using Dato;
 using Entidades;
 using FontAwesome.Sharp;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+
 
 namespace Llamen_a_Dios
 {
@@ -47,7 +50,7 @@ namespace Llamen_a_Dios
                 btnVentas.Visible = false;
                 btnStock.Visible = false;
                 btnInformes.Visible = false;
-
+                btnrespaldo.Visible = false;
                 // Submenús
                 submenuregistrarventa.Visible = false;
                 submenudetalleventa.Visible = false;
@@ -272,6 +275,72 @@ namespace Llamen_a_Dios
         private void btnIngredientes_Click(object sender, EventArgs e)
         {
             AbrirFrm(sender, new FrmIngredientes(usuarioActual));
+        }
+
+        private void btnrespaldo_Click(object sender, EventArgs e)
+        {
+            // =================================================================
+            // 2. CONFIGURACIÓN DE LA VENTANA DE GUARDADO
+            // =================================================================
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Archivo de Respaldo SQL (*.sql)|*.sql";
+            sfd.Title = "Guardar respaldo de la base de datos";
+
+            // Sugerimos un nombre automático con la fecha y hora actual para no sobrescribir respaldos viejos
+            sfd.FileName = "Backup_Llamen_a_Dios_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".sql";
+
+            // =================================================================
+            // 3. PROCESO DE EXPORTACIÓN (Si el usuario presionó "Guardar")
+            // =================================================================
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                // Cambiamos el cursor a modo "Cargando" porque la exportación puede tomar unos segundos
+                Cursor.Current = Cursors.WaitCursor;
+
+                try
+                {
+                    // Usamos tu clase de conexión para conectarnos a MySQL
+                    using (MySqlConnection oconexion = Conexion.obtenerConexion())
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand())
+                        {
+                            // Inicializamos la librería encargada del respaldo
+                            using (MySqlBackup mb = new MySqlBackup(cmd))
+                            {
+                                cmd.Connection = oconexion;
+
+                                // Nos aseguramos de que la conexión esté abierta antes de empezar
+                                if (oconexion.State == ConnectionState.Closed)
+                                {
+                                    oconexion.Open();
+                                }
+
+                                // Genera el archivo .sql con toda la estructura y datos de tu BD
+                                mb.ExportToFile(sfd.FileName);
+                            }
+                        }
+                    }
+
+                    // Notificamos al usuario que todo salió perfecto
+                    MessageBox.Show("El respaldo de la base de datos se generó exitosamente.\n\nGuardado en:\n" + sfd.FileName,
+                                    "Copia de Seguridad Completada",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    // Capturamos cualquier error (ej. disco lleno, pérdida de red, etc.)
+                    MessageBox.Show("Ocurrió un error al intentar generar el respaldo:\n\n" + ex.Message,
+                                    "Error de Respaldo",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    // Restauramos el cursor a la normalidad pase lo que pase
+                    Cursor.Current = Cursors.Default;
+                }
+            }
         }
     }
 }

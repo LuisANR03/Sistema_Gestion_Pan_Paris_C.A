@@ -13,13 +13,14 @@ namespace Entidades
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
 
-        
         public Categoria oCategoria { get; set; }
 
         public int Stock { get; set; }
         public decimal PrecioVenta { get; set; }
-
         public decimal? PrecioPromocion { get; set; }
+
+        // --- NUEVO CAMPO AGREGADO ---
+        public decimal CostoProduccion { get; set; }
 
         public bool Estado { get; set; }
 
@@ -28,7 +29,5 @@ namespace Entidades
             get { return Estado ? "Activo" : "Inactivo"; }
         }
         public DateTime FechaRegistro { get; set; }
-
-
     }
 }

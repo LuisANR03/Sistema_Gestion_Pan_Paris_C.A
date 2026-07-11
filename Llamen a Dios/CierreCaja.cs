@@ -59,7 +59,6 @@ namespace Llamen_a_Dios
 
                 totalesSistema = objCN_Cierre.CalcularTotalesDelDia(idUsuarioActual);
 
-
                 // Repartimos los montos directo a las cajas de texto del Sistema (Formato estándar)
                 txtSistemaBs.Text = totalesSistema.TotalEfectivoBs.ToString("N2");
                 txtSistemaUsd.Text = totalesSistema.TotalEfectivoUSD.ToString("N2");
@@ -70,6 +69,12 @@ namespace Llamen_a_Dios
                 // Mapeamos Zelle en la caja de transferencia del sistema
                 txtSistemaTransferencia.Text = totalesSistema.TotalZelle.ToString("N2");
                 txtSistemaZinly.Text = "0.00";
+
+                // ==========================================================
+                // NUEVO: MOSTRAR RENTABILIDAD EN LA INTERFAZ
+                // ==========================================================
+                txtCostoProduccion.Text = totalesSistema.CostoTotalProduccion.ToString("N2");
+                txtGananciaNeta.Text = totalesSistema.GananciaNeta.ToString("N2");
 
                 // Calculamos el arqueo inicial con los datos limpios
                 CalcularArqueo();
@@ -214,6 +219,7 @@ namespace Llamen_a_Dios
                 int idUsuarioLogueado = Inicio.usuarioActual.IdUsuario;
                 objCierreFinal.Cajero = new Usuario() { IdUsuario = idUsuarioLogueado };
                 objCierreFinal.FondoInicial = 0.00m;
+                objCierreFinal.TasaCambio = 36.50m; // Se asigna la tasa para guardar la del día
 
                 // 2. Lo que calculó el SISTEMA (Caja Azul)
                 objCierreFinal.TotalEfectivoUSD = totalesSistema.TotalEfectivoUSD;
@@ -244,12 +250,18 @@ namespace Llamen_a_Dios
                     objCierreFinal.DiferenciaCuadre = -objCierreFinal.DiferenciaCuadre;
                 }
 
+                // =========================================================
+                // NUEVO: ASIGNAR RENTABILIDAD AL OBJETO FINAL DE BASE DE DATOS
+                // =========================================================
+                objCierreFinal.CostoTotalProduccion = totalesSistema.CostoTotalProduccion;
+                objCierreFinal.GananciaNeta = totalesSistema.GananciaNeta;
+
                 // Preparamos el texto del cuadre para la Base de Datos y el Log
                 string detalleDelCuadre = txtcuadre.Text + " - " + lblcuadre.Text;
                 objCierreFinal.Observaciones = "Cierre efectuado. Cuadre: " + detalleDelCuadre;
 
                 // =========================================================
-                // 5. Envío a la Capa de Negocio (¡AQUÍ ESTÁ EL CAMBIO!)
+                // 5. Envío a la Capa de Negocio
                 // =========================================================
                 string mensaje = string.Empty;
 
@@ -263,7 +275,6 @@ namespace Llamen_a_Dios
                     // =========================================================
                     // CAMBIO DE VISTA Y BLOQUEO DE SEGURIDAD
                     // =========================================================
-
                     btnProcesarCierre.Enabled = false;
 
                     txtFisicoBs.Enabled = false;
@@ -273,6 +284,10 @@ namespace Llamen_a_Dios
                     txtFisicoTransferencia.Enabled = false;
                     txtFisicoZinly.Enabled = false;
                     txtFisicoCashea.Enabled = false;
+
+                    // Deshabilitamos también los campos de rentabilidad por estética
+                    txtCostoProduccion.Enabled = false;
+                    txtGananciaNeta.Enabled = false;
 
                     // =========================================================
                     // ¡AQUÍ ES DONDE GENERAMOS EL EXCEL AUTOMÁTICAMENTE!
@@ -292,43 +307,13 @@ namespace Llamen_a_Dios
             }
         }
 
-        private void txtFisicoBs__TextChanged(object sender, EventArgs e)
-        {
-            CalcularArqueo();
-        }
-
-        private void txtFisicoUsd__TextChanged(object sender, EventArgs e)
-        {
-            CalcularArqueo();
-        }
-
-        private void txtFisicoPagoMovil__TextChanged(object sender, EventArgs e)
-        {
-            CalcularArqueo();
-        }
-
-        private void txtFisicoTransferencia__TextChanged(object sender, EventArgs e)
-        {
-            CalcularArqueo();   
-
-        } 
-
-        private void txtFisicoPuntoVenta__TextChanged(object sender, EventArgs e)
-        {
-            CalcularArqueo();
-        }
-
-        private void txtFisicoZinly__TextChanged(object sender, EventArgs e)
-        {
-            CalcularArqueo();
-        }
-
-        private void txtFisicoCashea__TextChanged(object sender, EventArgs e)
-        {
-            CalcularArqueo();
-        }
-
-       
+        private void txtFisicoBs__TextChanged(object sender, EventArgs e) => CalcularArqueo();
+        private void txtFisicoUsd__TextChanged(object sender, EventArgs e) => CalcularArqueo();
+        private void txtFisicoPagoMovil__TextChanged(object sender, EventArgs e) => CalcularArqueo();
+        private void txtFisicoTransferencia__TextChanged(object sender, EventArgs e) => CalcularArqueo();
+        private void txtFisicoPuntoVenta__TextChanged(object sender, EventArgs e) => CalcularArqueo();
+        private void txtFisicoZinly__TextChanged(object sender, EventArgs e) => CalcularArqueo();
+        private void txtFisicoCashea__TextChanged(object sender, EventArgs e) => CalcularArqueo();
 
         private void btnexcel_Click(object sender, EventArgs e)
         {
@@ -336,11 +321,10 @@ namespace Llamen_a_Dios
         }
 
         // ==============================================================
-        // MÉTODO: GENERAR REPORTE HÍBRIDO (EPPLUS + INTEROP PDF)
+        // MÉDOTOD: GENERAR REPORTE HÍBRIDO (EPPLUS + INTEROP PDF)
         // ==============================================================
         private void GenerarReporteExcelAPdf()
         {
-            // Usamos los mismos objetos de Excel que ya conoces
             Excel.Application excelApp = null;
             Excel.Workbook workbook = null;
             Excel.Worksheet wsCaja = null;
@@ -348,7 +332,6 @@ namespace Llamen_a_Dios
 
             try
             {
-                // 1. Obtenemos los datos de la Base de Datos con tu capa de negocio
                 CN_Venta objNegocioVenta = new CN_Venta();
                 DataTable dtPagos = objNegocioVenta.ObtenerTotalesCierreCaja();
                 DataTable dtProductos = objNegocioVenta.ObtenerMovimientoProductosDelDia();
@@ -359,7 +342,6 @@ namespace Llamen_a_Dios
                     return;
                 }
 
-                // 2. Definimos las rutas (Plantilla de entrada y PDF de salida)
                 string nombrePlantilla = "Plantilla Cierre de Caja.xlsx";
                 string rutaPlantilla = Path.Combine(Application.StartupPath, "Resources", nombrePlantilla);
 
@@ -373,26 +355,17 @@ namespace Llamen_a_Dios
                     return;
                 }
 
-                // 3. Inicializamos Excel en segundo plano
                 excelApp = new Excel.Application();
                 excelApp.Visible = false;
                 excelApp.DisplayAlerts = false;
 
-                // =========================================================================
-                // 🔥 EL CAMBIO CLAVE: En lugar de .Add(), abrimos tu plantilla existente
-                // =========================================================================
                 workbook = excelApp.Workbooks.Open(rutaPlantilla);
 
-                // =========================================================================
                 // --- PESTAÑA 1: CIERRE DE CAJA ---
-                // =========================================================================
                 wsCaja = (Excel.Worksheet)workbook.Sheets[1];
-
                 wsCaja.Cells[5, 3] = "Generado: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
-                // 🌟 CAMBIO: Inyectamos el nombre real del cajero
                 wsCaja.Cells[6, 3] = "Por: " + Inicio.usuarioActual.Nombre;
 
-                // Según tu plantilla, los datos de los métodos de pago empiezan en la Fila 12
                 int filaCaja = 12;
                 decimal totalGeneralCaja = 0;
 
@@ -400,10 +373,9 @@ namespace Llamen_a_Dios
                 {
                     foreach (DataRow row in dtPagos.Rows)
                     {
-                        wsCaja.Cells[filaCaja, 1] = row["MetodoPago"].ToString(); // Columna A
-
+                        wsCaja.Cells[filaCaja, 1] = row["MetodoPago"].ToString();
                         decimal monto = Convert.ToDecimal(row["TotalVendido"]);
-                        wsCaja.Cells[filaCaja, 2] = monto;                        // Columna B
+                        wsCaja.Cells[filaCaja, 2] = monto;
                         ((Excel.Range)wsCaja.Cells[filaCaja, 2]).NumberFormat = "$ #,##0.00";
 
                         totalGeneralCaja += monto;
@@ -411,45 +383,33 @@ namespace Llamen_a_Dios
                     }
                 }
 
-                // Fila de Totales de la Caja (justo abajo de donde terminaron los datos)
                 wsCaja.Cells[filaCaja, 1] = "TOTAL EN CAJA:";
                 ((Excel.Range)wsCaja.Cells[filaCaja, 1]).Font.Bold = true;
                 wsCaja.Cells[filaCaja, 2] = totalGeneralCaja;
                 ((Excel.Range)wsCaja.Cells[filaCaja, 2]).Font.Bold = true;
                 ((Excel.Range)wsCaja.Cells[filaCaja, 2]).NumberFormat = "$ #,##0.00";
 
-
-                // =========================================================================
                 // --- PESTAÑA 2: MOVIMIENTO DE PRODUCTOS ---
-                // =========================================================================
                 wsProd = (Excel.Worksheet)workbook.Sheets[2];
-
                 wsProd.Cells[4, 3] = "Generado: " + DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
-                // 🌟 CAMBIO: Inyectamos el nombre real del cajero aquí también
                 wsProd.Cells[5, 3] = "Por: " + Inicio.usuarioActual.Nombre;
 
-                // Los productos también empiezan en la Fila 12
                 int filaProd = 12;
 
                 if (dtProductos != null)
                 {
                     foreach (DataRow row in dtProductos.Rows)
                     {
-                        wsProd.Cells[filaProd, 1] = row[0].ToString(); // Código (Columna A)
-                        wsProd.Cells[filaProd, 2] = row[1].ToString(); // Producto (Columna B)
-                        wsProd.Cells[filaProd, 3] = Convert.ToInt32(row[2]); // Unidades (Columna C)
-                        wsProd.Cells[filaProd, 4] = Convert.ToDecimal(row[3]); // Total (Columna D)
-
+                        wsProd.Cells[filaProd, 1] = row[0].ToString();
+                        wsProd.Cells[filaProd, 2] = row[1].ToString();
+                        wsProd.Cells[filaProd, 3] = Convert.ToInt32(row[2]);
+                        wsProd.Cells[filaProd, 4] = Convert.ToDecimal(row[3]);
                         ((Excel.Range)wsProd.Cells[filaProd, 4]).NumberFormat = "$ #,##0.00";
 
                         filaProd++;
                     }
                 }
 
-                // =========================================================================
-                // 🔥 EXPORTACIÓN DIRECTA A PDF
-                // =========================================================================
-                // Este comando toma todo el libro editado (ambas pestañas) y genera el PDF
                 workbook.ExportAsFixedFormat(
                     Excel.XlFixedFormatType.xlTypePDF,
                     rutaFinalPdf,
@@ -464,14 +424,8 @@ namespace Llamen_a_Dios
             }
             finally
             {
-                // =========================================================================
-                // REGLA DE ORO DE INTEROP: Limpieza total de procesos en segundo plano
-                // =========================================================================
                 if (workbook != null)
                 {
-                    // Crucial: Pasamos 'false' para que cierre la plantilla SIN guardar los cambios en el archivo .xlsx.
-                    // De este modo, tu archivo de Excel original queda siempre "limpio" y vacío para el día de mañana,
-                    // mientras que el cliente se lleva el PDF perfectamente lleno.
                     workbook.Close(false);
                     Marshal.ReleaseComObject(workbook);
                 }
@@ -487,7 +441,5 @@ namespace Llamen_a_Dios
                 GC.WaitForPendingFinalizers();
             }
         }
-
     }
-    
 }

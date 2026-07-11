@@ -37,6 +37,11 @@ namespace CapaNegocios
             {
                 Mensaje = "Debe seleccionar una categoría.";
             }
+            // NUEVA REGLA: Validar que el costo de producción no sea negativo
+            else if (obj.CostoProduccion < 0)
+            {
+                Mensaje = "El costo de producción no puede ser menor a cero.";
+            }
 
             // Si hay un error, no continúa
             if (!string.IsNullOrEmpty(Mensaje))
@@ -65,6 +70,11 @@ namespace CapaNegocios
             else if (obj.oCategoria == null || obj.oCategoria.IdCategoria == 0)
             {
                 Mensaje = "Debe seleccionar una categoría.";
+            }
+            // NUEVA REGLA: Validar que el costo de producción no sea negativo
+            else if (obj.CostoProduccion < 0)
+            {
+                Mensaje = "El costo de producción no puede ser menor a cero.";
             }
 
             if (!string.IsNullOrEmpty(Mensaje))
