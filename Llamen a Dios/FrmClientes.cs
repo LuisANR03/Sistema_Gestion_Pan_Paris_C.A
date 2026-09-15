@@ -24,7 +24,6 @@ namespace Llamen_a_Dios
         private Usuario _UsuarioActual;
 
         // 2. Modificamos el constructor para recibir el Usuario. 
-        // (Le ponemos "= null" temporalmente por si lo llamas desde algún lugar sin el parámetro aún)
         public FrmClientes(Usuario usuarioActual = null)
         {
             InitializeComponent();
@@ -44,15 +43,16 @@ namespace Llamen_a_Dios
             foreach (Cliente item in listaOriginalClientes)
             {
                 DGVUs.Rows.Add(new object[] {
-                "", // Para el botón de seleccionar
-                item.IdCliente,
-                item.Cedula,
-                item.Nombre,
-                item.Correo,
-                item.Telefono,
-                item.Direccion,
-                item.Estado == true ? 1 : 0, // Valor (para el ComboBox)
-                item.EstadoValor // Texto (Activo/Inactivo)
+                "", // 0: Para el botón de seleccionar
+                item.IdCliente, // 1: ID
+                item.TipoDocumento, // 2: NUEVO - Letra del documento (V, E, J, G)
+                item.Cedula, // 3: Número
+                item.Nombre, // 4: Nombre
+                item.Correo, // 5: Correo
+                item.Telefono, // 6: Teléfono
+                item.Direccion, // 7: Dirección
+                item.Estado == true ? 1 : 0, // 8: Valor estado (para el ComboBox)
+                item.EstadoValor // 9: Texto estado (Activo/Inactivo)
             });
             }
         }
@@ -61,6 +61,10 @@ namespace Llamen_a_Dios
         {
             tbindice.Text = "-1";
             tbid.Text = "0";
+
+            // Resetea el nuevo ComboBox de Tipo de Documento
+            if (cbTipoDocumento.Items.Count > 0)
+                cbTipoDocumento.SelectedIndex = 0;
 
             tbCedula.Clear();
             tbnombre.Clear();
@@ -78,6 +82,13 @@ namespace Llamen_a_Dios
 
         private void FrmClientes_Load(object sender, EventArgs e)
         {
+            // --- NUEVO: Cargamos los tipos de documento al iniciar ---
+            cbTipoDocumento.Items.Add("V");
+            cbTipoDocumento.Items.Add("E");
+            cbTipoDocumento.Items.Add("J");
+            cbTipoDocumento.Items.Add("G");
+            cbTipoDocumento.SelectedIndex = 0;
+
             CBestado.Items.Add(new Opcombo() { Texto = "Activo", Valor = 1 });
             CBestado.Items.Add(new Opcombo() { Texto = "No Activo", Valor = 0 });
             CBestado.DisplayMember = "Texto";
@@ -100,6 +111,9 @@ namespace Llamen_a_Dios
             {
                 CBFiltro.SelectedIndex = 0;
             }
+
+            // <--- ACTIVAMOS LAS BURBUJAS DE AYUDA AQUÍ --->
+            ConfigurarAyudaVisual();
         }
 
         private void pnlBuscador_Paint(object sender, PaintEventArgs e)
@@ -128,22 +142,22 @@ namespace Llamen_a_Dios
 
         private void AplicarDiseñoModerno()
         {
-            Color azulOscuro = Color.FromArgb(21, 52, 168);
-            Color fondoClaro = Color.FromArgb(244, 246, 250);
-            Color textoTitulo = Color.FromArgb(31, 41, 55);
+            /* Color azulOscuro = Color.FromArgb(21, 52, 168);
+             Color fondoClaro = Color.FromArgb(244, 246, 250);
+             Color textoTitulo = Color.FromArgb(31, 41, 55);
 
-            this.BackColor = fondoClaro;
+             this.BackColor = fondoClaro;
 
-            BtnGuardar.BackColor = Color.FromArgb(22, 163, 74);
-            BtnGuardar.FlatStyle = FlatStyle.Flat;
-            BtnGuardar.FlatAppearance.BorderSize = 0;
+             BtnGuardar.BackColor = Color.FromArgb(22, 163, 74);
+             BtnGuardar.FlatStyle = FlatStyle.Flat;
+             BtnGuardar.FlatAppearance.BorderSize = 0;
 
-            BtnLim.BackColor = Color.White;
-            BtnLim.FlatAppearance.BorderColor = azulOscuro;
+             BtnLim.BackColor = Color.White;
+             BtnLim.FlatAppearance.BorderColor = azulOscuro;
 
-            btnBorrar.BackColor = Color.FromArgb(254, 242, 242);
-            btnBorrar.ForeColor = Color.FromArgb(220, 38, 38);
-            btnBorrar.FlatAppearance.BorderSize = 0;
+             btnBorrar.BackColor = Color.FromArgb(254, 242, 242);
+             btnBorrar.ForeColor = Color.FromArgb(220, 38, 38);
+             btnBorrar.FlatAppearance.BorderSize = 0;*/
         }
 
         private void DGVUs_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -155,14 +169,17 @@ namespace Llamen_a_Dios
                 int indice = e.RowIndex;
 
                 tbindice.Text = indice.ToString();
-                tbid.Text = DGVUs.Rows[indice].Cells[1].Value.ToString();
-                tbCedula.Text = DGVUs.Rows[indice].Cells[2].Value.ToString();
-                tbnombre.Text = DGVUs.Rows[indice].Cells[3].Value.ToString();
-                tbcorreo.Text = DGVUs.Rows[indice].Cells[4].Value.ToString();
-                tbtlf.Text = DGVUs.Rows[indice].Cells[5].Value?.ToString() ?? "";
-                tbdir.Text = DGVUs.Rows[indice].Cells[6].Value?.ToString() ?? "";
 
-                int estadoValor = Convert.ToInt32(DGVUs.Rows[indice].Cells[7].Value);
+                // NOTA: Se actualizaron los índices por la nueva columna TipoDocumento
+                tbid.Text = DGVUs.Rows[indice].Cells[1].Value.ToString();
+                cbTipoDocumento.SelectedItem = DGVUs.Rows[indice].Cells[2].Value.ToString(); // NUEVO
+                tbCedula.Text = DGVUs.Rows[indice].Cells[3].Value.ToString();
+                tbnombre.Text = DGVUs.Rows[indice].Cells[4].Value.ToString();
+                tbcorreo.Text = DGVUs.Rows[indice].Cells[5].Value.ToString();
+                tbtlf.Text = DGVUs.Rows[indice].Cells[6].Value?.ToString() ?? "";
+                tbdir.Text = DGVUs.Rows[indice].Cells[7].Value?.ToString() ?? "";
+
+                int estadoValor = Convert.ToInt32(DGVUs.Rows[indice].Cells[8].Value);
 
                 foreach (Opcombo item in CBestado.Items)
                 {
@@ -213,6 +230,7 @@ namespace Llamen_a_Dios
             Cliente obj_cliente = new Cliente()
             {
                 IdCliente = Convert.ToInt32(tbid.Text),
+                TipoDocumento = cbTipoDocumento.SelectedItem.ToString(), // NUEVO
                 Cedula = tbCedula.Text,
                 Nombre = tbnombre.Text,
                 Correo = tbcorreo.Text,
@@ -327,6 +345,35 @@ namespace Llamen_a_Dios
                     row.Visible = false;
                 }
             }
+        }
+
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA EL MÓDULO DE CLIENTES
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipClientes = new ToolTip();
+
+            // Estilo Globo idéntico a las otras pantallas
+            toolTipClientes.IsBalloon = true;
+            toolTipClientes.ToolTipIcon = ToolTipIcon.Info;
+            toolTipClientes.ToolTipTitle = "Gestión de Clientes";
+
+            // Configuración de tiempos
+            toolTipClientes.AutoPopDelay = 6000;
+            toolTipClientes.InitialDelay = 400;
+            toolTipClientes.ReshowDelay = 300;
+            toolTipClientes.ShowAlways = true;
+
+            // --- TOOLTIPS PARA BOTONES DE ACCIÓN ---
+            toolTipClientes.SetToolTip(this.BtnGuardar, "Guarda un nuevo cliente o actualiza los datos del cliente seleccionado.");
+            toolTipClientes.SetToolTip(this.btnBorrar, "Desactiva al cliente seleccionado del sistema.");
+            toolTipClientes.SetToolTip(this.BtnLim, "Limpia los campos del panel izquierdo para registrar un cliente nuevo.");
+
+            // --- TOOLTIPS PARA BÚSQUEDA Y TABLA ---
+            toolTipClientes.SetToolTip(this.TBBuscar, "Escribe aquí para filtrar la lista de clientes.");
+            toolTipClientes.SetToolTip(this.BtnLimpiar, "Limpia la barra de búsqueda y muestra la lista completa.");
+            toolTipClientes.SetToolTip(this.DGVUs, "Haz clic en el icono del lápiz ✏️ para editar la información de un cliente.");
         }
     }
 }

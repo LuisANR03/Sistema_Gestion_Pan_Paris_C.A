@@ -1,6 +1,7 @@
 ﻿using CapaDatos;
 using CapaNegocios;
 using Entidades;
+using Llamen_a_Dios.Modales;
 using Llamen_a_Dios.Utiles;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,14 @@ namespace Llamen_a_Dios
 
         // 1. Variable global para almacenar al usuario actual
         private Usuario _UsuarioActual;
+        private List<DetalleReceta> recetaActual = new List<DetalleReceta>();
 
         // 2. Modificamos el constructor para recibir el Usuario
         public FrmStock(Usuario usuarioActual = null)
         {
             InitializeComponent();
             _UsuarioActual = usuarioActual; // Guardamos el usuario
+
         }
 
         private void FrmStock_Load(object sender, EventArgs e)
@@ -53,6 +56,7 @@ namespace Llamen_a_Dios
             if (CBCategoria.Items.Count > 0) CBCategoria.SelectedIndex = 0;
 
             // --- 3. CARGA DE DATOS ---
+            ConfigurarAyudaVisual();
             CargarProductos();
 
             // --- 4. CONFIGURAR FILTRO ---
@@ -153,7 +157,8 @@ namespace Llamen_a_Dios
                     item.PrecioVenta,
                     item.PrecioPromocion ?? 0,
                     item.Estado ? 1 : 0,
-                    item.EstadoValor
+                    item.EstadoValor,
+                    item.CostoProduccion
                 });
             }
         }
@@ -167,8 +172,12 @@ namespace Llamen_a_Dios
             tbdesc.Clear();
             tbPrecioPromocion.Clear();
             tbPrecio.Clear();
-            TBStock.Clear(); // Limpiar el stock también
-            tbPrecioPromocion.Clear();
+            TBStock.Clear();
+
+            // --- NUEVAS LÍNEAS ---
+            txbcosto.Clear();
+            recetaActual = new List<DetalleReceta>();
+            // ---------------------
 
             if (CBCategoria.Items.Count > 0) CBCategoria.SelectedIndex = 0;
             if (CBEstado.Items.Count > 0) CBEstado.SelectedIndex = 0;
@@ -217,6 +226,21 @@ namespace Llamen_a_Dios
                         break;
                     }
                 }
+
+                // --- NUEVO: CARGAR COSTO Y RECETA AL EDITAR ---
+                int idProducto = Convert.ToInt32(txtid.Text);
+
+                // Buscamos el producto en la lista original para extraer su Costo de Producción
+                Producto prodSeleccionado = listaOriginalProductos.FirstOrDefault(p => p.IdProducto == idProducto);
+                if (prodSeleccionado != null)
+                {
+                    txbcosto.Text = prodSeleccionado.CostoProduccion.ToString("0.00");
+                }
+
+                // Pedimos a la base de datos la receta de este producto
+                recetaActual = new CN_Producto().ObtenerReceta(idProducto);
+                // ----------------------------------------------
+
                 BtnGuardar.Text = "Actualizar";
             }
         }
@@ -229,7 +253,15 @@ namespace Llamen_a_Dios
             if (!string.IsNullOrEmpty(tbPrecioPromocion.Text) && decimal.TryParse(tbPrecioPromocion.Text, out decimal promo))
                 precioPromo = promo;
 
-            // 3. Obtenemos el ID del usuario
+            // --- NUEVO: Leemos el costo de producción ---
+            decimal costoProd = 0;
+            if (!string.IsNullOrEmpty(txbcosto.Text) && decimal.TryParse(txbcosto.Text, out decimal costo))
+            {
+                costoProd = costo;
+            }
+            // --------------------------------------------
+
+            // Obtenemos el ID del usuario
             int idUsuarioLogueado = _UsuarioActual != null ? _UsuarioActual.IdUsuario : 0;
 
             Producto obj_producto = new Producto()
@@ -239,18 +271,22 @@ namespace Llamen_a_Dios
                 Nombre = tbnombre.Text,
                 Descripcion = tbdesc.Text,
                 PrecioVenta = Convert.ToDecimal(tbPrecio.Text),
-                // Corrección del BUG: Se leía tbPrecioPromocion.Text en lugar de TBStock.Text
                 Stock = string.IsNullOrEmpty(TBStock.Text) ? 0 : Convert.ToInt32(TBStock.Text),
                 Estado = Convert.ToInt32(((Opcombo)CBEstado.SelectedItem).Valor) == 1,
                 oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(((Opcombo)CBCategoria.SelectedItem).Valor) },
-                PrecioPromocion = precioPromo
+                PrecioPromocion = precioPromo,
+
+                // --- NUEVOS CAMPOS ---
+                CostoProduccion = costoProd,
+                DetallesReceta = this.recetaActual // Le pasamos la receta actual (temporal)
+                                                   // ---------------------
             };
 
             CN_Producto obj_cn_producto = new CN_Producto();
 
             if (obj_producto.IdProducto == 0)
             {
-                // 4. Pasamos el ID del usuario al método Registrar
+                // Pasamos el ID del usuario al método Registrar
                 int idGenerado = obj_cn_producto.Registrar(obj_producto, idUsuarioLogueado, out mensaje);
                 if (idGenerado != 0)
                 {
@@ -262,7 +298,7 @@ namespace Llamen_a_Dios
             }
             else
             {
-                // 5. Pasamos el ID del usuario al método Editar
+                // Pasamos el ID del usuario al método Editar
                 bool resultado = obj_cn_producto.Editar(obj_producto, idUsuarioLogueado, out mensaje);
                 if (resultado)
                 {
@@ -316,6 +352,65 @@ namespace Llamen_a_Dios
             foreach (DataGridViewRow row in DGVStck.Rows) row.Visible = true;
         }
 
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA EL MÓDULO DE STOCK / PRODUCTOS
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipStock = new ToolTip();
+
+            // Estilo Globo para mantener la estética del sistema
+            toolTipStock.IsBalloon = true;
+            toolTipStock.ToolTipIcon = ToolTipIcon.Info;
+            toolTipStock.ToolTipTitle = "Gestión de Productos y Stock";
+
+            // Configuración de tiempos
+            toolTipStock.AutoPopDelay = 6000;
+            toolTipStock.InitialDelay = 400;
+            toolTipStock.ReshowDelay = 300;
+            toolTipStock.ShowAlways = true;
+
+            // --- TOOLTIPS PARA EL FORMULARIO DE REGISTRO/EDICIÓN ---
+            toolTipStock.SetToolTip(this.TBCodigo, "Ingresa el código único o código de barras del producto.");
+            toolTipStock.SetToolTip(this.tbnombre, "Escribe el nombre del producto que se mostrará en las ventas.");
+            toolTipStock.SetToolTip(this.tbdesc, "Añade una breve descripción o características del producto.");
+            toolTipStock.SetToolTip(this.CBCategoria, "Clasifica el producto seleccionando una categoría.");
+            toolTipStock.SetToolTip(this.TBStock, "Indica la cantidad de unidades disponibles en el inventario.");
+            toolTipStock.SetToolTip(this.tbPrecio, "Establece el precio regular de venta al público.");
+            toolTipStock.SetToolTip(this.tbPrecioPromocion, "Opcional: Si el producto está en oferta, ingresa el precio promocional aquí.");
+            toolTipStock.SetToolTip(this.txbcosto, "Muestra el costo de producción (calculado automáticamente en base a la receta).");
+            toolTipStock.SetToolTip(this.CBEstado, "Controla si el producto está visible y disponible para la venta.");
+
+            // --- TOOLTIPS PARA LOS BOTONES DE ACCIÓN ---
+            toolTipStock.SetToolTip(this.btnReceta, "Abre el panel de recetas para asignar ingredientes y calcular el costo de este producto.");
+            toolTipStock.SetToolTip(this.BtnGuardar, "Guarda un producto nuevo o actualiza los datos si estás editando uno existente.");
+            toolTipStock.SetToolTip(this.Btlimc, "Limpia los campos del formulario para preparar un nuevo registro.");
+            toolTipStock.SetToolTip(this.btnBorrar, "Desactiva el producto seleccionado en la tabla.");
+
+            // --- TOOLTIPS PARA BÚSQUEDA Y TABLA ---
+            toolTipStock.SetToolTip(this.CBFiltro, "Elige la columna por la que deseas filtrar (Ej. Nombre o Código).");
+            toolTipStock.SetToolTip(this.TBBuscar, "Escribe aquí para filtrar la tabla en tiempo real.");
+            toolTipStock.SetToolTip(this.BtnLimpiar, "Limpia el buscador y muestra la lista completa de productos.");
+            toolTipStock.SetToolTip(this.DGVStck, "Lista general de productos. Haz clic en el lápiz (✏️) para seleccionar y editar un producto.");
+        }
+
         private void Btlimc_Click(object sender, EventArgs e) => LimpiarCampos();
+
+        private void btnReceta_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("Ingredientes encontrados en la BD: " + this.recetaActual.Count.ToString());
+            // LE PASAMOS la recetaActual por los paréntesis
+            using (var modal = new mdRecetas(this.recetaActual))
+            {
+                var result = modal.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    this.recetaActual = modal.IngredientesSeleccionados;
+                    txbcosto.Text = modal.CostoTotalCalculado.ToString("0.00");
+                }
+            }
+        }
     }
 }

@@ -38,6 +38,7 @@
             this.DGVUs = new System.Windows.Forms.DataGridView();
             this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipodocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +50,7 @@
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
             this.lbllistausu = new System.Windows.Forms.Label();
+            this.btnCancelar = new BotonModerno();
             this.pnlBuscador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUs)).BeginInit();
@@ -145,6 +147,7 @@
             this.CBFiltro.Padding = new System.Windows.Forms.Padding(1);
             this.CBFiltro.SelectedIndex = -1;
             this.CBFiltro.SelectedItem = null;
+            this.CBFiltro.SelectedValue = null;
             this.CBFiltro.Size = new System.Drawing.Size(202, 43);
             this.CBFiltro.TabIndex = 70;
             this.CBFiltro.ValueMember = "";
@@ -171,6 +174,7 @@
             this.DGVUs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BtnSelect,
             this.IdCliente,
+            this.tipodocumento,
             this.Cedula,
             this.Nombre,
             this.Correo,
@@ -216,8 +220,17 @@
             this.IdCliente.ReadOnly = true;
             this.IdCliente.Visible = false;
             // 
+            // tipodocumento
+            // 
+            this.tipodocumento.FillWeight = 10F;
+            this.tipodocumento.HeaderText = "TipoDocumento";
+            this.tipodocumento.MinimumWidth = 6;
+            this.tipodocumento.Name = "tipodocumento";
+            this.tipodocumento.ReadOnly = true;
+            // 
             // Cedula
             // 
+            this.Cedula.FillWeight = 113.5829F;
             this.Cedula.HeaderText = "Documento";
             this.Cedula.MinimumWidth = 6;
             this.Cedula.Name = "Cedula";
@@ -225,6 +238,7 @@
             // 
             // Nombre
             // 
+            this.Nombre.FillWeight = 113.5829F;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
@@ -232,6 +246,7 @@
             // 
             // Correo
             // 
+            this.Correo.FillWeight = 113.5829F;
             this.Correo.HeaderText = "Correo";
             this.Correo.MinimumWidth = 6;
             this.Correo.Name = "Correo";
@@ -239,6 +254,7 @@
             // 
             // Tlf
             // 
+            this.Tlf.FillWeight = 113.5829F;
             this.Tlf.HeaderText = "Telefono";
             this.Tlf.MinimumWidth = 6;
             this.Tlf.Name = "Tlf";
@@ -246,6 +262,7 @@
             // 
             // Direccion
             // 
+            this.Direccion.FillWeight = 113.5829F;
             this.Direccion.HeaderText = "Direccion";
             this.Direccion.MinimumWidth = 6;
             this.Direccion.Name = "Direccion";
@@ -303,8 +320,9 @@
             // panelModerno1
             // 
             this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.panelModerno1.BorderRadius = 15;
+            this.panelModerno1.Controls.Add(this.btnCancelar);
             this.panelModerno1.Controls.Add(this.lbllistausu);
             this.panelModerno1.Location = new System.Drawing.Point(0, -2);
             this.panelModerno1.Name = "panelModerno1";
@@ -315,7 +333,7 @@
             // lbllistausu
             // 
             this.lbllistausu.AutoSize = true;
-            this.lbllistausu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.lbllistausu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.lbllistausu.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbllistausu.ForeColor = System.Drawing.Color.White;
             this.lbllistausu.Location = new System.Drawing.Point(40, 27);
@@ -324,6 +342,35 @@
             this.lbllistausu.Size = new System.Drawing.Size(187, 31);
             this.lbllistausu.TabIndex = 74;
             this.lbllistausu.Text = "Lista de Clientes";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.White;
+            this.btnCancelar.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.btnCancelar.ColorClick = System.Drawing.Color.LightCoral;
+            this.btnCancelar.ColorHover = System.Drawing.Color.Red;
+            this.btnCancelar.ColorIconoHover = System.Drawing.Color.White;
+            this.btnCancelar.ColorTextoHover = System.Drawing.Color.White;
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.btnCancelar.GrosorBorde = 3;
+            this.btnCancelar.IconChar = FontAwesome.Sharp.IconChar.Redo;
+            this.btnCancelar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCancelar.IconSize = 25;
+            this.btnCancelar.Location = new System.Drawing.Point(965, 23);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.RadioBorde = 5;
+            this.btnCancelar.Size = new System.Drawing.Size(228, 45);
+            this.btnCancelar.TabIndex = 92;
+            this.btnCancelar.Text = "Regresar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // mdCliente
             // 
@@ -362,6 +409,7 @@
         private System.Windows.Forms.Label lbllistausu;
         private System.Windows.Forms.DataGridViewButtonColumn BtnSelect;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipodocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
@@ -369,5 +417,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
+        private BotonModerno btnCancelar;
     }
 }

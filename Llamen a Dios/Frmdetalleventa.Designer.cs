@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGV = new System.Windows.Forms.DataGridView();
+            this.Boton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cajero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlBuscador = new System.Windows.Forms.Panel();
             this.btnBuscador = new FontAwesome.Sharp.IconPictureBox();
             this.txtBusqueda = new TextBoxModerno();
@@ -43,14 +51,7 @@
             this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.btnBuscarFecha = new FontAwesome.Sharp.IconPictureBox();
-            this.Boton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cajero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnVentas = new BotonModerno();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             this.pnlBuscador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnBuscador)).BeginInit();
@@ -67,15 +68,15 @@
             this.DGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV.ColumnHeadersHeight = 40;
             this.DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -87,14 +88,14 @@
             this.Cajero,
             this.Vendedor,
             this.Total});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(51)))), ((int)(((byte)(234)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(51)))), ((int)(((byte)(234)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGV.EnableHeadersVisualStyles = false;
             this.DGV.Location = new System.Drawing.Point(27, 179);
             this.DGV.Margin = new System.Windows.Forms.Padding(4);
@@ -108,6 +109,70 @@
             this.DGV.Size = new System.Drawing.Size(1286, 835);
             this.DGV.TabIndex = 36;
             this.DGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CellContentClick);
+            // 
+            // Boton
+            // 
+            this.Boton.FillWeight = 8.672823F;
+            this.Boton.HeaderText = "";
+            this.Boton.MinimumWidth = 6;
+            this.Boton.Name = "Boton";
+            this.Boton.ReadOnly = true;
+            // 
+            // IdVenta
+            // 
+            this.IdVenta.HeaderText = "IdVenta";
+            this.IdVenta.MinimumWidth = 6;
+            this.IdVenta.Name = "IdVenta";
+            this.IdVenta.ReadOnly = true;
+            this.IdVenta.Visible = false;
+            // 
+            // NFactura
+            // 
+            this.NFactura.FillWeight = 20F;
+            this.NFactura.HeaderText = "Factura";
+            this.NFactura.MinimumWidth = 6;
+            this.NFactura.Name = "NFactura";
+            this.NFactura.ReadOnly = true;
+            // 
+            // FechaVenta
+            // 
+            this.FechaVenta.FillWeight = 22.88012F;
+            this.FechaVenta.HeaderText = "Fecha";
+            this.FechaVenta.MinimumWidth = 6;
+            this.FechaVenta.Name = "FechaVenta";
+            this.FechaVenta.ReadOnly = true;
+            // 
+            // Cliente
+            // 
+            this.Cliente.FillWeight = 22.88012F;
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.MinimumWidth = 6;
+            this.Cliente.Name = "Cliente";
+            this.Cliente.ReadOnly = true;
+            // 
+            // Cajero
+            // 
+            this.Cajero.FillWeight = 22.88012F;
+            this.Cajero.HeaderText = "Cajero";
+            this.Cajero.MinimumWidth = 6;
+            this.Cajero.Name = "Cajero";
+            this.Cajero.ReadOnly = true;
+            // 
+            // Vendedor
+            // 
+            this.Vendedor.HeaderText = "Vendedor";
+            this.Vendedor.MinimumWidth = 6;
+            this.Vendedor.Name = "Vendedor";
+            this.Vendedor.ReadOnly = true;
+            this.Vendedor.Visible = false;
+            // 
+            // Total
+            // 
+            this.Total.FillWeight = 22.88012F;
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // pnlBuscador
             // 
@@ -238,10 +303,10 @@
             // lbldetalles
             // 
             this.lbldetalles.AutoSize = true;
-            this.lbldetalles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.lbldetalles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.lbldetalles.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbldetalles.ForeColor = System.Drawing.Color.White;
-            this.lbldetalles.Location = new System.Drawing.Point(40, 27);
+            this.lbldetalles.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.lbldetalles.Location = new System.Drawing.Point(35, 36);
             this.lbldetalles.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbldetalles.Name = "lbldetalles";
             this.lbldetalles.Size = new System.Drawing.Size(209, 31);
@@ -251,8 +316,9 @@
             // panelModerno1
             // 
             this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.panelModerno1.BorderRadius = 15;
+            this.panelModerno1.Controls.Add(this.btnVentas);
             this.panelModerno1.Controls.Add(this.lbldetalles);
             this.panelModerno1.Location = new System.Drawing.Point(107, 41);
             this.panelModerno1.Name = "panelModerno1";
@@ -299,69 +365,33 @@
             this.btnBuscarFecha.TabStop = false;
             this.btnBuscarFecha.Click += new System.EventHandler(this.btnBuscarFecha_Click);
             // 
-            // Boton
+            // btnVentas
             // 
-            this.Boton.FillWeight = 8.672823F;
-            this.Boton.HeaderText = "";
-            this.Boton.MinimumWidth = 6;
-            this.Boton.Name = "Boton";
-            this.Boton.ReadOnly = true;
-            // 
-            // IdVenta
-            // 
-            this.IdVenta.HeaderText = "IdVenta";
-            this.IdVenta.MinimumWidth = 6;
-            this.IdVenta.Name = "IdVenta";
-            this.IdVenta.ReadOnly = true;
-            this.IdVenta.Visible = false;
-            // 
-            // NFactura
-            // 
-            this.NFactura.FillWeight = 20F;
-            this.NFactura.HeaderText = "Factura";
-            this.NFactura.MinimumWidth = 6;
-            this.NFactura.Name = "NFactura";
-            this.NFactura.ReadOnly = true;
-            // 
-            // FechaVenta
-            // 
-            this.FechaVenta.FillWeight = 22.88012F;
-            this.FechaVenta.HeaderText = "Fecha";
-            this.FechaVenta.MinimumWidth = 6;
-            this.FechaVenta.Name = "FechaVenta";
-            this.FechaVenta.ReadOnly = true;
-            // 
-            // Cliente
-            // 
-            this.Cliente.FillWeight = 22.88012F;
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.MinimumWidth = 6;
-            this.Cliente.Name = "Cliente";
-            this.Cliente.ReadOnly = true;
-            // 
-            // Cajero
-            // 
-            this.Cajero.FillWeight = 22.88012F;
-            this.Cajero.HeaderText = "Cajero";
-            this.Cajero.MinimumWidth = 6;
-            this.Cajero.Name = "Cajero";
-            this.Cajero.ReadOnly = true;
-            // 
-            // Vendedor
-            // 
-            this.Vendedor.HeaderText = "Vendedor";
-            this.Vendedor.MinimumWidth = 6;
-            this.Vendedor.Name = "Vendedor";
-            this.Vendedor.ReadOnly = true;
-            this.Vendedor.Visible = false;
-            // 
-            // Total
-            // 
-            this.Total.FillWeight = 22.88012F;
-            this.Total.HeaderText = "Total";
-            this.Total.MinimumWidth = 6;
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
+            this.btnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(99)))), ((int)(((byte)(69)))));
+            this.btnVentas.ColorBorde = System.Drawing.Color.White;
+            this.btnVentas.ColorClick = System.Drawing.Color.Red;
+            this.btnVentas.ColorHover = System.Drawing.Color.Firebrick;
+            this.btnVentas.ColorIconoHover = System.Drawing.Color.White;
+            this.btnVentas.ColorTextoHover = System.Drawing.Color.White;
+            this.btnVentas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVentas.FlatAppearance.BorderSize = 0;
+            this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVentas.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVentas.ForeColor = System.Drawing.Color.White;
+            this.btnVentas.GrosorBorde = 0;
+            this.btnVentas.IconChar = FontAwesome.Sharp.IconChar.CashRegister;
+            this.btnVentas.IconColor = System.Drawing.Color.White;
+            this.btnVentas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVentas.IconSize = 25;
+            this.btnVentas.Location = new System.Drawing.Point(1068, 12);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.RadioBorde = 15;
+            this.btnVentas.Size = new System.Drawing.Size(181, 55);
+            this.btnVentas.TabIndex = 99;
+            this.btnVentas.Text = "Total Vendido";
+            this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVentas.UseVisualStyleBackColor = false;
+            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
             // 
             // Frmdetalleventa
             // 
@@ -410,5 +440,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cajero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vendedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private BotonModerno btnVentas;
     }
 }

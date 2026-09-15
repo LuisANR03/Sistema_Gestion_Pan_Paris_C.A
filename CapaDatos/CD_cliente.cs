@@ -35,7 +35,8 @@ namespace CapaDatos
             {
                 try
                 {
-                    string query = "SELECT IdCliente, cedula, Nombre, correo, telefono, direccion, estado FROM cliente";
+                    // SE AGREGÓ: tipo_documento a la consulta
+                    string query = "SELECT IdCliente, tipo_documento, cedula, Nombre, correo, telefono, direccion, estado FROM cliente";
 
                     MySqlCommand cmd = new MySqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
@@ -47,6 +48,7 @@ namespace CapaDatos
                             lista.Add(new Cliente()
                             {
                                 IdCliente = Convert.ToInt32(reader["IdCliente"]),
+                                TipoDocumento = reader["tipo_documento"].ToString(), // SE AGREGÓ ESTA LÍNEA
                                 Cedula = reader["cedula"].ToString(),
                                 Nombre = reader["Nombre"].ToString(),
                                 Correo = reader["correo"].ToString(),
@@ -78,6 +80,8 @@ namespace CapaDatos
                 {
                     MySqlCommand cmd = new MySqlCommand("sp_RegistrarCliente", oconexion);
 
+                    // SE AGREGÓ EL PARÁMETRO p_tipo_documento
+                    cmd.Parameters.AddWithValue("p_tipo_documento", obj.TipoDocumento);
                     cmd.Parameters.AddWithValue("p_cedula", obj.Cedula);
                     cmd.Parameters.AddWithValue("p_nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("p_correo", obj.Correo);
@@ -96,7 +100,7 @@ namespace CapaDatos
                     // --- AUDITORÍA ---
                     if (idclientegenerado > 0)
                     {
-                        GuardarLog(oconexion, idUsuarioLogueado, "INSERT", "cliente", $"Se registró un nuevo cliente: {obj.Nombre} (Cédula: {obj.Cedula})");
+                        GuardarLog(oconexion, idUsuarioLogueado, "INSERT", "cliente", $"Se registró un nuevo cliente: {obj.Nombre} (Documento: {obj.TipoDocumento}-{obj.Cedula})");
                     }
                 }
             }
@@ -121,6 +125,8 @@ namespace CapaDatos
                     MySqlCommand cmd = new MySqlCommand("sp_EditarCliente", oconexion);
 
                     cmd.Parameters.AddWithValue("p_idcliente", obj.IdCliente);
+                    // SE AGREGÓ EL PARÁMETRO p_tipo_documento
+                    cmd.Parameters.AddWithValue("p_tipo_documento", obj.TipoDocumento);
                     cmd.Parameters.AddWithValue("p_cedula", obj.Cedula);
                     cmd.Parameters.AddWithValue("p_nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("p_correo", obj.Correo);

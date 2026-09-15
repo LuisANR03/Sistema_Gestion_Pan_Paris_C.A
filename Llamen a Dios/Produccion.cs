@@ -3,6 +3,7 @@ using CapaNegocio;
 using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data; 
 using System.Windows.Forms;
 
 namespace Llamen_a_Dios
@@ -21,6 +22,7 @@ namespace Llamen_a_Dios
         private void Produccion_Load(object sender, EventArgs e)
         {
             CargarProductosEnTabla();
+            ConfigurarAyudaVisual();
 
             // Configuramos eventos para los botones
             btnSugerenciaIA.Click += new EventHandler(btnSugerenciaIA_Click);
@@ -41,7 +43,7 @@ namespace Llamen_a_Dios
                 // Recorremos la lista y agregamos una fila por cada pan
                 foreach (Producto prod in listaProductos)
                 {
-                    // NUEVO: Guardamos el índice de la fila que se acaba de crear
+                    // Guardamos el índice de la fila que se acaba de crear
                     int rowIndex = dgvProduccion.Rows.Add(new object[] {
                         prod.IdProducto,
                         prod.Nombre,
@@ -51,8 +53,7 @@ namespace Llamen_a_Dios
                         "0"  // Inicializamos en cero
                     });
 
-                    // NUEVO: Usamos el 'Tag' de la fila como bolsillo secreto para guardar el costo 
-                    // sin necesidad de crear una columna extra en el diseño visual.
+                    // Usamos el 'Tag' de la fila como bolsillo secreto para guardar el costo 
                     dgvProduccion.Rows[rowIndex].Tag = prod.CostoProduccion;
                 }
             }
@@ -66,33 +67,55 @@ namespace Llamen_a_Dios
         {
             try
             {
-                // 1. Buscamos el diccionario predictivo en la capa de negocio
+                // 1. PLAN A: Buscamos el diccionario predictivo (Días de la semana específicos)
                 Dictionary<int, int> predicciones = objCapaNegocio.ObtenerSugerenciasIA();
 
-                if (predicciones.Count == 0)
+                // 2. PLAN B: Traemos el historial general de 3 meses para tener respaldo
+                DataTable historialGeneral = objCapaNegocio.ObtenerHistorial3Meses();
+
+                if (predicciones.Count == 0 && historialGeneral.Rows.Count == 0)
                 {
-                    MessageBox.Show("No hay suficiente historial de ventas en este día de la semana para generar una predicción. Se usarán valores mínimos predeterminados.",
+                    MessageBox.Show("No hay ningún historial de ventas registrado en la base de datos. Se usarán valores en cero.",
                                     "Aviso del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                // 2. Recorremos cada fila de nuestro DataGridView actual
+                // 3. Recorremos cada fila de nuestro DataGridView actual
                 foreach (DataGridViewRow fila in dgvProduccion.Rows)
                 {
                     int idProducto = Convert.ToInt32(fila.Cells["colId"].Value);
+                    int cantidadSugerida = 0;
 
-                    // Si la IA tiene una sugerencia para este producto, la colocamos. Si no, ponemos un estimado base (ej: 12 unidades)
-                    int cantidadSugerida = predicciones.ContainsKey(idProducto) ? predicciones[idProducto] : 12;
+                    // Verificamos el PLAN A
+                    if (predicciones.ContainsKey(idProducto))
+                    {
+                        // Tiene historial en este día específico
+                        cantidadSugerida = predicciones[idProducto];
+                    }
+                    else
+                    {
+                        // Verificamos el PLAN B (No se vende hoy, pero evaluamos su promedio general)
+                        DataRow[] filaHistorial = historialGeneral.Select($"idproducto = {idProducto}");
 
-                    // 3. Pintamos los resultados en el Grid
+                        if (filaHistorial.Length > 0)
+                        {
+                            // Dividimos el total vendido en 3 meses entre 90 días y redondeamos hacia arriba
+                            int totalVendido3Meses = Convert.ToInt32(filaHistorial[0]["TotalUnidades"]);
+                            cantidadSugerida = (int)Math.Ceiling(totalVendido3Meses / 90.0);
+                        }
+                        else
+                        {
+                            // PLAN C: Es un producto nuevo o no se ha vendido nada en 3 meses
+                            cantidadSugerida = 0;
+                        }
+                    }
+
+                    // 4. Pintamos los resultados en el Grid
                     fila.Cells["colSugerido"].Value = cantidadSugerida.ToString();
-
-                    // ¡Estrategia UX ágil! Llenamos de una vez la columna "Horneado" con la sugerencia,
-                    // así el usuario solo cambia los pocos que difieran.
                     fila.Cells["colEntrada"].Value = cantidadSugerida.ToString();
                 }
 
-                MessageBox.Show("Sugerencia de producción calculada con éxito basándose en el historial de ventas.",
-                                "🤖 IA de Pan de Paris", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Sugerencia de producción calculada basándose en datos reales de los últimos 3 meses.",
+                                "🤖 IA de Producción", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -102,7 +125,7 @@ namespace Llamen_a_Dios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Forzar la finalización de cualquier edición activa en las celdas para capturar el último número escrito
+            // Forzar la finalización de cualquier edición activa en las celdas
             dgvProduccion.EndEdit();
 
             try
@@ -112,21 +135,18 @@ namespace Llamen_a_Dios
                 // 1. Recorremos el DataGridView para recolectar lo que escribió el usuario
                 foreach (DataGridViewRow fila in dgvProduccion.Rows)
                 {
-                    // Validamos que los valores sean numéricos correctos (si están vacíos o tienen letras, se convierten en 0)
                     int idProd = Convert.ToInt32(fila.Cells["colId"].Value);
                     int sugerido = int.TryParse(Convert.ToString(fila.Cells["colSugerido"].Value), out int s) ? s : 0;
                     int entrada = int.TryParse(Convert.ToString(fila.Cells["colEntrada"].Value), out int en) ? en : 0;
                     int merma = int.TryParse(Convert.ToString(fila.Cells["colMerma"].Value), out int me) ? me : 0;
 
-                    // NUEVO: Recuperamos el costo escondido en el Tag de la fila
                     decimal costoEscondido = fila.Tag != null ? Convert.ToDecimal(fila.Tag) : 0m;
 
-                    // Solo tomamos en cuenta filas que tengan algún movimiento para no saturar la BD
+                    // Solo tomamos en cuenta filas que tengan algún movimiento
                     if (entrada > 0 || merma > 0)
                     {
                         listaAMandar.Add(new ControlProduccion()
                         {
-                            // NUEVO: Adjuntamos el costo al objeto Producto para que viaje a la Base de Datos
                             oProducto = new Producto()
                             {
                                 IdProducto = idProd,
@@ -151,9 +171,9 @@ namespace Llamen_a_Dios
 
                 if (exito)
                 {
-                    MessageBox.Show("¡Producción y Mermas registradas correctamente!\nEl inventario en stock ha sido actualizado y los costos calculados.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("¡Producción y Mermas registradas correctamente!\nEl inventario en stock ha sido actualizado, los costos calculados y los ingredientes descontados.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 3. Refrescamos la tabla para ver reflejado el nuevo Stock Actualizado desde MySQL
+                    // 3. Refrescamos la tabla 
                     CargarProductosEnTabla();
                 }
                 else
@@ -166,5 +186,30 @@ namespace Llamen_a_Dios
                 MessageBox.Show("Ocurrió un error inesperado al procesar el guardado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA EL MÓDULO DE PRODUCCIÓN
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipProduccion = new ToolTip();
+
+            // Estilo Globo idéntico al de tu alerta de stock
+            toolTipProduccion.IsBalloon = true;
+            toolTipProduccion.ToolTipIcon = ToolTipIcon.Info;
+            toolTipProduccion.ToolTipTitle = "Módulo de Producción";
+
+            // Tiempos de visualización
+            toolTipProduccion.AutoPopDelay = 6000;
+            toolTipProduccion.InitialDelay = 400;
+            toolTipProduccion.ReshowDelay = 300;
+            toolTipProduccion.ShowAlways = true;
+
+            // --- TOOLTIPS PARA LOS CONTROLES DE ESTA PANTALLA ---
+            toolTipProduccion.SetToolTip(this.btnSugerenciaIA, "Calcula la cantidad recomendada a hornear hoy\nbasándose en el historial de ventas .");
+            toolTipProduccion.SetToolTip(this.btnGuardar, "Registra la producción, actualiza el stock final\ny descuenta automáticamente los ingredientes usados.");
+            toolTipProduccion.SetToolTip(this.dgvProduccion, "Modifica las columnas 'Entrada Horno' y 'Merma'\nantes de presionar Guardar.");
+        }
+
     }
 }

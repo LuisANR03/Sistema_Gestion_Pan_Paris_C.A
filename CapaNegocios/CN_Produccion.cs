@@ -2,6 +2,7 @@
 using CapaEntidades;
 using Entidades;
 using System.Collections.Generic;
+using System.Data; // IMPORTANTE: Agregamos esto para poder manejar DataTable
 
 namespace CapaNegocio
 {
@@ -18,6 +19,14 @@ namespace CapaNegocio
         public Dictionary<int, int> ObtenerSugerenciasIA()
         {
             return objCapaDato.ObtenerSugerenciasIA();
+        }
+
+        // ==========================================================
+        // NUEVO: Método puente para obtener el historial general
+        // ==========================================================
+        public DataTable ObtenerHistorial3Meses()
+        {
+            return objCapaDato.ObtenerHistorial3Meses();
         }
 
         public bool RegistrarProduccion(List<ControlProduccion> lista, out string mensaje)
@@ -43,6 +52,5 @@ namespace CapaNegocio
 
             return objCapaDato.RegistrarProduccion(lista);
         }
-
     }
 }

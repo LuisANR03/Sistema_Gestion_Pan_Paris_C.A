@@ -26,13 +26,17 @@ namespace CapaNegocios
             Mensaje = string.Empty;
 
             // --- Reglas de Negocio ---
-            if (string.IsNullOrEmpty(obj.Nombre) || string.IsNullOrWhiteSpace(obj.Nombre))
+            if (string.IsNullOrEmpty(obj.TipoDocumento) || string.IsNullOrWhiteSpace(obj.TipoDocumento))
             {
-                Mensaje = "El nombre del cliente no puede estar vacío.";
+                Mensaje = "Debe seleccionar un tipo de documento (V, E, J, G).";
             }
             else if (string.IsNullOrEmpty(obj.Cedula) || string.IsNullOrWhiteSpace(obj.Cedula))
             {
-                Mensaje = "La cédula del cliente no puede estar vacía.";
+                Mensaje = "El número de documento del cliente no puede estar vacío.";
+            }
+            else if (string.IsNullOrEmpty(obj.Nombre) || string.IsNullOrWhiteSpace(obj.Nombre))
+            {
+                Mensaje = "El nombre del cliente no puede estar vacío.";
             }
             else if (string.IsNullOrEmpty(obj.Correo) || string.IsNullOrWhiteSpace(obj.Correo))
             {
@@ -55,13 +59,17 @@ namespace CapaNegocios
             Mensaje = string.Empty;
 
             // --- Reglas de Negocio ---
-            if (string.IsNullOrEmpty(obj.Nombre) || string.IsNullOrWhiteSpace(obj.Nombre))
+            if (string.IsNullOrEmpty(obj.TipoDocumento) || string.IsNullOrWhiteSpace(obj.TipoDocumento))
             {
-                Mensaje = "El nombre del cliente no puede estar vacío.";
+                Mensaje = "Debe seleccionar un tipo de documento (V, E, J, G).";
             }
             else if (string.IsNullOrEmpty(obj.Cedula) || string.IsNullOrWhiteSpace(obj.Cedula))
             {
-                Mensaje = "La cédula del cliente no puede estar vacía.";
+                Mensaje = "El número de documento del cliente no puede estar vacío.";
+            }
+            else if (string.IsNullOrEmpty(obj.Nombre) || string.IsNullOrWhiteSpace(obj.Nombre))
+            {
+                Mensaje = "El nombre del cliente no puede estar vacío.";
             }
             else if (string.IsNullOrEmpty(obj.Correo) || string.IsNullOrWhiteSpace(obj.Correo))
             {

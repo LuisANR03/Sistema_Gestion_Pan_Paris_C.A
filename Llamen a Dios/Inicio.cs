@@ -105,6 +105,8 @@ namespace Llamen_a_Dios
                         if (control.Name == permiso.NombreMenu) { control.Visible = true; break; }
                     }
                 }
+
+                ConfigurarAyudaVisual();
             }
 
             // Por defecto abrimos el Dashboard o Acerca de
@@ -137,14 +139,14 @@ namespace Llamen_a_Dios
         {
             if (menuActivo != null)
             {
-                menuActivo.BackColor = Color.FromArgb(28, 78, 216); // Azul de tu sidebar
+                // menuActivo.BackColor = Color.FromArgb(28, 78, 216); // Azul de tu sidebar
             }
 
             // Identificamos si se hizo clic en un botón principal
             if (senderMenu is IconButton)
             {
                 menuActivo = (IconButton)senderMenu;
-                menuActivo.BackColor = Color.FromArgb(45, 96, 238);
+                // menuActivo.BackColor = Color.FromArgb(45, 96, 238);
             }
             // Identificamos si se hizo clic en un submenú
             else if (senderMenu is Button)
@@ -154,10 +156,10 @@ namespace Llamen_a_Dios
                 if (btn.Parent == PanelSubmenuStock) menuActivo = btnStock;
                 if (btn.Parent == PanelSubmenuInformes) menuActivo = btnInformes; // Vincula los subbotones a Informes
 
-                if (menuActivo != null)
-                    menuActivo.BackColor = Color.FromArgb(45, 96, 238);
+                //     if (menuActivo != null)
+                //     menuActivo.BackColor = Color.FromArgb(45, 96, 238);
             }
-
+//
             if (formularioActivo != null)
             {
                 formularioActivo.Close();
@@ -221,7 +223,7 @@ namespace Llamen_a_Dios
 
         private void submenudetalleventa_Click(object sender, EventArgs e)
         {
-            AbrirFrm(sender, new Frmdetalleventa());
+            AbrirFrm(sender, new Frmdetalleventa(usuarioActual));
         }
 
         private void submenuinv_Click(object sender, EventArgs e)
@@ -275,6 +277,86 @@ namespace Llamen_a_Dios
         private void btnIngredientes_Click(object sender, EventArgs e)
         {
             AbrirFrm(sender, new FrmIngredientes(usuarioActual));
+        }
+
+        // ==============================================================
+        // MÉTODO PARA CREAR TOOLTIPS PERSONALIZADOS (ESTILO ALERTA)
+        // ==============================================================
+        // ==============================================================
+        // MÉTODO PARA CREAR TOOLTIPS PERSONALIZADOS (ESTILO ALERTA DE STOCK)
+        // ==============================================================
+        // ==============================================================
+        // MÉTODO PARA CREAR TOOLTIPS ESTILO GLOBO (COMO LA IMAGEN)
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipMenu = new ToolTip();
+
+            // 1. EL SECRETO PARA QUE SE VEA EXACTAMENTE COMO TU IMAGEN:
+            toolTipMenu.IsBalloon = true;                   // Activa la forma de burbuja/globo con la flechita
+            toolTipMenu.ToolTipIcon = ToolTipIcon.Info;     // Agrega el ícono azul de "i"
+            toolTipMenu.ToolTipTitle = "Módulo del Sistema"; // El título azul en negrita (Aplica a todos)
+
+            // 2. CONFIGURACIÓN DE TIEMPOS
+            toolTipMenu.AutoPopDelay = 6000;
+            toolTipMenu.InitialDelay = 400;
+            toolTipMenu.ReshowDelay = 300;
+            toolTipMenu.ShowAlways = true;
+
+            // --- BOTONES PRINCIPALES (SIDEBAR) ---
+            toolTipMenu.SetToolTip(this.btndashboard, "Resumen general de las operaciones del día.");
+            toolTipMenu.SetToolTip(this.Btnasistente, "Análisis inteligente del negocio y predicciones.");
+            toolTipMenu.SetToolTip(this.btnProduccion, "Gestión de recetas, insumos y órdenes de horneado.");
+            toolTipMenu.SetToolTip(this.btnVentas, "Despliega las opciones de facturación y facturas emitidas.");
+            toolTipMenu.SetToolTip(this.btnStock, "Despliega el control de existencias y categorías.");
+            toolTipMenu.SetToolTip(this.btnInformes, "Despliega los reportes y el cierre de caja diario.");
+            toolTipMenu.SetToolTip(this.btnClientes, "Administración de la base de datos de clientes registrados.");
+            toolTipMenu.SetToolTip(this.btnUsuarios, "Configuración de personal, roles y permisos de acceso.");
+            toolTipMenu.SetToolTip(this.btnrespaldo, "Generar una copia de seguridad (.SQL) de la base de datos.");
+            toolTipMenu.SetToolTip(this.btnAcerca, "Información técnica del software y desarrolladores.");
+
+            // --- SUBMENÚS DE VENTAS ---
+            toolTipMenu.SetToolTip(this.submenuregistrarventa, "Abre el módulo de facturación para registrar un pedido.");
+            toolTipMenu.SetToolTip(this.submenudetalleventa, "Consulta y busca facturas emitidas anteriormente.");
+
+            // --- SUBMENÚS DE STOCK ---
+            toolTipMenu.SetToolTip(this.submenuinv, "Control de inventario de productos terminados.");
+         
+            toolTipMenu.SetToolTip(this.btnIngredientes, "Inventario de materia prima (harina, azúcar, etc.).");
+
+            // --- SUBMENÚS DE INFORMES ---
+            toolTipMenu.SetToolTip(this.submenucierrecaja, "Realiza el cuadre de dinero en Bs/Dólares y genera el PDF.");
+           
+        }
+
+        private void ToolTipMenu_Popup(object sender, PopupEventArgs e)
+        {
+            // Medimos el texto y agregamos márgenes cómodos (Padding)
+            Size tamañoTexto = TextRenderer.MeasureText(((ToolTip)sender).GetToolTip(e.AssociatedControl), new Font("Segoe UI", 9.5f));
+            e.ToolTipSize = new Size(tamañoTexto.Width + 24, tamañoTexto.Height + 16);
+        }
+
+        private void ToolTipMenu_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            // COLORES ESTILO ALERTA PREMIUM
+            Color colorFondo = Color.FromArgb(28, 28, 30);      // Gris ultra oscuro (Modo oscuro limpio)
+            Color colorAlerta = Color.FromArgb(245, 158, 11);   // Ámbar/Dorado (Color típico de alertas visuales de stock)
+
+            // 1. Dibujar el fondo plano
+            e.Graphics.FillRectangle(new SolidBrush(colorFondo), e.Bounds);
+
+            // 2. Dibujar el borde estilizado (2 píxeles de grosor para que resalte)
+            using (Pen penBorde = new Pen(colorAlerta, 2))
+            {
+                e.Graphics.DrawRectangle(penBorde, new Rectangle(0, 0, e.Bounds.Width - 1, e.Bounds.Height - 1));
+            }
+
+            // 3. Dibujar el texto en alta definición
+            Font fuente = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+            TextRenderer.DrawText(e.Graphics, e.ToolTipText, fuente,
+                new Point(12, 8), // Margen interno de inicio del texto
+                Color.White,
+                TextFormatFlags.NoPadding | TextFormatFlags.Left);
         }
 
         private void btnrespaldo_Click(object sender, EventArgs e)

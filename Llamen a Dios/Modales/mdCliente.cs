@@ -20,6 +20,7 @@ namespace Llamen_a_Dios.Modales
 
         // 2. Agregamos las propiedades para enviar los datos a la Venta
         public string IdClienteSeleccionado { get; set; }
+        public string TipoDocumentoSeleccionado { get; set; }
         public string CedulaSeleccionada { get; set; }
         public string NombreSeleccionado { get; set; }
 
@@ -46,6 +47,7 @@ namespace Llamen_a_Dios.Modales
             {
                 CBFiltro.SelectedIndex = 0;
             }
+            ConfigurarAyudaVisual();
         }
 
         // --- LOS MÉTODOS AHORA SÍ ESTÁN DENTRO DE LA CLASE ---
@@ -66,6 +68,7 @@ namespace Llamen_a_Dios.Modales
                     DGVUs.Rows.Add(new object[] {
                         "", // BtnSelect
                         item.IdCliente,
+                        item.TipoDocumento,
                         item.Cedula,
                         item.Nombre,
                         item.Correo,
@@ -86,8 +89,9 @@ namespace Llamen_a_Dios.Modales
             {
                 // Capturamos los datos basándonos en las posiciones de tu método CargarClientes
                 IdClienteSeleccionado = DGVUs.Rows[e.RowIndex].Cells[1].Value.ToString();
-                CedulaSeleccionada = DGVUs.Rows[e.RowIndex].Cells[2].Value.ToString();
-                NombreSeleccionado = DGVUs.Rows[e.RowIndex].Cells[3].Value.ToString();
+                TipoDocumentoSeleccionado = DGVUs.Rows[e.RowIndex].Cells[2].Value.ToString();
+                CedulaSeleccionada = DGVUs.Rows[e.RowIndex].Cells[3].Value.ToString();
+                NombreSeleccionado = DGVUs.Rows[e.RowIndex].Cells[4].Value.ToString();
 
                 // Confirmamos y cerramos el modal
                 this.DialogResult = DialogResult.OK;
@@ -136,6 +140,44 @@ namespace Llamen_a_Dios.Modales
             {
                 CBFiltro.SelectedIndex = 0;
             }
+        }
+
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA EL MODAL DE CLIENTES
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipModal = new ToolTip();
+
+            // Estilo Globo idéntico al resto del sistema
+            toolTipModal.IsBalloon = true;
+            toolTipModal.ToolTipIcon = ToolTipIcon.Info;
+            toolTipModal.ToolTipTitle = "Selección de Cliente";
+
+            // Configuración de tiempos
+            toolTipModal.AutoPopDelay = 6000;
+            toolTipModal.InitialDelay = 400;
+            toolTipModal.ReshowDelay = 300;
+            toolTipModal.ShowAlways = true;
+
+            // --- TOOLTIPS PARA LOS CONTROLES DEL MODAL ---
+            toolTipModal.SetToolTip(this.TBBuscar, "Escribe aquí para buscar rápidamente a un cliente.");
+            toolTipModal.SetToolTip(this.BtnLimpiar, "Borra el texto de búsqueda y muestra todos los clientes activos.");
+            toolTipModal.SetToolTip(this.CBFiltro, "Elige por cuál columna deseas realizar la búsqueda (Ej: Cédula, Nombre).");
+
+            // Instrucción clave para el DataGridView
+            toolTipModal.SetToolTip(this.DGVUs, "Haz DOBLE CLIC sobre la fila del cliente\npara seleccionarlo y agregarlo a la factura.");
+
+            // Si tienes el botón cancelar declarado, le ponemos su ayuda
+            if (this.btnCancelar != null)
+            {
+                toolTipModal.SetToolTip(this.btnCancelar, "Cierra esta ventana sin seleccionar ningún cliente.");
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

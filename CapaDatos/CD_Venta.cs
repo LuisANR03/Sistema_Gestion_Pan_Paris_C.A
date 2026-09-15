@@ -23,9 +23,9 @@ namespace CapaDatos
 
                 try
                 {
-                    // 1. Insertar Cabecera
-                    string queryVenta = @"INSERT INTO ventas (idUsuario, idVendedor, idCliente, TipoDocumento, NumeroDocumento, SubTotal, Impuesto, MontoTotal) 
-                                        VALUES (@idusu, @idvend, @idcli, @tipo, @num, @sub, @imp, @total);
+                    // 1. Insertar Cabecera (AGREGADO NumeroControl)
+                    string queryVenta = @"INSERT INTO ventas (idUsuario, idVendedor, idCliente, TipoDocumento, NumeroDocumento, NumeroControl, SubTotal, Impuesto, MontoTotal) 
+                                        VALUES (@idusu, @idvend, @idcli, @tipo, @num, @numCtrl, @sub, @imp, @total);
                                         SELECT LAST_INSERT_ID();";
 
                     MySqlCommand cmdVenta = new MySqlCommand(queryVenta, oconexion, transaction);
@@ -34,6 +34,7 @@ namespace CapaDatos
                     cmdVenta.Parameters.AddWithValue("@idcli", obj.IdCliente);
                     cmdVenta.Parameters.AddWithValue("@tipo", obj.TipoDocumento);
                     cmdVenta.Parameters.AddWithValue("@num", obj.NumeroDocumento);
+                    cmdVenta.Parameters.AddWithValue("@numCtrl", obj.NumeroControl); // NUEVO
                     cmdVenta.Parameters.AddWithValue("@sub", obj.SubTotal);
                     cmdVenta.Parameters.AddWithValue("@imp", obj.Impuesto);
                     cmdVenta.Parameters.AddWithValue("@total", obj.MontoTotal);
@@ -146,9 +147,11 @@ namespace CapaDatos
             {
                 try
                 {
+                    // AGREGADO: v.NumeroControl
                     string query = @"SELECT 
                                 v.idVenta, 
                                 v.NumeroDocumento, 
+                                v.NumeroControl,
                                 v.FechaVenta, 
                                 c.Nombre as Cliente, 
                                 u.Nombre as Cajero, 
@@ -170,6 +173,7 @@ namespace CapaDatos
                             {
                                 IdVenta = Convert.ToInt32(dr["idVenta"]),
                                 NumeroDocumento = dr["NumeroDocumento"].ToString(),
+                                NumeroControl = dr["NumeroControl"] == DBNull.Value ? "" : dr["NumeroControl"].ToString(), // NUEVO
                                 FechaVenta = Convert.ToDateTime(dr["FechaVenta"]),
                                 MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
 
@@ -195,12 +199,14 @@ namespace CapaDatos
             {
                 try
                 {
-                    string query = @"SELECT v.idVenta, v.NumeroDocumento, v.TipoDocumento, v.FechaVenta, v.MontoTotal,
-                            c.Nombre as NombreCliente, u.Nombre as NombreCajero
-                            FROM ventas v
-                            INNER JOIN cliente c ON v.idCliente = c.idCliente
-                            INNER JOIN usuario u ON v.idUsuario = u.idUsuario
-                            WHERE v.idVenta = @id";
+                    // 1. OBTENER CABECERA DE LA VENTA (Ajustado con minúsculas exactas de tu BD)
+                    string query = @"SELECT v.idVenta, v.NumeroDocumento, v.NumeroControl, v.TipoDocumento, v.FechaVenta, v.MontoTotal, 
+                             c.Nombre as NombreCliente, c.cedula, c.correo, c.direccion, 
+                             u.Nombre as NombreCajero 
+                             FROM ventas v 
+                             INNER JOIN cliente c ON v.idCliente = c.idCliente 
+                             INNER JOIN usuario u ON v.idUsuario = u.idUsuario 
+                             WHERE v.idVenta = @id";
 
                     MySqlCommand cmd = new MySqlCommand(query, oconexion);
                     cmd.Parameters.AddWithValue("@id", idVenta);
@@ -214,19 +220,31 @@ namespace CapaDatos
                             {
                                 IdVenta = Convert.ToInt32(dr["idVenta"]),
                                 NumeroDocumento = dr["NumeroDocumento"].ToString(),
+                                NumeroControl = dr["NumeroControl"] == DBNull.Value ? "" : dr["NumeroControl"].ToString(),
                                 TipoDocumento = dr["TipoDocumento"].ToString(),
                                 FechaVenta = Convert.ToDateTime(dr["FechaVenta"]),
                                 MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
-                                Cliente = new Cliente() { Nombre = dr["NombreCliente"].ToString() },
+
+                                // Mapeo exacto con los nombres de las columnas de tu imagen
+                                Cliente = new Cliente()
+                                {
+                                    Nombre = dr["NombreCliente"].ToString(),
+                                    Cedula = dr["cedula"] == DBNull.Value ? "" : dr["cedula"].ToString(),
+                                    Correo = dr["correo"] == DBNull.Value ? "" : dr["correo"].ToString(),
+                                    Direccion = dr["direccion"] == DBNull.Value ? "" : dr["direccion"].ToString()
+                                },
+
                                 Usuario = new Usuario() { Nombre = dr["NombreCajero"].ToString() },
-                                Detalles = new List<DetalleVenta>()
+                                Detalles = new List<DetalleVenta>(),
+                                Pagos = new List<VentaPagos>()
                             };
                         }
                     }
 
+                    // 2. OBTENER PRODUCTOS (DETALLE)
                     string queryDetalle = @"SELECT p.Nombre, dv.precio_unitario, dv.cantidad 
-                                    FROM detalle_venta dv
-                                    INNER JOIN producto p ON p.idProducto = dv.idProducto
+                                    FROM detalle_venta dv 
+                                    INNER JOIN producto p ON p.idProducto = dv.idProducto 
                                     WHERE dv.idVenta = @id";
 
                     MySqlCommand cmd2 = new MySqlCommand(queryDetalle, oconexion);
@@ -241,6 +259,30 @@ namespace CapaDatos
                                 Producto = new Producto() { Nombre = dr2["Nombre"].ToString() },
                                 PrecioUnitario = Convert.ToDecimal(dr2["precio_unitario"]),
                                 Cantidad = Convert.ToInt32(dr2["cantidad"])
+                            });
+                        }
+                    }
+
+                    // =========================================================
+                    // 3. OBTENER LOS MÉTODOS DE PAGO USADOS
+                    // =========================================================
+                    string queryPagos = @"SELECT mp.nombre as Metodo, vp.monto_recibido, vp.monto_cambio 
+                                  FROM venta_pagos vp 
+                                  INNER JOIN metodo_pago mp ON vp.idMetodoPago = mp.idMetodoPago 
+                                  WHERE vp.idVenta = @id";
+
+                    MySqlCommand cmd3 = new MySqlCommand(queryPagos, oconexion);
+                    cmd3.Parameters.AddWithValue("@id", idVenta);
+
+                    using (MySqlDataReader dr3 = cmd3.ExecuteReader())
+                    {
+                        while (dr3.Read())
+                        {
+                            objeto.Pagos.Add(new VentaPagos()
+                            {
+                                DescripcionMetodo = dr3["Metodo"].ToString(),
+                                MontoRecibido = Convert.ToDecimal(dr3["monto_recibido"]),
+                                MontoCambio = Convert.ToDecimal(dr3["monto_cambio"])
                             });
                         }
                     }
@@ -366,6 +408,45 @@ namespace CapaDatos
             }
             return tabla;
         }
+
+        public decimal ObtenerTotalVendidoPorRango(DateTime fechaInicio, DateTime fechaFin)
+        {
+            decimal totalVendido = 0;
+
+            using (MySqlConnection oconexion = Conexion.obtenerConexion())
+            {
+                try
+                {
+                    // Usamos DATE() para ignorar las horas y buscar días completos exactos
+                    string query = @"
+                SELECT SUM(MontoTotal) 
+                FROM ventas 
+                WHERE DATE(FechaVenta) BETWEEN DATE(@fechaInicio) AND DATE(@fechaFin);";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, oconexion))
+                    {
+                        cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                        cmd.Parameters.AddWithValue("@fechaFin", fechaFin);
+
+                        object resultado = cmd.ExecuteScalar();
+
+                        // Validamos que el resultado no sea nulo (por si no hay ventas en esas fechas)
+                        if (resultado != DBNull.Value && resultado != null)
+                        {
+                            totalVendido = Convert.ToDecimal(resultado);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al sumar el total de ventas: " + ex.Message);
+                }
+            }
+
+            return totalVendido;
+        }
+
+
 
     }
 }

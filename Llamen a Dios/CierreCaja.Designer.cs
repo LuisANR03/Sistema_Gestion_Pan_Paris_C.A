@@ -21,8 +21,18 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBoxModerno2 = new Llamen_a_Dios.GroupBoxModerno();
-            this.txtGananciaNeta = new TextBoxModerno();
+            this.label23 = new System.Windows.Forms.Label();
+            this.groupBoxModerno3 = new Llamen_a_Dios.GroupBoxModerno();
+            this.lblUtilidades = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.txtCostoProduccion = new TextBoxModerno();
+            this.txtGananciaNeta = new TextBoxModerno();
+            this.panelModerno13 = new Llamen_a_Dios.PanelModerno();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtFisicoCashea = new TextBoxModerno();
+            this.panelModerno18 = new Llamen_a_Dios.PanelModerno();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtFisicoZinly = new TextBoxModerno();
             this.btnexcel = new BotonModerno();
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.txtcuadre = new TextBoxModerno();
@@ -33,12 +43,6 @@
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.btnProcesarCierre = new BotonModerno();
             this.grpFisico = new Llamen_a_Dios.GroupBoxModerno();
-            this.panelModerno13 = new Llamen_a_Dios.PanelModerno();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtFisicoCashea = new TextBoxModerno();
-            this.panelModerno18 = new Llamen_a_Dios.PanelModerno();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtFisicoZinly = new TextBoxModerno();
             this.panelModerno17 = new Llamen_a_Dios.PanelModerno();
             this.label5 = new System.Windows.Forms.Label();
             this.txtFisicoPuntoVenta = new TextBoxModerno();
@@ -60,12 +64,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.labelObservaciones = new System.Windows.Forms.Label();
             this.grpSistema = new Llamen_a_Dios.GroupBoxModerno();
-            this.panelModerno11 = new Llamen_a_Dios.PanelModerno();
-            this.txtSistemaCashea = new TextBoxModerno();
-            this.label14 = new System.Windows.Forms.Label();
-            this.panelModerno10 = new Llamen_a_Dios.PanelModerno();
-            this.txtSistemaZinly = new TextBoxModerno();
-            this.label13 = new System.Windows.Forms.Label();
             this.panelModerno9 = new Llamen_a_Dios.PanelModerno();
             this.label12 = new System.Windows.Forms.Label();
             this.txtSistemaPuntoVenta = new TextBoxModerno();
@@ -85,14 +83,21 @@
             this.txtTotalSis = new TextBoxModerno();
             this.TotalVendido = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.panelModerno11 = new Llamen_a_Dios.PanelModerno();
+            this.txtSistemaCashea = new TextBoxModerno();
+            this.label14 = new System.Windows.Forms.Label();
+            this.panelModerno10 = new Llamen_a_Dios.PanelModerno();
+            this.txtSistemaZinly = new TextBoxModerno();
+            this.label13 = new System.Windows.Forms.Label();
             this.panelModerno2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.groupBoxModerno2.SuspendLayout();
+            this.groupBoxModerno3.SuspendLayout();
+            this.panelModerno13.SuspendLayout();
+            this.panelModerno18.SuspendLayout();
             this.groupBoxModerno1.SuspendLayout();
             this.panelModerno1.SuspendLayout();
             this.grpFisico.SuspendLayout();
-            this.panelModerno13.SuspendLayout();
-            this.panelModerno18.SuspendLayout();
             this.panelModerno17.SuspendLayout();
             this.panelModerno16.SuspendLayout();
             this.panelModerno15.SuspendLayout();
@@ -100,20 +105,20 @@
             this.panelModerno12.SuspendLayout();
             this.panelModerno5.SuspendLayout();
             this.grpSistema.SuspendLayout();
-            this.panelModerno11.SuspendLayout();
-            this.panelModerno10.SuspendLayout();
             this.panelModerno9.SuspendLayout();
             this.panelModerno8.SuspendLayout();
             this.panelModerno7.SuspendLayout();
             this.panelModerno6.SuspendLayout();
             this.panelModerno3.SuspendLayout();
             this.panelModerno4.SuspendLayout();
+            this.panelModerno11.SuspendLayout();
+            this.panelModerno10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelModerno2
             // 
             this.panelModerno2.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.panelModerno2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.panelModerno2.BorderRadius = 15;
             this.panelModerno2.Controls.Add(this.iconPictureBox1);
             this.panelModerno2.Controls.Add(this.label15);
@@ -126,8 +131,9 @@
             // iconPictureBox1
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.BagShopping;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 49;
             this.iconPictureBox1.Location = new System.Drawing.Point(29, 15);
@@ -138,9 +144,9 @@
             // 
             // label15
             // 
-            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.label15.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label15.Location = new System.Drawing.Point(85, 15);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
@@ -155,8 +161,10 @@
             this.groupBoxModerno2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.groupBoxModerno2.BorderRadius = 15;
             this.groupBoxModerno2.BorderSize = 2;
-            this.groupBoxModerno2.Controls.Add(this.txtGananciaNeta);
-            this.groupBoxModerno2.Controls.Add(this.txtCostoProduccion);
+            this.groupBoxModerno2.Controls.Add(this.label23);
+            this.groupBoxModerno2.Controls.Add(this.groupBoxModerno3);
+            this.groupBoxModerno2.Controls.Add(this.panelModerno13);
+            this.groupBoxModerno2.Controls.Add(this.panelModerno18);
             this.groupBoxModerno2.Controls.Add(this.btnexcel);
             this.groupBoxModerno2.Controls.Add(this.groupBoxModerno1);
             this.groupBoxModerno2.Controls.Add(this.panelModerno1);
@@ -171,35 +179,67 @@
             this.groupBoxModerno2.TabIndex = 100;
             this.groupBoxModerno2.TabStop = false;
             // 
-            // txtGananciaNeta
+            // label23
             // 
-            this.txtGananciaNeta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtGananciaNeta.ColorBorde = System.Drawing.Color.Black;
-            this.txtGananciaNeta.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtGananciaNeta.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
-            this.txtGananciaNeta.ForeColor = System.Drawing.Color.Black;
-            this.txtGananciaNeta.GrosorBorde = 1;
-            this.txtGananciaNeta.Location = new System.Drawing.Point(350, 1004);
-            this.txtGananciaNeta.MaxLength = 32767;
-            this.txtGananciaNeta.Name = "txtGananciaNeta";
-            this.txtGananciaNeta.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtGananciaNeta.PasswordChar = '\0';
-            this.txtGananciaNeta.RadioBorde = 5;
-            this.txtGananciaNeta.ReadOnly = false;
-            this.txtGananciaNeta.Size = new System.Drawing.Size(228, 41);
-            this.txtGananciaNeta.TabIndex = 103;
-            this.txtGananciaNeta.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtGananciaNeta.UseSystemPasswordChar = false;
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
+            this.label23.Location = new System.Drawing.Point(110, 886);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(107, 28);
+            this.label23.TabIndex = 102;
+            this.label23.Text = "Utilidades";
+            // 
+            // groupBoxModerno3
+            // 
+            this.groupBoxModerno3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.groupBoxModerno3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.groupBoxModerno3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.groupBoxModerno3.BorderRadius = 15;
+            this.groupBoxModerno3.BorderSize = 2;
+            this.groupBoxModerno3.Controls.Add(this.lblUtilidades);
+            this.groupBoxModerno3.Controls.Add(this.label18);
+            this.groupBoxModerno3.Controls.Add(this.txtCostoProduccion);
+            this.groupBoxModerno3.Controls.Add(this.txtGananciaNeta);
+            this.groupBoxModerno3.Location = new System.Drawing.Point(93, 922);
+            this.groupBoxModerno3.Name = "groupBoxModerno3";
+            this.groupBoxModerno3.RedondearAbajo = true;
+            this.groupBoxModerno3.Size = new System.Drawing.Size(581, 146);
+            this.groupBoxModerno3.TabIndex = 110;
+            this.groupBoxModerno3.TabStop = false;
+            // 
+            // lblUtilidades
+            // 
+            this.lblUtilidades.AutoSize = true;
+            this.lblUtilidades.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUtilidades.Location = new System.Drawing.Point(51, 89);
+            this.lblUtilidades.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUtilidades.Name = "lblUtilidades";
+            this.lblUtilidades.Size = new System.Drawing.Size(85, 23);
+            this.lblUtilidades.TabIndex = 128;
+            this.lblUtilidades.Text = "Utilidades";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(51, 32);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(144, 23);
+            this.label18.TabIndex = 127;
+            this.label18.Text = "Coste Produccion";
             // 
             // txtCostoProduccion
             // 
-            this.txtCostoProduccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtCostoProduccion.ColorBorde = System.Drawing.Color.Black;
+            this.txtCostoProduccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.txtCostoProduccion.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
             this.txtCostoProduccion.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
             this.txtCostoProduccion.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
-            this.txtCostoProduccion.ForeColor = System.Drawing.Color.Black;
+            this.txtCostoProduccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
             this.txtCostoProduccion.GrosorBorde = 1;
-            this.txtCostoProduccion.Location = new System.Drawing.Point(93, 1004);
+            this.txtCostoProduccion.Location = new System.Drawing.Point(258, 21);
             this.txtCostoProduccion.MaxLength = 32767;
             this.txtCostoProduccion.Name = "txtCostoProduccion";
             this.txtCostoProduccion.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -211,12 +251,126 @@
             this.txtCostoProduccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtCostoProduccion.UseSystemPasswordChar = false;
             // 
+            // txtGananciaNeta
+            // 
+            this.txtGananciaNeta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.txtGananciaNeta.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.txtGananciaNeta.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtGananciaNeta.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
+            this.txtGananciaNeta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
+            this.txtGananciaNeta.GrosorBorde = 1;
+            this.txtGananciaNeta.Location = new System.Drawing.Point(258, 71);
+            this.txtGananciaNeta.MaxLength = 32767;
+            this.txtGananciaNeta.Name = "txtGananciaNeta";
+            this.txtGananciaNeta.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtGananciaNeta.PasswordChar = '\0';
+            this.txtGananciaNeta.RadioBorde = 5;
+            this.txtGananciaNeta.ReadOnly = false;
+            this.txtGananciaNeta.Size = new System.Drawing.Size(228, 41);
+            this.txtGananciaNeta.TabIndex = 103;
+            this.txtGananciaNeta.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtGananciaNeta.UseSystemPasswordChar = false;
+            // 
+            // panelModerno13
+            // 
+            this.panelModerno13.BackColor = System.Drawing.Color.Transparent;
+            this.panelModerno13.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.panelModerno13.BorderRadius = 15;
+            this.panelModerno13.Controls.Add(this.label7);
+            this.panelModerno13.Controls.Add(this.txtFisicoCashea);
+            this.panelModerno13.Location = new System.Drawing.Point(1144, 1128);
+            this.panelModerno13.Name = "panelModerno13";
+            this.panelModerno13.RedondearAbajo = true;
+            this.panelModerno13.Size = new System.Drawing.Size(495, 46);
+            this.panelModerno13.TabIndex = 121;
+            this.panelModerno13.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(21, 13);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 20);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Cashea:";
+            this.label7.Visible = false;
+            // 
+            // txtFisicoCashea
+            // 
+            this.txtFisicoCashea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtFisicoCashea.ColorBorde = System.Drawing.Color.Black;
+            this.txtFisicoCashea.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtFisicoCashea.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
+            this.txtFisicoCashea.ForeColor = System.Drawing.Color.Black;
+            this.txtFisicoCashea.GrosorBorde = 1;
+            this.txtFisicoCashea.Location = new System.Drawing.Point(264, 5);
+            this.txtFisicoCashea.MaxLength = 32767;
+            this.txtFisicoCashea.Name = "txtFisicoCashea";
+            this.txtFisicoCashea.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtFisicoCashea.PasswordChar = '\0';
+            this.txtFisicoCashea.RadioBorde = 5;
+            this.txtFisicoCashea.ReadOnly = false;
+            this.txtFisicoCashea.Size = new System.Drawing.Size(228, 41);
+            this.txtFisicoCashea.TabIndex = 101;
+            this.txtFisicoCashea.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtFisicoCashea.UseSystemPasswordChar = false;
+            this.txtFisicoCashea.Visible = false;
+            this.txtFisicoCashea._TextChanged += new System.EventHandler(this.txtFisicoCashea__TextChanged);
+            // 
+            // panelModerno18
+            // 
+            this.panelModerno18.BackColor = System.Drawing.Color.Transparent;
+            this.panelModerno18.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.panelModerno18.BorderRadius = 15;
+            this.panelModerno18.Controls.Add(this.label6);
+            this.panelModerno18.Controls.Add(this.txtFisicoZinly);
+            this.panelModerno18.Location = new System.Drawing.Point(1144, 1067);
+            this.panelModerno18.Name = "panelModerno18";
+            this.panelModerno18.RedondearAbajo = true;
+            this.panelModerno18.Size = new System.Drawing.Size(495, 46);
+            this.panelModerno18.TabIndex = 126;
+            this.panelModerno18.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(22, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 20);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Zinly:";
+            this.label6.Visible = false;
+            // 
+            // txtFisicoZinly
+            // 
+            this.txtFisicoZinly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtFisicoZinly.ColorBorde = System.Drawing.Color.Black;
+            this.txtFisicoZinly.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtFisicoZinly.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
+            this.txtFisicoZinly.ForeColor = System.Drawing.Color.Black;
+            this.txtFisicoZinly.GrosorBorde = 1;
+            this.txtFisicoZinly.Location = new System.Drawing.Point(259, 2);
+            this.txtFisicoZinly.MaxLength = 32767;
+            this.txtFisicoZinly.Name = "txtFisicoZinly";
+            this.txtFisicoZinly.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtFisicoZinly.PasswordChar = '\0';
+            this.txtFisicoZinly.RadioBorde = 5;
+            this.txtFisicoZinly.ReadOnly = false;
+            this.txtFisicoZinly.Size = new System.Drawing.Size(228, 41);
+            this.txtFisicoZinly.TabIndex = 100;
+            this.txtFisicoZinly.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtFisicoZinly.UseSystemPasswordChar = false;
+            this.txtFisicoZinly.Visible = false;
+            this.txtFisicoZinly._TextChanged += new System.EventHandler(this.txtFisicoZinly__TextChanged);
+            // 
             // btnexcel
             // 
-            this.btnexcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btnexcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
             this.btnexcel.ColorBorde = System.Drawing.Color.Black;
-            this.btnexcel.ColorClick = System.Drawing.Color.RoyalBlue;
-            this.btnexcel.ColorHover = System.Drawing.Color.CornflowerBlue;
+            this.btnexcel.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.btnexcel.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(113)))), ((int)(((byte)(34)))));
             this.btnexcel.ColorIconoHover = System.Drawing.Color.White;
             this.btnexcel.ColorTextoHover = System.Drawing.Color.White;
             this.btnexcel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -229,7 +383,7 @@
             this.btnexcel.IconColor = System.Drawing.Color.White;
             this.btnexcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnexcel.IconSize = 25;
-            this.btnexcel.Location = new System.Drawing.Point(693, 990);
+            this.btnexcel.Location = new System.Drawing.Point(733, 960);
             this.btnexcel.Name = "btnexcel";
             this.btnexcel.RadioBorde = 15;
             this.btnexcel.Size = new System.Drawing.Size(230, 55);
@@ -241,25 +395,25 @@
             // 
             // groupBoxModerno1
             // 
-            this.groupBoxModerno1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            this.groupBoxModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            this.groupBoxModerno1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(214)))), ((int)(((byte)(255)))));
+            this.groupBoxModerno1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.groupBoxModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.groupBoxModerno1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
             this.groupBoxModerno1.BorderRadius = 15;
             this.groupBoxModerno1.BorderSize = 2;
             this.groupBoxModerno1.Controls.Add(this.txtcuadre);
             this.groupBoxModerno1.Controls.Add(this.lblcuadre);
             this.groupBoxModerno1.Controls.Add(this.label17);
             this.groupBoxModerno1.Controls.Add(this.label16);
-            this.groupBoxModerno1.Location = new System.Drawing.Point(93, 659);
+            this.groupBoxModerno1.Location = new System.Drawing.Point(93, 579);
             this.groupBoxModerno1.Name = "groupBoxModerno1";
             this.groupBoxModerno1.RedondearAbajo = true;
-            this.groupBoxModerno1.Size = new System.Drawing.Size(1181, 123);
+            this.groupBoxModerno1.Size = new System.Drawing.Size(1181, 122);
             this.groupBoxModerno1.TabIndex = 100;
             this.groupBoxModerno1.TabStop = false;
             // 
             // txtcuadre
             // 
-            this.txtcuadre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            this.txtcuadre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
             this.txtcuadre.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             this.txtcuadre.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             this.txtcuadre.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold);
@@ -303,7 +457,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(22)))), ((int)(((byte)(134)))));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
             this.label16.Location = new System.Drawing.Point(34, 18);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
@@ -317,7 +471,7 @@
             this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.panelModerno1.BorderRadius = 15;
             this.panelModerno1.Controls.Add(this.txtObservaciones);
-            this.panelModerno1.Location = new System.Drawing.Point(93, 854);
+            this.panelModerno1.Location = new System.Drawing.Point(96, 762);
             this.panelModerno1.Name = "panelModerno1";
             this.panelModerno1.RedondearAbajo = true;
             this.panelModerno1.Size = new System.Drawing.Size(1181, 113);
@@ -337,10 +491,10 @@
             // 
             // btnProcesarCierre
             // 
-            this.btnProcesarCierre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(146)))), ((int)(((byte)(133)))));
+            this.btnProcesarCierre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(99)))), ((int)(((byte)(69)))));
             this.btnProcesarCierre.ColorBorde = System.Drawing.Color.White;
-            this.btnProcesarCierre.ColorClick = System.Drawing.Color.RoyalBlue;
-            this.btnProcesarCierre.ColorHover = System.Drawing.Color.CornflowerBlue;
+            this.btnProcesarCierre.ColorClick = System.Drawing.Color.Red;
+            this.btnProcesarCierre.ColorHover = System.Drawing.Color.Firebrick;
             this.btnProcesarCierre.ColorIconoHover = System.Drawing.Color.White;
             this.btnProcesarCierre.ColorTextoHover = System.Drawing.Color.White;
             this.btnProcesarCierre.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -349,14 +503,14 @@
             this.btnProcesarCierre.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProcesarCierre.ForeColor = System.Drawing.Color.White;
             this.btnProcesarCierre.GrosorBorde = 0;
-            this.btnProcesarCierre.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnProcesarCierre.IconChar = FontAwesome.Sharp.IconChar.CashRegister;
             this.btnProcesarCierre.IconColor = System.Drawing.Color.White;
             this.btnProcesarCierre.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnProcesarCierre.IconSize = 25;
-            this.btnProcesarCierre.Location = new System.Drawing.Point(954, 990);
+            this.btnProcesarCierre.Location = new System.Drawing.Point(986, 960);
             this.btnProcesarCierre.Name = "btnProcesarCierre";
             this.btnProcesarCierre.RadioBorde = 15;
-            this.btnProcesarCierre.Size = new System.Drawing.Size(320, 55);
+            this.btnProcesarCierre.Size = new System.Drawing.Size(274, 55);
             this.btnProcesarCierre.TabIndex = 98;
             this.btnProcesarCierre.Text = "Procesar Cierre de Caja";
             this.btnProcesarCierre.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -370,8 +524,6 @@
             this.grpFisico.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.grpFisico.BorderRadius = 15;
             this.grpFisico.BorderSize = 2;
-            this.grpFisico.Controls.Add(this.panelModerno13);
-            this.grpFisico.Controls.Add(this.panelModerno18);
             this.grpFisico.Controls.Add(this.panelModerno17);
             this.grpFisico.Controls.Add(this.panelModerno16);
             this.grpFisico.Controls.Add(this.panelModerno15);
@@ -382,103 +534,9 @@
             this.grpFisico.Location = new System.Drawing.Point(693, 84);
             this.grpFisico.Name = "grpFisico";
             this.grpFisico.RedondearAbajo = true;
-            this.grpFisico.Size = new System.Drawing.Size(581, 554);
+            this.grpFisico.Size = new System.Drawing.Size(581, 468);
             this.grpFisico.TabIndex = 97;
             this.grpFisico.TabStop = false;
-            // 
-            // panelModerno13
-            // 
-            this.panelModerno13.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno13.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.panelModerno13.BorderRadius = 15;
-            this.panelModerno13.Controls.Add(this.label7);
-            this.panelModerno13.Controls.Add(this.txtFisicoCashea);
-            this.panelModerno13.Location = new System.Drawing.Point(40, 409);
-            this.panelModerno13.Name = "panelModerno13";
-            this.panelModerno13.RedondearAbajo = true;
-            this.panelModerno13.Size = new System.Drawing.Size(495, 46);
-            this.panelModerno13.TabIndex = 121;
-            this.panelModerno13.Visible = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(21, 13);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 20);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Cashea:";
-            this.label7.Visible = false;
-            // 
-            // txtFisicoCashea
-            // 
-            this.txtFisicoCashea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtFisicoCashea.ColorBorde = System.Drawing.Color.Black;
-            this.txtFisicoCashea.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtFisicoCashea.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
-            this.txtFisicoCashea.ForeColor = System.Drawing.Color.Black;
-            this.txtFisicoCashea.GrosorBorde = 1;
-            this.txtFisicoCashea.Location = new System.Drawing.Point(260, 3);
-            this.txtFisicoCashea.MaxLength = 32767;
-            this.txtFisicoCashea.Name = "txtFisicoCashea";
-            this.txtFisicoCashea.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtFisicoCashea.PasswordChar = '\0';
-            this.txtFisicoCashea.RadioBorde = 5;
-            this.txtFisicoCashea.ReadOnly = false;
-            this.txtFisicoCashea.Size = new System.Drawing.Size(228, 41);
-            this.txtFisicoCashea.TabIndex = 101;
-            this.txtFisicoCashea.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtFisicoCashea.UseSystemPasswordChar = false;
-            this.txtFisicoCashea.Visible = false;
-            this.txtFisicoCashea._TextChanged += new System.EventHandler(this.txtFisicoCashea__TextChanged);
-            // 
-            // panelModerno18
-            // 
-            this.panelModerno18.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno18.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.panelModerno18.BorderRadius = 15;
-            this.panelModerno18.Controls.Add(this.label6);
-            this.panelModerno18.Controls.Add(this.txtFisicoZinly);
-            this.panelModerno18.Location = new System.Drawing.Point(40, 348);
-            this.panelModerno18.Name = "panelModerno18";
-            this.panelModerno18.RedondearAbajo = true;
-            this.panelModerno18.Size = new System.Drawing.Size(495, 46);
-            this.panelModerno18.TabIndex = 126;
-            this.panelModerno18.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(22, 14);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 20);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Zinly:";
-            this.label6.Visible = false;
-            // 
-            // txtFisicoZinly
-            // 
-            this.txtFisicoZinly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtFisicoZinly.ColorBorde = System.Drawing.Color.Black;
-            this.txtFisicoZinly.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtFisicoZinly.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
-            this.txtFisicoZinly.ForeColor = System.Drawing.Color.Black;
-            this.txtFisicoZinly.GrosorBorde = 1;
-            this.txtFisicoZinly.Location = new System.Drawing.Point(259, 2);
-            this.txtFisicoZinly.MaxLength = 32767;
-            this.txtFisicoZinly.Name = "txtFisicoZinly";
-            this.txtFisicoZinly.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtFisicoZinly.PasswordChar = '\0';
-            this.txtFisicoZinly.RadioBorde = 5;
-            this.txtFisicoZinly.ReadOnly = false;
-            this.txtFisicoZinly.Size = new System.Drawing.Size(228, 41);
-            this.txtFisicoZinly.TabIndex = 100;
-            this.txtFisicoZinly.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtFisicoZinly.UseSystemPasswordChar = false;
-            this.txtFisicoZinly.Visible = false;
-            this.txtFisicoZinly._TextChanged += new System.EventHandler(this.txtFisicoZinly__TextChanged);
             // 
             // panelModerno17
             // 
@@ -714,11 +772,11 @@
             // panelModerno5
             // 
             this.panelModerno5.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno5.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
+            this.panelModerno5.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(168)))), ((int)(((byte)(120)))));
             this.panelModerno5.BorderRadius = 15;
             this.panelModerno5.Controls.Add(this.txtTotaldec);
             this.panelModerno5.Controls.Add(this.label20);
-            this.panelModerno5.Location = new System.Drawing.Point(40, 469);
+            this.panelModerno5.Location = new System.Drawing.Point(35, 376);
             this.panelModerno5.Name = "panelModerno5";
             this.panelModerno5.RedondearAbajo = true;
             this.panelModerno5.Size = new System.Drawing.Size(495, 60);
@@ -726,9 +784,9 @@
             // 
             // txtTotaldec
             // 
-            this.txtTotaldec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
-            this.txtTotaldec.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
-            this.txtTotaldec.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
+            this.txtTotaldec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(168)))), ((int)(((byte)(120)))));
+            this.txtTotaldec.ColorBorde = System.Drawing.Color.Empty;
+            this.txtTotaldec.ColorBordeFocus = System.Drawing.Color.Empty;
             this.txtTotaldec.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotaldec.ForeColor = System.Drawing.Color.White;
             this.txtTotaldec.GrosorBorde = 2;
@@ -759,7 +817,7 @@
             // 
             this.labelObservaciones.AutoSize = true;
             this.labelObservaciones.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelObservaciones.Location = new System.Drawing.Point(90, 801);
+            this.labelObservaciones.Location = new System.Drawing.Point(93, 721);
             this.labelObservaciones.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelObservaciones.Name = "labelObservaciones";
             this.labelObservaciones.Size = new System.Drawing.Size(124, 23);
@@ -769,12 +827,10 @@
             // grpSistema
             // 
             this.grpSistema.BackColor = System.Drawing.Color.Transparent;
-            this.grpSistema.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-            this.grpSistema.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.grpSistema.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
+            this.grpSistema.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.grpSistema.BorderRadius = 15;
             this.grpSistema.BorderSize = 2;
-            this.grpSistema.Controls.Add(this.panelModerno11);
-            this.grpSistema.Controls.Add(this.panelModerno10);
             this.grpSistema.Controls.Add(this.panelModerno9);
             this.grpSistema.Controls.Add(this.panelModerno8);
             this.grpSistema.Controls.Add(this.panelModerno7);
@@ -788,100 +844,9 @@
             this.grpSistema.Name = "grpSistema";
             this.grpSistema.Padding = new System.Windows.Forms.Padding(4);
             this.grpSistema.RedondearAbajo = true;
-            this.grpSistema.Size = new System.Drawing.Size(563, 559);
+            this.grpSistema.Size = new System.Drawing.Size(563, 473);
             this.grpSistema.TabIndex = 1;
             this.grpSistema.TabStop = false;
-            // 
-            // panelModerno11
-            // 
-            this.panelModerno11.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno11.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.panelModerno11.BorderRadius = 15;
-            this.panelModerno11.Controls.Add(this.txtSistemaCashea);
-            this.panelModerno11.Controls.Add(this.label14);
-            this.panelModerno11.Location = new System.Drawing.Point(36, 411);
-            this.panelModerno11.Name = "panelModerno11";
-            this.panelModerno11.RedondearAbajo = true;
-            this.panelModerno11.Size = new System.Drawing.Size(495, 46);
-            this.panelModerno11.TabIndex = 119;
-            this.panelModerno11.Visible = false;
-            // 
-            // txtSistemaCashea
-            // 
-            this.txtSistemaCashea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtSistemaCashea.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtSistemaCashea.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtSistemaCashea.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
-            this.txtSistemaCashea.ForeColor = System.Drawing.Color.Black;
-            this.txtSistemaCashea.GrosorBorde = 2;
-            this.txtSistemaCashea.Location = new System.Drawing.Point(262, 3);
-            this.txtSistemaCashea.MaxLength = 32767;
-            this.txtSistemaCashea.Name = "txtSistemaCashea";
-            this.txtSistemaCashea.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtSistemaCashea.PasswordChar = '\0';
-            this.txtSistemaCashea.RadioBorde = 15;
-            this.txtSistemaCashea.ReadOnly = true;
-            this.txtSistemaCashea.Size = new System.Drawing.Size(229, 40);
-            this.txtSistemaCashea.TabIndex = 108;
-            this.txtSistemaCashea.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtSistemaCashea.UseSystemPasswordChar = false;
-            this.txtSistemaCashea.Visible = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(44, 12);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(62, 20);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Cashea:";
-            this.label14.Visible = false;
-            // 
-            // panelModerno10
-            // 
-            this.panelModerno10.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno10.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.panelModerno10.BorderRadius = 15;
-            this.panelModerno10.Controls.Add(this.txtSistemaZinly);
-            this.panelModerno10.Controls.Add(this.label13);
-            this.panelModerno10.Location = new System.Drawing.Point(36, 353);
-            this.panelModerno10.Name = "panelModerno10";
-            this.panelModerno10.RedondearAbajo = true;
-            this.panelModerno10.Size = new System.Drawing.Size(495, 46);
-            this.panelModerno10.TabIndex = 118;
-            // 
-            // txtSistemaZinly
-            // 
-            this.txtSistemaZinly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtSistemaZinly.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtSistemaZinly.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.txtSistemaZinly.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
-            this.txtSistemaZinly.ForeColor = System.Drawing.Color.Black;
-            this.txtSistemaZinly.GrosorBorde = 2;
-            this.txtSistemaZinly.Location = new System.Drawing.Point(262, 3);
-            this.txtSistemaZinly.MaxLength = 32767;
-            this.txtSistemaZinly.Name = "txtSistemaZinly";
-            this.txtSistemaZinly.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtSistemaZinly.PasswordChar = '\0';
-            this.txtSistemaZinly.RadioBorde = 15;
-            this.txtSistemaZinly.ReadOnly = true;
-            this.txtSistemaZinly.Size = new System.Drawing.Size(229, 40);
-            this.txtSistemaZinly.TabIndex = 107;
-            this.txtSistemaZinly.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtSistemaZinly.UseSystemPasswordChar = false;
-            this.txtSistemaZinly.Visible = false;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(42, 12);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(47, 20);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "Zinly:";
-            this.label13.Visible = false;
             // 
             // panelModerno9
             // 
@@ -1101,11 +1066,11 @@
             // panelModerno4
             // 
             this.panelModerno4.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.panelModerno4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.panelModerno4.BorderRadius = 15;
             this.panelModerno4.Controls.Add(this.txtTotalSis);
             this.panelModerno4.Controls.Add(this.TotalVendido);
-            this.panelModerno4.Location = new System.Drawing.Point(36, 474);
+            this.panelModerno4.Location = new System.Drawing.Point(36, 381);
             this.panelModerno4.Name = "panelModerno4";
             this.panelModerno4.RedondearAbajo = true;
             this.panelModerno4.Size = new System.Drawing.Size(495, 60);
@@ -1113,11 +1078,11 @@
             // 
             // txtTotalSis
             // 
-            this.txtTotalSis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.txtTotalSis.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.txtTotalSis.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.txtTotalSis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
+            this.txtTotalSis.ColorBorde = System.Drawing.Color.Empty;
+            this.txtTotalSis.ColorBordeFocus = System.Drawing.Color.Empty;
             this.txtTotalSis.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalSis.ForeColor = System.Drawing.Color.White;
+            this.txtTotalSis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.txtTotalSis.GrosorBorde = 2;
             this.txtTotalSis.Location = new System.Drawing.Point(262, 8);
             this.txtTotalSis.MaxLength = 32767;
@@ -1146,12 +1111,104 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
+            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label19.Location = new System.Drawing.Point(31, 26);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(290, 28);
             this.label19.TabIndex = 111;
             this.label19.Text = "Totales Registrados (Sistema)";
+            // 
+            // panelModerno11
+            // 
+            this.panelModerno11.BackColor = System.Drawing.Color.Transparent;
+            this.panelModerno11.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.panelModerno11.BorderRadius = 15;
+            this.panelModerno11.Controls.Add(this.txtSistemaCashea);
+            this.panelModerno11.Controls.Add(this.label14);
+            this.panelModerno11.Location = new System.Drawing.Point(1510, 924);
+            this.panelModerno11.Name = "panelModerno11";
+            this.panelModerno11.RedondearAbajo = true;
+            this.panelModerno11.Size = new System.Drawing.Size(495, 46);
+            this.panelModerno11.TabIndex = 119;
+            this.panelModerno11.Visible = false;
+            // 
+            // txtSistemaCashea
+            // 
+            this.txtSistemaCashea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtSistemaCashea.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtSistemaCashea.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtSistemaCashea.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
+            this.txtSistemaCashea.ForeColor = System.Drawing.Color.Black;
+            this.txtSistemaCashea.GrosorBorde = 2;
+            this.txtSistemaCashea.Location = new System.Drawing.Point(262, 3);
+            this.txtSistemaCashea.MaxLength = 32767;
+            this.txtSistemaCashea.Name = "txtSistemaCashea";
+            this.txtSistemaCashea.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtSistemaCashea.PasswordChar = '\0';
+            this.txtSistemaCashea.RadioBorde = 15;
+            this.txtSistemaCashea.ReadOnly = true;
+            this.txtSistemaCashea.Size = new System.Drawing.Size(229, 40);
+            this.txtSistemaCashea.TabIndex = 108;
+            this.txtSistemaCashea.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtSistemaCashea.UseSystemPasswordChar = false;
+            this.txtSistemaCashea.Visible = false;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(44, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(62, 20);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Cashea:";
+            this.label14.Visible = false;
+            // 
+            // panelModerno10
+            // 
+            this.panelModerno10.BackColor = System.Drawing.Color.Transparent;
+            this.panelModerno10.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.panelModerno10.BorderRadius = 15;
+            this.panelModerno10.Controls.Add(this.txtSistemaZinly);
+            this.panelModerno10.Controls.Add(this.label13);
+            this.panelModerno10.Location = new System.Drawing.Point(1510, 866);
+            this.panelModerno10.Name = "panelModerno10";
+            this.panelModerno10.RedondearAbajo = true;
+            this.panelModerno10.Size = new System.Drawing.Size(495, 46);
+            this.panelModerno10.TabIndex = 118;
+            this.panelModerno10.Visible = false;
+            // 
+            // txtSistemaZinly
+            // 
+            this.txtSistemaZinly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtSistemaZinly.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtSistemaZinly.ColorBordeFocus = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
+            this.txtSistemaZinly.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
+            this.txtSistemaZinly.ForeColor = System.Drawing.Color.Black;
+            this.txtSistemaZinly.GrosorBorde = 2;
+            this.txtSistemaZinly.Location = new System.Drawing.Point(262, 3);
+            this.txtSistemaZinly.MaxLength = 32767;
+            this.txtSistemaZinly.Name = "txtSistemaZinly";
+            this.txtSistemaZinly.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtSistemaZinly.PasswordChar = '\0';
+            this.txtSistemaZinly.RadioBorde = 15;
+            this.txtSistemaZinly.ReadOnly = true;
+            this.txtSistemaZinly.Size = new System.Drawing.Size(229, 40);
+            this.txtSistemaZinly.TabIndex = 107;
+            this.txtSistemaZinly.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtSistemaZinly.UseSystemPasswordChar = false;
+            this.txtSistemaZinly.Visible = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(42, 12);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(47, 20);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "Zinly:";
+            this.label13.Visible = false;
             // 
             // CierreCaja
             // 
@@ -1159,7 +1216,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1613, 1222);
+            this.Controls.Add(this.panelModerno11);
             this.Controls.Add(this.panelModerno2);
+            this.Controls.Add(this.panelModerno10);
             this.Controls.Add(this.groupBoxModerno2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -1170,16 +1229,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.groupBoxModerno2.ResumeLayout(false);
             this.groupBoxModerno2.PerformLayout();
+            this.groupBoxModerno3.ResumeLayout(false);
+            this.groupBoxModerno3.PerformLayout();
+            this.panelModerno13.ResumeLayout(false);
+            this.panelModerno13.PerformLayout();
+            this.panelModerno18.ResumeLayout(false);
+            this.panelModerno18.PerformLayout();
             this.groupBoxModerno1.ResumeLayout(false);
             this.groupBoxModerno1.PerformLayout();
             this.panelModerno1.ResumeLayout(false);
             this.panelModerno1.PerformLayout();
             this.grpFisico.ResumeLayout(false);
             this.grpFisico.PerformLayout();
-            this.panelModerno13.ResumeLayout(false);
-            this.panelModerno13.PerformLayout();
-            this.panelModerno18.ResumeLayout(false);
-            this.panelModerno18.PerformLayout();
             this.panelModerno17.ResumeLayout(false);
             this.panelModerno17.PerformLayout();
             this.panelModerno16.ResumeLayout(false);
@@ -1194,10 +1255,6 @@
             this.panelModerno5.PerformLayout();
             this.grpSistema.ResumeLayout(false);
             this.grpSistema.PerformLayout();
-            this.panelModerno11.ResumeLayout(false);
-            this.panelModerno11.PerformLayout();
-            this.panelModerno10.ResumeLayout(false);
-            this.panelModerno10.PerformLayout();
             this.panelModerno9.ResumeLayout(false);
             this.panelModerno9.PerformLayout();
             this.panelModerno8.ResumeLayout(false);
@@ -1210,6 +1267,10 @@
             this.panelModerno3.PerformLayout();
             this.panelModerno4.ResumeLayout(false);
             this.panelModerno4.PerformLayout();
+            this.panelModerno11.ResumeLayout(false);
+            this.panelModerno11.PerformLayout();
+            this.panelModerno10.ResumeLayout(false);
+            this.panelModerno10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1276,5 +1337,9 @@
         private BotonModerno btnexcel;
         private TextBoxModerno txtGananciaNeta;
         private TextBoxModerno txtCostoProduccion;
+        private GroupBoxModerno groupBoxModerno3;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblUtilidades;
+        private System.Windows.Forms.Label label18;
     }
 }

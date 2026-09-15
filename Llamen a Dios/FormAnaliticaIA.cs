@@ -481,6 +481,52 @@ REGLA: Basa tus predicciones solo en los datos provistos y no des las respuestas
             // Muestra la ventana y devuelve lo que el usuario escribió
             return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
         }
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA ANALÍTICA IA
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipIA = new ToolTip();
+
+            // Estilo Globo idéntico al resto del sistema
+            toolTipIA.IsBalloon = true;
+            toolTipIA.ToolTipIcon = ToolTipIcon.Info;
+            toolTipIA.ToolTipTitle = "Asistente de Inteligencia Artificial";
+
+            // Configuración de tiempos
+            toolTipIA.AutoPopDelay = 7000;
+            toolTipIA.InitialDelay = 400;
+            toolTipIA.ReshowDelay = 300;
+            toolTipIA.ShowAlways = true;
+
+            // --- TOOLTIPS PARA LOS BOTONES DE ACCIÓN ---
+            if (this.btnAnalisisVentas != null)
+            {
+                toolTipIA.SetToolTip(this.btnAnalisisVentas, "Analiza el historial de ventas para encontrar tu producto estrella y sugiere estrategias de venta.");
+            }
+
+            if (this.btnSugerirCompras != null)
+            {
+                toolTipIA.SetToolTip(this.btnSugerirCompras, "Revisa el stock de vitrinas y almacén para sugerir qué hornear hoy y qué pedir a proveedores.");
+            }
+
+            if (this.btnProyeccion != null)
+            {
+                toolTipIA.SetToolTip(this.btnProyeccion, "Analiza los últimos 3 meses para predecir la demanda y permite generar un Excel con metas de producción.");
+            }
+
+            // --- TOOLTIP PARA LA PANTALLA DE RESULTADOS ---
+            if (this.rtbResultadoIA != null)
+            {
+                toolTipIA.SetToolTip(this.rtbResultadoIA, "Aquí se mostrarán los reportes y recomendaciones generadas por la IA.");
+            }
+        }
+
+        private void FormAnaliticaIA_Load(object sender, EventArgs e)
+        {
+            ConfigurarAyudaVisual();
+        }
     }
+
     
 }

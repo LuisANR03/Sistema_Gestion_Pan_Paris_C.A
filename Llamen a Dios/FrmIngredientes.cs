@@ -230,6 +230,40 @@ namespace Llamen_a_Dios
             }
         }
 
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA EL MÓDULO DE INGREDIENTES
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipIngredientes = new ToolTip();
+
+            // Estilo Globo idéntico a las otras pantallas
+            toolTipIngredientes.IsBalloon = true;
+            toolTipIngredientes.ToolTipIcon = ToolTipIcon.Info;
+            toolTipIngredientes.ToolTipTitle = "Inventario de Ingredientes";
+
+            // Configuración de tiempos para una lectura fluida
+            toolTipIngredientes.AutoPopDelay = 6000;
+            toolTipIngredientes.InitialDelay = 400;
+            toolTipIngredientes.ReshowDelay = 300;
+            toolTipIngredientes.ShowAlways = true;
+
+            // --- TOOLTIPS PARA EL FORMULARIO DE EDICIÓN / REGISTRO ---
+            toolTipIngredientes.SetToolTip(this.tbnombre, "Ingresa el nombre del ingrediente o insumo (ej. Harina de Trigo).");
+            toolTipIngredientes.SetToolTip(this.tbStock, "Ingresa el stock actual disponible en almacén.");
+            toolTipIngredientes.SetToolTip(this.cbUnidad, "Selecciona la unidad de medida utilizada para medir este ingrediente.");
+            toolTipIngredientes.SetToolTip(this.txtStockMinimo, "Define el nivel mínimo en almacén para alertar cuando deba reponerse.");
+            toolTipIngredientes.SetToolTip(this.cbEstado, "Controla si el ingrediente está activo para ser utilizado en el sistema.");
+
+            // --- TOOLTIPS PARA LOS BOTONES DE ACCIÓN ---
+            toolTipIngredientes.SetToolTip(this.BtnGuardar, "Guarda el ingrediente nuevo o actualiza los datos del elemento editado.");
+            toolTipIngredientes.SetToolTip(this.Btlimpiar, "Limpia los campos del formulario para preparar un nuevo registro.");
+            toolTipIngredientes.SetToolTip(this.btnBorrar, "Elimina permanentemente el ingrediente seleccionado de la lista.");
+
+            // --- TOOLTIPS PARA LA TABLA DE DATOS ---
+            toolTipIngredientes.SetToolTip(this.dgvData, "Lista de ingredientes registrados. Haz clic en el lápiz (✏️) para editar un registro.");
+        }
+
         private void FrmIngredientes_Load(object sender, EventArgs e)
         {
             cbEstado.Items.Add(new Opcombo() { Valor = 1, Texto = "Activo" });
@@ -261,6 +295,7 @@ namespace Llamen_a_Dios
                     item.Estado == true ? "Activo" : "Inactivo"
                 });
             }
+            ConfigurarAyudaVisual(); 
         }
     }
 }

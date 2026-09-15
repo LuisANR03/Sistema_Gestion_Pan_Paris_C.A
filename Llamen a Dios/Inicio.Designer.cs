@@ -55,7 +55,7 @@
             // PanelSidebar
             // 
             this.PanelSidebar.AutoScroll = true;
-            this.PanelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.PanelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.PanelSidebar.Controls.Add(this.btnAcerca);
             this.PanelSidebar.Controls.Add(this.btnrespaldo);
             this.PanelSidebar.Controls.Add(this.PanelSubmenuStock);
@@ -79,14 +79,14 @@
             // 
             // btnAcerca
             // 
-            this.btnAcerca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btnAcerca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.btnAcerca.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAcerca.FlatAppearance.BorderSize = 0;
             this.btnAcerca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcerca.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.btnAcerca.ForeColor = System.Drawing.Color.White;
             this.btnAcerca.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
-            this.btnAcerca.IconColor = System.Drawing.Color.White;
+            this.btnAcerca.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnAcerca.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAcerca.IconSize = 32;
             this.btnAcerca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -104,12 +104,13 @@
             // 
             // btnrespaldo
             // 
+            this.btnrespaldo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.btnrespaldo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnrespaldo.FlatAppearance.BorderSize = 0;
             this.btnrespaldo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnrespaldo.ForeColor = System.Drawing.Color.White;
             this.btnrespaldo.IconChar = FontAwesome.Sharp.IconChar.Database;
-            this.btnrespaldo.IconColor = System.Drawing.Color.White;
+            this.btnrespaldo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnrespaldo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnrespaldo.IconSize = 32;
             this.btnrespaldo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -122,12 +123,12 @@
             this.btnrespaldo.Text = "  Crear Respaldo";
             this.btnrespaldo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnrespaldo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnrespaldo.UseVisualStyleBackColor = true;
+            this.btnrespaldo.UseVisualStyleBackColor = false;
             this.btnrespaldo.Click += new System.EventHandler(this.btnrespaldo_Click);
             // 
             // PanelSubmenuStock
             // 
-            this.PanelSubmenuStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.PanelSubmenuStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.PanelSubmenuStock.Controls.Add(this.btnIngredientes);
             this.PanelSubmenuStock.Controls.Add(this.btnProduccion);
             this.PanelSubmenuStock.Controls.Add(this.submenuinv);
@@ -141,7 +142,7 @@
             // 
             // btnIngredientes
             // 
-            this.btnIngredientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.btnIngredientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.btnIngredientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnIngredientes.FlatAppearance.BorderSize = 0;
             this.btnIngredientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -160,7 +161,7 @@
             // 
             // btnProduccion
             // 
-            this.btnProduccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.btnProduccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.btnProduccion.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnProduccion.FlatAppearance.BorderSize = 0;
             this.btnProduccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -179,7 +180,7 @@
             // 
             // submenuinv
             // 
-            this.submenuinv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.submenuinv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.submenuinv.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenuinv.FlatAppearance.BorderSize = 0;
             this.submenuinv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -198,14 +199,14 @@
             // 
             // btnStock
             // 
-            this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.btnStock.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStock.FlatAppearance.BorderSize = 0;
             this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStock.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.btnStock.ForeColor = System.Drawing.Color.White;
             this.btnStock.IconChar = FontAwesome.Sharp.IconChar.BoxOpen;
-            this.btnStock.IconColor = System.Drawing.Color.White;
+            this.btnStock.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnStock.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnStock.IconSize = 32;
             this.btnStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -223,7 +224,7 @@
             // 
             // PanelSubmenuInformes
             // 
-            this.PanelSubmenuInformes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.PanelSubmenuInformes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.PanelSubmenuInformes.Controls.Add(this.submenucierrecaja);
             this.PanelSubmenuInformes.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelSubmenuInformes.Location = new System.Drawing.Point(0, 544);
@@ -235,7 +236,7 @@
             // 
             // submenucierrecaja
             // 
-            this.submenucierrecaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.submenucierrecaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.submenucierrecaja.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenucierrecaja.FlatAppearance.BorderSize = 0;
             this.submenucierrecaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -254,14 +255,14 @@
             // 
             // btnInformes
             // 
-            this.btnInformes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btnInformes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.btnInformes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnInformes.FlatAppearance.BorderSize = 0;
             this.btnInformes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInformes.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.btnInformes.ForeColor = System.Drawing.Color.White;
             this.btnInformes.IconChar = FontAwesome.Sharp.IconChar.ChartBar;
-            this.btnInformes.IconColor = System.Drawing.Color.White;
+            this.btnInformes.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnInformes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnInformes.IconSize = 32;
             this.btnInformes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -279,14 +280,14 @@
             // 
             // btnClientes
             // 
-            this.btnClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btnClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.btnClientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnClientes.FlatAppearance.BorderSize = 0;
             this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClientes.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.btnClientes.ForeColor = System.Drawing.Color.White;
             this.btnClientes.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
-            this.btnClientes.IconColor = System.Drawing.Color.White;
+            this.btnClientes.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnClientes.IconSize = 32;
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -317,7 +318,7 @@
             // 
             // submenudetalleventa
             // 
-            this.submenudetalleventa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.submenudetalleventa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.submenudetalleventa.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenudetalleventa.FlatAppearance.BorderSize = 0;
             this.submenudetalleventa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -336,7 +337,7 @@
             // 
             // submenuregistrarventa
             // 
-            this.submenuregistrarventa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.submenuregistrarventa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.submenuregistrarventa.Dock = System.Windows.Forms.DockStyle.Top;
             this.submenuregistrarventa.FlatAppearance.BorderSize = 0;
             this.submenuregistrarventa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -355,14 +356,14 @@
             // 
             // btnVentas
             // 
-            this.btnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.btnVentas.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnVentas.FlatAppearance.BorderSize = 0;
             this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVentas.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.btnVentas.ForeColor = System.Drawing.Color.White;
             this.btnVentas.IconChar = FontAwesome.Sharp.IconChar.Tag;
-            this.btnVentas.IconColor = System.Drawing.Color.White;
+            this.btnVentas.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnVentas.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVentas.IconSize = 32;
             this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -380,14 +381,14 @@
             // 
             // Btnasistente
             // 
-            this.Btnasistente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.Btnasistente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.Btnasistente.Dock = System.Windows.Forms.DockStyle.Top;
             this.Btnasistente.FlatAppearance.BorderSize = 0;
             this.Btnasistente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btnasistente.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.Btnasistente.ForeColor = System.Drawing.Color.White;
             this.Btnasistente.IconChar = FontAwesome.Sharp.IconChar.Brain;
-            this.Btnasistente.IconColor = System.Drawing.Color.White;
+            this.Btnasistente.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.Btnasistente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Btnasistente.IconSize = 32;
             this.Btnasistente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -405,14 +406,14 @@
             // 
             // btnUsuarios
             // 
-            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnUsuarios.FlatAppearance.BorderSize = 0;
             this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsuarios.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.btnUsuarios.ForeColor = System.Drawing.Color.White;
             this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.UsersGear;
-            this.btnUsuarios.IconColor = System.Drawing.Color.White;
+            this.btnUsuarios.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUsuarios.IconSize = 32;
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -430,14 +431,14 @@
             // 
             // btndashboard
             // 
-            this.btndashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.btndashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.btndashboard.Dock = System.Windows.Forms.DockStyle.Top;
             this.btndashboard.FlatAppearance.BorderSize = 0;
             this.btndashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btndashboard.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.btndashboard.ForeColor = System.Drawing.Color.White;
             this.btndashboard.IconChar = FontAwesome.Sharp.IconChar.TachometerAltFast;
-            this.btndashboard.IconColor = System.Drawing.Color.White;
+            this.btndashboard.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btndashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btndashboard.IconSize = 32;
             this.btndashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -455,7 +456,7 @@
             // 
             // PanelLogo
             // 
-            this.PanelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.PanelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.PanelLogo.Controls.Add(this.pictureBox1);
             this.PanelLogo.Controls.Add(this.Textotitulo);
             this.PanelLogo.Dock = System.Windows.Forms.DockStyle.Top;
@@ -478,6 +479,7 @@
             // Textotitulo
             // 
             this.Textotitulo.AutoSize = true;
+            this.Textotitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(131)))), ((int)(((byte)(62)))));
             this.Textotitulo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Textotitulo.ForeColor = System.Drawing.Color.White;
             this.Textotitulo.Location = new System.Drawing.Point(95, 15);
@@ -489,12 +491,13 @@
             // 
             // btnCerrarSesion
             // 
+            this.btnCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
             this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrarSesion.ForeColor = System.Drawing.Color.White;
             this.btnCerrarSesion.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
-            this.btnCerrarSesion.IconColor = System.Drawing.Color.White;
+            this.btnCerrarSesion.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnCerrarSesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCerrarSesion.IconSize = 32;
             this.btnCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -507,7 +510,7 @@
             this.btnCerrarSesion.Text = "  Cerrar Sesión";
             this.btnCerrarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.UseVisualStyleBackColor = false;
             this.btnCerrarSesion.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // PanelHeader

@@ -51,6 +51,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbvendedor = new Llamen_a_Dios.ComboBoxModerno();
             this.groupBoxModerno3 = new Llamen_a_Dios.GroupBoxModerno();
+            this.cbTipoDocumento = new TextBoxModerno();
             this.txtIdClienteOculto = new TextBoxModerno();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -104,7 +105,7 @@
             // panelModerno1
             // 
             this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.panelModerno1.BorderRadius = 15;
             this.panelModerno1.Controls.Add(this.iconPictureBox1);
             this.panelModerno1.Controls.Add(this.label1);
@@ -117,8 +118,9 @@
             // iconPictureBox1
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.BagShopping;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 49;
             this.iconPictureBox1.Location = new System.Drawing.Point(36, 11);
@@ -129,9 +131,9 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.label1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label1.Location = new System.Drawing.Point(92, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
@@ -301,8 +303,8 @@
             // groupBoxModerno4
             // 
             this.groupBoxModerno4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-            this.groupBoxModerno4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-            this.groupBoxModerno4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
+            this.groupBoxModerno4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
+            this.groupBoxModerno4.BorderColor = System.Drawing.Color.White;
             this.groupBoxModerno4.BorderRadius = 15;
             this.groupBoxModerno4.BorderSize = 2;
             this.groupBoxModerno4.Controls.Add(this.txbfecha);
@@ -342,8 +344,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label2.Location = new System.Drawing.Point(14, 61);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
@@ -354,8 +357,9 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label12.Location = new System.Drawing.Point(63, 18);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(187, 28);
@@ -365,9 +369,9 @@
             // iconPictureBox4
             // 
             this.iconPictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.iconPictureBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
+            this.iconPictureBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.Tag;
-            this.iconPictureBox4.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
+            this.iconPictureBox4.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox4.IconSize = 38;
             this.iconPictureBox4.Location = new System.Drawing.Point(22, 17);
@@ -379,8 +383,9 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label3.Location = new System.Drawing.Point(14, 160);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
@@ -420,6 +425,7 @@
             this.groupBoxModerno3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.groupBoxModerno3.BorderRadius = 15;
             this.groupBoxModerno3.BorderSize = 2;
+            this.groupBoxModerno3.Controls.Add(this.cbTipoDocumento);
             this.groupBoxModerno3.Controls.Add(this.txtIdClienteOculto);
             this.groupBoxModerno3.Controls.Add(this.iconPictureBox3);
             this.groupBoxModerno3.Controls.Add(this.label11);
@@ -435,6 +441,26 @@
             this.groupBoxModerno3.Size = new System.Drawing.Size(463, 260);
             this.groupBoxModerno3.TabIndex = 40;
             this.groupBoxModerno3.TabStop = false;
+            // 
+            // cbTipoDocumento
+            // 
+            this.cbTipoDocumento.BackColor = System.Drawing.Color.White;
+            this.cbTipoDocumento.ColorBorde = System.Drawing.Color.Gray;
+            this.cbTipoDocumento.ColorBordeFocus = System.Drawing.Color.CornflowerBlue;
+            this.cbTipoDocumento.ForeColor = System.Drawing.Color.DimGray;
+            this.cbTipoDocumento.GrosorBorde = 2;
+            this.cbTipoDocumento.Location = new System.Drawing.Point(291, 18);
+            this.cbTipoDocumento.MaxLength = 32767;
+            this.cbTipoDocumento.Name = "cbTipoDocumento";
+            this.cbTipoDocumento.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.cbTipoDocumento.PasswordChar = '\0';
+            this.cbTipoDocumento.RadioBorde = 15;
+            this.cbTipoDocumento.ReadOnly = false;
+            this.cbTipoDocumento.Size = new System.Drawing.Size(62, 32);
+            this.cbTipoDocumento.TabIndex = 57;
+            this.cbTipoDocumento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cbTipoDocumento.UseSystemPasswordChar = false;
+            this.cbTipoDocumento.Visible = false;
             // 
             // txtIdClienteOculto
             // 
@@ -623,7 +649,7 @@
             // groupBoxModerno1
             // 
             this.groupBoxModerno1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.groupBoxModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.groupBoxModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
             this.groupBoxModerno1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.groupBoxModerno1.BorderRadius = 15;
             this.groupBoxModerno1.BorderSize = 2;
@@ -844,7 +870,7 @@
             // 
             // btnagregarproducto
             // 
-            this.btnagregarproducto.BackColor = System.Drawing.Color.Green;
+            this.btnagregarproducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(168)))), ((int)(((byte)(120)))));
             this.btnagregarproducto.ColorBorde = System.Drawing.Color.White;
             this.btnagregarproducto.ColorClick = System.Drawing.Color.ForestGreen;
             this.btnagregarproducto.ColorHover = System.Drawing.Color.Green;
@@ -905,7 +931,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(22)))), ((int)(((byte)(139)))));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
             this.label10.Location = new System.Drawing.Point(66, 25);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(228, 28);
@@ -915,9 +941,9 @@
             // iconPictureBox2
             // 
             this.iconPictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.iconPictureBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(22)))), ((int)(((byte)(139)))));
+            this.iconPictureBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
             this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Box;
-            this.iconPictureBox2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(22)))), ((int)(((byte)(139)))));
+            this.iconPictureBox2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
             this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox2.IconSize = 38;
             this.iconPictureBox2.Location = new System.Drawing.Point(22, 21);
@@ -929,8 +955,9 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(22)))), ((int)(((byte)(139)))));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
             this.label7.Location = new System.Drawing.Point(30, 101);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
@@ -941,18 +968,18 @@
             // btnbuscarproducto
             // 
             this.btnbuscarproducto.BackColor = System.Drawing.Color.White;
-            this.btnbuscarproducto.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(180)))), ((int)(((byte)(254)))));
-            this.btnbuscarproducto.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(180)))), ((int)(((byte)(254)))));
-            this.btnbuscarproducto.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
-            this.btnbuscarproducto.ColorIconoHover = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(51)))), ((int)(((byte)(234)))));
-            this.btnbuscarproducto.ColorTextoHover = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(51)))), ((int)(((byte)(234)))));
+            this.btnbuscarproducto.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
+            this.btnbuscarproducto.ColorClick = System.Drawing.Color.White;
+            this.btnbuscarproducto.ColorHover = System.Drawing.Color.Empty;
+            this.btnbuscarproducto.ColorIconoHover = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
+            this.btnbuscarproducto.ColorTextoHover = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
             this.btnbuscarproducto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnbuscarproducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnbuscarproducto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnbuscarproducto.ForeColor = System.Drawing.Color.Black;
             this.btnbuscarproducto.GrosorBorde = 1;
             this.btnbuscarproducto.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnbuscarproducto.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(51)))), ((int)(((byte)(234)))));
+            this.btnbuscarproducto.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(57)))), ((int)(((byte)(142)))));
             this.btnbuscarproducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnbuscarproducto.IconSize = 28;
             this.btnbuscarproducto.Location = new System.Drawing.Point(411, 95);
@@ -1086,5 +1113,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private TextBoxModerno cbTipoDocumento;
     }
 }

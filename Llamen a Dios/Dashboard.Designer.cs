@@ -58,7 +58,7 @@
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1333, 86);
             this.pnlHeader.TabIndex = 0;
@@ -68,7 +68,7 @@
             this.pnlAccentBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
             this.pnlAccentBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlAccentBar.Location = new System.Drawing.Point(0, 81);
-            this.pnlAccentBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlAccentBar.Margin = new System.Windows.Forms.Padding(4);
             this.pnlAccentBar.Name = "pnlAccentBar";
             this.pnlAccentBar.Size = new System.Drawing.Size(1333, 5);
             this.pnlAccentBar.TabIndex = 1;
@@ -91,7 +91,7 @@
             this.pnlCardVentas.Controls.Add(this.lblTotalMes);
             this.pnlCardVentas.Controls.Add(this.lblVentasTitulo);
             this.pnlCardVentas.Location = new System.Drawing.Point(41, 123);
-            this.pnlCardVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlCardVentas.Margin = new System.Windows.Forms.Padding(4);
             this.pnlCardVentas.Name = "pnlCardVentas";
             this.pnlCardVentas.Size = new System.Drawing.Size(373, 135);
             this.pnlCardVentas.TabIndex = 1;
@@ -126,7 +126,7 @@
             this.pnlCardStock.Controls.Add(this.lblAlertasStock);
             this.pnlCardStock.Controls.Add(this.lblStockTitulo);
             this.pnlCardStock.Location = new System.Drawing.Point(467, 123);
-            this.pnlCardStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlCardStock.Margin = new System.Windows.Forms.Padding(4);
             this.pnlCardStock.Name = "pnlCardStock";
             this.pnlCardStock.Size = new System.Drawing.Size(373, 135);
             this.pnlCardStock.TabIndex = 2;
@@ -161,7 +161,7 @@
             this.pnlCardProductos.Controls.Add(this.lblTotalProductos);
             this.pnlCardProductos.Controls.Add(this.lblProdTitulo);
             this.pnlCardProductos.Location = new System.Drawing.Point(893, 123);
-            this.pnlCardProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlCardProductos.Margin = new System.Windows.Forms.Padding(4);
             this.pnlCardProductos.Name = "pnlCardProductos";
             this.pnlCardProductos.Size = new System.Drawing.Size(373, 135);
             this.pnlCardProductos.TabIndex = 3;
@@ -202,7 +202,7 @@
             legend1.Name = "Legend1";
             this.chartTopProductos.Legends.Add(legend1);
             this.chartTopProductos.Location = new System.Drawing.Point(41, 295);
-            this.chartTopProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chartTopProductos.Margin = new System.Windows.Forms.Padding(4);
             this.chartTopProductos.Name = "chartTopProductos";
             series1.ChartArea = "ChartArea1";
             series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
@@ -224,7 +224,7 @@
             this.Controls.Add(this.pnlCardStock);
             this.Controls.Add(this.pnlCardVentas);
             this.Controls.Add(this.pnlHeader);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard Gerencial";

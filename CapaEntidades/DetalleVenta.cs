@@ -14,6 +14,8 @@ namespace Entidades
         public decimal PrecioUnitario { get; set; }
         public int Cantidad { get; set; }
 
+        public string DescripcionMetodo { get; set; }
+
         // Propiedad de navegación
         public Producto Producto { get; set; }
     }

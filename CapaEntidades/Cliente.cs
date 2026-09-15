@@ -9,6 +9,7 @@ namespace Entidades
     public class Cliente
     {
         public int IdCliente { get; set; }
+        public string TipoDocumento { get; set; } // Añadimos la letra del documento (V, E, J, G)
         public string Cedula { get; set; }
         public string Nombre { get; set; }
         public string Correo { get; set; }
@@ -16,6 +17,7 @@ namespace Entidades
         public string Direccion { get; set; }
         public bool Estado { get; set; }
         public DateTime FechaRegistro { get; set; }
+
         public string EstadoValor
         {
             get { return Estado ? "Activo" : "Inactivo"; }

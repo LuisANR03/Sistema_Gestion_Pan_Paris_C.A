@@ -94,6 +94,9 @@
     <Reference Include="Google.Protobuf, Version=3.32.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.32.0\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.5, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.5\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Compression.LZ4.1.3.8\lib\net462\K4os.Compression.LZ4.dll</HintPath>
     </Reference>
@@ -416,6 +419,12 @@
     <Compile Include="Modales\mdProducto.Designer.cs">
       <DependentUpon>mdProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\mdRecetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdRecetas.Designer.cs">
+      <DependentUpon>mdRecetas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\mdRegistrarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -488,6 +497,9 @@
     <EmbeddedResource Include="Modales\mdProducto.resx">
       <DependentUpon>mdProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdRecetas.resx">
+      <DependentUpon>mdRecetas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdRegistrarCliente.resx">
       <DependentUpon>mdRegistrarCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -551,6 +563,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Plantilla Cierre de Caja.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Plantilla Total.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Plantilla_Factura.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Plantilla Proyeccion y Metas.xlsx">

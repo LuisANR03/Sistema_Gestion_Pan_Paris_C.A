@@ -33,17 +33,14 @@
             this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
             this.lblFaltanteBs = new System.Windows.Forms.Label();
             this.lblVueltoBs = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.Label();
+            this.txtImpuesto = new TextBoxModerno();
             this.botonModerno2 = new BotonModerno();
             this.btnAgregarPago = new BotonModerno();
             this.txtTasaCambio = new TextBoxModerno();
             this.txtTotalUsdReferencia = new TextBoxModerno();
             this.txtTotalBsReferencia = new TextBoxModerno();
             this.txtPagaCon = new TextBoxModerno();
-            this.Total = new Llamen_a_Dios.GroupBoxModerno();
-            this.DGV = new System.Windows.Forms.DataGridView();
-            this.Metodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
             this.Cancelar = new BotonModerno();
             this.Imprimir = new BotonModerno();
@@ -52,11 +49,15 @@
             this.btned = new BotonModerno();
             this.btnebs = new BotonModerno();
             this.btnpm = new BotonModerno();
-            this.txtTotal = new TextBoxModerno();
-            this.txtImpuesto = new TextBoxModerno();
+            this.Total = new Llamen_a_Dios.GroupBoxModerno();
+            this.DGV = new System.Windows.Forms.DataGridView();
+            this.Metodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTotalIGTF = new TextBoxModerno();
+            this.panelModerno1.SuspendLayout();
             this.Total.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
-            this.panelModerno1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mySqlDataAdapter1
@@ -69,7 +70,7 @@
             // lblFaltanteBs
             // 
             this.lblFaltanteBs.AutoSize = true;
-            this.lblFaltanteBs.Location = new System.Drawing.Point(720, 668);
+            this.lblFaltanteBs.Location = new System.Drawing.Point(971, 148);
             this.lblFaltanteBs.Name = "lblFaltanteBs";
             this.lblFaltanteBs.Size = new System.Drawing.Size(65, 28);
             this.lblFaltanteBs.TabIndex = 16;
@@ -79,12 +80,43 @@
             // lblVueltoBs
             // 
             this.lblVueltoBs.AutoSize = true;
-            this.lblVueltoBs.Location = new System.Drawing.Point(822, 668);
+            this.lblVueltoBs.Location = new System.Drawing.Point(877, 148);
             this.lblVueltoBs.Name = "lblVueltoBs";
             this.lblVueltoBs.Size = new System.Drawing.Size(65, 28);
             this.lblVueltoBs.TabIndex = 17;
             this.lblVueltoBs.Text = "label2";
             this.lblVueltoBs.Visible = false;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.AutoSize = true;
+            this.txtTotal.Location = new System.Drawing.Point(784, 670);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(65, 28);
+            this.txtTotal.TabIndex = 21;
+            this.txtTotal.Text = "label1";
+            this.txtTotal.Visible = false;
+            // 
+            // txtImpuesto
+            // 
+            this.txtImpuesto.AutoSize = true;
+            this.txtImpuesto.BackColor = System.Drawing.Color.White;
+            this.txtImpuesto.ColorBorde = System.Drawing.Color.White;
+            this.txtImpuesto.ColorBordeFocus = System.Drawing.Color.White;
+            this.txtImpuesto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImpuesto.ForeColor = System.Drawing.Color.Green;
+            this.txtImpuesto.GrosorBorde = 2;
+            this.txtImpuesto.Location = new System.Drawing.Point(78, 162);
+            this.txtImpuesto.MaxLength = 32767;
+            this.txtImpuesto.Name = "txtImpuesto";
+            this.txtImpuesto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtImpuesto.PasswordChar = '\0';
+            this.txtImpuesto.RadioBorde = 15;
+            this.txtImpuesto.ReadOnly = false;
+            this.txtImpuesto.Size = new System.Drawing.Size(118, 46);
+            this.txtImpuesto.TabIndex = 11;
+            this.txtImpuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtImpuesto.UseSystemPasswordChar = false;
             // 
             // botonModerno2
             // 
@@ -220,6 +252,222 @@
             this.txtPagaCon.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPagaCon.UseSystemPasswordChar = false;
             // 
+            // panelModerno1
+            // 
+            this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
+            this.panelModerno1.BorderRadius = 0;
+            this.panelModerno1.Controls.Add(this.Cancelar);
+            this.panelModerno1.Controls.Add(this.Imprimir);
+            this.panelModerno1.Controls.Add(this.btnpv);
+            this.panelModerno1.Controls.Add(this.btnca);
+            this.panelModerno1.Controls.Add(this.btned);
+            this.panelModerno1.Controls.Add(this.btnebs);
+            this.panelModerno1.Controls.Add(this.btnpm);
+            this.panelModerno1.Location = new System.Drawing.Point(44, 3);
+            this.panelModerno1.Name = "panelModerno1";
+            this.panelModerno1.RedondearAbajo = true;
+            this.panelModerno1.Size = new System.Drawing.Size(1465, 119);
+            this.panelModerno1.TabIndex = 0;
+            // 
+            // Cancelar
+            // 
+            this.Cancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.Cancelar.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.Cancelar.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
+            this.Cancelar.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
+            this.Cancelar.ColorIconoHover = System.Drawing.Color.White;
+            this.Cancelar.ColorTextoHover = System.Drawing.Color.White;
+            this.Cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Cancelar.FlatAppearance.BorderSize = 0;
+            this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cancelar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cancelar.ForeColor = System.Drawing.Color.White;
+            this.Cancelar.GrosorBorde = 2;
+            this.Cancelar.IconChar = FontAwesome.Sharp.IconChar.CircleXmark;
+            this.Cancelar.IconColor = System.Drawing.Color.White;
+            this.Cancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Cancelar.IconSize = 25;
+            this.Cancelar.Location = new System.Drawing.Point(149, 21);
+            this.Cancelar.Name = "Cancelar";
+            this.Cancelar.RadioBorde = 3;
+            this.Cancelar.Size = new System.Drawing.Size(130, 80);
+            this.Cancelar.TabIndex = 13;
+            this.Cancelar.Text = "Cancelar";
+            this.Cancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Cancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.Cancelar.UseVisualStyleBackColor = false;
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
+            // 
+            // Imprimir
+            // 
+            this.Imprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(168)))), ((int)(((byte)(120)))));
+            this.Imprimir.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(168)))), ((int)(((byte)(120)))));
+            this.Imprimir.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(83)))), ((int)(((byte)(45)))));
+            this.Imprimir.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
+            this.Imprimir.ColorIconoHover = System.Drawing.Color.White;
+            this.Imprimir.ColorTextoHover = System.Drawing.Color.White;
+            this.Imprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Imprimir.FlatAppearance.BorderSize = 0;
+            this.Imprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Imprimir.ForeColor = System.Drawing.Color.White;
+            this.Imprimir.GrosorBorde = 2;
+            this.Imprimir.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.Imprimir.IconColor = System.Drawing.Color.White;
+            this.Imprimir.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Imprimir.IconSize = 25;
+            this.Imprimir.Location = new System.Drawing.Point(13, 21);
+            this.Imprimir.Name = "Imprimir";
+            this.Imprimir.RadioBorde = 3;
+            this.Imprimir.Size = new System.Drawing.Size(130, 80);
+            this.Imprimir.TabIndex = 12;
+            this.Imprimir.Text = "Imprimir";
+            this.Imprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Imprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.Imprimir.UseVisualStyleBackColor = false;
+            this.Imprimir.Click += new System.EventHandler(this.Imprimir_Click);
+            // 
+            // btnpv
+            // 
+            this.btnpv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnpv.ColorBorde = System.Drawing.Color.White;
+            this.btnpv.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnpv.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.btnpv.ColorIconoHover = System.Drawing.Color.White;
+            this.btnpv.ColorTextoHover = System.Drawing.Color.White;
+            this.btnpv.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnpv.FlatAppearance.BorderSize = 0;
+            this.btnpv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnpv.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnpv.ForeColor = System.Drawing.Color.White;
+            this.btnpv.GrosorBorde = 2;
+            this.btnpv.IconChar = FontAwesome.Sharp.IconChar.CreditCardAlt;
+            this.btnpv.IconColor = System.Drawing.Color.White;
+            this.btnpv.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnpv.IconSize = 35;
+            this.btnpv.Location = new System.Drawing.Point(290, 7);
+            this.btnpv.Name = "btnpv";
+            this.btnpv.RadioBorde = 3;
+            this.btnpv.Size = new System.Drawing.Size(230, 106);
+            this.btnpv.TabIndex = 1;
+            this.btnpv.Text = "Punto de Venta";
+            this.btnpv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnpv.UseVisualStyleBackColor = false;
+            this.btnpv.Click += new System.EventHandler(this.btnpv_Click);
+            // 
+            // btnca
+            // 
+            this.btnca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnca.ColorBorde = System.Drawing.Color.White;
+            this.btnca.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnca.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.btnca.ColorIconoHover = System.Drawing.Color.White;
+            this.btnca.ColorTextoHover = System.Drawing.Color.White;
+            this.btnca.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnca.FlatAppearance.BorderSize = 0;
+            this.btnca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnca.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnca.ForeColor = System.Drawing.Color.White;
+            this.btnca.GrosorBorde = 2;
+            this.btnca.IconChar = FontAwesome.Sharp.IconChar.Wallet;
+            this.btnca.IconColor = System.Drawing.Color.White;
+            this.btnca.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnca.IconSize = 35;
+            this.btnca.Location = new System.Drawing.Point(1232, 7);
+            this.btnca.Name = "btnca";
+            this.btnca.RadioBorde = 3;
+            this.btnca.Size = new System.Drawing.Size(230, 106);
+            this.btnca.TabIndex = 5;
+            this.btnca.Text = "CASHEA";
+            this.btnca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnca.UseVisualStyleBackColor = false;
+            this.btnca.Visible = false;
+            this.btnca.Click += new System.EventHandler(this.btnca_Click);
+            // 
+            // btned
+            // 
+            this.btned.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btned.ColorBorde = System.Drawing.Color.White;
+            this.btned.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btned.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.btned.ColorIconoHover = System.Drawing.Color.White;
+            this.btned.ColorTextoHover = System.Drawing.Color.White;
+            this.btned.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btned.FlatAppearance.BorderSize = 0;
+            this.btned.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btned.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btned.ForeColor = System.Drawing.Color.White;
+            this.btned.GrosorBorde = 2;
+            this.btned.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
+            this.btned.IconColor = System.Drawing.Color.White;
+            this.btned.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btned.IconSize = 35;
+            this.btned.Location = new System.Drawing.Point(998, 7);
+            this.btned.Name = "btned";
+            this.btned.RadioBorde = 3;
+            this.btned.Size = new System.Drawing.Size(230, 106);
+            this.btned.TabIndex = 4;
+            this.btned.Text = "Efectivo $";
+            this.btned.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btned.UseVisualStyleBackColor = false;
+            this.btned.Click += new System.EventHandler(this.btned_Click);
+            // 
+            // btnebs
+            // 
+            this.btnebs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnebs.ColorBorde = System.Drawing.Color.White;
+            this.btnebs.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnebs.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.btnebs.ColorIconoHover = System.Drawing.Color.White;
+            this.btnebs.ColorTextoHover = System.Drawing.Color.White;
+            this.btnebs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnebs.FlatAppearance.BorderSize = 0;
+            this.btnebs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnebs.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnebs.ForeColor = System.Drawing.Color.White;
+            this.btnebs.GrosorBorde = 2;
+            this.btnebs.IconChar = FontAwesome.Sharp.IconChar.MoneyBillAlt;
+            this.btnebs.IconColor = System.Drawing.Color.White;
+            this.btnebs.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnebs.IconSize = 35;
+            this.btnebs.Location = new System.Drawing.Point(762, 7);
+            this.btnebs.Name = "btnebs";
+            this.btnebs.RadioBorde = 3;
+            this.btnebs.Size = new System.Drawing.Size(230, 106);
+            this.btnebs.TabIndex = 3;
+            this.btnebs.Text = "Efectivo BS";
+            this.btnebs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnebs.UseVisualStyleBackColor = false;
+            this.btnebs.Click += new System.EventHandler(this.btnebs_Click);
+            // 
+            // btnpm
+            // 
+            this.btnpm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnpm.ColorBorde = System.Drawing.Color.White;
+            this.btnpm.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnpm.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.btnpm.ColorIconoHover = System.Drawing.Color.White;
+            this.btnpm.ColorTextoHover = System.Drawing.Color.White;
+            this.btnpm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnpm.FlatAppearance.BorderSize = 0;
+            this.btnpm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnpm.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnpm.ForeColor = System.Drawing.Color.White;
+            this.btnpm.GrosorBorde = 2;
+            this.btnpm.IconChar = FontAwesome.Sharp.IconChar.MobileAlt;
+            this.btnpm.IconColor = System.Drawing.Color.White;
+            this.btnpm.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnpm.IconSize = 35;
+            this.btnpm.Location = new System.Drawing.Point(526, 7);
+            this.btnpm.Name = "btnpm";
+            this.btnpm.RadioBorde = 3;
+            this.btnpm.Size = new System.Drawing.Size(230, 106);
+            this.btnpm.TabIndex = 2;
+            this.btnpm.Text = "Pago Movil";
+            this.btnpm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnpm.UseVisualStyleBackColor = false;
+            this.btnpm.Click += new System.EventHandler(this.btnpm_Click);
+            // 
             // Total
             // 
             this.Total.BackColor = System.Drawing.Color.Transparent;
@@ -304,263 +552,26 @@
             this.Moneda.Name = "Moneda";
             this.Moneda.Visible = false;
             // 
-            // panelModerno1
+            // lblTotalIGTF
             // 
-            this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
-            this.panelModerno1.BorderRadius = 0;
-            this.panelModerno1.Controls.Add(this.Cancelar);
-            this.panelModerno1.Controls.Add(this.Imprimir);
-            this.panelModerno1.Controls.Add(this.btnpv);
-            this.panelModerno1.Controls.Add(this.btnca);
-            this.panelModerno1.Controls.Add(this.btned);
-            this.panelModerno1.Controls.Add(this.btnebs);
-            this.panelModerno1.Controls.Add(this.btnpm);
-            this.panelModerno1.Location = new System.Drawing.Point(44, 3);
-            this.panelModerno1.Name = "panelModerno1";
-            this.panelModerno1.RedondearAbajo = true;
-            this.panelModerno1.Size = new System.Drawing.Size(1465, 119);
-            this.panelModerno1.TabIndex = 0;
-            // 
-            // Cancelar
-            // 
-            this.Cancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.Cancelar.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.Cancelar.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.Cancelar.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.Cancelar.ColorIconoHover = System.Drawing.Color.White;
-            this.Cancelar.ColorTextoHover = System.Drawing.Color.White;
-            this.Cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Cancelar.FlatAppearance.BorderSize = 0;
-            this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cancelar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cancelar.ForeColor = System.Drawing.Color.White;
-            this.Cancelar.GrosorBorde = 2;
-            this.Cancelar.IconChar = FontAwesome.Sharp.IconChar.CircleXmark;
-            this.Cancelar.IconColor = System.Drawing.Color.White;
-            this.Cancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Cancelar.IconSize = 25;
-            this.Cancelar.Location = new System.Drawing.Point(149, 21);
-            this.Cancelar.Name = "Cancelar";
-            this.Cancelar.RadioBorde = 3;
-            this.Cancelar.Size = new System.Drawing.Size(130, 80);
-            this.Cancelar.TabIndex = 13;
-            this.Cancelar.Text = "Cancelar";
-            this.Cancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Cancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.Cancelar.UseVisualStyleBackColor = false;
-            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
-            // 
-            // Imprimir
-            // 
-            this.Imprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(168)))), ((int)(((byte)(120)))));
-            this.Imprimir.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(168)))), ((int)(((byte)(120)))));
-            this.Imprimir.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(83)))), ((int)(((byte)(45)))));
-            this.Imprimir.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
-            this.Imprimir.ColorIconoHover = System.Drawing.Color.White;
-            this.Imprimir.ColorTextoHover = System.Drawing.Color.White;
-            this.Imprimir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Imprimir.FlatAppearance.BorderSize = 0;
-            this.Imprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Imprimir.ForeColor = System.Drawing.Color.White;
-            this.Imprimir.GrosorBorde = 2;
-            this.Imprimir.IconChar = FontAwesome.Sharp.IconChar.Print;
-            this.Imprimir.IconColor = System.Drawing.Color.White;
-            this.Imprimir.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Imprimir.IconSize = 25;
-            this.Imprimir.Location = new System.Drawing.Point(13, 21);
-            this.Imprimir.Name = "Imprimir";
-            this.Imprimir.RadioBorde = 3;
-            this.Imprimir.Size = new System.Drawing.Size(130, 80);
-            this.Imprimir.TabIndex = 12;
-            this.Imprimir.Text = "Imprimir";
-            this.Imprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Imprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.Imprimir.UseVisualStyleBackColor = false;
-            this.Imprimir.Click += new System.EventHandler(this.Imprimir_Click);
-            // 
-            // btnpv
-            // 
-            this.btnpv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.btnpv.ColorBorde = System.Drawing.Color.White;
-            this.btnpv.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.btnpv.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.btnpv.ColorIconoHover = System.Drawing.Color.White;
-            this.btnpv.ColorTextoHover = System.Drawing.Color.White;
-            this.btnpv.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnpv.FlatAppearance.BorderSize = 0;
-            this.btnpv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnpv.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnpv.ForeColor = System.Drawing.Color.White;
-            this.btnpv.GrosorBorde = 2;
-            this.btnpv.IconChar = FontAwesome.Sharp.IconChar.CreditCardAlt;
-            this.btnpv.IconColor = System.Drawing.Color.White;
-            this.btnpv.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnpv.IconSize = 35;
-            this.btnpv.Location = new System.Drawing.Point(290, 7);
-            this.btnpv.Name = "btnpv";
-            this.btnpv.RadioBorde = 3;
-            this.btnpv.Size = new System.Drawing.Size(230, 106);
-            this.btnpv.TabIndex = 1;
-            this.btnpv.Text = "Punto de Venta";
-            this.btnpv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnpv.UseVisualStyleBackColor = false;
-            this.btnpv.Click += new System.EventHandler(this.btnpv_Click);
-            // 
-            // btnca
-            // 
-            this.btnca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.btnca.ColorBorde = System.Drawing.Color.White;
-            this.btnca.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.btnca.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.btnca.ColorIconoHover = System.Drawing.Color.White;
-            this.btnca.ColorTextoHover = System.Drawing.Color.White;
-            this.btnca.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnca.FlatAppearance.BorderSize = 0;
-            this.btnca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnca.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnca.ForeColor = System.Drawing.Color.White;
-            this.btnca.GrosorBorde = 2;
-            this.btnca.IconChar = FontAwesome.Sharp.IconChar.Wallet;
-            this.btnca.IconColor = System.Drawing.Color.White;
-            this.btnca.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnca.IconSize = 35;
-            this.btnca.Location = new System.Drawing.Point(1232, 7);
-            this.btnca.Name = "btnca";
-            this.btnca.RadioBorde = 3;
-            this.btnca.Size = new System.Drawing.Size(230, 106);
-            this.btnca.TabIndex = 5;
-            this.btnca.Text = "CASHEA";
-            this.btnca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnca.UseVisualStyleBackColor = false;
-            this.btnca.Visible = false;
-            this.btnca.Click += new System.EventHandler(this.btnca_Click);
-            // 
-            // btned
-            // 
-            this.btned.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.btned.ColorBorde = System.Drawing.Color.White;
-            this.btned.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.btned.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.btned.ColorIconoHover = System.Drawing.Color.White;
-            this.btned.ColorTextoHover = System.Drawing.Color.White;
-            this.btned.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btned.FlatAppearance.BorderSize = 0;
-            this.btned.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btned.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btned.ForeColor = System.Drawing.Color.White;
-            this.btned.GrosorBorde = 2;
-            this.btned.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
-            this.btned.IconColor = System.Drawing.Color.White;
-            this.btned.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btned.IconSize = 35;
-            this.btned.Location = new System.Drawing.Point(998, 7);
-            this.btned.Name = "btned";
-            this.btned.RadioBorde = 3;
-            this.btned.Size = new System.Drawing.Size(230, 106);
-            this.btned.TabIndex = 4;
-            this.btned.Text = "Efectivo $";
-            this.btned.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btned.UseVisualStyleBackColor = false;
-            this.btned.Click += new System.EventHandler(this.btned_Click);
-            // 
-            // btnebs
-            // 
-            this.btnebs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.btnebs.ColorBorde = System.Drawing.Color.White;
-            this.btnebs.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.btnebs.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.btnebs.ColorIconoHover = System.Drawing.Color.White;
-            this.btnebs.ColorTextoHover = System.Drawing.Color.White;
-            this.btnebs.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnebs.FlatAppearance.BorderSize = 0;
-            this.btnebs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnebs.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnebs.ForeColor = System.Drawing.Color.White;
-            this.btnebs.GrosorBorde = 2;
-            this.btnebs.IconChar = FontAwesome.Sharp.IconChar.MoneyBillAlt;
-            this.btnebs.IconColor = System.Drawing.Color.White;
-            this.btnebs.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnebs.IconSize = 35;
-            this.btnebs.Location = new System.Drawing.Point(762, 7);
-            this.btnebs.Name = "btnebs";
-            this.btnebs.RadioBorde = 3;
-            this.btnebs.Size = new System.Drawing.Size(230, 106);
-            this.btnebs.TabIndex = 3;
-            this.btnebs.Text = "Efectivo BS";
-            this.btnebs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnebs.UseVisualStyleBackColor = false;
-            this.btnebs.Click += new System.EventHandler(this.btnebs_Click);
-            // 
-            // btnpm
-            // 
-            this.btnpm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.btnpm.ColorBorde = System.Drawing.Color.White;
-            this.btnpm.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.btnpm.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.btnpm.ColorIconoHover = System.Drawing.Color.White;
-            this.btnpm.ColorTextoHover = System.Drawing.Color.White;
-            this.btnpm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnpm.FlatAppearance.BorderSize = 0;
-            this.btnpm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnpm.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnpm.ForeColor = System.Drawing.Color.White;
-            this.btnpm.GrosorBorde = 2;
-            this.btnpm.IconChar = FontAwesome.Sharp.IconChar.MobileAlt;
-            this.btnpm.IconColor = System.Drawing.Color.White;
-            this.btnpm.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnpm.IconSize = 35;
-            this.btnpm.Location = new System.Drawing.Point(526, 7);
-            this.btnpm.Name = "btnpm";
-            this.btnpm.RadioBorde = 3;
-            this.btnpm.Size = new System.Drawing.Size(230, 106);
-            this.btnpm.TabIndex = 2;
-            this.btnpm.Text = "Pago Movil";
-            this.btnpm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnpm.UseVisualStyleBackColor = false;
-            this.btnpm.Click += new System.EventHandler(this.btnpm_Click);
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.AutoSize = true;
-            this.txtTotal.BackColor = System.Drawing.Color.White;
-            this.txtTotal.ColorBorde = System.Drawing.Color.White;
-            this.txtTotal.ColorBordeFocus = System.Drawing.Color.White;
-            this.txtTotal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.ForeColor = System.Drawing.Color.Green;
-            this.txtTotal.GrosorBorde = 2;
-            this.txtTotal.Location = new System.Drawing.Point(543, 148);
-            this.txtTotal.MaxLength = 32767;
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtTotal.PasswordChar = '\0';
-            this.txtTotal.RadioBorde = 15;
-            this.txtTotal.ReadOnly = false;
-            this.txtTotal.Size = new System.Drawing.Size(187, 45);
-            this.txtTotal.TabIndex = 9;
-            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtTotal.UseSystemPasswordChar = false;
-            // 
-            // txtImpuesto
-            // 
-            this.txtImpuesto.AutoSize = true;
-            this.txtImpuesto.BackColor = System.Drawing.Color.White;
-            this.txtImpuesto.ColorBorde = System.Drawing.Color.White;
-            this.txtImpuesto.ColorBordeFocus = System.Drawing.Color.White;
-            this.txtImpuesto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImpuesto.ForeColor = System.Drawing.Color.Green;
-            this.txtImpuesto.GrosorBorde = 2;
-            this.txtImpuesto.Location = new System.Drawing.Point(78, 147);
-            this.txtImpuesto.MaxLength = 32767;
-            this.txtImpuesto.Name = "txtImpuesto";
-            this.txtImpuesto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtImpuesto.PasswordChar = '\0';
-            this.txtImpuesto.RadioBorde = 15;
-            this.txtImpuesto.ReadOnly = false;
-            this.txtImpuesto.Size = new System.Drawing.Size(423, 46);
-            this.txtImpuesto.TabIndex = 11;
-            this.txtImpuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtImpuesto.UseSystemPasswordChar = false;
+            this.lblTotalIGTF.AutoSize = true;
+            this.lblTotalIGTF.BackColor = System.Drawing.Color.White;
+            this.lblTotalIGTF.ColorBorde = System.Drawing.Color.White;
+            this.lblTotalIGTF.ColorBordeFocus = System.Drawing.Color.White;
+            this.lblTotalIGTF.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalIGTF.ForeColor = System.Drawing.Color.Green;
+            this.lblTotalIGTF.GrosorBorde = 2;
+            this.lblTotalIGTF.Location = new System.Drawing.Point(202, 148);
+            this.lblTotalIGTF.MaxLength = 32767;
+            this.lblTotalIGTF.Name = "lblTotalIGTF";
+            this.lblTotalIGTF.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.lblTotalIGTF.PasswordChar = '\0';
+            this.lblTotalIGTF.RadioBorde = 15;
+            this.lblTotalIGTF.ReadOnly = false;
+            this.lblTotalIGTF.Size = new System.Drawing.Size(430, 45);
+            this.lblTotalIGTF.TabIndex = 9;
+            this.lblTotalIGTF.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.lblTotalIGTF.UseSystemPasswordChar = false;
             // 
             // mdCobrar
             // 
@@ -568,6 +579,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1559, 755);
+            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.txtImpuesto);
             this.Controls.Add(this.botonModerno2);
             this.Controls.Add(this.btnAgregarPago);
@@ -579,7 +591,7 @@
             this.Controls.Add(this.txtPagaCon);
             this.Controls.Add(this.panelModerno1);
             this.Controls.Add(this.Total);
-            this.Controls.Add(this.txtTotal);
+            this.Controls.Add(this.lblTotalIGTF);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -587,9 +599,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pago Movil";
             this.Load += new System.EventHandler(this.mdCobrar_Load);
+            this.panelModerno1.ResumeLayout(false);
             this.Total.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).EndInit();
-            this.panelModerno1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -616,10 +628,11 @@
         private TextBoxModerno txtTasaCambio;
         private BotonModerno btnAgregarPago;
         private BotonModerno botonModerno2;
-        private TextBoxModerno txtTotal;
+        private TextBoxModerno lblTotalIGTF;
         private TextBoxModerno txtImpuesto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Metodo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pago;
         private System.Windows.Forms.DataGridViewTextBoxColumn Moneda;
+        private System.Windows.Forms.Label txtTotal;
     }
 }

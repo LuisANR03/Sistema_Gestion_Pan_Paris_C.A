@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbid = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblnombre = new System.Windows.Forms.Label();
@@ -40,10 +40,14 @@
             this.Telefono = new System.Windows.Forms.Label();
             this.tbindice = new System.Windows.Forms.TextBox();
             this.lblrepetir = new System.Windows.Forms.Label();
+            this.cbTipoDocumento = new Llamen_a_Dios.ComboBoxModerno();
             this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
             this.lbllistausu = new System.Windows.Forms.Label();
             this.tbnombre = new TextBoxModerno();
             this.CBestado = new Llamen_a_Dios.ComboBoxModerno();
+            this.btnBorrar = new BotonModerno();
+            this.BtnLim = new BotonModerno();
+            this.BtnGuardar = new BotonModerno();
             this.tbdir = new TextBoxModerno();
             this.tbtlf = new TextBoxModerno();
             this.tbcorreo = new TextBoxModerno();
@@ -52,6 +56,7 @@
             this.DGVUs = new System.Windows.Forms.DataGridView();
             this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipodocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,9 +70,6 @@
             this.pnlBuscador = new System.Windows.Forms.Panel();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.TBBuscar = new TextBoxModerno();
-            this.btnBorrar = new BotonModerno();
-            this.BtnLim = new BotonModerno();
-            this.BtnGuardar = new BotonModerno();
             this.panelModerno1.SuspendLayout();
             this.groupBoxModerno1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUs)).BeginInit();
@@ -88,10 +90,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(52, 33);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.label2.Location = new System.Drawing.Point(52, 59);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(223, 31);
@@ -101,9 +103,9 @@
             // lblnombre
             // 
             this.lblnombre.AutoSize = true;
-            this.lblnombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.lblnombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.lblnombre.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblnombre.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblnombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.lblnombre.Location = new System.Drawing.Point(41, 207);
             this.lblnombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblnombre.Name = "lblnombre";
@@ -114,9 +116,9 @@
             // txtCedul
             // 
             this.txtCedul.AutoSize = true;
-            this.txtCedul.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.txtCedul.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.txtCedul.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCedul.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtCedul.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.txtCedul.Location = new System.Drawing.Point(43, 112);
             this.txtCedul.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtCedul.Name = "txtCedul";
@@ -126,7 +128,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -138,9 +140,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label4.Location = new System.Drawing.Point(41, 307);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
@@ -151,9 +153,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label5.Location = new System.Drawing.Point(37, 403);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
@@ -164,9 +166,9 @@
             // Telefono
             // 
             this.Telefono.AutoSize = true;
-            this.Telefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.Telefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.Telefono.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Telefono.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.Telefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.Telefono.Location = new System.Drawing.Point(39, 502);
             this.Telefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Telefono.Name = "Telefono";
@@ -187,9 +189,9 @@
             // lblrepetir
             // 
             this.lblrepetir.AutoSize = true;
-            this.lblrepetir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.lblrepetir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.lblrepetir.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblrepetir.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblrepetir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.lblrepetir.Location = new System.Drawing.Point(42, 595);
             this.lblrepetir.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblrepetir.Name = "lblrepetir";
@@ -197,10 +199,33 @@
             this.lblrepetir.TabIndex = 69;
             this.lblrepetir.Text = "Estado";
             // 
+            // cbTipoDocumento
+            // 
+            this.cbTipoDocumento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.cbTipoDocumento.BackColorModerno = System.Drawing.Color.WhiteSmoke;
+            this.cbTipoDocumento.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.cbTipoDocumento.BorderRadius = 8;
+            this.cbTipoDocumento.BorderSize = 1;
+            this.cbTipoDocumento.DataSource = null;
+            this.cbTipoDocumento.DisplayMember = "";
+            this.cbTipoDocumento.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.cbTipoDocumento.ForeColor = System.Drawing.Color.DimGray;
+            this.cbTipoDocumento.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(66)))), ((int)(((byte)(210)))));
+            this.cbTipoDocumento.Location = new System.Drawing.Point(48, 155);
+            this.cbTipoDocumento.MinimumSize = new System.Drawing.Size(50, 30);
+            this.cbTipoDocumento.Name = "cbTipoDocumento";
+            this.cbTipoDocumento.Padding = new System.Windows.Forms.Padding(1);
+            this.cbTipoDocumento.SelectedIndex = -1;
+            this.cbTipoDocumento.SelectedItem = null;
+            this.cbTipoDocumento.SelectedValue = null;
+            this.cbTipoDocumento.Size = new System.Drawing.Size(58, 30);
+            this.cbTipoDocumento.TabIndex = 82;
+            this.cbTipoDocumento.ValueMember = "";
+            // 
             // panelModerno1
             // 
             this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.panelModerno1.BorderRadius = 15;
             this.panelModerno1.Controls.Add(this.lbllistausu);
             this.panelModerno1.Location = new System.Drawing.Point(355, 105);
@@ -212,9 +237,9 @@
             // lbllistausu
             // 
             this.lbllistausu.AutoSize = true;
-            this.lbllistausu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
-            this.lbllistausu.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbllistausu.ForeColor = System.Drawing.Color.White;
+            this.lbllistausu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
+            this.lbllistausu.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbllistausu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.lbllistausu.Location = new System.Drawing.Point(25, 33);
             this.lbllistausu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbllistausu.Name = "lbllistausu";
@@ -264,6 +289,93 @@
             this.CBestado.Size = new System.Drawing.Size(252, 36);
             this.CBestado.TabIndex = 78;
             this.CBestado.ValueMember = "";
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(99)))), ((int)(((byte)(69)))));
+            this.btnBorrar.ColorBorde = System.Drawing.Color.Empty;
+            this.btnBorrar.ColorClick = System.Drawing.Color.Red;
+            this.btnBorrar.ColorHover = System.Drawing.Color.Firebrick;
+            this.btnBorrar.ColorIconoHover = System.Drawing.Color.White;
+            this.btnBorrar.ColorTextoHover = System.Drawing.Color.White;
+            this.btnBorrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrar.FlatAppearance.BorderSize = 0;
+            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBorrar.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBorrar.ForeColor = System.Drawing.Color.White;
+            this.btnBorrar.GrosorBorde = 3;
+            this.btnBorrar.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnBorrar.IconColor = System.Drawing.Color.White;
+            this.btnBorrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBorrar.IconSize = 25;
+            this.btnBorrar.Location = new System.Drawing.Point(47, 859);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.RadioBorde = 5;
+            this.btnBorrar.Size = new System.Drawing.Size(228, 45);
+            this.btnBorrar.TabIndex = 76;
+            this.btnBorrar.Text = "Eliminar";
+            this.btnBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBorrar.UseVisualStyleBackColor = false;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // BtnLim
+            // 
+            this.BtnLim.BackColor = System.Drawing.Color.White;
+            this.BtnLim.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.BtnLim.ColorClick = System.Drawing.Color.Empty;
+            this.BtnLim.ColorHover = System.Drawing.Color.Empty;
+            this.BtnLim.ColorIconoHover = System.Drawing.Color.Empty;
+            this.BtnLim.ColorTextoHover = System.Drawing.Color.Empty;
+            this.BtnLim.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLim.FlatAppearance.BorderSize = 0;
+            this.BtnLim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLim.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.BtnLim.GrosorBorde = 3;
+            this.BtnLim.IconChar = FontAwesome.Sharp.IconChar.Redo;
+            this.BtnLim.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.BtnLim.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnLim.IconSize = 25;
+            this.BtnLim.Location = new System.Drawing.Point(47, 790);
+            this.BtnLim.Name = "BtnLim";
+            this.BtnLim.RadioBorde = 5;
+            this.BtnLim.Size = new System.Drawing.Size(228, 45);
+            this.BtnLim.TabIndex = 75;
+            this.BtnLim.Text = "Limpiar";
+            this.BtnLim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnLim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnLim.UseVisualStyleBackColor = false;
+            this.BtnLim.Click += new System.EventHandler(this.BtnLim_Click);
+            // 
+            // BtnGuardar
+            // 
+            this.BtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.BtnGuardar.ColorBorde = System.Drawing.Color.White;
+            this.BtnGuardar.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.BtnGuardar.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(113)))), ((int)(((byte)(34)))));
+            this.BtnGuardar.ColorIconoHover = System.Drawing.Color.White;
+            this.BtnGuardar.ColorTextoHover = System.Drawing.Color.White;
+            this.BtnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnGuardar.FlatAppearance.BorderSize = 0;
+            this.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnGuardar.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGuardar.ForeColor = System.Drawing.Color.White;
+            this.BtnGuardar.GrosorBorde = 0;
+            this.BtnGuardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.BtnGuardar.IconColor = System.Drawing.Color.White;
+            this.BtnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnGuardar.IconSize = 25;
+            this.BtnGuardar.Location = new System.Drawing.Point(46, 714);
+            this.BtnGuardar.Name = "BtnGuardar";
+            this.BtnGuardar.RadioBorde = 5;
+            this.BtnGuardar.Size = new System.Drawing.Size(228, 45);
+            this.BtnGuardar.TabIndex = 74;
+            this.BtnGuardar.Text = "Guardar";
+            this.BtnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnGuardar.UseVisualStyleBackColor = false;
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // tbdir
             // 
@@ -333,14 +445,14 @@
             this.tbCedula.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.tbCedula.ForeColor = System.Drawing.Color.DimGray;
             this.tbCedula.GrosorBorde = 2;
-            this.tbCedula.Location = new System.Drawing.Point(38, 153);
+            this.tbCedula.Location = new System.Drawing.Point(114, 153);
             this.tbCedula.MaxLength = 32767;
             this.tbCedula.Name = "tbCedula";
             this.tbCedula.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tbCedula.PasswordChar = '\0';
             this.tbCedula.RadioBorde = 5;
             this.tbCedula.ReadOnly = false;
-            this.tbCedula.Size = new System.Drawing.Size(252, 37);
+            this.tbCedula.Size = new System.Drawing.Size(176, 37);
             this.tbCedula.TabIndex = 70;
             this.tbCedula.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tbCedula.UseSystemPasswordChar = false;
@@ -372,20 +484,21 @@
             this.DGVUs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVUs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVUs.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVUs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVUs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.DGVUs.ColumnHeadersHeight = 40;
             this.DGVUs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGVUs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BtnSelect,
             this.IdCliente,
+            this.tipodocumento,
             this.Cedula,
             this.Nombre,
             this.Correo,
@@ -393,14 +506,14 @@
             this.Direccion,
             this.Valor,
             this.EstadoValor});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVUs.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVUs.DefaultCellStyle = dataGridViewCellStyle14;
             this.DGVUs.EnableHeadersVisualStyles = false;
             this.DGVUs.Location = new System.Drawing.Point(41, 170);
             this.DGVUs.Margin = new System.Windows.Forms.Padding(4);
@@ -418,7 +531,7 @@
             // 
             // BtnSelect
             // 
-            this.BtnSelect.FillWeight = 20.2751F;
+            this.BtnSelect.FillWeight = 19.69703F;
             this.BtnSelect.HeaderText = "";
             this.BtnSelect.MinimumWidth = 6;
             this.BtnSelect.Name = "BtnSelect";
@@ -432,9 +545,17 @@
             this.IdCliente.ReadOnly = true;
             this.IdCliente.Visible = false;
             // 
+            // tipodocumento
+            // 
+            this.tipodocumento.FillWeight = 10F;
+            this.tipodocumento.HeaderText = "TipoDocumento";
+            this.tipodocumento.MinimumWidth = 6;
+            this.tipodocumento.Name = "tipodocumento";
+            this.tipodocumento.ReadOnly = true;
+            // 
             // Cedula
             // 
-            this.Cedula.FillWeight = 71.77385F;
+            this.Cedula.FillWeight = 69.72749F;
             this.Cedula.HeaderText = "Documento";
             this.Cedula.MinimumWidth = 6;
             this.Cedula.Name = "Cedula";
@@ -442,7 +563,7 @@
             // 
             // Nombre
             // 
-            this.Nombre.FillWeight = 71.77385F;
+            this.Nombre.FillWeight = 69.72749F;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
@@ -450,7 +571,7 @@
             // 
             // Correo
             // 
-            this.Correo.FillWeight = 71.77385F;
+            this.Correo.FillWeight = 69.72749F;
             this.Correo.HeaderText = "Correo";
             this.Correo.MinimumWidth = 6;
             this.Correo.Name = "Correo";
@@ -458,7 +579,7 @@
             // 
             // Tlf
             // 
-            this.Tlf.FillWeight = 71.77385F;
+            this.Tlf.FillWeight = 69.72749F;
             this.Tlf.HeaderText = "Telefono";
             this.Tlf.MinimumWidth = 6;
             this.Tlf.Name = "Tlf";
@@ -466,7 +587,7 @@
             // 
             // Direccion
             // 
-            this.Direccion.FillWeight = 71.77385F;
+            this.Direccion.FillWeight = 69.72749F;
             this.Direccion.HeaderText = "Direccion";
             this.Direccion.MinimumWidth = 6;
             this.Direccion.Name = "Direccion";
@@ -596,99 +717,13 @@
             this.TBBuscar.UseSystemPasswordChar = false;
             this.TBBuscar._TextChanged += new System.EventHandler(this.TBBuscar_TextChanged);
             // 
-            // btnBorrar
-            // 
-            this.btnBorrar.BackColor = System.Drawing.Color.White;
-            this.btnBorrar.ColorBorde = System.Drawing.Color.Firebrick;
-            this.btnBorrar.ColorClick = System.Drawing.Color.Red;
-            this.btnBorrar.ColorHover = System.Drawing.Color.Firebrick;
-            this.btnBorrar.ColorIconoHover = System.Drawing.Color.White;
-            this.btnBorrar.ColorTextoHover = System.Drawing.Color.White;
-            this.btnBorrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBorrar.FlatAppearance.BorderSize = 0;
-            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBorrar.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBorrar.ForeColor = System.Drawing.Color.Firebrick;
-            this.btnBorrar.GrosorBorde = 3;
-            this.btnBorrar.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.btnBorrar.IconColor = System.Drawing.Color.Firebrick;
-            this.btnBorrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBorrar.IconSize = 25;
-            this.btnBorrar.Location = new System.Drawing.Point(47, 859);
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.RadioBorde = 5;
-            this.btnBorrar.Size = new System.Drawing.Size(228, 45);
-            this.btnBorrar.TabIndex = 76;
-            this.btnBorrar.Text = "Eliminar";
-            this.btnBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBorrar.UseVisualStyleBackColor = false;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
-            // BtnLim
-            // 
-            this.BtnLim.BackColor = System.Drawing.Color.White;
-            this.BtnLim.ColorBorde = System.Drawing.Color.RoyalBlue;
-            this.BtnLim.ColorClick = System.Drawing.Color.CornflowerBlue;
-            this.BtnLim.ColorHover = System.Drawing.Color.RoyalBlue;
-            this.BtnLim.ColorIconoHover = System.Drawing.Color.White;
-            this.BtnLim.ColorTextoHover = System.Drawing.Color.White;
-            this.BtnLim.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnLim.FlatAppearance.BorderSize = 0;
-            this.BtnLim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLim.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLim.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.BtnLim.GrosorBorde = 3;
-            this.BtnLim.IconChar = FontAwesome.Sharp.IconChar.Redo;
-            this.BtnLim.IconColor = System.Drawing.Color.RoyalBlue;
-            this.BtnLim.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnLim.IconSize = 25;
-            this.BtnLim.Location = new System.Drawing.Point(47, 790);
-            this.BtnLim.Name = "BtnLim";
-            this.BtnLim.RadioBorde = 5;
-            this.BtnLim.Size = new System.Drawing.Size(228, 45);
-            this.BtnLim.TabIndex = 75;
-            this.BtnLim.Text = "Limpiar";
-            this.BtnLim.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnLim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnLim.UseVisualStyleBackColor = false;
-            this.BtnLim.Click += new System.EventHandler(this.BtnLim_Click);
-            // 
-            // BtnGuardar
-            // 
-            this.BtnGuardar.BackColor = System.Drawing.Color.Green;
-            this.BtnGuardar.ColorBorde = System.Drawing.Color.White;
-            this.BtnGuardar.ColorClick = System.Drawing.Color.ForestGreen;
-            this.BtnGuardar.ColorHover = System.Drawing.Color.Green;
-            this.BtnGuardar.ColorIconoHover = System.Drawing.Color.White;
-            this.BtnGuardar.ColorTextoHover = System.Drawing.Color.White;
-            this.BtnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnGuardar.FlatAppearance.BorderSize = 0;
-            this.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGuardar.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.BtnGuardar.GrosorBorde = 0;
-            this.BtnGuardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.BtnGuardar.IconColor = System.Drawing.Color.White;
-            this.BtnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnGuardar.IconSize = 25;
-            this.BtnGuardar.Location = new System.Drawing.Point(46, 714);
-            this.BtnGuardar.Name = "BtnGuardar";
-            this.BtnGuardar.RadioBorde = 5;
-            this.BtnGuardar.Size = new System.Drawing.Size(228, 45);
-            this.BtnGuardar.TabIndex = 74;
-            this.BtnGuardar.Text = "Guardar";
-            this.BtnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnGuardar.UseVisualStyleBackColor = false;
-            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
-            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(1595, 1080);
+            this.Controls.Add(this.cbTipoDocumento);
             this.Controls.Add(this.panelModerno1);
             this.Controls.Add(this.tbnombre);
             this.Controls.Add(this.CBestado);
@@ -754,8 +789,12 @@
         private TextBoxModerno tbCedula;
         private System.Windows.Forms.Label lblrepetir;
         private TextBoxModerno tbnombre;
+        private PanelModerno panelModerno1;
+        private GroupBoxModerno groupBoxModerno1;
+        private ComboBoxModerno cbTipoDocumento;
         private System.Windows.Forms.DataGridViewButtonColumn BtnSelect;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipodocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
@@ -763,7 +802,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
-        private PanelModerno panelModerno1;
-        private GroupBoxModerno groupBoxModerno1;
     }
 }

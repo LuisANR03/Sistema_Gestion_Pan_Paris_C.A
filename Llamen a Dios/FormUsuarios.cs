@@ -51,7 +51,7 @@ namespace Llamen_a_Dios
             CBRol.ValueMember = "Valor";
             if (CBRol.Items.Count > 0)
                 CBRol.SelectedIndex = 0;
-
+           
             CargarUsuarios();
 
             
@@ -69,6 +69,7 @@ namespace Llamen_a_Dios
             {
                 CBFiltro.SelectedIndex = 0;
             }
+            ConfigurarAyudaVisual();
         }
         private void pnlBuscador_Paint(object sender, PaintEventArgs e)
         {
@@ -380,6 +381,40 @@ namespace Llamen_a_Dios
                 else if (rol.Contains("cajero"))
                     e.CellStyle.ForeColor = Color.FromArgb(217, 119, 6); // Naranja/Dorado
             }
+
+        }
+
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA EL MÓDULO DE USUARIOS
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipUsuarios = new ToolTip();
+
+            // Estilo Globo idéntico a las otras pantallas
+            toolTipUsuarios.IsBalloon = true;
+            toolTipUsuarios.ToolTipIcon = ToolTipIcon.Info;
+            toolTipUsuarios.ToolTipTitle = "Gestión de Usuarios";
+
+            // Configuración de tiempos
+            toolTipUsuarios.AutoPopDelay = 6000;
+            toolTipUsuarios.InitialDelay = 400;
+            toolTipUsuarios.ReshowDelay = 300;
+            toolTipUsuarios.ShowAlways = true;
+
+            // --- TOOLTIPS PARA BOTONES DE ACCIÓN ---
+            toolTipUsuarios.SetToolTip(this.BtnGuardar, "Guarda un nuevo usuario o actualiza los datos del usuario seleccionado.");
+            toolTipUsuarios.SetToolTip(this.btnBorrar, "Desactiva al usuario seleccionado para que no pueda acceder al sistema.");
+            toolTipUsuarios.SetToolTip(this.Btlimpiar, "Limpia los campos del panel izquierdo para registrar a alguien nuevo.");
+
+            // --- TOOLTIPS PARA BÚSQUEDA Y TABLA ---
+            toolTipUsuarios.SetToolTip(this.TBBuscar, "Escribe aquí para filtrar la lista de usuarios.");
+            toolTipUsuarios.SetToolTip(this.BtnLimpiar, "Limpia la barra de búsqueda y muestra la lista completa.");
+            toolTipUsuarios.SetToolTip(this.DGVUs, "Haz clic en el icono del lápiz ✏️ para editar la información de un usuario.");
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }

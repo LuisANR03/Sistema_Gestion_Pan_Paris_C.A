@@ -19,6 +19,8 @@ namespace Entidades
         public decimal MontoTotal { get; set; }
         public DateTime FechaVenta { get; set; }
 
+        public string NumeroControl { get; set; }
+
         // Propiedades de navegación
         public Usuario Usuario { get; set; }
         public Vendedor Vendedor { get; set; }

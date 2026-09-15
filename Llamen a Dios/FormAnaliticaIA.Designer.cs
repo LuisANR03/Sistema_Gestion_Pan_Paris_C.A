@@ -269,6 +269,7 @@
             this.Name = "FormAnaliticaIA";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Analítica Avanzada con IA";
+            this.Load += new System.EventHandler(this.FormAnaliticaIA_Load);
             this.panelLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();

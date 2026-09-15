@@ -17,19 +17,17 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.pnlHeader = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnGuardar = new BotonModerno();
             this.btnSugerenciaIA = new BotonModerno();
-            this.lblSubtitulo = new System.Windows.Forms.Label();
+            this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
+            this.panelModerno2 = new Llamen_a_Dios.PanelModerno();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.pnlAccent = new System.Windows.Forms.Panel();
-            this.txtBusqueda = new System.Windows.Forms.TextBox();
-            this.lblBuscar = new System.Windows.Forms.Label();
+            this.lblSubtitulo = new System.Windows.Forms.Label();
             this.dgvProduccion = new System.Windows.Forms.DataGridView();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,33 +36,20 @@
             this.colEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMerma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlContenedorGrid = new Llamen_a_Dios.PanelModerno();
-            this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
-            this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
-            this.pnlHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProduccion)).BeginInit();
-            this.pnlContenedorGrid.SuspendLayout();
+            this.pnlAccent = new System.Windows.Forms.Panel();
+            this.txtBusqueda = new System.Windows.Forms.TextBox();
+            this.lblBuscar = new System.Windows.Forms.Label();
             this.panelModerno1.SuspendLayout();
+            this.panelModerno2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduccion)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pnlHeader
-            // 
-            this.pnlHeader.BackColor = System.Drawing.Color.White;
-            this.pnlHeader.Controls.Add(this.btnGuardar);
-            this.pnlHeader.Controls.Add(this.btnSugerenciaIA);
-            this.pnlHeader.Controls.Add(this.panelModerno1);
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1595, 123);
-            this.pnlHeader.TabIndex = 1;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(99)))), ((int)(((byte)(69)))));
             this.btnGuardar.ColorBorde = System.Drawing.Color.White;
-            this.btnGuardar.ColorClick = System.Drawing.Color.RoyalBlue;
-            this.btnGuardar.ColorHover = System.Drawing.Color.CornflowerBlue;
+            this.btnGuardar.ColorClick = System.Drawing.Color.Red;
+            this.btnGuardar.ColorHover = System.Drawing.Color.Firebrick;
             this.btnGuardar.ColorIconoHover = System.Drawing.Color.White;
             this.btnGuardar.ColorTextoHover = System.Drawing.Color.White;
             this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -77,7 +62,7 @@
             this.btnGuardar.IconColor = System.Drawing.Color.White;
             this.btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardar.IconSize = 25;
-            this.btnGuardar.Location = new System.Drawing.Point(1121, 45);
+            this.btnGuardar.Location = new System.Drawing.Point(1154, 58);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.RadioBorde = 20;
             this.btnGuardar.Size = new System.Drawing.Size(204, 49);
@@ -90,10 +75,10 @@
             // 
             // btnSugerenciaIA
             // 
-            this.btnSugerenciaIA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.btnSugerenciaIA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
             this.btnSugerenciaIA.ColorBorde = System.Drawing.Color.White;
-            this.btnSugerenciaIA.ColorClick = System.Drawing.Color.RoyalBlue;
-            this.btnSugerenciaIA.ColorHover = System.Drawing.Color.CornflowerBlue;
+            this.btnSugerenciaIA.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.btnSugerenciaIA.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(113)))), ((int)(((byte)(34)))));
             this.btnSugerenciaIA.ColorIconoHover = System.Drawing.Color.White;
             this.btnSugerenciaIA.ColorTextoHover = System.Drawing.Color.White;
             this.btnSugerenciaIA.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -106,7 +91,7 @@
             this.btnSugerenciaIA.IconColor = System.Drawing.Color.White;
             this.btnSugerenciaIA.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSugerenciaIA.IconSize = 25;
-            this.btnSugerenciaIA.Location = new System.Drawing.Point(870, 45);
+            this.btnSugerenciaIA.Location = new System.Drawing.Point(920, 58);
             this.btnSugerenciaIA.Name = "btnSugerenciaIA";
             this.btnSugerenciaIA.RadioBorde = 20;
             this.btnSugerenciaIA.Size = new System.Drawing.Size(204, 49);
@@ -117,51 +102,59 @@
             this.btnSugerenciaIA.UseVisualStyleBackColor = false;
             this.btnSugerenciaIA.Click += new System.EventHandler(this.btnSugerenciaIA_Click);
             // 
-            // lblSubtitulo
+            // panelModerno1
             // 
-            this.lblSubtitulo.AutoSize = true;
-            this.lblSubtitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.lblSubtitulo.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblSubtitulo.ForeColor = System.Drawing.Color.White;
-            this.lblSubtitulo.Location = new System.Drawing.Point(27, 68);
-            this.lblSubtitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSubtitulo.Name = "lblSubtitulo";
-            this.lblSubtitulo.Size = new System.Drawing.Size(447, 23);
-            this.lblSubtitulo.TabIndex = 2;
-            this.lblSubtitulo.Text = "Gestione entradas de horno y registro de mermas diarias.";
+            this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.White;
+            this.panelModerno1.BorderRadius = 15;
+            this.panelModerno1.Controls.Add(this.panelModerno2);
+            this.panelModerno1.Controls.Add(this.dgvProduccion);
+            this.panelModerno1.Controls.Add(this.pnlContenedorGrid);
+            this.panelModerno1.Location = new System.Drawing.Point(60, 56);
+            this.panelModerno1.Name = "panelModerno1";
+            this.panelModerno1.RedondearAbajo = false;
+            this.panelModerno1.Size = new System.Drawing.Size(1457, 864);
+            this.panelModerno1.TabIndex = 93;
+            // 
+            // panelModerno2
+            // 
+            this.panelModerno2.BackColor = System.Drawing.Color.Transparent;
+            this.panelModerno2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
+            this.panelModerno2.BorderRadius = 15;
+            this.panelModerno2.Controls.Add(this.btnSugerenciaIA);
+            this.panelModerno2.Controls.Add(this.btnGuardar);
+            this.panelModerno2.Controls.Add(this.lblTitulo);
+            this.panelModerno2.Controls.Add(this.lblSubtitulo);
+            this.panelModerno2.Location = new System.Drawing.Point(0, 0);
+            this.panelModerno2.Name = "panelModerno2";
+            this.panelModerno2.RedondearAbajo = true;
+            this.panelModerno2.Size = new System.Drawing.Size(1457, 155);
+            this.panelModerno2.TabIndex = 94;
             // 
             // lblTitulo
             // 
-            this.lblTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.lblTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(23, 24);
+            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.lblTitulo.Location = new System.Drawing.Point(69, 40);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(533, 43);
             this.lblTitulo.TabIndex = 3;
             this.lblTitulo.Text = "Control de Producción";
             // 
-            // pnlAccent
+            // lblSubtitulo
             // 
-            this.pnlAccent.Location = new System.Drawing.Point(0, 0);
-            this.pnlAccent.Name = "pnlAccent";
-            this.pnlAccent.Size = new System.Drawing.Size(200, 100);
-            this.pnlAccent.TabIndex = 0;
-            // 
-            // txtBusqueda
-            // 
-            this.txtBusqueda.Location = new System.Drawing.Point(0, 0);
-            this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(100, 22);
-            this.txtBusqueda.TabIndex = 0;
-            // 
-            // lblBuscar
-            // 
-            this.lblBuscar.Location = new System.Drawing.Point(0, 0);
-            this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(100, 23);
-            this.lblBuscar.TabIndex = 0;
+            this.lblSubtitulo.AutoSize = true;
+            this.lblSubtitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
+            this.lblSubtitulo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.lblSubtitulo.Location = new System.Drawing.Point(73, 84);
+            this.lblSubtitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSubtitulo.Name = "lblSubtitulo";
+            this.lblSubtitulo.Size = new System.Drawing.Size(447, 23);
+            this.lblSubtitulo.TabIndex = 2;
+            this.lblSubtitulo.Text = "Gestione entradas de horno y registro de mermas diarias.";
             // 
             // dgvProduccion
             // 
@@ -171,15 +164,15 @@
             this.dgvProduccion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvProduccion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvProduccion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProduccion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProduccion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProduccion.ColumnHeadersHeight = 40;
             this.dgvProduccion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvProduccion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -189,17 +182,16 @@
             this.colSugerido,
             this.colEntrada,
             this.colMerma});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProduccion.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dgvProduccion.Dock = System.Windows.Forms.DockStyle.Fill;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(242)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProduccion.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvProduccion.EnableHeadersVisualStyles = false;
-            this.dgvProduccion.Location = new System.Drawing.Point(0, 0);
+            this.dgvProduccion.Location = new System.Drawing.Point(30, 210);
             this.dgvProduccion.Margin = new System.Windows.Forms.Padding(4);
             this.dgvProduccion.MultiSelect = false;
             this.dgvProduccion.Name = "dgvProduccion";
@@ -232,8 +224,8 @@
             // 
             // colSugerido
             // 
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.colSugerido.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.colSugerido.DefaultCellStyle = dataGridViewCellStyle2;
             this.colSugerido.HeaderText = "IA SUGERIDO";
             this.colSugerido.MinimumWidth = 6;
             this.colSugerido.Name = "colSugerido";
@@ -241,16 +233,16 @@
             // 
             // colEntrada
             // 
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(255)))), ((int)(((byte)(250)))));
-            this.colEntrada.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(255)))), ((int)(((byte)(250)))));
+            this.colEntrada.DefaultCellStyle = dataGridViewCellStyle3;
             this.colEntrada.HeaderText = "HORNEADO (+)";
             this.colEntrada.MinimumWidth = 6;
             this.colEntrada.Name = "colEntrada";
             // 
             // colMerma
             // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.colMerma.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.colMerma.DefaultCellStyle = dataGridViewCellStyle4;
             this.colMerma.HeaderText = "MERMA (-)";
             this.colMerma.MinimumWidth = 6;
             this.colMerma.Name = "colMerma";
@@ -260,42 +252,33 @@
             this.pnlContenedorGrid.BackColor = System.Drawing.Color.White;
             this.pnlContenedorGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
             this.pnlContenedorGrid.BorderRadius = 15;
-            this.pnlContenedorGrid.Controls.Add(this.dgvProduccion);
-            this.pnlContenedorGrid.Location = new System.Drawing.Point(33, 197);
+            this.pnlContenedorGrid.Location = new System.Drawing.Point(30, 209);
             this.pnlContenedorGrid.Margin = new System.Windows.Forms.Padding(4);
             this.pnlContenedorGrid.Name = "pnlContenedorGrid";
             this.pnlContenedorGrid.RedondearAbajo = true;
-            this.pnlContenedorGrid.Size = new System.Drawing.Size(1400, 615);
+            this.pnlContenedorGrid.Size = new System.Drawing.Size(1400, 605);
             this.pnlContenedorGrid.TabIndex = 0;
             // 
-            // panelModerno1
+            // pnlAccent
             // 
-            this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.panelModerno1.BorderRadius = 15;
-            this.panelModerno1.Controls.Add(this.groupBoxModerno1);
-            this.panelModerno1.Controls.Add(this.lblSubtitulo);
-            this.panelModerno1.Controls.Add(this.lblTitulo);
-            this.panelModerno1.Location = new System.Drawing.Point(12, 3);
-            this.panelModerno1.Name = "panelModerno1";
-            this.panelModerno1.RedondearAbajo = false;
-            this.panelModerno1.Size = new System.Drawing.Size(1421, 864);
-            this.panelModerno1.TabIndex = 93;
+            this.pnlAccent.Location = new System.Drawing.Point(0, 0);
+            this.pnlAccent.Name = "pnlAccent";
+            this.pnlAccent.Size = new System.Drawing.Size(200, 100);
+            this.pnlAccent.TabIndex = 0;
             // 
-            // groupBoxModerno1
+            // txtBusqueda
             // 
-            this.groupBoxModerno1.BackColor = System.Drawing.Color.White;
-            this.groupBoxModerno1.BackgroundColor = System.Drawing.Color.White;
-            this.groupBoxModerno1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
-            this.groupBoxModerno1.BorderRadius = 15;
-            this.groupBoxModerno1.BorderSize = 2;
-            this.groupBoxModerno1.Location = new System.Drawing.Point(3, 118);
-            this.groupBoxModerno1.Name = "groupBoxModerno1";
-            this.groupBoxModerno1.RedondearAbajo = true;
-            this.groupBoxModerno1.Size = new System.Drawing.Size(1457, 756);
-            this.groupBoxModerno1.TabIndex = 4;
-            this.groupBoxModerno1.TabStop = false;
-            this.groupBoxModerno1.Text = "groupBoxModerno1";
+            this.txtBusqueda.Location = new System.Drawing.Point(0, 0);
+            this.txtBusqueda.Name = "txtBusqueda";
+            this.txtBusqueda.Size = new System.Drawing.Size(100, 22);
+            this.txtBusqueda.TabIndex = 0;
+            // 
+            // lblBuscar
+            // 
+            this.lblBuscar.Location = new System.Drawing.Point(0, 0);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(100, 23);
+            this.lblBuscar.TabIndex = 0;
             // 
             // Produccion
             // 
@@ -303,25 +286,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
             this.ClientSize = new System.Drawing.Size(1595, 1080);
-            this.Controls.Add(this.pnlContenedorGrid);
-            this.Controls.Add(this.pnlHeader);
+            this.Controls.Add(this.panelModerno1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Produccion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de Producción - Pan de Paris";
             this.Load += new System.EventHandler(this.Produccion_Load);
-            this.pnlHeader.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProduccion)).EndInit();
-            this.pnlContenedorGrid.ResumeLayout(false);
             this.panelModerno1.ResumeLayout(false);
-            this.panelModerno1.PerformLayout();
+            this.panelModerno2.ResumeLayout(false);
+            this.panelModerno2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduccion)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblSubtitulo;
         private System.Windows.Forms.DataGridView dgvProduccion;
@@ -339,6 +318,6 @@
         private BotonModerno btnGuardar;
         private BotonModerno btnSugerenciaIA;
         private PanelModerno panelModerno1;
-        private GroupBoxModerno groupBoxModerno1;
+        private PanelModerno panelModerno2;
     }
 }

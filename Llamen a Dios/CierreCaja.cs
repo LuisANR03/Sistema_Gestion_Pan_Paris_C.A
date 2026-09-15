@@ -46,6 +46,7 @@ namespace Llamen_a_Dios
             btnProcesarCierre.Enabled = false; // Desactivamos el botón de cierre hasta que se carguen los totales del sistema
             btnexcel.Enabled = false;
             CargarTotalesDelSistema();
+            ConfigurarAyudaVisual();
         }
 
         // ==============================================================
@@ -71,10 +72,25 @@ namespace Llamen_a_Dios
                 txtSistemaZinly.Text = "0.00";
 
                 // ==========================================================
-                // NUEVO: MOSTRAR RENTABILIDAD EN LA INTERFAZ
+                // MOSTRAR RENTABILIDAD Y ESTÉTICA DE UTILIDADES
                 // ==========================================================
                 txtCostoProduccion.Text = totalesSistema.CostoTotalProduccion.ToString("N2");
                 txtGananciaNeta.Text = totalesSistema.GananciaNeta.ToString("N2");
+
+                // Condición para cambiar textos y colores dependiendo si hay ganancia o pérdida
+                if (totalesSistema.GananciaNeta >= 0)
+                {
+                    lblUtilidades.Text = "GANANCIAS";
+                    lblUtilidades.ForeColor = Color.MediumSeaGreen; // Verde para ganancias
+                    txtGananciaNeta.ForeColor = Color.MediumSeaGreen;
+                }
+                else
+                {
+                    lblUtilidades.Text = "PÉRDIDAS";
+                    lblUtilidades.ForeColor = Color.Crimson; // Rojo para pérdidas
+                    txtGananciaNeta.ForeColor = Color.Crimson;
+                }
+                // ==========================================================
 
                 // Calculamos el arqueo inicial con los datos limpios
                 CalcularArqueo();
@@ -159,7 +175,7 @@ namespace Llamen_a_Dios
                     lblcuadre.Text = "CAJA CUADRADA EXACTA";
                     lblcuadre.ForeColor = Color.MediumSeaGreen;
 
-                    // 🌟 NUEVO: Solo si entra aquí, se enciende el botón
+                    // Solo si entra aquí, se enciende el botón
                     btnProcesarCierre.Enabled = true;
                 }
                 else if (diferencia > 0)
@@ -169,7 +185,7 @@ namespace Llamen_a_Dios
                     lblcuadre.Text = "SOBRANTE EN CAJA";
                     lblcuadre.ForeColor = Color.Goldenrod;
 
-                    // 🌟 NUEVO: Hay sobrante, apagamos el botón
+                    // Hay sobrante, apagamos el botón
                     btnProcesarCierre.Enabled = false;
                 }
                 else
@@ -179,7 +195,7 @@ namespace Llamen_a_Dios
                     lblcuadre.Text = "FALTANTE EN CAJA";
                     lblcuadre.ForeColor = Color.Crimson;
 
-                    // 🌟 NUEVO: Hay faltante, apagamos el botón
+                    // Hay faltante, apagamos el botón
                     btnProcesarCierre.Enabled = false;
                 }
             }
@@ -188,7 +204,6 @@ namespace Llamen_a_Dios
                 // Previene excepciones visuales mientras el operador limpia o edita los campos
             }
         }
-
 
         private void btnProcesarCierre_Click(object sender, EventArgs e)
         {
@@ -215,7 +230,6 @@ namespace Llamen_a_Dios
                 CapaEntidades.CierreCaja objCierreFinal = new CapaEntidades.CierreCaja();
 
                 // 1. Datos de Control
-                // Obtenemos el ID del usuario actual (Lo usaremos también para el log)
                 int idUsuarioLogueado = Inicio.usuarioActual.IdUsuario;
                 objCierreFinal.Cajero = new Usuario() { IdUsuario = idUsuarioLogueado };
                 objCierreFinal.FondoInicial = 0.00m;
@@ -251,7 +265,7 @@ namespace Llamen_a_Dios
                 }
 
                 // =========================================================
-                // NUEVO: ASIGNAR RENTABILIDAD AL OBJETO FINAL DE BASE DE DATOS
+                // ASIGNAR RENTABILIDAD AL OBJETO FINAL DE BASE DE DATOS
                 // =========================================================
                 objCierreFinal.CostoTotalProduccion = totalesSistema.CostoTotalProduccion;
                 objCierreFinal.GananciaNeta = totalesSistema.GananciaNeta;
@@ -265,7 +279,6 @@ namespace Llamen_a_Dios
                 // =========================================================
                 string mensaje = string.Empty;
 
-                // Pasamos el objeto, el idUsuario y el detalleDelCuadre a la capa de negocios
                 bool exito = objCN_Cierre.RegistrarCierre(objCierreFinal, idUsuarioLogueado, detalleDelCuadre, out mensaje);
 
                 if (exito)
@@ -290,7 +303,7 @@ namespace Llamen_a_Dios
                     txtGananciaNeta.Enabled = false;
 
                     // =========================================================
-                    // ¡AQUÍ ES DONDE GENERAMOS EL EXCEL AUTOMÁTICAMENTE!
+                    // GENERAR EL EXCEL AUTOMÁTICAMENTE
                     // =========================================================
                     GenerarReporteExcelAPdf();
 
@@ -321,7 +334,7 @@ namespace Llamen_a_Dios
         }
 
         // ==============================================================
-        // MÉDOTOD: GENERAR REPORTE HÍBRIDO (EPPLUS + INTEROP PDF)
+        // MÉTODO: GENERAR REPORTE HÍBRIDO (EPPLUS + INTEROP PDF)
         // ==============================================================
         private void GenerarReporteExcelAPdf()
         {
@@ -369,6 +382,33 @@ namespace Llamen_a_Dios
                 int filaCaja = 12;
                 decimal totalGeneralCaja = 0;
 
+                // ==========================================================
+                // COSTO DE PRODUCCIÓN Y UTILIDADES CONVERTIDOS A BS (Fila 12)
+                // ==========================================================
+                decimal tasaBs = 620.50m; // Tasa solicitada
+
+                // Conversión Costo de Producción
+                decimal costoProduccionBs = totalesSistema.CostoTotalProduccion * tasaBs;
+                wsCaja.Cells[12, 3] = costoProduccionBs;
+                ((Excel.Range)wsCaja.Cells[12, 3]).NumberFormat = "\"Bs\" #,##0.00";
+
+                // Conversión Utilidades
+                decimal utilidadBs = totalesSistema.GananciaNeta * tasaBs;
+                wsCaja.Cells[12, 4] = utilidadBs;
+                ((Excel.Range)wsCaja.Cells[12, 4]).NumberFormat = "\"Bs\" #,##0.00";
+                ((Excel.Range)wsCaja.Cells[12, 4]).Font.Bold = true;
+
+                // Le damos color a la Utilidad (Verde si es ganancia, Rojo si es pérdida)
+                if (utilidadBs >= 0)
+                {
+                    ((Excel.Range)wsCaja.Cells[12, 4]).Font.Color = ColorTranslator.ToOle(Color.ForestGreen);
+                }
+                else
+                {
+                    ((Excel.Range)wsCaja.Cells[12, 4]).Font.Color = ColorTranslator.ToOle(Color.Crimson);
+                }
+                // ==========================================================
+
                 if (dtPagos != null)
                 {
                     foreach (DataRow row in dtPagos.Rows)
@@ -376,18 +416,19 @@ namespace Llamen_a_Dios
                         wsCaja.Cells[filaCaja, 1] = row["MetodoPago"].ToString();
                         decimal monto = Convert.ToDecimal(row["TotalVendido"]);
                         wsCaja.Cells[filaCaja, 2] = monto;
-                        ((Excel.Range)wsCaja.Cells[filaCaja, 2]).NumberFormat = "$ #,##0.00";
+                        ((Excel.Range)wsCaja.Cells[filaCaja, 2]).NumberFormat = "\"Bs\" #,##0.00"; // Aseguramos que diga "Bs"
 
                         totalGeneralCaja += monto;
                         filaCaja++;
                     }
                 }
 
+                // TOTALES EN CAJA (Se ubica debajo del último método de pago iterado)
                 wsCaja.Cells[filaCaja, 1] = "TOTAL EN CAJA:";
                 ((Excel.Range)wsCaja.Cells[filaCaja, 1]).Font.Bold = true;
                 wsCaja.Cells[filaCaja, 2] = totalGeneralCaja;
                 ((Excel.Range)wsCaja.Cells[filaCaja, 2]).Font.Bold = true;
-                ((Excel.Range)wsCaja.Cells[filaCaja, 2]).NumberFormat = "$ #,##0.00";
+                ((Excel.Range)wsCaja.Cells[filaCaja, 2]).NumberFormat = "\"Bs\" #,##0.00";
 
                 // --- PESTAÑA 2: MOVIMIENTO DE PRODUCTOS ---
                 wsProd = (Excel.Worksheet)workbook.Sheets[2];
@@ -404,12 +445,13 @@ namespace Llamen_a_Dios
                         wsProd.Cells[filaProd, 2] = row[1].ToString();
                         wsProd.Cells[filaProd, 3] = Convert.ToInt32(row[2]);
                         wsProd.Cells[filaProd, 4] = Convert.ToDecimal(row[3]);
-                        ((Excel.Range)wsProd.Cells[filaProd, 4]).NumberFormat = "$ #,##0.00";
+                        ((Excel.Range)wsProd.Cells[filaProd, 4]).NumberFormat = "\"Bs\" #,##0.00"; // Si los productos también están en Bs
 
                         filaProd++;
                     }
                 }
 
+                // EXPORTAR A PDF
                 workbook.ExportAsFixedFormat(
                     Excel.XlFixedFormatType.xlTypePDF,
                     rutaFinalPdf,
@@ -439,6 +481,62 @@ namespace Llamen_a_Dios
 
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+            }
+        }
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA EL CIERRE DE CAJA
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipCierre = new ToolTip();
+
+            // Estilo Globo idéntico al resto del sistema
+            toolTipCierre.IsBalloon = true;
+            toolTipCierre.ToolTipIcon = ToolTipIcon.Info;
+            toolTipCierre.ToolTipTitle = "Arqueo y Cierre de Caja";
+
+            // Configuración de tiempos
+            toolTipCierre.AutoPopDelay = 7000;
+            toolTipCierre.InitialDelay = 400;
+            toolTipCierre.ReshowDelay = 300;
+            toolTipCierre.ShowAlways = true;
+
+            // --- TOOLTIPS PARA EL ÁREA FÍSICA (LO QUE CUENTA EL CAJERO) ---
+            string msjFisico = "Ingresa aquí el monto exacto que contaste físicamente en tu gaveta/cuentas para este método.";
+
+            if (this.txtFisicoBs != null) toolTipCierre.SetToolTip(this.txtFisicoBs, msjFisico);
+            if (this.txtFisicoUsd != null) toolTipCierre.SetToolTip(this.txtFisicoUsd, msjFisico);
+            if (this.txtFisicoPagoMovil != null) toolTipCierre.SetToolTip(this.txtFisicoPagoMovil, msjFisico);
+            if (this.txtFisicoPuntoVenta != null) toolTipCierre.SetToolTip(this.txtFisicoPuntoVenta, msjFisico);
+            if (this.txtFisicoTransferencia != null) toolTipCierre.SetToolTip(this.txtFisicoTransferencia, msjFisico);
+            if (this.txtFisicoZinly != null) toolTipCierre.SetToolTip(this.txtFisicoZinly, msjFisico);
+            if (this.txtFisicoCashea != null) toolTipCierre.SetToolTip(this.txtFisicoCashea, msjFisico);
+
+            // --- TOOLTIPS PARA EL ÁREA DEL SISTEMA ---
+            string msjSistema = "Monto calculado automáticamente por el sistema según las ventas de tu turno.";
+            if (this.txtSistemaBs != null) toolTipCierre.SetToolTip(this.txtSistemaBs, msjSistema);
+            if (this.txtSistemaUsd != null) toolTipCierre.SetToolTip(this.txtSistemaUsd, msjSistema);
+
+            // --- TOOLTIPS PARA RESULTADOS Y RENTABILIDAD ---
+            if (this.txtcuadre != null)
+            {
+                toolTipCierre.SetToolTip(this.txtcuadre, "Diferencia entre el sistema y tu conteo físico.\nDebe ser $0.00 para poder cerrar la caja.");
+            }
+
+            if (this.txtGananciaNeta != null)
+            {
+                toolTipCierre.SetToolTip(this.txtGananciaNeta, "Utilidad neta generada durante este turno (Ingresos - Costos de Producción).");
+            }
+
+            // --- TOOLTIPS PARA BOTONES DE ACCIÓN ---
+            if (this.btnProcesarCierre != null)
+            {
+                toolTipCierre.SetToolTip(this.btnProcesarCierre, "Procesa el cierre definitivo. Solo se habilitará si el cuadre es exacto.");
+            }
+
+            if (this.btnexcel != null)
+            {
+                toolTipCierre.SetToolTip(this.btnexcel, "Exporta el reporte de cierre a PDF. Disponible tras procesar el cierre.");
             }
         }
     }

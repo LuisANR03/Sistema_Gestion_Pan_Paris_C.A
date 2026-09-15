@@ -24,10 +24,14 @@ namespace Entidades
 
         public bool Estado { get; set; }
 
+        public List<DetalleReceta> DetallesReceta { get; set; } = new List<DetalleReceta>();
+
         public string EstadoValor
         {
             get { return Estado ? "Activo" : "Inactivo"; }
         }
         public DateTime FechaRegistro { get; set; }
     }
+
+
 }

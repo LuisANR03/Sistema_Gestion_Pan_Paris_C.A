@@ -108,9 +108,9 @@ namespace CapaDatos
                 catch (Exception ex)
                 {
                     System.Windows.Forms.MessageBox.Show("Error al calcular el cierre de caja: " + ex.Message,
-                                                 "Error de Base de Datos",
-                                                 System.Windows.Forms.MessageBoxButtons.OK,
-                                                 System.Windows.Forms.MessageBoxIcon.Error);
+                                                         "Error de Base de Datos",
+                                                         System.Windows.Forms.MessageBoxButtons.OK,
+                                                         System.Windows.Forms.MessageBoxIcon.Error);
 
                     totales = new CierreCaja();
                 }
@@ -201,6 +201,57 @@ namespace CapaDatos
                 }
             }
             return respuesta;
+        }
+
+        // ==========================================
+        // NUEVO MÉTODO PARA REPORTES DE RENTABILIDAD
+        // ==========================================
+        public CierreCaja ObtenerRentabilidadPorFechas(string fechaInicio, string fechaFin)
+        {
+            CierreCaja rentabilidad = new CierreCaja();
+
+            using (MySqlConnection oconexion = Conexion.obtenerConexion())
+            {
+                try
+                {
+                    if (oconexion.State == ConnectionState.Closed)
+                    {
+                        oconexion.Open();
+                    }
+
+                    // Sumamos los totales agrupando por las fechas seleccionadas
+                    string query = @"
+                        SELECT 
+                            IFNULL(SUM(TotalSistemaCalculado), 0) AS TotalIngresado,
+                            IFNULL(SUM(costo_total_produccion), 0) AS CostoTotal,
+                            IFNULL(SUM(ganancia_neta), 0) AS GananciaTotal
+                        FROM cierre_caja 
+                        WHERE DATE(FechaCierre) BETWEEN @fechaInicio AND @fechaFin AND Estado = 'CERRADO'";
+
+                    MySqlCommand cmd = new MySqlCommand(query, oconexion);
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaFin", fechaFin);
+                    cmd.CommandType = CommandType.Text;
+
+                    using (MySqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            // Reutilizamos la entidad CierreCaja para llevar los datos al formulario
+                            rentabilidad.TotalVentas = Convert.ToDecimal(dr["TotalIngresado"]);
+                            rentabilidad.CostoTotalProduccion = Convert.ToDecimal(dr["CostoTotal"]);
+                            rentabilidad.GananciaNeta = Convert.ToDecimal(dr["GananciaTotal"]);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    rentabilidad = new CierreCaja();
+                    // Opcional: Podrías poner aquí un MessageBox o enviar el error a tu Log
+                }
+            }
+
+            return rentabilidad;
         }
     }
 }

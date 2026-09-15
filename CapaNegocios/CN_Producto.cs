@@ -1,10 +1,8 @@
 ﻿using CapaDatos;
+using CapaEntidades;
 using Entidades;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaNegocios
 {
@@ -17,6 +15,12 @@ namespace CapaNegocios
         public List<Producto> Listar()
         {
             return objetoCD_Producto.Listar();
+        }
+
+        // --- NUEVO MÉTODO: OBTENER RECETA ---
+        public List<DetalleReceta> ObtenerReceta(int idProducto)
+        {
+            return objetoCD_Producto.ObtenerReceta(idProducto);
         }
 
         // --- MÉTODO 2: REGISTRAR ---
@@ -37,10 +41,23 @@ namespace CapaNegocios
             {
                 Mensaje = "Debe seleccionar una categoría.";
             }
-            // NUEVA REGLA: Validar que el costo de producción no sea negativo
+            // Validar que el costo de producción no sea negativo
             else if (obj.CostoProduccion < 0)
             {
                 Mensaje = "El costo de producción no puede ser menor a cero.";
+            }
+
+            // NUEVA REGLA: Validar receta si trae ingredientes
+            if (obj.DetallesReceta != null && obj.DetallesReceta.Count > 0 && string.IsNullOrEmpty(Mensaje))
+            {
+                foreach (var item in obj.DetallesReceta)
+                {
+                    if (item.CantidadRequerida <= 0)
+                    {
+                        Mensaje = $"La cantidad para el ingrediente {item.NombreIngrediente} debe ser mayor a cero.";
+                        break;
+                    }
+                }
             }
 
             // Si hay un error, no continúa
@@ -71,10 +88,23 @@ namespace CapaNegocios
             {
                 Mensaje = "Debe seleccionar una categoría.";
             }
-            // NUEVA REGLA: Validar que el costo de producción no sea negativo
+            // Validar que el costo de producción no sea negativo
             else if (obj.CostoProduccion < 0)
             {
                 Mensaje = "El costo de producción no puede ser menor a cero.";
+            }
+
+            // NUEVA REGLA: Validar receta si trae ingredientes
+            if (obj.DetallesReceta != null && obj.DetallesReceta.Count > 0 && string.IsNullOrEmpty(Mensaje))
+            {
+                foreach (var item in obj.DetallesReceta)
+                {
+                    if (item.CantidadRequerida <= 0)
+                    {
+                        Mensaje = $"La cantidad para el ingrediente {item.NombreIngrediente} debe ser mayor a cero.";
+                        break;
+                    }
+                }
             }
 
             if (!string.IsNullOrEmpty(Mensaje))
@@ -99,5 +129,8 @@ namespace CapaNegocios
             // Llama a la Capa de Datos pasando el usuario logueado
             return objetoCD_Producto.Eliminar(idproducto, idUsuarioLogueado, out Mensaje);
         }
+
+
+
     }
 }

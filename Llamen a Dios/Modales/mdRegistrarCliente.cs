@@ -30,6 +30,13 @@ namespace Llamen_a_Dios.Modales
         // 3. Evento Load del formulario
         private void mdRegistrarCliente_Load(object sender, EventArgs e)
         {
+            // --- NUEVO: Cargamos los tipos de documento al iniciar ---
+            cbTipoDocumento.Items.Add("V");
+            cbTipoDocumento.Items.Add("E");
+            cbTipoDocumento.Items.Add("J");
+            cbTipoDocumento.Items.Add("G");
+            cbTipoDocumento.SelectedIndex = 0; // Por defecto seleccionado "V"
+
             if (!string.IsNullOrEmpty(CedulaSugerida))
             {
                 tbCedula.Text = CedulaSugerida;
@@ -51,6 +58,7 @@ namespace Llamen_a_Dios.Modales
             Cliente obj_cliente = new Cliente()
             {
                 IdCliente = 0,
+                TipoDocumento = cbTipoDocumento.SelectedItem.ToString(), // --- NUEVO ---
                 Cedula = tbCedula.Text.Trim(),
                 Nombre = tbnombre.Text.Trim(),
                 Correo = tbcorreo.Text.Trim(),

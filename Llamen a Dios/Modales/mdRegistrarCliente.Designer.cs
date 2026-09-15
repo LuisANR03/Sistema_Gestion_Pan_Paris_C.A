@@ -40,6 +40,7 @@
             this.lblnombre = new System.Windows.Forms.Label();
             this.txtCedul = new System.Windows.Forms.Label();
             this.btnCancelar = new BotonModerno();
+            this.cbTipoDocumento = new Llamen_a_Dios.ComboBoxModerno();
             this.SuspendLayout();
             // 
             // tbnombre
@@ -64,10 +65,10 @@
             // 
             // BtnGuardar
             // 
-            this.BtnGuardar.BackColor = System.Drawing.Color.Green;
+            this.BtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
             this.BtnGuardar.ColorBorde = System.Drawing.Color.White;
-            this.BtnGuardar.ColorClick = System.Drawing.Color.ForestGreen;
-            this.BtnGuardar.ColorHover = System.Drawing.Color.Green;
+            this.BtnGuardar.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.BtnGuardar.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(113)))), ((int)(((byte)(34)))));
             this.BtnGuardar.ColorIconoHover = System.Drawing.Color.White;
             this.BtnGuardar.ColorTextoHover = System.Drawing.Color.White;
             this.BtnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -159,14 +160,14 @@
             this.tbCedula.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.tbCedula.ForeColor = System.Drawing.Color.DimGray;
             this.tbCedula.GrosorBorde = 2;
-            this.tbCedula.Location = new System.Drawing.Point(48, 60);
+            this.tbCedula.Location = new System.Drawing.Point(146, 60);
             this.tbCedula.MaxLength = 32767;
             this.tbCedula.Name = "tbCedula";
             this.tbCedula.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tbCedula.PasswordChar = '\0';
             this.tbCedula.RadioBorde = 5;
             this.tbCedula.ReadOnly = false;
-            this.tbCedula.Size = new System.Drawing.Size(252, 37);
+            this.tbCedula.Size = new System.Drawing.Size(154, 37);
             this.tbCedula.TabIndex = 86;
             this.tbCedula.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tbCedula.UseSystemPasswordChar = false;
@@ -174,9 +175,9 @@
             // Telefono
             // 
             this.Telefono.AutoSize = true;
-            this.Telefono.BackColor = System.Drawing.Color.DarkBlue;
+            this.Telefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.Telefono.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Telefono.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.Telefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.Telefono.Location = new System.Drawing.Point(49, 409);
             this.Telefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Telefono.Name = "Telefono";
@@ -187,9 +188,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.DarkBlue;
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label5.Location = new System.Drawing.Point(47, 310);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
@@ -200,9 +201,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.DarkBlue;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.label4.Location = new System.Drawing.Point(51, 214);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
@@ -213,9 +214,9 @@
             // lblnombre
             // 
             this.lblnombre.AutoSize = true;
-            this.lblnombre.BackColor = System.Drawing.Color.DarkBlue;
+            this.lblnombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.lblnombre.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblnombre.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblnombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.lblnombre.Location = new System.Drawing.Point(51, 114);
             this.lblnombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblnombre.Name = "lblnombre";
@@ -226,9 +227,9 @@
             // txtCedul
             // 
             this.txtCedul.AutoSize = true;
-            this.txtCedul.BackColor = System.Drawing.Color.DarkBlue;
+            this.txtCedul.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.txtCedul.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCedul.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtCedul.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.txtCedul.Location = new System.Drawing.Point(53, 19);
             this.txtCedul.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtCedul.Name = "txtCedul";
@@ -239,7 +240,7 @@
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.White;
-            this.btnCancelar.ColorBorde = System.Drawing.Color.Firebrick;
+            this.btnCancelar.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnCancelar.ColorClick = System.Drawing.Color.LightCoral;
             this.btnCancelar.ColorHover = System.Drawing.Color.Red;
             this.btnCancelar.ColorIconoHover = System.Drawing.Color.White;
@@ -248,10 +249,10 @@
             this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.Color.Firebrick;
+            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnCancelar.GrosorBorde = 3;
             this.btnCancelar.IconChar = FontAwesome.Sharp.IconChar.Redo;
-            this.btnCancelar.IconColor = System.Drawing.Color.Firebrick;
+            this.btnCancelar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCancelar.IconSize = 25;
             this.btnCancelar.Location = new System.Drawing.Point(57, 615);
@@ -259,18 +260,42 @@
             this.btnCancelar.RadioBorde = 5;
             this.btnCancelar.Size = new System.Drawing.Size(228, 45);
             this.btnCancelar.TabIndex = 91;
-            this.btnCancelar.Text = "Limpiar";
+            this.btnCancelar.Text = "Regresar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // cbTipoDocumento
+            // 
+            this.cbTipoDocumento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.cbTipoDocumento.BackColorModerno = System.Drawing.Color.WhiteSmoke;
+            this.cbTipoDocumento.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.cbTipoDocumento.BorderRadius = 8;
+            this.cbTipoDocumento.BorderSize = 1;
+            this.cbTipoDocumento.DataSource = null;
+            this.cbTipoDocumento.DisplayMember = "";
+            this.cbTipoDocumento.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.cbTipoDocumento.ForeColor = System.Drawing.Color.DimGray;
+            this.cbTipoDocumento.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(66)))), ((int)(((byte)(210)))));
+            this.cbTipoDocumento.Location = new System.Drawing.Point(63, 60);
+            this.cbTipoDocumento.MinimumSize = new System.Drawing.Size(50, 30);
+            this.cbTipoDocumento.Name = "cbTipoDocumento";
+            this.cbTipoDocumento.Padding = new System.Windows.Forms.Padding(1);
+            this.cbTipoDocumento.SelectedIndex = -1;
+            this.cbTipoDocumento.SelectedItem = null;
+            this.cbTipoDocumento.SelectedValue = null;
+            this.cbTipoDocumento.Size = new System.Drawing.Size(58, 30);
+            this.cbTipoDocumento.TabIndex = 94;
+            this.cbTipoDocumento.ValueMember = "";
+            // 
             // mdRegistrarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.ClientSize = new System.Drawing.Size(356, 700);
+            this.Controls.Add(this.cbTipoDocumento);
             this.Controls.Add(this.tbnombre);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.BtnGuardar);
@@ -307,5 +332,6 @@
         private System.Windows.Forms.Label lblnombre;
         private System.Windows.Forms.Label txtCedul;
         private BotonModerno btnCancelar;
+        private ComboBoxModerno cbTipoDocumento;
     }
 }

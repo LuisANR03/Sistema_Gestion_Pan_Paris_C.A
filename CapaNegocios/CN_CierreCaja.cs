@@ -27,5 +27,20 @@ namespace CapaNegocios
             // Pasamos los nuevos parámetros a la Capa de Datos
             return objCierre.RegistrarCierre(obj, idUsuarioLogueado, detalleCuadre, out Mensaje);
         }
+
+        // ==========================================
+        // NUEVO MÉTODO PARA REPORTES DE RENTABILIDAD
+        // ==========================================
+        public CierreCaja ObtenerRentabilidadPorFechas(string fechaInicio, string fechaFin)
+        {
+            // Validación de negocio preventiva
+            if (string.IsNullOrWhiteSpace(fechaInicio) || string.IsNullOrWhiteSpace(fechaFin))
+            {
+                return new CierreCaja(); // Retorna un objeto vacío si las fechas son nulas
+            }
+
+            // Pasamos la solicitud a la Capa de Datos
+            return objCierre.ObtenerRentabilidadPorFechas(fechaInicio, fechaFin);
+        }
     }
 }

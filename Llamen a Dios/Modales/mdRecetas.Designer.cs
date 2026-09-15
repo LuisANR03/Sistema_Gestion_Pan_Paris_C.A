@@ -1,6 +1,6 @@
 ﻿namespace Llamen_a_Dios.Modales
 {
-    partial class mdProducto
+    partial class mdRecetas
     {
         /// <summary>
         /// Required designer variable.
@@ -31,23 +31,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelModerno1 = new Llamen_a_Dios.PanelModerno();
+            this.btnReceta = new BotonModerno();
             this.lbllistausu = new System.Windows.Forms.Label();
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.label6 = new System.Windows.Forms.Label();
             this.DGVStck = new System.Windows.Forms.DataGridView();
-            this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IdIngrediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Promocion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CBFiltro = new Llamen_a_Dios.ComboBoxModerno();
             this.BtnLimpiar = new BotonModerno();
             this.pnlBuscador = new System.Windows.Forms.Panel();
@@ -67,12 +60,42 @@
             this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.panelModerno1.BorderRadius = 15;
             this.panelModerno1.Controls.Add(this.btnCancelar);
+            this.panelModerno1.Controls.Add(this.btnReceta);
             this.panelModerno1.Controls.Add(this.lbllistausu);
-            this.panelModerno1.Location = new System.Drawing.Point(55, 7);
+            this.panelModerno1.Location = new System.Drawing.Point(55, 9);
             this.panelModerno1.Name = "panelModerno1";
             this.panelModerno1.RedondearAbajo = false;
             this.panelModerno1.Size = new System.Drawing.Size(1176, 100);
-            this.panelModerno1.TabIndex = 94;
+            this.panelModerno1.TabIndex = 96;
+            // 
+            // btnReceta
+            // 
+            this.btnReceta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.btnReceta.ColorBorde = System.Drawing.Color.White;
+            this.btnReceta.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.btnReceta.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(113)))), ((int)(((byte)(34)))));
+            this.btnReceta.ColorIconoHover = System.Drawing.Color.White;
+            this.btnReceta.ColorTextoHover = System.Drawing.Color.White;
+            this.btnReceta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReceta.FlatAppearance.BorderSize = 0;
+            this.btnReceta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReceta.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnReceta.ForeColor = System.Drawing.Color.White;
+            this.btnReceta.GrosorBorde = 0;
+            this.btnReceta.IconChar = FontAwesome.Sharp.IconChar.Receipt;
+            this.btnReceta.IconColor = System.Drawing.Color.White;
+            this.btnReceta.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnReceta.IconSize = 25;
+            this.btnReceta.Location = new System.Drawing.Point(917, 30);
+            this.btnReceta.Name = "btnReceta";
+            this.btnReceta.RadioBorde = 5;
+            this.btnReceta.Size = new System.Drawing.Size(228, 45);
+            this.btnReceta.TabIndex = 98;
+            this.btnReceta.Text = "Guardar Receta";
+            this.btnReceta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReceta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReceta.UseVisualStyleBackColor = false;
+            this.btnReceta.Click += new System.EventHandler(this.btnReceta_Click);
             // 
             // lbllistausu
             // 
@@ -83,9 +106,9 @@
             this.lbllistausu.Location = new System.Drawing.Point(30, 34);
             this.lbllistausu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbllistausu.Name = "lbllistausu";
-            this.lbllistausu.Size = new System.Drawing.Size(124, 31);
+            this.lbllistausu.Size = new System.Drawing.Size(148, 31);
             this.lbllistausu.TabIndex = 42;
-            this.lbllistausu.Text = "Inventario";
+            this.lbllistausu.Text = "Ingredientes";
             // 
             // groupBoxModerno1
             // 
@@ -99,11 +122,11 @@
             this.groupBoxModerno1.Controls.Add(this.CBFiltro);
             this.groupBoxModerno1.Controls.Add(this.BtnLimpiar);
             this.groupBoxModerno1.Controls.Add(this.pnlBuscador);
-            this.groupBoxModerno1.Location = new System.Drawing.Point(55, 88);
+            this.groupBoxModerno1.Location = new System.Drawing.Point(55, 90);
             this.groupBoxModerno1.Name = "groupBoxModerno1";
             this.groupBoxModerno1.RedondearAbajo = true;
             this.groupBoxModerno1.Size = new System.Drawing.Size(1176, 669);
-            this.groupBoxModerno1.TabIndex = 95;
+            this.groupBoxModerno1.TabIndex = 97;
             this.groupBoxModerno1.TabStop = false;
             // 
             // label6
@@ -139,19 +162,11 @@
             this.DGVStck.ColumnHeadersHeight = 40;
             this.DGVStck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGVStck.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.BtnSelect,
-            this.IdProducto,
-            this.Codigo,
+            this.Seleccionar,
+            this.IdIngrediente,
             this.Nombre,
-            this.Descripcion,
-            this.IdCategoria,
-            this.Categoria,
-            this.Stock,
-            this.Precio,
-            this.Promocion,
-            this.Valor,
-            this.dataGridViewTextBoxColumn2,
-            this.Fecha});
+            this.Costo,
+            this.Cantidad});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -165,119 +180,49 @@
             this.DGVStck.Margin = new System.Windows.Forms.Padding(4);
             this.DGVStck.MultiSelect = false;
             this.DGVStck.Name = "DGVStck";
-            this.DGVStck.ReadOnly = true;
             this.DGVStck.RowHeadersVisible = false;
             this.DGVStck.RowHeadersWidth = 51;
             this.DGVStck.RowTemplate.Height = 40;
             this.DGVStck.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVStck.Size = new System.Drawing.Size(1116, 514);
             this.DGVStck.TabIndex = 48;
-            this.DGVStck.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVStck_CellDoubleClick);
             // 
-            // BtnSelect
+            // Seleccionar
             // 
-            this.BtnSelect.FillWeight = 20F;
-            this.BtnSelect.HeaderText = "";
-            this.BtnSelect.MinimumWidth = 6;
-            this.BtnSelect.Name = "BtnSelect";
-            this.BtnSelect.ReadOnly = true;
-            this.BtnSelect.Visible = false;
+            this.Seleccionar.HeaderText = "✔";
+            this.Seleccionar.MinimumWidth = 6;
+            this.Seleccionar.Name = "Seleccionar";
             // 
-            // IdProducto
+            // IdIngrediente
             // 
-            this.IdProducto.HeaderText = "Id";
-            this.IdProducto.MinimumWidth = 6;
-            this.IdProducto.Name = "IdProducto";
-            this.IdProducto.ReadOnly = true;
-            this.IdProducto.Visible = false;
-            // 
-            // Codigo
-            // 
-            this.Codigo.FillWeight = 98.45684F;
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.MinimumWidth = 6;
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
+            this.IdIngrediente.HeaderText = "IdIngrediente";
+            this.IdIngrediente.MinimumWidth = 6;
+            this.IdIngrediente.Name = "IdIngrediente";
+            this.IdIngrediente.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IdIngrediente.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.IdIngrediente.Visible = false;
             // 
             // Nombre
             // 
-            this.Nombre.FillWeight = 98.45684F;
-            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.HeaderText = "Ingrediente";
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Nombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Descripcion
+            // Costo
             // 
-            this.Descripcion.FillWeight = 98.45684F;
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.MinimumWidth = 6;
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
+            this.Costo.HeaderText = "Costo Un";
+            this.Costo.MinimumWidth = 6;
+            this.Costo.Name = "Costo";
+            this.Costo.ReadOnly = true;
             // 
-            // IdCategoria
+            // Cantidad
             // 
-            this.IdCategoria.HeaderText = "IdCategoria";
-            this.IdCategoria.MinimumWidth = 6;
-            this.IdCategoria.Name = "IdCategoria";
-            this.IdCategoria.ReadOnly = true;
-            this.IdCategoria.Visible = false;
-            // 
-            // Categoria
-            // 
-            this.Categoria.FillWeight = 98.45684F;
-            this.Categoria.HeaderText = "Categoria";
-            this.Categoria.MinimumWidth = 6;
-            this.Categoria.Name = "Categoria";
-            this.Categoria.ReadOnly = true;
-            // 
-            // Stock
-            // 
-            this.Stock.FillWeight = 98.45684F;
-            this.Stock.HeaderText = "Stock";
-            this.Stock.MinimumWidth = 6;
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            this.Precio.FillWeight = 98.45684F;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.MinimumWidth = 6;
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            // 
-            // Promocion
-            // 
-            this.Promocion.FillWeight = 98.45684F;
-            this.Promocion.HeaderText = "Promocion";
-            this.Promocion.MinimumWidth = 6;
-            this.Promocion.Name = "Promocion";
-            this.Promocion.ReadOnly = true;
-            // 
-            // Valor
-            // 
-            this.Valor.HeaderText = "Valor";
-            this.Valor.MinimumWidth = 6;
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            this.Valor.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "EstadoValor";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.MinimumWidth = 6;
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            this.Fecha.Visible = false;
+            this.Cantidad.HeaderText = "Cant. a usar";
+            this.Cantidad.MinimumWidth = 6;
+            this.Cantidad.Name = "Cantidad";
             // 
             // CBFiltro
             // 
@@ -326,7 +271,6 @@
             this.BtnLimpiar.TabIndex = 78;
             this.BtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnLimpiar.UseVisualStyleBackColor = true;
-            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // pnlBuscador
             // 
@@ -371,7 +315,6 @@
             this.TBBuscar.TabIndex = 43;
             this.TBBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TBBuscar.UseSystemPasswordChar = false;
-            this.TBBuscar._TextChanged += new System.EventHandler(this.TBBuscar__TextChanged);
             // 
             // btnCancelar
             // 
@@ -391,30 +334,28 @@
             this.btnCancelar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCancelar.IconSize = 25;
-            this.btnCancelar.Location = new System.Drawing.Point(918, 30);
+            this.btnCancelar.Location = new System.Drawing.Point(653, 30);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.RadioBorde = 5;
             this.btnCancelar.Size = new System.Drawing.Size(228, 45);
-            this.btnCancelar.TabIndex = 92;
+            this.btnCancelar.TabIndex = 99;
             this.btnCancelar.Text = "Regresar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // mdProducto
+            // mdRecetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1287, 769);
             this.Controls.Add(this.panelModerno1);
             this.Controls.Add(this.groupBoxModerno1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "mdProducto";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "mdProducto";
-            this.Load += new System.EventHandler(this.mdProducto_Load);
+            this.Name = "mdRecetas";
+            this.Text = "mdRecetas";
+            this.Load += new System.EventHandler(this.mdRecetas_Load);
             this.panelModerno1.ResumeLayout(false);
             this.panelModerno1.PerformLayout();
             this.groupBoxModerno1.ResumeLayout(false);
@@ -438,19 +379,12 @@
         private System.Windows.Forms.Panel pnlBuscador;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private TextBoxModerno TBBuscar;
-        private System.Windows.Forms.DataGridViewButtonColumn BtnSelect;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private BotonModerno btnReceta;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdIngrediente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdCategoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Promocion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private BotonModerno btnCancelar;
     }
 }

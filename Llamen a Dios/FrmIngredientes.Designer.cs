@@ -45,6 +45,14 @@
             this.groupBoxModerno1 = new Llamen_a_Dios.GroupBoxModerno();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Idingrediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnidadMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockMinimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlBuscador = new System.Windows.Forms.Panel();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.TBBuscar = new TextBoxModerno();
@@ -57,14 +65,6 @@
             this.tbcorreo = new TextBoxModerno();
             this.tbnombre = new TextBoxModerno();
             this.txtStockMinimo = new TextBoxModerno();
-            this.BtnSelect = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Idingrediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockMinimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelModerno1.SuspendLayout();
             this.groupBoxModerno1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
@@ -95,10 +95,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(13, 28);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.label2.Location = new System.Drawing.Point(27, 63);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(272, 31);
@@ -108,9 +108,9 @@
             // lblrepetir
             // 
             this.lblrepetir.AutoSize = true;
-            this.lblrepetir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.lblrepetir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.lblrepetir.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblrepetir.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblrepetir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.lblrepetir.Location = new System.Drawing.Point(35, 515);
             this.lblrepetir.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblrepetir.Name = "lblrepetir";
@@ -121,9 +121,9 @@
             // lblrol
             // 
             this.lblrol.AutoSize = true;
-            this.lblrol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.lblrol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.lblrol.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblrol.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblrol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.lblrol.Location = new System.Drawing.Point(35, 321);
             this.lblrol.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblrol.Name = "lblrol";
@@ -134,9 +134,9 @@
             // tbStock
             // 
             this.tbStock.AutoSize = true;
-            this.tbStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.tbStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.tbStock.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.tbStock.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.tbStock.Location = new System.Drawing.Point(36, 236);
             this.tbStock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tbStock.Name = "tbStock";
@@ -147,9 +147,9 @@
             // lblnombre
             // 
             this.lblnombre.AutoSize = true;
-            this.lblnombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.lblnombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.lblnombre.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblnombre.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblnombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.lblnombre.Location = new System.Drawing.Point(36, 148);
             this.lblnombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblnombre.Name = "lblnombre";
@@ -160,9 +160,9 @@
             // txtstockminm
             // 
             this.txtstockminm.AutoSize = true;
-            this.txtstockminm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.txtstockminm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.txtstockminm.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.txtstockminm.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtstockminm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.txtstockminm.Location = new System.Drawing.Point(35, 413);
             this.txtstockminm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtstockminm.Name = "txtstockminm";
@@ -172,7 +172,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(237)))), ((int)(((byte)(218)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -206,7 +206,7 @@
             // panelModerno1
             // 
             this.panelModerno1.BackColor = System.Drawing.Color.Transparent;
-            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.panelModerno1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.panelModerno1.BorderRadius = 15;
             this.panelModerno1.Controls.Add(this.lbllistausu);
             this.panelModerno1.Location = new System.Drawing.Point(365, 95);
@@ -218,9 +218,9 @@
             // lbllistausu
             // 
             this.lbllistausu.AutoSize = true;
-            this.lbllistausu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(84)))), ((int)(((byte)(147)))));
+            this.lbllistausu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(203)))), ((int)(((byte)(154)))));
             this.lbllistausu.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbllistausu.ForeColor = System.Drawing.Color.White;
+            this.lbllistausu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.lbllistausu.Location = new System.Drawing.Point(20, 35);
             this.lbllistausu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbllistausu.Name = "lbllistausu";
@@ -310,6 +310,76 @@
             this.dgvData.TabIndex = 20;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
             this.dgvData.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvData_CellPainting);
+            // 
+            // BtnSelect
+            // 
+            this.BtnSelect.FillWeight = 20F;
+            this.BtnSelect.HeaderText = "";
+            this.BtnSelect.MinimumWidth = 6;
+            this.BtnSelect.Name = "BtnSelect";
+            this.BtnSelect.ReadOnly = true;
+            this.BtnSelect.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Idingrediente
+            // 
+            this.Idingrediente.HeaderText = "Id";
+            this.Idingrediente.MinimumWidth = 6;
+            this.Idingrediente.Name = "Idingrediente";
+            this.Idingrediente.ReadOnly = true;
+            this.Idingrediente.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Idingrediente.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.FillWeight = 87.91444F;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // StockActual
+            // 
+            this.StockActual.FillWeight = 87.91444F;
+            this.StockActual.HeaderText = "Stock";
+            this.StockActual.MinimumWidth = 6;
+            this.StockActual.Name = "StockActual";
+            this.StockActual.ReadOnly = true;
+            this.StockActual.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // UnidadMedida
+            // 
+            this.UnidadMedida.FillWeight = 87.91444F;
+            this.UnidadMedida.HeaderText = "Unidad";
+            this.UnidadMedida.MinimumWidth = 6;
+            this.UnidadMedida.Name = "UnidadMedida";
+            this.UnidadMedida.ReadOnly = true;
+            this.UnidadMedida.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // StockMinimo
+            // 
+            this.StockMinimo.HeaderText = "StockMinimo";
+            this.StockMinimo.MinimumWidth = 6;
+            this.StockMinimo.Name = "StockMinimo";
+            this.StockMinimo.ReadOnly = true;
+            // 
+            // EstadoValor
+            // 
+            this.EstadoValor.HeaderText = "EstadoValor";
+            this.EstadoValor.MinimumWidth = 6;
+            this.EstadoValor.Name = "EstadoValor";
+            this.EstadoValor.ReadOnly = true;
+            this.EstadoValor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.EstadoValor.Visible = false;
+            // 
+            // Estado
+            // 
+            this.Estado.FillWeight = 87.91444F;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // pnlBuscador
             // 
@@ -428,20 +498,20 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.BackColor = System.Drawing.Color.White;
-            this.btnBorrar.ColorBorde = System.Drawing.Color.Firebrick;
+            this.btnBorrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(99)))), ((int)(((byte)(69)))));
+            this.btnBorrar.ColorBorde = System.Drawing.Color.Empty;
             this.btnBorrar.ColorClick = System.Drawing.Color.Red;
             this.btnBorrar.ColorHover = System.Drawing.Color.Firebrick;
-            this.btnBorrar.ColorIconoHover = System.Drawing.Color.White;
-            this.btnBorrar.ColorTextoHover = System.Drawing.Color.White;
+            this.btnBorrar.ColorIconoHover = System.Drawing.Color.Empty;
+            this.btnBorrar.ColorTextoHover = System.Drawing.Color.Empty;
             this.btnBorrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBorrar.FlatAppearance.BorderSize = 0;
             this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrar.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnBorrar.ForeColor = System.Drawing.Color.Firebrick;
+            this.btnBorrar.ForeColor = System.Drawing.Color.White;
             this.btnBorrar.GrosorBorde = 3;
             this.btnBorrar.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.btnBorrar.IconColor = System.Drawing.Color.Firebrick;
+            this.btnBorrar.IconColor = System.Drawing.Color.White;
             this.btnBorrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBorrar.IconSize = 25;
             this.btnBorrar.Location = new System.Drawing.Point(40, 777);
@@ -458,19 +528,19 @@
             // Btlimpiar
             // 
             this.Btlimpiar.BackColor = System.Drawing.Color.White;
-            this.Btlimpiar.ColorBorde = System.Drawing.Color.RoyalBlue;
-            this.Btlimpiar.ColorClick = System.Drawing.Color.CornflowerBlue;
-            this.Btlimpiar.ColorHover = System.Drawing.Color.RoyalBlue;
-            this.Btlimpiar.ColorIconoHover = System.Drawing.Color.White;
-            this.Btlimpiar.ColorTextoHover = System.Drawing.Color.White;
+            this.Btlimpiar.ColorBorde = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
+            this.Btlimpiar.ColorClick = System.Drawing.Color.Empty;
+            this.Btlimpiar.ColorHover = System.Drawing.Color.Empty;
+            this.Btlimpiar.ColorIconoHover = System.Drawing.Color.Empty;
+            this.Btlimpiar.ColorTextoHover = System.Drawing.Color.Empty;
             this.Btlimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Btlimpiar.FlatAppearance.BorderSize = 0;
             this.Btlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btlimpiar.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.Btlimpiar.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.Btlimpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.Btlimpiar.GrosorBorde = 3;
             this.Btlimpiar.IconChar = FontAwesome.Sharp.IconChar.Redo;
-            this.Btlimpiar.IconColor = System.Drawing.Color.RoyalBlue;
+            this.Btlimpiar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(48)))), ((int)(((byte)(23)))));
             this.Btlimpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Btlimpiar.IconSize = 25;
             this.Btlimpiar.Location = new System.Drawing.Point(40, 705);
@@ -486,10 +556,10 @@
             // 
             // BtnGuardar
             // 
-            this.BtnGuardar.BackColor = System.Drawing.Color.Green;
+            this.BtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
             this.BtnGuardar.ColorBorde = System.Drawing.Color.White;
-            this.BtnGuardar.ColorClick = System.Drawing.Color.ForestGreen;
-            this.BtnGuardar.ColorHover = System.Drawing.Color.Green;
+            this.BtnGuardar.ColorClick = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(114)))), ((int)(((byte)(13)))));
+            this.BtnGuardar.ColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(113)))), ((int)(((byte)(34)))));
             this.BtnGuardar.ColorIconoHover = System.Drawing.Color.White;
             this.BtnGuardar.ColorTextoHover = System.Drawing.Color.White;
             this.BtnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -572,76 +642,6 @@
             this.txtStockMinimo.TabIndex = 93;
             this.txtStockMinimo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtStockMinimo.UseSystemPasswordChar = false;
-            // 
-            // BtnSelect
-            // 
-            this.BtnSelect.FillWeight = 20F;
-            this.BtnSelect.HeaderText = "";
-            this.BtnSelect.MinimumWidth = 6;
-            this.BtnSelect.Name = "BtnSelect";
-            this.BtnSelect.ReadOnly = true;
-            this.BtnSelect.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Idingrediente
-            // 
-            this.Idingrediente.HeaderText = "Id";
-            this.Idingrediente.MinimumWidth = 6;
-            this.Idingrediente.Name = "Idingrediente";
-            this.Idingrediente.ReadOnly = true;
-            this.Idingrediente.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Idingrediente.Visible = false;
-            // 
-            // Nombre
-            // 
-            this.Nombre.FillWeight = 87.91444F;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // StockActual
-            // 
-            this.StockActual.FillWeight = 87.91444F;
-            this.StockActual.HeaderText = "Stock";
-            this.StockActual.MinimumWidth = 6;
-            this.StockActual.Name = "StockActual";
-            this.StockActual.ReadOnly = true;
-            this.StockActual.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // UnidadMedida
-            // 
-            this.UnidadMedida.FillWeight = 87.91444F;
-            this.UnidadMedida.HeaderText = "Unidad";
-            this.UnidadMedida.MinimumWidth = 6;
-            this.UnidadMedida.Name = "UnidadMedida";
-            this.UnidadMedida.ReadOnly = true;
-            this.UnidadMedida.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // StockMinimo
-            // 
-            this.StockMinimo.HeaderText = "StockMinimo";
-            this.StockMinimo.MinimumWidth = 6;
-            this.StockMinimo.Name = "StockMinimo";
-            this.StockMinimo.ReadOnly = true;
-            // 
-            // EstadoValor
-            // 
-            this.EstadoValor.HeaderText = "EstadoValor";
-            this.EstadoValor.MinimumWidth = 6;
-            this.EstadoValor.Name = "EstadoValor";
-            this.EstadoValor.ReadOnly = true;
-            this.EstadoValor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.EstadoValor.Visible = false;
-            // 
-            // Estado
-            // 
-            this.Estado.FillWeight = 87.91444F;
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // FrmIngredientes
             // 

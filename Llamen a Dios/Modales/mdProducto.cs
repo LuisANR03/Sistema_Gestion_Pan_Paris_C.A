@@ -39,6 +39,7 @@ namespace Llamen_a_Dios.Modales
 
             // Cargar los datos a la tabla
             CargarProductos();
+            ConfigurarAyudaVisual();
         }
 
         private void CargarProductos()
@@ -113,7 +114,44 @@ namespace Llamen_a_Dios.Modales
             {
                 MessageBox.Show("Error al capturar: " + ex.Message);
             }
-        }   
+        }
 
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA EL MODAL DE PRODUCTOS
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipProducto = new ToolTip();
+
+            // Estilo Globo idéntico al resto del sistema
+            toolTipProducto.IsBalloon = true;
+            toolTipProducto.ToolTipIcon = ToolTipIcon.Info;
+            toolTipProducto.ToolTipTitle = "Selección de Producto";
+
+            // Configuración de tiempos
+            toolTipProducto.AutoPopDelay = 6000;
+            toolTipProducto.InitialDelay = 400;
+            toolTipProducto.ReshowDelay = 300;
+            toolTipProducto.ShowAlways = true;
+
+            // --- TOOLTIPS PARA LOS CONTROLES DEL MODAL ---
+            toolTipProducto.SetToolTip(this.TBBuscar, "Escribe aquí para buscar rápidamente un producto en el inventario.");
+            toolTipProducto.SetToolTip(this.CBFiltro, "Elige por cuál columna deseas buscar (Ej: Código, Nombre, Categoría).");
+            toolTipProducto.SetToolTip(this.BtnLimpiar, "Borra el texto de búsqueda y muestra todos los productos disponibles.");
+
+            // Instrucción clave para el DataGridView
+            toolTipProducto.SetToolTip(this.DGVStck, "Haz DOBLE CLIC sobre la fila del producto\npara seleccionarlo y agregarlo a tu venta.");
+
+            // Si tienes el botón cancelar declarado, le ponemos su ayuda
+            if (this.btnCancelar != null)
+            {
+                toolTipProducto.SetToolTip(this.btnCancelar, "Cierra esta ventana sin seleccionar ningún producto.");
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

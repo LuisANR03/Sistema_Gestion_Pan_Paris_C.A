@@ -44,9 +44,16 @@ namespace CapaNegocios
                 return false;
             }
 
+            // Validación Número de Documento (Factura)
             if (string.IsNullOrEmpty(obj.NumeroDocumento))
             {
                 obj.NumeroDocumento = "S/N";
+            }
+
+            // --- NUEVO: Validación Número de Control ---
+            if (string.IsNullOrEmpty(obj.NumeroControl))
+            {
+                obj.NumeroControl = "S/N";
             }
 
             try
@@ -87,10 +94,25 @@ namespace CapaNegocios
         // ====================================================================
         // MÉTODO PARA PROYECCIONES IA (Historial de 3 meses)
         // ====================================================================
-        public System.Data.DataTable ObtenerHistorial3Meses()
+        public DataTable ObtenerHistorial3Meses()
         {
             return objcd_venta.ObtenerHistorial3Meses();
         }
 
+        // ====================================================================
+        // MÉTODO PARA CALCULAR EL TOTAL VENDIDO POR RANGO DE FECHAS
+        // ====================================================================
+        public decimal ObtenerTotalVendidoPorRango(DateTime fechaInicio, DateTime fechaFin)
+        {
+            // Si por error el usuario pone la fecha de inicio mayor a la de fin, las invertimos
+            if (fechaInicio > fechaFin)
+            {
+                DateTime temp = fechaInicio;
+                fechaInicio = fechaFin;
+                fechaFin = temp;
+            }
+
+            return objcd_venta.ObtenerTotalVendidoPorRango(fechaInicio, fechaFin);
+        }
     }
 }

@@ -36,6 +36,7 @@ namespace Llamen_a_Dios
             tbpreciodolar.Text = "0.00";
             tbpreciobs.Text = "0.00";
             cbvendedor.SelectedIndex = 1;
+            ConfigurarAyudaVisual();
         }
 
         #region MÉTODOS DE OPERACIÓN (CARRITO DE COMPRAS)
@@ -186,6 +187,7 @@ namespace Llamen_a_Dios
             {
                 if (modal.ShowDialog() == DialogResult.OK)
                 {
+                    
                     txbcedula.Text = modal.CedulaSeleccionada;
                     txbcliente.Text = modal.NombreSeleccionado;
                     txtIdClienteOculto.Text = modal.IdClienteSeleccionado;
@@ -483,6 +485,12 @@ namespace Llamen_a_Dios
                         IdCliente = Convert.ToInt32(txtIdClienteOculto.Text),
                         TipoDocumento = "Factura",
                         NumeroDocumento = "V-" + DateTime.Now.ToString("mmss"),
+
+                        // ==============================================================
+                        // ¡NÚMERO DE CONTROL AUTOMÁTICO!
+                        // ==============================================================
+                        NumeroControl = "CTRL-" + DateTime.Now.ToString("yyyyMMdd-HHmmss"),
+
                         SubTotal = Convert.ToDecimal(tbpreciodolar.Text), // Total base
                         Impuesto = 0.00m,
                         MontoTotal = Convert.ToDecimal(tbpreciodolar.Text),
@@ -510,6 +518,45 @@ namespace Llamen_a_Dios
                 }
             }
         }
+
+        // ==============================================================
+        // AYUDA VISUAL (ESTILO GLOBO) PARA EL MÓDULO DE VENTAS (POS)
+        // ==============================================================
+        private void ConfigurarAyudaVisual()
+        {
+            ToolTip toolTipVenta = new ToolTip();
+
+            // Estilo Globo para mantener la estética del sistema
+            toolTipVenta.IsBalloon = true;
+            toolTipVenta.ToolTipIcon = ToolTipIcon.Info;
+            toolTipVenta.ToolTipTitle = "Punto de Venta";
+
+            // Configuración de tiempos
+            toolTipVenta.AutoPopDelay = 6000;
+            toolTipVenta.InitialDelay = 400;
+            toolTipVenta.ReshowDelay = 300;
+            toolTipVenta.ShowAlways = true;
+
+            // --- TOOLTIPS PARA CLIENTE Y VENDEDOR ---
+            toolTipVenta.SetToolTip(this.txbcedula, "Ingresa la cédula del cliente y presiona 'Enter' para buscar o registrar uno nuevo.");
+            toolTipVenta.SetToolTip(this.btnbuscarcliente, "Abre la lista completa de clientes registrados para búsqueda manual.");
+            toolTipVenta.SetToolTip(this.txbcliente, "Muestra el nombre del cliente asociado a la venta actual.");
+            toolTipVenta.SetToolTip(this.cbvendedor, "Selecciona al vendedor que está atendiendo al cliente para el cálculo de comisiones.");
+
+            // --- TOOLTIPS PARA EL CARRITO DE COMPRAS ---
+            toolTipVenta.SetToolTip(this.txbproducto, "Escanea el código de barras o ingresa el código del producto y presiona 'Enter'.");
+            toolTipVenta.SetToolTip(this.btnagregarproducto, "Suma el producto ingresado al carrito de compras.");
+            toolTipVenta.SetToolTip(this.btnbuscarproducto, "Abre el catálogo completo si no conoces el código del producto.");
+            toolTipVenta.SetToolTip(this.DGVStck, "Carrito de compras. Selecciona un producto aquí si deseas eliminarlo de la lista.");
+            toolTipVenta.SetToolTip(this.btnborrar, "Quita el producto seleccionado actualmente del carrito de compras.");
+
+            // --- TOOLTIPS PARA TOTALES Y COBRO ---
+            toolTipVenta.SetToolTip(this.tbtotalitems, "Cantidad total de artículos en el carrito.");
+            toolTipVenta.SetToolTip(this.tbpreciodolar, "Monto total a pagar reflejado en Dólares ($).");
+            toolTipVenta.SetToolTip(this.tbpreciobs, "Monto total a pagar reflejado en Bolívares (Bs).");
+            toolTipVenta.SetToolTip(this.btnVenta, "Finaliza la operación, abre la ventana de pagos y emite la factura.");
+        }
+
         private void LimpiarVenta()
         {
             txbcedula.Clear();

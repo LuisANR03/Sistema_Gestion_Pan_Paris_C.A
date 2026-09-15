@@ -14,6 +14,8 @@ namespace Entidades
         public decimal MontoRecibido { get; set; }
         public decimal MontoCambio { get; set; }
 
+        public string DescripcionMetodo { get; set; }
+
         // Propiedad de navegación
         public MetodoPago MetodoPago { get; set; }
     }
